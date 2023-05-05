@@ -376,9 +376,10 @@ function buildCalendar() {
 
           // @details 현재월보다 이전인경우
           } else if(today.getMonth() < date.getMonth()) {
-              if(Math.sign(day) == 1 && day <= lastDate.getDate()) {
-                  column.style.backgroundColor = "#E5E5E5";
-              }
+            column.style.backgroundColor = "#FFFFFF";
+            column.style.cursor = "pointer";
+            column.onclick = function(){ calendarChoiceDay(this);
+            }
           }
 
           // @details 현재월보다 이후인경우
@@ -393,9 +394,10 @@ function buildCalendar() {
 
       // @details 선택한년도가 현재년도보다 작은경우
       else if(today.getFullYear() < date.getFullYear()) {
-          if(Math.sign(day) == 1 && day <= lastDate.getDate()) {
-              column.style.backgroundColor = "#E5E5E5";
-          }
+        column.style.backgroundColor = "#FFFFFF";
+        column.style.cursor = "pointer";
+        column.onclick = function(){ calendarChoiceDay(this);
+        }
       }
 
       // @details 선택한년도가 현재년도보다 큰경우
