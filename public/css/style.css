@@ -70,7 +70,7 @@ h6 {
 # Header
 --------------------------------------------------------------*/
 #header {
-  background: #fff;
+  background: #FBFFED;
   transition: all 0.5s;
   z-index: 997;
   padding: 20px 0;
@@ -91,7 +91,7 @@ h6 {
 }
 
 #header .logo a {
-  color: #5f687b;
+  color: #B3CC62;
 }
 
 #header .logo img {
