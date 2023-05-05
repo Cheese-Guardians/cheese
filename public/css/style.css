@@ -1231,7 +1231,7 @@ section {
 # Footer
 --------------------------------------------------------------*/
 #footer {
-  background-color: #f3f4f6;
+  background-color: #FAFAFA;
   color: #5f687b;
   font-size: 14px;
   position: relative;
@@ -1335,8 +1335,13 @@ section {
   padding-bottom: 40px;
 }
 
+#footer .footer-left{
+  text-align:center;
+}
+
 #footer .copyright {
-  float: left;
+  padding: 1%;
+  text-align:center;
 }
 
 #footer .credits {
