@@ -8,6 +8,6 @@ app.use("/", (req,res) =>
  )
 
 app.listen(port,() => {
-    console.log("서버 실행중");
+    console.log("서버 실행 중");
 }
 )
