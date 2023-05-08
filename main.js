@@ -16,6 +16,10 @@ app.get(
     {res.render("login");}
 )
 app.get(
+    "/signup", (req,res) =>
+    {res.render("signup");}
+)
+app.get(
     "/", (req,res) =>
     {res.render("calendar");}
 )
