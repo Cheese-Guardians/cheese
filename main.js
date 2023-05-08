@@ -8,9 +8,22 @@ const port = 3000,
 app.use(express.static("public"));
 app.use(layouts);
 app.get(
-    "/", (req,res) =>
-    {res.render("index");}
+    "/calendar", (req,res) =>
+    {res.render("calendar");}
 )
+app.get(
+    "/login", (req,res) =>
+    {res.render("login");}
+)
+app.get(
+    "/signup", (req,res) =>
+    {res.render("signup");}
+)
+app.get(
+    "/", (req,res) =>
+    {res.render("calendar");}
+)
+
 app.listen(port,() => {
     console.log("서버 실행 중");
 }
