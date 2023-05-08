@@ -359,6 +359,25 @@ h6 {
   padding-top: 82px;
 }
 
+#logincontainer {
+ margin: 50%;
+}
+#logintext{
+  color:#B3CC62;
+  font-size: 40px; font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 600;
+  line-height: 27px;
+  margin: 0 auto;
+  margin-bottom:40px;
+  margin-top: 100px;
+}
+#loginsubmit{
+display:flex;
+justify-content: center;
+align-items: center;
+margin-top:-10px;
+}
 #hero h1 {
   margin: 0;
   font-size: 48px;
@@ -372,7 +391,10 @@ h6 {
   margin: 10px 0 30px 0;
   font-size: 24px;
 }
-
+#logologin{
+  width: 450px;
+  height:550px;
+}
 #hero .btn-get-started {
   font-family: "Raleway", sans-serif;
   font-weight: 500;
@@ -1086,9 +1108,11 @@ section {
 }
 
 .contact .php-email-form .form-group {
-  padding-bottom: 8px;
+  margin-bottom: 16px;
 }
-
+.logininfo{
+  margin-bottom:10px;
+}
 .contact .php-email-form .error-message {
   display: none;
   color: #fff;
@@ -1364,8 +1388,9 @@ section {
 form{
   width: 550px;
   float :right;
-  margin-right: 200px;
-  margin-top:242px;
+  /* margin-right: 200px;
+  margin-top:242px; */
+  margin: 0 auto;
 }
 
 p{
@@ -1378,8 +1403,8 @@ p{
   line-height: 27px;
 }
 input{
-  border: 2px solid #D9D9D9;
-  width : 525px;
+  border: 2px solid #B3CC62;
+  width : 550px;
   height : 75px;
   border-radius: 15px;
   margin-bottom: 34px;
