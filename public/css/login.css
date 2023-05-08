@@ -154,3 +154,6 @@
     float:right;
   }
   
+ .navbar{
+    visibility: hidden;
+  }
