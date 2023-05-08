@@ -1,0 +1,68 @@
+
+/* 캘린더 */
+.scriptCalendar a { color:#000000;text-decoration:none; }
+.scriptCalendar { text-align:center; }
+.scriptCalendar > thead > tr > td { width:50px;height:50px; }
+.scriptCalendar > thead > tr:first-child > td { font-weight:bold; }
+.scriptCalendar > thead > tr:last-child > td { background-color:#DEF1A1; }
+.scriptCalendar > tbody > tr > td { width:50px;height:50px; }
+
+form{
+  width: 550px;
+  float :right;
+  /* margin-right: 200px;
+  margin-top:242px; */
+  margin: 0 auto;
+}
+
+p{
+  margin-bottom : 10px;
+  margin-top :0px;
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 27px;
+}
+input{
+  border: 2px solid #B3CC62;
+  width : 550px;
+  height : 75px;
+  border-radius: 15px;
+  margin-bottom: 34px;
+}
+
+button{
+  color: #DEF1A1;
+  border: none;
+  width: 525px;
+  height: 75px;
+  border-radius: 15px;
+
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 800;
+  font-size: 30px;
+  line-height: 41px;
+  color: #FFFFFF;
+
+  margin-top : 40px;
+}
+
+h1{      
+  position: absolute;
+  width: 350px;
+  height: 54px;
+  left: 202px;
+  top: 168px;
+
+  display: inline-block;
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 54px;
+
+  color: #B3CC62;
+
+}
