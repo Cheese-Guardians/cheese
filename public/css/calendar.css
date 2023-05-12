@@ -1,4 +1,8 @@
 
+.container{
+  margin: auto;
+}
+
 /* 캘린더 */
 .scriptCalendar a { color:#000000;text-decoration:none; }
 .scriptCalendar { text-align:center; }
@@ -82,13 +86,24 @@ main .wrapper {
 }
 
 /* MAIN SLIDER */
+#about{
+  width: 67%;
+  margin: auto;
+  display:flex;
+}
+
 
 main .wrapper #slider {
-  width: 100%;
+  width: 650px;
   height: 60vh;
   overflow: hidden;
   border-radius: 20px;
   position: relative;
+  margin-right:30px;
+
+}
+.ininin{
+  margin-left:30px;
 }
 
 main .wrapper #slider .slide {
@@ -102,15 +117,15 @@ main .wrapper #slider .slide1 {
 }
 
 main .wrapper #slider .slide2 {
-  background-image: url(/img/about.png);
+  background-image: url(/img/about1.jpg);
 }
 
 main .wrapper #slider .slide3 {
-  background-image: url(/img/about.png);
+  background-image: url(/img/about2.jpg);
 }
 
 main .wrapper #slider .slide4 {
-  background-image: url(/img/about.png);
+  background-image: url(/img/about3.jpg);
 }
 
 main .wrapper #slider .slide5 {
@@ -188,4 +203,14 @@ main .wrapper #slider .dots .dot {
 
 main .wrapper #slider .dots .dot1 {
   background: #1107ff;
+}
+
+#memTextBtn{
+  display: table;
+  margin: 0 auto;
+}
+#memTextBtn p{
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
 }
