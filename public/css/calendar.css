@@ -64,35 +64,3 @@ h1{
   color: #B3CC62;
 
 }
-/*증상체크 란*/
-.symtom_check{  
-  width: 550px;
-  height: 400px;
-  font-size: 15px;
-  background-color: #DEF1A1;
-  border-radius: 3%;
-  padding: 15px;
-  margin: 30px;
-}
- /*좌측*/
-.symtom_check_left{
-  float: left;
-  width: 50%;
-  height: 100%;
-}
-
-.date{
-  margin: 5px;
-}
-
-.hopital{
-  margin: 5px;
-}
-
- /*좌측*/
-.symtom_check_right{
-  display: inline-block;
-  width: 50%;
-  height: 100%;
-}
-
