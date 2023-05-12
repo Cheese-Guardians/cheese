@@ -1,3 +1,4 @@
+//connect database
 require('dotenv').config({path: "database.env"});
 const mysql = require ('mysql2');
 const pool = mysql.createPool({
@@ -7,8 +8,11 @@ const pool = mysql.createPool({
     port: process.env.DB_PORT,
     database: process.env.DB_NAME,
     waitForConnections: true,
-    insecureAuth: true});
-    
+    insecureAuth: true
+});
+
+module.exports = pool;  //모듈로 내보내기
+
     //let sql = "INSERT INTO category (category_name, description)  VALUES  ('통합게시판', '아무거나 의견을 나눠주세용!!');";
     //let sql2 = "select * from category;";
     //let[rows, fields] = await db.query(sql,sql2);
@@ -17,13 +21,14 @@ const pool = mysql.createPool({
     //onsole.log(rows);
 const port = 3000,
     express = require("express"),
-    cors=require("cors")
+    cors = require("cors")
     app = express(),
     fs = require("fs"),
-    layouts = require("express-ejs-layouts")
+    layouts = require("express-ejs-layouts"),
     //const { logger } = require("./config/winston");
-    multer  = require('multer')
-    path = require('path');
+    multer  = require('multer'),
+    path = require('path'),
+    calendarRouter = require('./routes/calendar');
 
 
 
@@ -31,6 +36,9 @@ app.set("view engine", "ejs");
 
 app.use(express.static("public"));
 app.use(layouts);
+//라우터 등록
+app.use('/calendar', calendarRouter);
+
 app.get(
     "/calendar", (req,res) =>
     {
