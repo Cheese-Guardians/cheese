@@ -1,6 +1,9 @@
 <head>
     <link href="/css/calendar.css" rel="stylesheet">
-    <!-- dd -->
+    <link href="/css/calendar_check.css" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
 </head>
 
     <!-- ======= Hero Section ======= -->
@@ -8,9 +11,18 @@
   
       <div class="container">
         <div class="row">
-           <!-- ======= calendar ======= -->
+           
 
           <div class="col-lg-6 pt-5 pt-lg-0 order-2 order-lg-1 d-flex flex-column justify-content-center">
+            <!-- ======= test ======= -->
+            <% data.forEach(function(category) { %>
+                
+              <h1><%= category.category_name %></h1>
+              
+              <h2><%= category.description %></h2>
+                <% });%>
+
+            <!-- ======= calendar ======= -->
             <table class="scriptCalendar">
               <thead>
                   <tr>
@@ -77,4 +89,60 @@
       </div>
   
     </section><!-- End Hero -->
-  
+   <!-- MAIN SECTION -->
+   <section id="hero" class="d-flex align-items-center">
+    <main id="about">
+      <div class="wrapper">
+          <div id="slider">
+              <div class="material-icons arrow--left">
+                  arrow_left
+              </div>
+              <div class="slide slide1">
+                  <div class="slide__content">
+                  </div>
+              </div>
+              <div class="slide slide2">
+                  <div class="slide__content">
+                  </div>
+              </div>
+              <div class="slide slide3">
+                  <div class="slide__content">
+                  </div>
+              </div>
+              <div class="slide slide4">
+                  <div class="slide__content">
+                  </div>
+              </div>
+              <div class="slide slide5">
+                  <div class="slide__content">
+                  </div>
+              </div>
+              <div class="slide slide6">
+                  <div class="slide__content">
+                  </div>
+              </div>
+              <div class="material-icons arrow--right">
+                  arrow_right
+              </div>
+              <div class="dots">
+                  <div class="dot dot1"></div>
+                  <div class="dot dot2"></div>
+                  <div class="dot dot3"></div>
+                  <div class="dot dot4"></div>
+                  <div class="dot dot5"></div>
+                  <div class="dot dot6"></div>
+              </div>
+          </div>
+      </div>
+      <div class="ininin">
+        <form action="/uploadMemorize" id ="memoryText">
+          <input id="inputbox" type="text" name="memtext" ><br>
+          <button id="inbutbutton" type="submit" style="margin:auto; WIDTH: 70pt; HEIGHT: 30pt; FONT-SIZE:12px; background-color: #b3cc62;  margin-bottom:10px;" form="memoryText"><p>저장</p></button>
+ 
+        </form>
+        <form action="/upload" method="POST" enctype="multipart/form-data">
+          <input id="intputbox" style=" padding: 23px 25px ;display : flex; justify-content : center;" type="file" name="file">
+          <button id="inputbotton" type="submit" style="margin:auto; WIDTH: 70pt; HEIGHT: 30pt; FONT-SIZE:12px; background-color: #b3cc62; margin-bottom:10px;">업로드</button>
+        </form>
+         </div>
+    </main></section>
