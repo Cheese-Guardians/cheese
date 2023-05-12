@@ -1,30 +1,22 @@
-const db = mysql.createPool({ 
-    host: process.env.DB_HOST, 
-    user: process.env.DB_USER, 
-    password: process.env.DB_PW, 
-    port: process.env.DB_PORT, 
-    database: process.env.DB_NAME, 
-    waitForConnections: true, 
-    insecureAuth: true
-});
-
-let sql = 'SELECT * FROM category';
-let[rows,fields] = await db.query(sql);
-console.log(rows);
-
-const port = 3000,
-    express = require("express"),
+const port = 3003,
+    express = require("express"), 
+    cors=require("cors")
     app = express(),
+    fs = require("fs"),
     layouts = require("express-ejs-layouts");
     //const { logger } = require("./config/winston");
+    const multer  = require('multer')
+    const path = require('path');
+    
 
+ app.set("view engine", "ejs");
 
-app.set("view engine", "ejs");
+  // 정적 파일 제공을 위한 미들웨어 설정
 app.use(express.static("public"));
 app.use(layouts);
 app.get(
     "/calendar", (req,res) =>
-    {res.render("\calendar/calendar.ejs");}
+    {res.render("calendar");}
 )
 app.get(
     "/login", (req,res) =>
@@ -34,43 +26,43 @@ app.get(
     "/signup", (req,res) =>
     {res.render("signup");}
 )
-
-app.get(
-    "/community", (req,res) =>
-    {res.render("\community/community.ejs");}
-)
-
 app.get(
     "/", (req,res) =>
     {res.render("calendar");}
 )
 
-
-
 app.listen(port,() => {
+    const dir = "./uploads";
+    if (!fs.existsSync(dir)) {
+        fs.mkdirSync(dir);
+    }
     console.log("서버 실행 중");
 }
 )
 
-require('dotenv').config({path: "database.env"});
-const mysql = require('mysql2/promise'); 
-/*
-let test = async () => {
-    const db = mysql.createPool({ 
-        host: process.env.DB_HOST, 
-        user: process.env.DB_USER, 
-        password: process.env.DB_PW, 
-        port: process.env.DB_PORT, 
-        database: process.env.DB_NAME, 
-        waitForConnections: true, 
-        insecureAuth: true
-    });
-
-    let sql = 'SELECT * FROM category';
-    let[rows,fields] = await db.query(sql);
-    console.log(rows);
-};
 
 
-test()
-*/
+
+// Multer 설정
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+      cb(null, 'uploads/'); // 업로드된 파일을 저장할 폴더 경로
+    },
+    filename: (req, file, cb) => {
+      const fileName = file.fieldname + '-' + Date.now() + path.extname(file.originalname); // 저장될 파일 이름 설정
+      cb(null, fileName);
+    }
+  });
+  
+  const upload = multer({ storage: storage });
+  
+
+  
+  // 파일 업로드를 처리하는 라우트 핸들러
+  app.post('/upload', upload.single('file'), (req, res) => {
+    if (!req.file) {
+      res.status(400).send('파일이 없습니다.');
+    } else {
+        res.render("/")
+    }
+  });
