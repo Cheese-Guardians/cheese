@@ -1,6 +1,8 @@
+
 .container{
   margin: auto;
 }
+
 /* 캘린더 */
 .scriptCalendar a { color:#000000;text-decoration:none; }
 .scriptCalendar { text-align:center; }
@@ -75,6 +77,8 @@ h1{
   color: #B3CC62;
 
 }
+
+
 /* 추가 */
 /* HERO SECTION */
 
