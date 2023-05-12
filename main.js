@@ -24,6 +24,11 @@ app.get(
     {res.render("calendar");}
 )
 
+app.get(
+    "/community-side", (req,res) =>
+    {res.render("\community/community-side");}
+)
+
 app.listen(port,() => {
     console.log("서버 실행 중");
 }
