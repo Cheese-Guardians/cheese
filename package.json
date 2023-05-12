@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "치매 가디언즈 '치매' 프로젝트",
   "main": "index.js",
-  "scripts": {
+  "scripts": {https://github.com/Cheese-Guardians/cheese/pull/19/conflict?name=package.json&ancestor_oid=1d813c9e225dbb69e449c575fc313cede8df451e&base_oid=1c26c1739f1106c3127d1c084ac244ff8df2cf77&head_oid=1a49492670e620d2d9caf23646fc002b821932ce
     "start": "node ./main.js",
     "dev": "node ./main.js",
     "test": "echo \"Error: no test specified\" && exit 1"

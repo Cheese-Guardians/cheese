@@ -11,7 +11,6 @@ const port = 3003,
 
  app.set("view engine", "ejs");
 
-  // 정적 파일 제공을 위한 미들웨어 설정
 app.use(express.static("public"));
 app.use(layouts);
 app.get(
