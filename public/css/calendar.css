@@ -94,7 +94,7 @@ main .wrapper {
 
 /* MAIN SLIDER */
 #about{
-  width: 100%;
+  width: 67%;
   margin: auto;
   display:flex;
 }
@@ -106,16 +106,11 @@ main .wrapper #slider {
   overflow: hidden;
   border-radius: 20px;
   position: relative;
-  margin-left:10%;
-}
+  margin-right:30px;
 
+}
 .ininin{
-  width: 50%;
-}
-
-
-.wrapper{
-  width: 50%;
+  margin-left:30px;
 }
 
 main .wrapper #slider .slide {
@@ -168,6 +163,7 @@ main .wrapper #slider .material-icons {
   justify-content: center;
   position: absolute;
   top: 50%;
+  margin-top: -40px;
   font-size: 80px;
   color: #F6F5F0;
 }
