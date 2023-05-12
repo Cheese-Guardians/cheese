@@ -80,14 +80,14 @@
                 </div>
             </div>
             <div class="ininin">
-              <form action="uploadMemorize" id ="memoryText">
-                <input type="text" name="memtext" ><br>
-                <button type="submit" style="WIDTH: 40pt; HEIGHT: 20pt; FONT-SIZE:12px; background-color: #b3cc62;" form="memoryText"><p>저장</p></button>
+              <form action="/uploadMemorize" id ="memoryText">
+                <input id="inputbox" type="text" name="memtext" ><br>
+                <button id="inbutbutton" type="submit" style="margin:auto; WIDTH: 70pt; HEIGHT: 30pt; FONT-SIZE:12px; background-color: #b3cc62;  margin-bottom:10px;" form="memoryText"><p>저장</p></button>
        
               </form>
               <form action="/upload" method="POST" enctype="multipart/form-data">
-                <input type="file" name="file">
-                <button type="submit">업로드</button>
+                <input id="intputbox" style=" padding: 23px 25px ;display : flex; justify-content : center;" type="file" name="file">
+                <button id="inputbotton" type="submit" style="margin:auto; WIDTH: 70pt; HEIGHT: 30pt; FONT-SIZE:12px; background-color: #b3cc62; margin-bottom:10px;">업로드</button>
               </form>
                </div>
           </main></section>
