@@ -19,12 +19,23 @@ app.get(
     "/signup", (req,res) =>
     {res.render("signup");}
 )
+
+app.get(
+    "/community", (req,res) =>
+    {res.render("\community/community.ejs");}
+)
+
 app.get(
     "/", (req,res) =>
     {res.render("calendar");}
 )
 
+
+
 app.listen(port,() => {
     console.log("서버 실행 중");
 }
+
+
+
 )
