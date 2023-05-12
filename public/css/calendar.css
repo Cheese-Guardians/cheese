@@ -66,3 +66,126 @@ h1{
   color: #B3CC62;
 
 }
+
+
+/* 추가 */
+/* HERO SECTION */
+
+main {
+  height: 100vh;
+  position: relative;
+}
+
+main .wrapper {
+  justify-content: center;
+  top: calc((40vh - 120px)/2 + 120px);
+}
+
+/* MAIN SLIDER */
+
+main .wrapper #slider {
+  width: 100%;
+  height: 60vh;
+  overflow: hidden;
+  border-radius: 20px;
+  position: relative;
+}
+
+main .wrapper #slider .slide {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+main .wrapper #slider .slide1 {
+  background-image: url(/img/about.png);
+}
+
+main .wrapper #slider .slide2 {
+  background-image: url(/img/about.png);
+}
+
+main .wrapper #slider .slide3 {
+  background-image: url(/img/about.png);
+}
+
+main .wrapper #slider .slide4 {
+  background-image: url(/img/about.png);
+}
+
+main .wrapper #slider .slide5 {
+  background-image: url(/img/about.png);
+}
+
+main .wrapper #slider .slide6 {
+  background-image: url(/img/about.png);
+}
+
+main .wrapper #slider .slide__content {
+  width: 100%;
+  height: 60vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+main .wrapper #slider .slide__content span {
+  font-size: 80px;
+  color: #F6F5F0;
+}
+
+/* SLIDER ARROW */
+
+main .wrapper #slider .material-icons {
+  justify-content: center;
+  position: absolute;
+  top: 50%;
+  margin-top: -40px;
+  font-size: 80px;
+  color: #F6F5F0;
+}
+
+main .wrapper #slider .arrow {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  margin-top: -50px;
+  width: 0;
+  height: 0;
+}
+
+main .wrapper #slider .arrow--left {
+  left: 0px;
+}
+
+main .wrapper #slider .arrow--right {
+  right: 0px;
+}
+
+/* SLIDER DOTS */
+
+main .wrapper #slider .dots {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+main .wrapper #slider .dots .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #F6F5F0;
+  margin: 0 3px;
+  cursor: pointer;
+}
+
+main .wrapper #slider .dots .dot1 {
+  background: #1107ff;
+}
