@@ -64,7 +64,10 @@ app.get(
         });
     }
 );
-
+app.get(
+  "/community", (req, res) => 
+  {res.render("\community/community");}
+)
 app.listen(port,() => {
   const dir = "./uploads";
   if (!fs.existsSync(dir)) {
