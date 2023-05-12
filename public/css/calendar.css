@@ -87,7 +87,7 @@ main .wrapper {
 
 /* MAIN SLIDER */
 #about{
-  width: 70%;
+  width: 67%;
   margin: auto;
   display:flex;
 }
@@ -99,12 +99,11 @@ main .wrapper #slider {
   overflow: hidden;
   border-radius: 20px;
   position: relative;
-  margin-left:0px;
-  float:left;
+  margin-right:30px;
+
 }
 .ininin{
-  margin-right:0px;
-  float:right;
+  margin-left:30px;
 }
 
 main .wrapper #slider .slide {
