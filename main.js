@@ -65,6 +65,11 @@ app.get(
     }
 );
 
+app.get(
+    "/community-side", (req,res) =>
+    {res.render("\community/community-side");}
+)
+
 app.listen(port,() => {
   const dir = "./uploads";
   if (!fs.existsSync(dir)) {
