@@ -1,17 +1,20 @@
-// const db = mysql.createPool({ 
-//     host: process.env.DB_HOST, 
-//     user: process.env.DB_USER, 
-//     password: process.env.DB_PW, 
-//     port: process.env.DB_PORT, 
-//     database: process.env.DB_NAME, 
-//     waitForConnections: true, 
-//     insecureAuth: true
-// });
-
-// let sql = 'SELECT * FROM category';
-// let[rows,fields] = await db.query(sql);
-// console.log(rows);
-
+require('dotenv').config({path: "database.env"});
+const mysql = require ('mysql2');
+const pool = mysql.createPool({
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PW,
+    port: process.env.DB_PORT,
+    database: process.env.DB_NAME,
+    waitForConnections: true,
+    insecureAuth: true});
+    
+    //let sql = "INSERT INTO category (category_name, description)  VALUES  ('통합게시판', '아무거나 의견을 나눠주세용!!');";
+    //let sql2 = "select * from category;";
+    //let[rows, fields] = await db.query(sql,sql2);
+  
+  
+    //onsole.log(rows);
 const port = 3000,
     express = require("express"),
     app = express(),
@@ -19,13 +22,22 @@ const port = 3000,
     //const { logger } = require("./config/winston");
 
 
-app.set("view engine", "ejs");
+ app.set("view engine", "ejs");
 app.use(express.static("public"));
 app.use(layouts);
 app.get(
     "/calendar", (req,res) =>
-    {res.render("\calendar/calendar.ejs");}
-)
+    {
+        const sql = "select * from category;";
+        pool.query(sql, (err, results) => {
+            if (err) {
+              throw err;
+            }
+            res.render('\calendar/calendar.ejs', { data: results });
+        });
+    }
+);
+
 app.get(
     "/login", (req,res) =>
     {res.render("login");}
@@ -34,42 +46,21 @@ app.get(
     "/signup", (req,res) =>
     {res.render("signup");}
 )
-
-app.get(
-    "/community", (req,res) =>
-    {res.render("\community/community.ejs");}
-)
-
 app.get(
     "/", (req,res) =>
-    {res.render("calendar");}
-)
-
-
+    {
+        const sql = "select * from category;";
+        pool.query(sql, (err, results) => {
+            if (err) {
+              throw err;
+            }
+            res.render('\calendar/calendar.ejs', { data: results });
+        });
+    }
+);
 
 app.listen(port,() => {
     console.log("서버 실행 중");
 }
 )
 
-require('dotenv').config({path: "database.env"});
-const mysql = require('mysql2/promise'); 
-
-let test = async () => {
-    const db = mysql.createPool({ 
-        host: process.env.DB_HOST, 
-        user: process.env.DB_USER, 
-        password: process.env.DB_PW, 
-        port: process.env.DB_PORT, 
-        database: process.env.DB_NAME, 
-        waitForConnections: true, 
-        insecureAuth: true
-    });
-
-    let sql = 'SELECT * FROM category';
-    let[rows,fields] = await db.query(sql);
-    console.log(rows);
-};
-
-
-test()
