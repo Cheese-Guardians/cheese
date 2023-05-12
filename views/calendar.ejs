@@ -82,8 +82,13 @@
             <div class="ininin">
               <form action="" id ="memoryText">
                 <input type="text" name="memtext" style=""><br>
-                <input type="file" id="avatar" name="avatar"accept="image/png, image/jpeg">
+                <button type="submit" style="WIDTH: 40pt; HEIGHT: 20pt; FONT-SIZE:12px; background-color: #b3cc62;" form="memoryText"><p>저장</p></button>
+       
               </form>
-              <button type="submit" style="WIDTH: 40pt; HEIGHT: 20pt; FONT-SIZE:12px; background-color: #b3cc62;" form="memoryText"><p>저장</p></button>
-            </div>
+              <form action="upload" method="post" enctype="multipart/form-data">
+                <input type="file" name="memorizes" />
+                <input type="submit" style="WIDTH: 40pt; HEIGHT: 20pt; FONT-SIZE:12px; background-color: #b3cc62;" form="memoryText"><p>저장</p></input>
+                
+              </form>
+               </div>
           </main></section>
