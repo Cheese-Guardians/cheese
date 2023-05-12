@@ -1,4 +1,8 @@
 
+.container{
+  margin: auto;
+}
+
 /* 캘린더 */
 .scriptCalendar a { color:#000000;text-decoration:none; }
 .scriptCalendar { text-align:center; }
