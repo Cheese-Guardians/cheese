@@ -25,6 +25,6 @@ exports.postFile = async function (req, res) {
         extension
     );
     // Code for handling file upload and database query goes here
-    // res.redirect('/calendar');
+    res.redirect('/calendar');
     return res.send(attachFileResponse);
   };
