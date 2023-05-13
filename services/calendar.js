@@ -11,9 +11,9 @@ exports.createFileMem = async function (server_name, user_name, extension) {
         await calendarModel.insertFileMem(connection, insertFileMemParams);
         connection.release();
 
-        return response('성공');
+        return '성공';
     } catch (err) {
-        return error;
+        return 'error';
     }
 }
 
