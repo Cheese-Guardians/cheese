@@ -34,7 +34,7 @@ const port = 3000,
 
 app.set("view engine", "ejs");
 
-app.use(express.static("public"));
+app.use(express.static("public/"));
 app.use(layouts);
 //라우터 등록
 app.use('/calendar', calendarRouter);
@@ -47,18 +47,18 @@ app.get(
             if (err) {
               throw err;
             }
-            res.render('\calendar/calendar.ejs', { data: results });
+            res.render('calendar/calendar.ejs', { data: results });
         });
     }
 );
 
 app.get(
     "/login", (req,res) =>
-    {res.render("login");}
+    {res.render("users/login");}
 );
 app.get(
     "/signup", (req,res) =>
-    {res.render("signup");}
+    {res.render("users/signup");}
 );
 app.get(
     "/", (req,res) =>
@@ -68,14 +68,14 @@ app.get(
             if (err) {
               throw err;
             }
-            res.render('\calendar/calendar.ejs', { data: results });
+            res.render('calendar/calendar.ejs', { data: results });
         });
     }
 );
 
 app.get(
     "/community-side", (req,res) =>
-    {res.render("\community/community-side");}
+    {res.render("community/community-side");}
 )
 
 app.listen(port,() => {
@@ -122,7 +122,7 @@ app.post('/upload', upload.single('file'), (req, res) => {
         if (err) {
           throw err;
         }
-        res.render('\calendar/calendar.ejs', { data: results });
+        res.render('calendar/calendar.ejs', { data: results });
     });
   }
 });
