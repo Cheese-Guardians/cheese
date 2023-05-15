@@ -13,10 +13,10 @@ exports.postFile = async function (req, res) {
     }
 
     // const {calendar_id, user_id} = req.body;
-    const server_name = req.file.filename
+    const server_name = path.basename(req.file.filename, path.extname(req.file.originalname)); //서버증상
     const user_name = path.basename(req.file.originalname, path.extname(req.file.originalname));
     const extension = path.extname(req.file.filename);
-
+    console.log(server_name + user_name + extension);
     const attachFileResponse = await calendarService.createFileMem(
         // calendar_id,
         // user_id,
@@ -25,6 +25,10 @@ exports.postFile = async function (req, res) {
         extension
     );
     // Code for handling file upload and database query goes here
-    res.redirect('/calendar');
-    return res.send(attachFileResponse);
+    if (attachFileResponse == "성공") {
+      return res.redirect('/calendar');
+    }
+    else res.send(attachFileResponse);
+    //return res.redirect('/calendar');
+    //res.send(attachFileResponse);
   };
