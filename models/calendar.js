@@ -1,16 +1,25 @@
-// const pool = require('../main');
-
+//const pool = require('../main');
+//const mysql = require ('mysql2');
 async function insertFileMem(pool, insertFileMemParams) {
-    const insertFileMemQuery = `
-        INSERT INTO file_memories (calendar_id, user_id, server_name, user_name, extension)
-        VALUES (0, 'handakyeng', ?, ?, ?);
+    //console.log(typeof(insertFileMemParams[0]));
+    //const server_name = parseInt(insertFileMemParams[0]);
+    console.log("number "+ typeof(server_name));
+    const insertFileMemQuery = `INSERT INTO file_memories (calendar_id, user_id, server_name, user_name, extension)
+        VALUES (1, 'handakyeng', \'${insertFileMemParams[0]}\', \'${insertFileMemParams[1]}\', \'${insertFileMemParams[2]}\');
     `;
-    const insertFileMemRow = await pool.query(
-        insertFileMemQuery,
-        insertFileMemParams
+    
+   pool.query(
+        insertFileMemQuery, (err, results) => {
+            console.log("insert test");
+            if (err) {
+              console.log("insert error");
+              throw err;
+            }
+            //return insertFileMemRow;);
+        }
     );
 
-    return insertFileMemRow;
+    //return insertFileMemRow;
 }
 
 module.exports = {
