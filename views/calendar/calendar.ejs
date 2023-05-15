@@ -9,9 +9,14 @@
   <!-- ======= Hero Section ======= -->
   <section id="hero" class="d-flex align-items-center">
 
-    <div class="container">
-      <div class="row">
-         
+          <div class="col-lg-6 pt-5 pt-lg-0 order-2 order-lg-1 d-flex flex-column justify-content-center">
+            <!-- ======= test ======= -->
+            <!-- <% data.forEach(function(category) { %>
+                
+              <h1><%= category.category_name %></h1>
+              
+              <h2><%= category.description %></h2>
+                <% });%> -->
 
         <div class="col-lg-6 pt-5 pt-lg-0 order-2 order-lg-1 d-flex flex-column justify-content-center">
           <!-- ======= test ======= -->
@@ -86,6 +91,7 @@
         </div>
 
       </div>
+
     </div>
 
   </section><!-- End Hero -->
@@ -146,3 +152,17 @@
       </form>
        </div>
   </main></section>
+
+      <div class="ininin">
+        <form action="/uploadMemorize" id ="memoryText">
+          <input id="inputbox" type="text" name="memtext" ><br>
+          <button id="inbutbutton" type="submit" style="margin:auto; WIDTH: 70pt; HEIGHT: 30pt; FONT-SIZE:12px; background-color: #b3cc62;  margin-bottom:10px;" form="memoryText"><p>저장</p></button>
+ 
+        </form>
+        <form action="/calendar/upload" method="POST" enctype="multipart/form-data">
+          <input id="intputbox" style=" padding: 23px 25px ;display : flex; justify-content : center;" type="file" name="file">
+          <button id="inputbotton" type="submit" style="margin:auto; WIDTH: 70pt; HEIGHT: 30pt; FONT-SIZE:12px; background-color: #b3cc62; margin-bottom:10px;">업로드</button>
+        </form>
+         </div>
+    </main></section>
+
