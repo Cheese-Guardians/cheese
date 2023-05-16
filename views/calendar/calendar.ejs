@@ -99,7 +99,7 @@
           <div class="slide__content">
             <img class="file file1" <% if (typeof calendarResult !=='undefined' && calendarResult !==null &&
               calendarResult.length> 0) { %>
-            src="<%- '/uploads/' + calendarResult[calendarResult.length-1].server_name + calendarResult[calendarResult.length-1].extension %>"
+            src="<%- '../../uploads/' + calendarResult[calendarResult.length-1].server_name + calendarResult[calendarResult.length-1].extension %>"
               <% } else { %>
                 src="/public/img/about.png"
                 <% } %>
