@@ -15,10 +15,10 @@ exports.getCalendar = async function (req, res) {
   const calendarResult = await calendarService.retrieveCalendar(userId);
   if (calendarResult.length > 0) {
     console.log(calendarResult);
-    console.log(calendarResult[0].server_name + calendarResult[0].extension);
-    res.render('../views/calendar/calendar', { calendarResult: calendarResult});
+    console.log(calendarResult[calendarResult.length-1].server_name + calendarResult[calendarResult.length-1].extension);
+    return res.render('calendar/calendar.ejs', { calendarResult: calendarResult});
   } else {
-    res.render('../views/calendar/calendar', { calendarResult: 0})
+    return res.render('calendar/calendar.ejs', { calendarResult: null})
   }
   // return res.send(response(baseResponse.SUCCESS, calendarResult));
 }
