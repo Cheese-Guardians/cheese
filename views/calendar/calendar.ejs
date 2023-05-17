@@ -95,17 +95,16 @@
         <div class="material-icons arrow--left">
           arrow_left
         </div>
-        <div class="slide slide1">
+        <% let link = '/img/about.png'; %>
+        <% if (typeof(calendarResult) !== 'undefined' && calendarResult !== null && calendarResult.length > 0) { %>
+           <!-- <% console.log("upload!") %> -->
+          <% link = '../uploads/' + calendarResult[calendarResult.length - 1].server_name + calendarResult[calendarResult.length - 1].extension; %>
+          
+        <% } %>
+        <!-- <% console.log(link) %> -->
+        <div class="slide slide1" style = "background-image: url('<%= link %>');">
           <div class="slide__content">
-            <img class="file file1" <% if (typeof calendarResult !=='undefined' && calendarResult !==null &&
-              calendarResult.length> 0) { %>
-            src="<%- '../../uploads/' + calendarResult[calendarResult.length-1].server_name + calendarResult[calendarResult.length-1].extension %>"
-              <% } else { %>
-                src="/public/img/about.png"
-                <% } %>
-                  alt="슬라이더 1"
-                  style="width: 80%; height: 80%"/>
-          </div>
+           </div>
         </div>
         <div class="slide slide2">
           <div class="slide__content">
