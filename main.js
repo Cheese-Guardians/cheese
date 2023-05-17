@@ -33,6 +33,7 @@ const port = 3000,
 app.set("view engine", "ejs");
 
 app.use(express.static("public/"));
+app.use('/uploads',express.static("uploads/"));
 app.use(layouts);
 //라우터 등록
 app.use('/calendar', calendarRouter);
