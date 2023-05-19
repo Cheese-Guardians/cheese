@@ -1,6 +1,28 @@
 const calendarService = require('../services/calendar');
 const path = require('path');
 
+exports.getCalendar = async function (req, res) {
+  const userId = req.params.userId;
+
+  // validation
+  if(!userId) {
+    return res.send(errResponse(baseResponse.USER_USERIDX_EMPTY));
+  } 
+  if (userId <= 0) {
+    return res.send(errResponse(baseResponse.USER_USERIDX_LENGTH));
+  }
+
+  const calendarResult = await calendarService.retrieveCalendar(userId);
+  if (calendarResult.length > 0) {
+    console.log(calendarResult);
+    console.log(calendarResult[calendarResult.length-1].server_name + calendarResult[calendarResult.length-1].extension);
+    return res.render('calendar/calendar.ejs', { calendarResult: calendarResult});
+  } else {
+    return res.render('calendar/calendar.ejs', { calendarResult: null})
+  }
+  // return res.send(response(baseResponse.SUCCESS, calendarResult));
+}
+
 exports.postFile = async function (req, res) {
     if (!req.file) {
         return res.send(`
