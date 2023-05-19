@@ -70,6 +70,10 @@ app.get(
         });
     }
 );
+app.get(
+  "/community", (req, res) => 
+  {res.render("\community/community");}
+)
 
 app.get(
     "/community-side", (req,res) =>

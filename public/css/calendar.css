@@ -94,7 +94,7 @@ main .wrapper {
 
 /* MAIN SLIDER */
 #about{
-  width: 67%;
+  width: 100%;
   margin: auto;
   display:flex;
 }
@@ -107,10 +107,15 @@ main .wrapper #slider {
   border-radius: 20px;
   position: relative;
   margin-right:30px;
-
 }
+
 .ininin{
-  margin-left:30px;
+  width: 50%;
+}
+
+
+.wrapper{
+  width: 50%;
 }
 
 main .wrapper #slider .slide {
