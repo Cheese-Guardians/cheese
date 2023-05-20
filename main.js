@@ -26,8 +26,10 @@ const port = 3000,
     fs = require("fs"),
     layouts = require("express-ejs-layouts"),
     //const { logger } = require("./config/winston");
-    calendarRouter = require('./routes/calendar');
+    calendarRouter = require('./routes/calendar'),
+    userRouter = require('./routes/usersRoute');
 
+const jwt = require('jsonwebtoken');
 
 
 app.set("view engine", "ejs");
@@ -37,6 +39,7 @@ app.use('/uploads',express.static("uploads/"));
 app.use(layouts);
 //라우터 등록
 app.use('/calendar', calendarRouter);
+app.use('/user', userRouter);
 
 app.get(
     "/calendar", (req,res) =>
@@ -67,8 +70,28 @@ app.get(
             if (err) {
               throw err;
             }
+            // var token = jwt.sign({
+            //     test: "test"
+            // },
+            // "cheese1234!",
+            // {
+            //     subject: "Cheese jwtToken",
+            //     expiresIn: '60m',
+            //     issuer: 'Cheese'
+            // });
+            // console.log('토큰생성\n', token);
+            // try {
+            //     var check = jwt.verify(token, "cheese1234!");
+            //     if (check) {
+            //         console.log('검증', check.test);
+            //     }
+            // } catch (e) {
+            //     console.log(e);
+            // }
             res.render('calendar/calendar.ejs', { data: results });
         });
+
+
     }
 );
 app.get(
