@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const calendarController = require('../controllers/calendarController');
-const { upload } = require('../middlewares/multer');
+const { upload } = require('../middlewares/multerMiddleware');
 
 // calendar 조회 - 일단 파일만
 router.get('/:userId', calendarController.getCalendar);
