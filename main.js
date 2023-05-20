@@ -1,5 +1,5 @@
 //connect database
-require('dotenv').config({path: "database.env"});
+require('dotenv').config({path: "./config/database.env"});
 const mysql = require ('mysql2');
 const pool = mysql.createPool({
     host: process.env.DB_HOST,
@@ -33,6 +33,7 @@ const port = 3000,
 app.set("view engine", "ejs");
 
 app.use(express.static("public/"));
+app.use('/uploads',express.static("uploads/"));
 app.use(layouts);
 //라우터 등록
 app.use('/calendar', calendarRouter);
