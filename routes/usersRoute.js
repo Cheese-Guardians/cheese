@@ -1,7 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const usersController = require('../controllers/usersController');
+const users = require('../controllers/usersController');
 const jwtMiddleware = require('../middlewares/jwtMiddleware');
+
 //1. 유저 생성 (회원가입)
-router.post('/signup'. usersController.postUsers);
+router.post('/signup', users.postUsers);
 module.exports = router;
