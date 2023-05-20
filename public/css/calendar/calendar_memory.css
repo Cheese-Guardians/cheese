@@ -1,0 +1,179 @@
+/* 추가 */
+/* HERO SECTION */
+
+main {
+    height: 100vh;
+    position: relative;
+  }
+  
+  main .wrapper {
+    justify-content: center;
+    display: inline-block;  
+    width: 100%; 
+    
+  }
+  .ininin{
+    display: inline-block;  
+    width: 50%;
+    margin-left: 35%;
+    margin-top: 10%;
+  }
+  input{
+    border: 2px solid #B3CC62;
+    border-radius: 15px;
+    display: inline-block;
+  }
+  #inputbox{
+    border: 2px solid #B3CC62;
+    width : 100%;
+    height : 75px;
+    border-radius: 15px;
+    display: inline-block;
+  }
+
+  #intputbox{
+    border: 2px solid #B3CC62;
+    width : 100%;
+    height : 75px;
+    border-radius: 15px;
+    margin-bottom: 2%;
+    display: inline-block;
+  }
+
+  form{
+    margin-left: -50%;
+    width: 500px;
+    float :right;
+    /* margin-right: 200px;
+    margin-top:242px; */
+    margin: 0 auto;
+  }
+
+  .slide__content{
+    width: 600px;
+  }
+
+  
+  
+  
+  /* MAIN SLIDER */
+  #about{
+    width: 100%;
+    margin: auto;
+    display:flex;
+  }
+  
+  
+  main .wrapper #slider {
+    width: 100%;
+    height: 60vh;
+    overflow: hidden;
+    border-radius: 20px;
+  }
+  
+  main .wrapper #slider .slide {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  
+  main .wrapper #slider .slide1 {
+     background-image: url(/img/about.png); 
+  }
+  
+  main .wrapper #slider .slide2 {
+    background-image: url(../uploads/1684173909515.JPG);
+  }
+  
+  main .wrapper #slider .slide3 {
+    background-image: url(/img/about.png);
+  }
+  
+  main .wrapper #slider .slide4 {
+    background-image: url(/img/about.png);
+  }
+  
+  main .wrapper #slider .slide5 {
+    background-image: url(/img/about.png);
+  }
+  
+  main .wrapper #slider .slide6 {
+    background-image: url(/img/about.png);
+  }
+  
+  main .wrapper #slider .slide__content {
+    width: 100%;
+    height: 60vh;
+    margin-right: 10%;
+    display: inline-block;
+  }
+  
+  main .wrapper #slider .slide__content span {
+    font-size: 80px;
+    color: #F6F5F0;
+  }
+  
+  /* SLIDER ARROW */
+  
+  main .wrapper #slider .material-icons {
+    justify-content: center;
+    position: absolute;
+    top: 50%;
+    margin-top: -40px;
+    font-size: 80px;
+    color: #F6F5F0;
+  }
+  
+  main .wrapper #slider .arrow {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    margin-top: -50px;
+    width: 0;
+    height: 0;
+  }
+  
+  main .wrapper #slider .arrow--left {
+    left: 4%;
+  }
+  
+  main .wrapper #slider .arrow--right {
+    right: 54.5%;
+  }
+  
+  /* SLIDER DOTS */
+  
+  main .wrapper #slider .dots {
+    position: absolute;
+    bottom: 40%;
+    left: 0;
+    right: 50%;
+    margin: 0 auto;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  main .wrapper #slider .dots .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #F6F5F0;
+    margin: 0 3px;
+    cursor: pointer;
+  }
+  
+  main .wrapper #slider .dots .dot1 {
+    background: #1107ff;
+  }
+  
+  #memTextBtn{
+    display: inline-block;
+    margin: 0 auto;
+  }
+  #memTextBtn p{
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+  }
