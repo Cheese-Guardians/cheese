@@ -1,4 +1,6 @@
+const usersService = require('../services/usersService');
 const jwtMiddleware = require('../middlewares/jwtMiddleware');
+
 
 exports.postUsers = async function (req,res) {
     const {
@@ -12,9 +14,9 @@ exports.postUsers = async function (req,res) {
         gender,
         dementia_grade,
         medicine,
-        address,
+        address
     } = req.body;
-    const signUpResponse = await userService.createUser(
+    const signUpResponse = await usersService.createUser(
         user_id,
         password,
         gd_phone,
@@ -25,7 +27,7 @@ exports.postUsers = async function (req,res) {
         gender,
         dementia_grade,
         medicine,
-        address,
+        address
       );
       return res.send(signUpResponse);
 };

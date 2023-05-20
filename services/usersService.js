@@ -5,6 +5,7 @@ const jwt = require("jsonwebtoken");
 const crypto = require("crypto");
 const { connect } = require("http2");
 const { userInfo } = require("os");
+
 exports.createUser = async function (
     user_id,
     password,
@@ -16,7 +17,7 @@ exports.createUser = async function (
     gender,
     dementia_grade,
     medicine,
-    address,
+    address
   ) {
     try {
   
@@ -28,13 +29,13 @@ exports.createUser = async function (
   
       const insertUserPhoneParams = [
         gd_phone,
-        user_name,
+        user_name
       ];
       const insertUserInfoParams = [
         user_id,
         password,
         relationship,
-        gd_phone,
+        gd_phone
       ];
       const insertPatientParams = [
         user_id,
