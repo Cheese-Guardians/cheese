@@ -27,7 +27,7 @@ const port = 3000,
     layouts = require("express-ejs-layouts"),
     //const { logger } = require("./config/winston");
     calendarRouter = require('./routes/calendar'),
-    userRouter = require('./routes/usersRoute');
+    usersRouter = require('./routes/usersRoute');
 
 const jwt = require('jsonwebtoken');
 
@@ -37,9 +37,10 @@ app.set("view engine", "ejs");
 app.use(express.static("public/"));
 app.use('/uploads',express.static("uploads/"));
 app.use(layouts);
+app.use(express.urlencoded({ extended: true }));
 //라우터 등록
 app.use('/calendar', calendarRouter);
-app.use('/users', userRouter);
+app.use('/users', usersRouter);
 
 app.get(
     "/calendar", (req,res) =>
