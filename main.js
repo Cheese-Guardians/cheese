@@ -39,7 +39,7 @@ app.use('/uploads',express.static("uploads/"));
 app.use(layouts);
 //라우터 등록
 app.use('/calendar', calendarRouter);
-app.use('/user', userRouter);
+app.use('/users', userRouter);
 
 app.get(
     "/calendar", (req,res) =>
