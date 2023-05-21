@@ -1,5 +1,5 @@
 //connect database
-require('dotenv').config({path: "database.env"});
+require('dotenv').config({path: "./config/database.env"});
 const mysql = require ('mysql2');
 const pool = mysql.createPool({
     host: process.env.DB_HOST,
@@ -26,16 +26,23 @@ const port = 3000,
     fs = require("fs"),
     layouts = require("express-ejs-layouts"),
     //const { logger } = require("./config/winston");
-    calendarRouter = require('./routes/calendar');
+    calendarRouter = require('./routes/calendar'),
+    usersRouter = require('./routes/usersRoute');
 
+const jwt = require('jsonwebtoken');
 
 
 app.set("view engine", "ejs");
 
 app.use(express.static("public/"));
+app.use('/uploads',express.static("uploads/"));
 app.use(layouts);
+app.use(express.urlencoded());
+app.use(express.json());
+
 //라우터 등록
 app.use('/calendar', calendarRouter);
+app.use('/users', usersRouter);
 
 app.get(
     "/calendar", (req,res) =>
@@ -66,10 +73,34 @@ app.get(
             if (err) {
               throw err;
             }
+            // var token = jwt.sign({
+            //     test: "test"
+            // },
+            // "cheese1234!",
+            // {
+            //     subject: "Cheese jwtToken",
+            //     expiresIn: '60m',
+            //     issuer: 'Cheese'
+            // });
+            // console.log('토큰생성\n', token);
+            // try {
+            //     var check = jwt.verify(token, "cheese1234!");
+            //     if (check) {
+            //         console.log('검증', check.test);
+            //     }
+            // } catch (e) {
+            //     console.log(e);
+            // }
             res.render('calendar/calendar.ejs', { data: results });
         });
+
+
     }
 );
+app.get(
+  "/community", (req, res) => 
+  {res.render("\community/community");}
+)
 
 app.get(
     "/community", (req, res) => 

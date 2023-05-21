@@ -1,0 +1,400 @@
+
+/*증상체크 란*/
+/* .symtom_check{  
+    width: 600px;
+    height: 450px;
+    background-color: #DEF1A1;
+    border-radius: 3%;
+    font-size: 15px;
+    padding: 15px;
+    margin: 30px;
+  } */
+
+
+  .symtom_check{
+    width: 700px;
+    height: 550px;
+    background-color: white;
+    border-color:#E0E0E0;
+    border-style:solid;
+    border-width:2px;
+    border-radius: 3%;
+    font-size: 15px;
+    padding: 15px;
+    margin: 30px;
+  }
+  .title{
+    width: 23%;
+    display: inline-block;
+    position: static;
+    margin-right: 20px;
+  }
+
+   /*좌측*/
+  .symtom_check_left{
+    float: left;
+    width: 50%;
+    height: 100%;
+padding-right:10px;
+  }
+    /*날짜*/
+    .date{
+      width:100%;
+      margin: 0px;
+      display: inline-block;
+    }
+    .date .title{
+        width: 100%;
+      
+    }
+    
+    /* 병원일정*/
+    .hospital {
+      width: 100%;
+      display: flex;
+      align-items: center;
+    }
+    
+    .hospital .title {
+      width: 20%;
+      white-space: nowrap;
+    }
+    
+    .hospitalContent {
+      width: 80%;
+      display: flex;
+      align-items: center;
+    }
+    
+    #inputhosName {
+      width: 50%;
+      margin-right: 5%;
+      border-radius: 5px;
+    }
+    
+    .hospitalTime {
+      width: 30%;
+      margin-left: 0;
+    }
+
+    
+
+  /*알림*/
+    .alarm{
+      width: 100%;    
+    }
+    
+    .name{
+      font-size: 13px;
+      font-weight: 500;
+      display: inline-block;
+      position: static;
+      margin-right: 5px;
+    }
+    .medicine_alarm{    
+      display: inline-block;
+      position: relative;
+      margin-right: 20px;
+    }
+    .hospital_alarm{
+      position: static;
+      margin-left: 30%;
+      margin-right: 20px;
+    }
+
+    
+ /*toggle*/
+ .switch {
+  position: relative;
+  display: inline-block;
+  width: 45px;
+  height: 23px;
+}
+
+.switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 15px;
+  width: 15px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #B3CC62;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #B3CC62;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(23px);
+  -ms-transform: translateX(23px);
+  transform: translateX(23px);
+}
+
+    /* Rounded sliders */
+.slider.round {
+  width: auto;
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+    
+    /*CHECK*/
+    .check{
+      width: 100%;
+
+      float:left;
+    }
+ 
+    .checkTB{
+      width: 60%;
+      height: 30px;
+
+      background-color: white;
+      border-radius: 5%;
+      display: inline-block;
+      position: static;
+    }
+/* 체크박스 */
+.additemdiv{
+  padding-bottom:0px;
+  float:right;
+  margin-right:10px;
+  margin-bottom:5px;
+}
+
+#add{
+  display: flex;
+  justify-content: center; /* 수평 가운데 정렬 /
+  align-items: center; / 수직 가운데 정렬 */
+  display: inline-block;
+  width:45px;
+  height: 100%;
+  font-size:15px;
+  color:#B3CC62;
+  border-radius: 15px;
+margin-bottom:0px;}
+#item{
+  width: 150px;
+  height:30px;
+  background-color: white;
+  border-radius: 5%;
+  margin-left:10px;
+  margin-right:5px;
+}
+
+#checkForm{
+  width:100%;
+  height:100%;
+  margin-top:-40px;
+margin-left:10px;
+border-radius: 5px;
+display: inline-block;
+padding-left:8px;
+
+}
+
+.titleC{
+  float:left;
+
+}
+
+/* 아이템 리스트 스타일 */
+#item_list .item {
+  width: 150px;
+  
+  background-color: white;
+  border-radius: 5%;
+  display: flex;
+  align-items: center;
+ 
+  margin-top:5px;
+  margin-left:10px;
+}
+
+/* 체크박스 스타일 */
+#item_list .checkbox {
+  margin-right: 10px;
+}
+
+
+#checkTB1{
+  width:100%;
+margin-top:0px;
+margin-left:10px;
+height: 13%;
+border-radius: 5px;
+display: inline-block;
+padding-left:8px;
+
+}
+    /*수면시간*/  /*checkbox 수면시간*/
+    .time{
+      height: 100%;
+      width: 100%;
+    }
+    
+    div label input {margin-right: 1px;}
+
+    .btn{
+      padding: 2%;
+      align-items: center;
+      color: black;
+      font-size: 2px;
+      background-color: white;
+      border-radius: 4px;
+      border: 1px solid #788844;
+      overflow: hidden;
+      width: 18.6%;
+      height: 1.5%;
+      display: inline-block;
+      margin: 0.1%;
+    }
+
+    .btn label {
+      float: left;
+    }
+
+    .btn label span {
+      width: 100%;
+      height: 100%;
+      text-align: center;
+      display: block;
+    }
+
+    .btn label input {
+      position: absolute;
+      display: none;
+      color: black !important;
+    }
+
+
+    /* This will declare how a selected input will look giving generic properties */
+    /* .btn input:checked + span {        
+        color: black;
+        text-shadow: 0 0  10px rgba(0, 0, 0, 0.8);
+        background-color: #DEF1A1;
+
+    } */
+    .btn.active {
+      color: black;
+      text-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+      background-color: #DEF1A1;
+    }
+
+
+  
+   /*좌측*/
+  .symtom_check_right{
+    display: inline-block;
+    width: 50%;
+    height: 100%;
+    border-left: 1px solid #E0E0E0;
+    padding-left: 10px;
+  }
+  /*증상*/
+  .symtom{
+    height: 50%;
+    width:100%
+  }
+     
+
+
+  .symtomTextBox {
+    width: 100%;
+    height: 5%;
+    margin: -auto;
+    display: flex;
+    align-items: center;
+  }
+  
+  .symtomTextBox .inputbX {
+    width: 40%;
+  }
+  
+  .symtomTextBox .symtom-time {
+    width: auto;
+    height: 100%;
+    border: 0 solid black;
+    margin-left: 5%;
+    margin-right: 20%;
+  }
+  
+  .symtom .box-body {
+    height: 5%;
+    width: 100%; /* 수정: 너비를 100%로 조정 */
+    border-radius: 5px;
+  }
+  
+ input, progress {
+  accent-color: #B3CC62;
+}
+ .box-body .range-in{
+  width: 80%;
+  height: 100%;
+  float: left;
+  margin-right: 5%;
+}
+.box-body .range-out{
+  height: 100%;
+  width: 10%;
+  padding: 0;
+  float: left;
+}
+  /*관찰일기*/
+
+#inputBx{
+  width: 100%;
+  height: 150px;
+  border-radius: 5px;
+  }
+
+/* 저장 버튼 */
+.symBtndiv {
+  display: flex;
+  justify-content: flex-end; 
+  align-items: flex-start; 
+  margin-top:-30px;
+}
+
+.symBtn {
+  width: 20%;
+  height: 30px;
+  font-size: 15px;
+  color: black; 
+  border-style: solid;
+  border-width: 1px;
+  border-color: #788844;
+  margin-right: 0; 
+  display: flex;
+  justify-content: center; 
+  align-items: center; 
+}
+  
