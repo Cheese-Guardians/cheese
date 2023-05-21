@@ -336,6 +336,8 @@ function buildCalendar() {
               column.style.color = "#4D4DFF";
               row = tbCalendar.insertRow();   // @param 토요일이 지나면 다시 가로 행을 한줄 추가한다.
           }
+        
+            
 
       }
 
@@ -345,6 +347,7 @@ function buildCalendar() {
           column.innerText = autoLeftPad(exceptDay.getDate(), 2);
           column.style.color = "#A9A9A9";
       }
+      
 
       // @brief   전월, 명월 음영처리
       // @details 현재년과 선택 년도가 같은경우
@@ -369,9 +372,10 @@ function buildCalendar() {
 
               // @details 현재일인 경우
               else if(date.getDate() == day) {
-                column.style.backgroundColor = "#FFFFFF";
+                column.style.backgroundColor = "#A9A9A9";
                 column.style.cursor = "pointer";
                 column.onclick = function(){ calendarChoiceDay(this); }
+                calendarChoiceDay(column);
               }
 
           // @details 현재월보다 이전인경우
@@ -419,6 +423,7 @@ function buildCalendar() {
 * @brief   날짜 선택
 * @details 사용자가 선택한 날짜에 체크표시를 남긴다.
 */
+
 function calendarChoiceDay(column) {
 
   // @param 기존 선택일이 존재하는 경우 기존 선택일의 표시형식을 초기화 한다.
@@ -428,13 +433,19 @@ function calendarChoiceDay(column) {
   }
 
   // @param 선택일 체크 표시
-  column.style.backgroundColor = "#FF9999";
+  column.style.backgroundColor = "#B3CC62";
 
 
   // @param 선택일 클래스명 변경
   column.classList.add("choiceDay");
-}
 
+  // @param 선택한 날짜를 HTML 요소에 표시
+  let selectedDate = column.innerText;
+  let selectedYear = document.getElementById("calYear").innerText;
+  let selectedMonth = document.getElementById("calMonth").innerText;
+  document.getElementById("selected_date").innerText = selectedYear + "년 " + selectedMonth + "월 " + selectedDate + "일";
+}
+  
 /**
 * @brief   숫자 두자릿수( 00 ) 변경
 * @details 자릿수가 한자리인 ( 1, 2, 3등 )의 값을 10, 11, 12등과 같은 두자리수 형식으로 맞추기위해 0을 붙인다.
