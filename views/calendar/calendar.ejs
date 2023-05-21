@@ -58,10 +58,14 @@
               <div class="hospital">
                 <div class="title"><p>병원 일정</p></div>
                 <div class="hospitalContent">
-                  <input id="inputhosName" type="text" name="inputhosNametext">
                   <% if (typeof calendarDataResult !== 'undefined') { %>
-                    <% console.log("Date"+ calendarDataResult) %>
-                 <% } %>
+                    <% console.log("Date" + calendarDataResult) %>
+                    <input id="inputhosName" type="text" name="inputhosNametext" value="<%= calendarDataResult %>">
+                  <% } else { %>
+                    <input id="inputhosName" type="text" name="inputhosNametext" value="">
+                  <% } %>
+                  
+                  
                   <div class="hospitalTime">
                     <div class="box-body">
                       <select id="9to6" name="rating" autocomplete="off">
