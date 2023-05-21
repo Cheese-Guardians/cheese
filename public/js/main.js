@@ -336,6 +336,8 @@ function buildCalendar() {
               column.style.color = "#4D4DFF";
               row = tbCalendar.insertRow();   // @param 토요일이 지나면 다시 가로 행을 한줄 추가한다.
           }
+        
+            
 
       }
 
@@ -345,6 +347,7 @@ function buildCalendar() {
           column.innerText = autoLeftPad(exceptDay.getDate(), 2);
           column.style.color = "#A9A9A9";
       }
+      
 
       // @brief   전월, 명월 음영처리
       // @details 현재년과 선택 년도가 같은경우
@@ -369,9 +372,10 @@ function buildCalendar() {
 
               // @details 현재일인 경우
               else if(date.getDate() == day) {
-                column.style.backgroundColor = "#FFFFFF";
+                column.style.backgroundColor = "#A9A9A9";
                 column.style.cursor = "pointer";
                 column.onclick = function(){ calendarChoiceDay(this); }
+                calendarChoiceDay(column);
               }
 
           // @details 현재월보다 이전인경우
@@ -419,6 +423,7 @@ function buildCalendar() {
 * @brief   날짜 선택
 * @details 사용자가 선택한 날짜에 체크표시를 남긴다.
 */
+
 function calendarChoiceDay(column) {
 
   // @param 기존 선택일이 존재하는 경우 기존 선택일의 표시형식을 초기화 한다.
@@ -428,13 +433,19 @@ function calendarChoiceDay(column) {
   }
 
   // @param 선택일 체크 표시
-  column.style.backgroundColor = "#FF9999";
+  column.style.backgroundColor = "#B3CC62";
 
 
   // @param 선택일 클래스명 변경
   column.classList.add("choiceDay");
-}
 
+  // @param 선택한 날짜를 HTML 요소에 표시
+  let selectedDate = column.innerText;
+  let selectedYear = document.getElementById("calYear").innerText;
+  let selectedMonth = document.getElementById("calMonth").innerText;
+  document.getElementById("selected_date").innerText = selectedYear + "년 " + selectedMonth + "월 " + selectedDate + "일";
+}
+  
 /**
 * @brief   숫자 두자릿수( 00 ) 변경
 * @details 자릿수가 한자리인 ( 1, 2, 3등 )의 값을 10, 11, 12등과 같은 두자리수 형식으로 맞추기위해 0을 붙인다.
@@ -585,3 +596,88 @@ dot6.addEventListener("click", function(){
     sliderImages[current].style.display = 'block';
     dots[current].style.background = '#1107ff'
 })
+
+
+// 아이템들을 담을 아이템 리스트
+let itemList = [];
+// 아이템 중복확인 위한 변수
+let dupl;
+// 추가 버튼에 대한 이벤트
+let addBtn = document.querySelector("#add");
+addBtn.addEventListener("click", addList);
+// 전체삭제 버튼에 대한 이벤트
+let removeAllBtn = document.querySelector("#remove_all");
+removeAllBtn.addEventListener("click", removeList);
+
+// 엔터 입력시 이벤트 발생
+document
+  .querySelector("#item")
+  .addEventListener("keypress", function (e) {
+    if (e.keyCode === 13) {
+      e.preventDefault();
+      addList();
+    }
+  });
+
+// 아이템 추가 메서드
+function addList() {
+  // 아이템 값 담음
+  let item = document.querySelector("#item").value;
+  // console.log(item);
+
+  // 중복체크 실행
+  checkDupl(item);
+
+  // 조건을 확인하고 아이템 리스트에 푸시
+  if (item != "" && dupl) {
+    itemList.push(item);
+    // console.log(itemList);
+
+    // 아이템 input 창 초기화
+    document.querySelector("#item").value = "";
+    document.querySelector("#item").focus();
+
+    // 아이템 리스트 출력
+    showList();
+  }
+}
+
+// 중복확인 메서드
+function checkDupl(item) {
+  // 입력한 아이템이 아이템 리스트에 있는지 확인
+  if (itemList.includes(item)) {
+    alert("이미 추가한 항목입니다.");
+    document.querySelector("#item").value = "";
+    document.querySelector("#item").focus();
+    dupl = false;
+  } else {
+    dupl = true;
+  }
+}
+
+// 아이템리스트 출력 메서드 (테이블)
+// 아이템리스트 출력 메서드 (테이블)
+function showList() {
+  // 아이템 리스트를 for 문을 돌면서 테이블 태그로 생성
+  let list = "<table>";
+  for (let i = 0; i < itemList.length; i++) {
+    list += `<tr>
+      <td class="item">
+        <div class="checkbox">
+          <input type="checkbox" id="${i}" />
+        </div>
+        <div class="content">${itemList[i]}</div>
+      </td>
+      </tr>`;
+  }
+  list += "</table>";
+
+  // 테이블 태그 출력
+  document.querySelector("#item_list").innerHTML = list;
+
+  // 아이템 리스트에서 체크박스 이벤트를 할당
+  let checkboxes = document.querySelectorAll(".item input[type='checkbox']");
+  for (let i = 0; i < checkboxes.length; i++) {
+    checkboxes[i].onclick = toggleItem;
+  }
+}
