@@ -45,28 +45,36 @@
           <div>
             <div class="symtom_check_left">
               <div class="date">
-                <div class="title"> <p> 날짜 </p> </div>
-
+                <div class="title"> <p id = "selected_date"> 날짜 </p></div>
+                  <!-- <script>
+                  date = new Date();
+                  year = date.getFullYear();
+                  month = date.getMonth() + 1;
+                  day = date.getDate();
+                  document.getElementById("current_date").innerHTML = "날짜: "+ year + "/" + month + "/" + day;
+                  </script> -->
               </div>
 
-              <div class="hopital">
-                <div class="title"> <p> 병원 일정 </p> </div>
-                <div class="hopitalName">
-                  <input id="inputhosName" type="text" name="inputhosNametext"><br>                      
-                </div>
-                <div class="hospitalTime">
-                  <div class="box-body"> <select id="9to6" name="rating" autocomplete="off">
-                    <option value="1">9:00</option>
-                    <option value="2">10:00</option>
-                    <option value="3">11:00</option>
-                    <option value="4">12:00</option>
-                    <option value="5">13:00</option>
-                    <option value="6">14:00</option>
-                    <option value="7">15:00</option>
-                    <option value="8">16:00</option>
-                    <option value="9">17:00</option>
-                    <option value="10">18:00</option>
-                    </select> </div>
+              <div class="hospital">
+                <div class="title"><p>병원 일정</p></div>
+                <div class="hospitalContent">
+                  <input id="inputhosName" type="text" name="inputhosNametext">
+                  <div class="hospitalTime">
+                    <div class="box-body">
+                      <select id="9to6" name="rating" autocomplete="off">
+                        <option value="1">9:00</option>
+                        <option value="2">10:00</option>
+                        <option value="3">11:00</option>
+                        <option value="4">12:00</option>
+                        <option value="5">13:00</option>
+                        <option value="6">14:00</option>
+                        <option value="7">15:00</option>
+                        <option value="8">16:00</option>
+                        <option value="9">17:00</option>
+                        <option value="10">18:00</option>
+                      </select>
+                    </div>
+                  </div>
                 </div>
               </div>
 
@@ -90,16 +98,22 @@
               </div>
 
               <div class="check">
-                <div class="title"> <p> 체크사항 </p> </div>
-                <div class="checkTB">
-                </div>
-                
-              </div>
+                <div class="titleC"> <p id="checkli"> 체크사항 </p> </div>
+              <div class="checkTB1">
+                  <div id="item_list"></div>
+                  <form id="checkForm">
+                    <div class="additemdiv">
+                    <input type="text" id="item"  />
+                  <button type="button" id="add" class="addBtn">추가</button> 
+                    </div></form></div>
+                   </div>
+                  
+             
 
               <div class="sleeping-time">
                 <div class="title"> <p> 수면시간 </p> </div>
                 <div class="time">
-                  <button class="btn one" value="1">                    
+                  <button class="btn one">                    
                     <label>
                       <input type="checkbox">
                       <span> 3시간↓ </span>
@@ -189,6 +203,24 @@
                       <span>17시간↑</span>
                     </label> 
                   </button>
+                  <script>
+                    // 이벤트 핸들러 함수
+                    function handleButtonClick(event) {
+                      const buttons = document.getElementsByClassName('btn');
+                      for (let i = 0; i < buttons.length; i++) {
+                        buttons[i].classList.remove('active');
+                      }
+                      event.currentTarget.classList.add('active');
+                    }
+                  
+                    // 버튼들에 클릭 이벤트 핸들러 등록
+                    const buttons = document.getElementsByClassName('btn');
+                    for (let i = 0; i < buttons.length; i++) {
+                      buttons[i].addEventListener('click', handleButtonClick);
+                    }
+                  </script>
+                        
+                    
                 </div>
                 
 
@@ -203,32 +235,58 @@
                 <div class="title"> <p> 증상 </p> </div>
                 <div>
                   <div class="symtomTextBox 1">
-                    <input id="inputbX" type="text" name="diarytext"><br>                      
+                    <input class="inputbX" type="text" name="diarytext">
+                    <p><input type="time" class="symtom-time"></p>             
                   </div>
-                  <div>
-                    <div class="box-body"> <select id="example-1to10" name="rating" autocomplete="off">
-                      <option value="1">1</option>
-                      <option value="2">2</option>
-                      <option value="3">3</option>
-                      <option value="4">4</option>
-                      <option value="5">5</option>
-                      <option value="6">6</option>
-                      <option value="7" selected="selected">7</option>
-                      <option value="8">8</option>
-                      <option value="9">9</option>
-                      <option value="10">10</option>
-                      </select> 
+                  
+                  <div class="box-body"> 
+                      <input type="range" min="1" max="10" id="ex-in1" class="range-in">   
+                    <div id="ex-out1" class="range-out"></div>
+                    <script>
+                    document.querySelector('#ex-in1').addEventListener('input',e=>{
+                    document.querySelector('#ex-out1').innerHTML= e.target.value;
+                    });
+                    </script>           
                     </div>
-                  </div>
 
                   <div class="symtomTextBox 2">
-                    <input id="inputbX" type="text" name="diarytext"><br>                      
+                    <input class="inputbX" type="text" name="diarytext">
+                    <p><input type="time" class="symtom-time"></p>                     
+                  </div>
+                  <div class="box-body"> 
+                    <input type="range" min="1" max="10" id="ex-in2" class="range-in">   
+                  <div id="ex-out2" class="range-out"></div>
+                  <script>
+                  document.querySelector('#ex-in2').addEventListener('input',e=>{
+                  document.querySelector('#ex-out2').innerHTML= e.target.value;
+                  });
+                  </script>           
                   </div>
                   <div class="symtomTextBox 3">
-                    <input id="inputbX" type="text" name="diarytext"><br>                      
+                    <input class="inputbX" type="text" name="diarytext">
+                    <p><input type="time" class="symtom-time"></p>                     
+                  </div>
+                  <div class="box-body"> 
+                    <input type="range" min="1" max="10" id="ex-in3" class="range-in">   
+                  <div id="ex-out3" class="range-out"></div>
+                  <script>
+                  document.querySelector('#ex-in3').addEventListener('input',e=>{
+                  document.querySelector('#ex-out3').innerHTML= e.target.value;
+                  });
+                  </script>           
                   </div>
                   <div class="symtomTextBox 4">
-                    <input id="inputbX" type="text" name="diarytext"><br>                      
+                    <input class="inputbX" type="text" name="diarytext">
+                    <p><input type="time" class="symtom-time"></p>                     
+                  </div>
+                  <div class="box-body"> 
+                    <input type="range" min="1" max="10" id="ex-in4" class="range-in">   
+                  <div id="ex-out4" class="range-out"></div>
+                  <script>
+                  document.querySelector('#ex-in4').addEventListener('input',e=>{
+                  document.querySelector('#ex-out4').innerHTML= e.target.value;
+                  });
+                  </script>           
                   </div>
 
                 </div>
@@ -240,7 +298,10 @@
                   <input id="inputBx" type="text" name="diarytext"><br>
                     
                 </div>
-                
+                <div class="symBtndiv">
+                  <button type="button" id="symB" class="symBtn">저장</button>
+                </div>
+              </div>
                   
                 
             </div>
