@@ -10,19 +10,24 @@ async function selectCalendar(pool, userId) {
 //캘린더 조회
 async function getSelectedCalendar(pool, date) {
     const getSelectedCalendarQuery = `
-                SELECT *
-                FROM hospital_schedule
-                WHERE user_id = 'handakyeng'
-                AND calendar_id = (
-                SELECT calendar_id
-                FROM calendar
-                WHERE \`date\` = str_to_date(\'${date}\','%Y%M%D') 
-                AND user_id = 'handakyeng'
-                );
+      SELECT hospital_name
+      FROM hospital_schedule
+      WHERE user_id = 'handakyeng'
+      AND calendar_id = (
+        SELECT calendar_id
+        FROM calendar
+        WHERE \`date\` = \'${date}\' 
+        AND user_id = 'handakyeng'
+      );
     `;
-    const [dateRow] = await pool.promise().query(getSelectedCalendarQuery, date);
-    return dateRow;
-}
+    const [rows] = await pool.promise().query(getSelectedCalendarQuery, date);
+    const hospitalName = rows.length > 0 ? rows[0].hospital_name : "";
+    //console.log(rows);
+    //console.log("date" + date);
+    //console.log("models" + hospitalName);
+    return hospitalName;
+  }
+  
 
 // 파일 업로드
 async function insertFileMem(pool, insertFileMemParams) {
