@@ -10,8 +10,8 @@
     margin: 30px;
   } */
   .symtom_check{
-    width: 600px;
-    height: 450px;
+    width: 700px;
+    height: 550px;
     background-color: white;
     border-color:#E0E0E0;
     border-style:solid;
@@ -36,7 +36,13 @@
   }
     /*날짜*/
     .date{
+      width:100%;
       margin: 0px;
+      display: inline-block;
+    }
+    .date .title{
+        width: 100%;
+      
     }
     
     /* 병원일정*/
@@ -174,13 +180,24 @@ input:checked + .slider:before {
       position: static;
     }
 /* 체크박스 */
+.additemdiv{
+  padding-bottom:0px;
+  float:right;
+  margin-right:10px;
+  margin-bottom:5px;
+}
+
 #add{
+  display: flex;
+  justify-content: center; /* 수평 가운데 정렬 /
+  align-items: center; / 수직 가운데 정렬 */
   display: inline-block;
   width:45px;
-  height:30px;
+  height: 100%;
   font-size:15px;
   color:#B3CC62;
-  border-radius: 15px;}
+  border-radius: 15px;
+margin-bottom:0px;}
 #item{
   width: 150px;
   height:30px;
@@ -354,5 +371,25 @@ padding-left:8px;
   border-radius: 5px;
   }
 
+/* 저장 버튼 */
+.symBtndiv {
+  display: flex;
+  justify-content: flex-end; 
+  align-items: flex-start; 
+  margin-top:-30px;
+}
 
+.symBtn {
+  width: 20%;
+  height: 30px;
+  font-size: 15px;
+  color: black; 
+  border-style: solid;
+  border-width: 1px;
+  border-color: #788844;
+  margin-right: 0; 
+  display: flex;
+  justify-content: center; 
+  align-items: center; 
+}
   
