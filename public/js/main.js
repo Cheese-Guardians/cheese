@@ -375,7 +375,7 @@ function buildCalendar() {
                 column.style.backgroundColor = "#A9A9A9";
                 column.style.cursor = "pointer";
                 column.onclick = function(){ calendarChoiceDay(this); }
-                calendarChoiceDay(column);
+                //calendarChoiceDay(column);
               }
 
           // @details 현재월보다 이전인경우
@@ -445,7 +445,7 @@ function calendarChoiceDay(column) {
   let selectedMonth = document.getElementById("calMonth").innerText;
   document.getElementById("selected_date").innerText = selectedYear + "년 " + selectedMonth + "월 " + selectedDate + "일";
 }
-  
+
 /**
 * @brief   숫자 두자릿수( 00 ) 변경
 * @details 자릿수가 한자리인 ( 1, 2, 3등 )의 값을 10, 11, 12등과 같은 두자리수 형식으로 맞추기위해 0을 붙인다.
@@ -607,7 +607,7 @@ let addBtn = document.querySelector("#add");
 addBtn.addEventListener("click", addList);
 // 전체삭제 버튼에 대한 이벤트
 let removeAllBtn = document.querySelector("#remove_all");
-removeAllBtn.addEventListener("click", removeList);
+//removeAllBtn.addEventListener("click", removeList);
 
 // 엔터 입력시 이벤트 발생
 document
