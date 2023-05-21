@@ -3,7 +3,7 @@ const path = require('path');
 const calendarDate = require('../public/js/calendar.js');
 exports.getCalendar = async function (req, res) {
   const userId = req.params.userId;
-  const date = calendarDate.selectedYear + calendarDate.selectedMonth + calendarDate.selectedMonth;
+  const date = req.query.selectedYear + req.query.selectedMonth + req.query.selectedDate;
   // validation
   if(!userId) {
     return res.send(errResponse(baseResponse.USER_USERIDX_EMPTY));
@@ -11,12 +11,13 @@ exports.getCalendar = async function (req, res) {
   if (userId <= 0) {
     return res.send(errResponse(baseResponse.USER_USERIDX_LENGTH));
   }
-
+  //sconsole.log("date!"+date);
   const calendarResult = await calendarService.retrieveCalendar(userId);
   const calendarDataResult = await calendarService.retrieveSelectedCalendar(date);
-  console.log("controller: "+ calendarDataResult);
+  
   if (calendarResult.length > 0) {
-    console.log(calendarResult);
+    //console.log(calendarResult);
+    //console.log("controller: "+ calendarDataResult);
     console.log(calendarResult[calendarResult.length-1].server_name + calendarResult[calendarResult.length-1].extension);
     return res.render('calendar/calendar.ejs', { calendarResult: calendarResult, calendarDataResult: calendarDataResult });
   } else {

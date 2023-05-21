@@ -425,16 +425,14 @@ function buildCalendar() {
 */
 
 function calendarChoiceDay(column) {
-
   // @param 기존 선택일이 존재하는 경우 기존 선택일의 표시형식을 초기화 한다.
-  if(document.getElementsByClassName("choiceDay")[0]) {
-      document.getElementsByClassName("choiceDay")[0].style.backgroundColor = "#FFFFFF";
-      document.getElementsByClassName("choiceDay")[0].classList.remove("choiceDay");
+  if (document.getElementsByClassName("choiceDay")[0]) {
+    document.getElementsByClassName("choiceDay")[0].style.backgroundColor = "#FFFFFF";
+    document.getElementsByClassName("choiceDay")[0].classList.remove("choiceDay");
   }
 
   // @param 선택일 체크 표시
   column.style.backgroundColor = "#B3CC62";
-
 
   // @param 선택일 클래스명 변경
   column.classList.add("choiceDay");
@@ -444,6 +442,11 @@ function calendarChoiceDay(column) {
   let selectedYear = document.getElementById("calYear").innerText;
   let selectedMonth = document.getElementById("calMonth").innerText;
   document.getElementById("selected_date").innerText = selectedYear + "년 " + selectedMonth + "월 " + selectedDate + "일";
+
+  // @param 선택한 날짜 정보를 쿼리스트링으로 전달하여 새로운 URL로 이동
+  const queryString = `?selectedYear=${selectedYear}&selectedMonth=${selectedMonth}&selectedDate=${selectedDate}`;
+  const newURL = window.location.origin + window.location.pathname + queryString;
+  window.location.href = newURL;
 }
 
 /**
