@@ -47,7 +47,7 @@ exports.createUser = async function (
         address
       ];
       //await calendarModel.insertFileMem(pool, insertFileMemParams);//캘린더에 있는 데베.
-    const userIdResult = await usersModel.insertUserInfo(pool, insertUserPhoneParams, insertUserInfoParams, insertPatientParams);
+      const userIdResult = await usersModel.insertUserInfo(pool, insertUserPhoneParams, insertUserInfoParams, insertPatientParams);
 
       //const connection = await pool.getConnection(async (conn) => conn);// 유엠씨 데베 불러오기
   
