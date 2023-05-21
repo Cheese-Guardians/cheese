@@ -3,7 +3,21 @@ const path = require('path');
 const calendarDate = require('../public/js/calendar.js');
 exports.getCalendar = async function (req, res) {
   const userId = req.params.userId;
-  const date = req.query.selectedYear + req.query.selectedMonth + req.query.selectedDate;
+  let date = req.query.selectedYear + req.query.selectedMonth + req.query.selectedDate;
+  if (!req.query.selectedYear || !req.query.selectedMonth || !req.query.selectedDate) {
+    const today = new Date();
+    const selectedYear = String(today.getFullYear()).padStart(4, '0');
+    const selectedMonth = String(today.getMonth() + 1).padStart(2, '0');
+    const selectedDate = String(today.getDate()).padStart(2, '0');
+
+    
+    const existingQueryString = req.query;
+    
+    if (Object.keys(existingQueryString).length === 0) {
+      const newURL = `${req.protocol}://${req.get('host')}${req.baseUrl}${req.path}?selectedYear=${selectedYear}&selectedMonth=${selectedMonth}&selectedDate=${selectedDate}`;
+      return res.redirect(newURL);
+    }
+  }
   // validation
   if(!userId) {
     return res.send(errResponse(baseResponse.USER_USERIDX_EMPTY));
