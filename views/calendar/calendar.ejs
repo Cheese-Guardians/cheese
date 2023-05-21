@@ -45,8 +45,14 @@
           <div>
             <div class="symtom_check_left">
               <div class="date">
-                <div class="title"> <p> 날짜 </p> </div>
-
+                <div class="title"> <p id = "selected_date"> 날짜 </p></div>
+                  <!-- <script>
+                  date = new Date();
+                  year = date.getFullYear();
+                  month = date.getMonth() + 1;
+                  day = date.getDate();
+                  document.getElementById("current_date").innerHTML = "날짜: "+ year + "/" + month + "/" + day;
+                  </script> -->
               </div>
 
               <div class="hospital">
@@ -93,16 +99,16 @@
 
               <div class="check">
                 <div class="titleC"> <p id="checkli"> 체크사항 </p> </div>
-            <div class="checkTB1">
-              <div id="item_list"></div>
-              <form id="checkForm">
-                <input type="text" id="item"  />
-                <button type="button" id="add" class="addBtn">추가</button>
-                
-              </form>
-            </div>
+              <div class="checkTB1">
+                  <div id="item_list"></div>
+                  <form id="checkForm">
+                    <div class="additemdiv">
+                    <input type="text" id="item"  />
+                  <button type="button" id="add" class="addBtn">추가</button> 
+                    </div></form></div>
+                   </div>
                   
-              </div>
+             
 
               <div class="sleeping-time">
                 <div class="title"> <p> 수면시간 </p> </div>
@@ -292,7 +298,10 @@
                   <input id="inputBx" type="text" name="diarytext"><br>
                     
                 </div>
-                
+                <div class="symBtndiv">
+                  <button type="button" id="symB" class="symBtn">저장</button>
+                </div>
+              </div>
                   
                 
             </div>
