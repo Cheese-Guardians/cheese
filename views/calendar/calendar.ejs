@@ -1,148 +1,259 @@
 <head>
-    <link href="/css/calendar.css" rel="stylesheet">
-    <link href="/css/calendar_check.css" rel="stylesheet">
+  <link href="/css/calendar/calendar.css" rel="stylesheet">
+  <link href="/css/calendar/calendar_check.css" rel="stylesheet">
 
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 
-    <!-- ======= Hero Section ======= -->
-    <section id="hero" class="d-flex align-items-center">
-  
-      <div class="container">
-        <div class="row">
-           
+<!-- ======= Hero Section ======= -->
+<section id="hero" class="d-flex align-items-center">
 
-          <div class="col-lg-6 pt-5 pt-lg-0 order-2 order-lg-1 d-flex flex-column justify-content-center">
-            <!-- ======= test ======= -->
-            <!-- <% data.forEach(function(category) { %>
-                
-              <h1><%= category.category_name %></h1>
-              
-              <h2><%= category.description %></h2>
-                <% });%> -->
+  <div class="container">
+    <div class="row">
 
-            <!-- ======= calendar ======= -->
-            <table class="scriptCalendar">
-              <thead>
-                  <tr>
-                      <td onClick="prevCalendar();" style="cursor:pointer;">&#60;&#60;</td>
-                      <td colspan="5">
-                          <span id="calYear">YYYY</span>년
-                          <span id="calMonth">MM</span>월
-                      </td>
-                      <td onClick="nextCalendar();" style="cursor:pointer;">&#62;&#62;</td>
-                  </tr>
-                  <tr>
-                      <td>일</td><td>월</td><td>화</td><td>수</td><td>목</td><td>금</td><td>토</td>
-                  </tr>
-              </thead>
-              <tbody></tbody>
-            </table>        
-          </div>
 
-           <!-- ======= symtom_check ======= -->
-           <div class="col-lg-6 pt-lg-0 order-2 order-lg-1">
-            <div class = "symtom_check">
-              <div>
-                <div class = "symtom_check_left">
-                  <div class="date">
-                    <p> 날짜 </p>
-                  </div>
-    
-                  <div class="hopital">
-                    <p> 병원 일정 </p>
-                  </div>
-    
-                  <div class="alarm">
-                    <p> 알림 </p>
-                  </div>
-    
-                  <div class="check">
-                    <p> 체크사항 </p>
-                  </div>
+      <div class="col-lg-6 pt-5 pt-lg-0 order-2 order-lg-1 d-flex flex-column justify-content-center">
 
-                  <div class="sleeping-time">
-                    <p> 체크사항 </p>
-                  </div>
+        <!-- ======= calendar ======= -->
+        <table class="scriptCalendar">
+          <thead>
+            <tr>
+              <td onClick="prevCalendar();" style="cursor:pointer;">&#60;&#60;</td>
+              <td colspan="5">
+                <span id="calYear">YYYY</span>년
+                <span id="calMonth">MM</span>월
+              </td>
+              <td onClick="nextCalendar();" style="cursor:pointer;">&#62;&#62;</td>
+            </tr>
+            <tr>
+              <td>일</td>
+              <td>월</td>
+              <td>화</td>
+              <td>수</td>
+              <td>목</td>
+              <td>금</td>
+              <td>토</td>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
 
+      <!-- ======= symtom_check ======= -->
+      <div class="col-lg-6 pt-lg-0 order-2 order-lg-1">
+        <div class="symtom_check">
+          <div>
+            <div class="symtom_check_left">
+              <div class="date">
+                <div class="title"> <p> 날짜 </p> </div>
+
+              </div>
+
+              <div class="hopital">
+                <div class="title"> <p> 병원 일정 </p> </div>
+                <div class="hopitalName">
+                  <input id="inputhosName" type="text" name="inputhosNametext"><br>                      
                 </div>
+                <div class="hospitalTime">
+                  <div class="box-body"> <select id="9to6" name="rating" autocomplete="off">
+                    <option value="1">9:00</option>
+                    <option value="2">10:00</option>
+                    <option value="3">11:00</option>
+                    <option value="4">12:00</option>
+                    <option value="5">13:00</option>
+                    <option value="6">14:00</option>
+                    <option value="7">15:00</option>
+                    <option value="8">16:00</option>
+                    <option value="9">17:00</option>
+                    <option value="10">18:00</option>
+                    </select> </div>
+                </div>
+              </div>
 
+              <div class="alarm">
+                <div class="title"> <p>알림</p> </div>
+                
+                <div class="medicine_alarm">
+                  <div class="name"> <p>복용약</p> </div>
+                  <label class="switch">
+                    <input type="checkbox">
+                    <span class="slider round"></span>
+                  </label>
+                </div>
+                <div class="hospital_alarm">
+                  <div class="name"> <p> 병원 일정 </p> </div>                  
+                  <label class="switch">
+                    <input type="checkbox">
+                    <span class="slider round"></span>
+                  </label>
+                </div>
+              </div>
 
-                <div class = "symtom_check_left">
-                  <div class="symtom">
-                    <p> 증상 </p>
-                  </div>
-    
-                  <div class="diary">
-                    <p> 관찰일기 </p>
-                  </div>
+              <div class="check">
+                <div class="title"> <p> 체크사항 </p> </div>
+                <div class="checkTB">
                 </div>
                 
               </div>
-              
+
+              <div class="sleeping-time">
+                <div class="title"> <p> 수면시간 </p> </div>
+                <div class="time">
+                  <button class="btn one" value="1">                    
+                    <label>
+                      <input type="checkbox">
+                      <span> 3시간↓ </span>
+                    </label> 
+                  </button>
+                  <button class="btn two">
+                    <label>
+                      <input type="checkbox">
+                      <span>4시간</span>
+                    </label> 
+                  </button>
+                  <button class="btn three">
+                    <label>
+                      <input type="checkbox">
+                      <span>5시간</span>
+                    </label> 
+                  </button>
+                  <button class="btn four">
+                    <label>
+                      <input type="checkbox">
+                      <span>6시간</span>
+                    </label> 
+                  </button>
+                  <button class="btn five">
+                    <label>
+                      <input type="checkbox">
+                      <span>7시간</span>
+                    </label> 
+                  </button>
+                  <button class="btn six">
+                    <label>
+                      <input type="checkbox">
+                      <span>8시간</span>
+                    </label> 
+                  </button>
+                  <button class="btn seven">
+                    <label>
+                      <input type="checkbox">
+                      <span>9시간</span>
+                    </label> 
+                  </button>
+                  <button class="btn eight">
+                    <label>
+                      <input type="checkbox">
+                      <span>10시간</span>
+                    </label> 
+                  </button>
+                  <button class="btn nine">
+                    <label>
+                      <input type="checkbox">
+                      <span>11시간</span>
+                    </label> 
+                  </button>
+                  <button class="btn ten">
+                    <label>
+                      <input type="checkbox">
+                      <span>12시간</span>
+                    </label> 
+                  </button>
+                  <button class="btn eleven">
+                    <label>
+                      <input type="checkbox">
+                      <span>13시간</span>
+                    </label> 
+                  </button>
+                  <button class="btn twelve">
+                    <label>
+                      <input type="checkbox">
+                      <span>14시간</span>
+                    </label> 
+                  </button>
+                  <button class="btn thirteen">
+                    <label>
+                      <input type="checkbox">
+                      <span>15시간</span>
+                    </label> 
+                  </button>
+                  <button class="btn fourteen">
+                    <label>
+                      <input type="checkbox">
+                      <span>16시간</span>
+                    </label> 
+                  </button>
+                  <button class="btn fifteen">
+                    <label>
+                      <input type="checkbox">
+                      <span>17시간↑</span>
+                    </label> 
+                  </button>
+                </div>
+                
+
+                
+              </div>
 
             </div>
+
+
+            <div class="symtom_check_right">
+              <div class="symtom">
+                <div class="title"> <p> 증상 </p> </div>
+                <div>
+                  <div class="symtomTextBox 1">
+                    <input id="inputbX" type="text" name="diarytext"><br>                      
+                  </div>
+                  <div>
+                    <div class="box-body"> <select id="example-1to10" name="rating" autocomplete="off">
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                      <option value="6">6</option>
+                      <option value="7" selected="selected">7</option>
+                      <option value="8">8</option>
+                      <option value="9">9</option>
+                      <option value="10">10</option>
+                      </select> 
+                    </div>
+                  </div>
+
+                  <div class="symtomTextBox 2">
+                    <input id="inputbX" type="text" name="diarytext"><br>                      
+                  </div>
+                  <div class="symtomTextBox 3">
+                    <input id="inputbX" type="text" name="diarytext"><br>                      
+                  </div>
+                  <div class="symtomTextBox 4">
+                    <input id="inputbX" type="text" name="diarytext"><br>                      
+                  </div>
+
+                </div>
+              </div>
+
+              <div class="diary">
+                <div class="title"> <p> 관찰일기 </p> </div>
+                <div class="diaryTextBox">
+                  <input id="inputBx" type="text" name="diarytext"><br>
+                    
+                </div>
+                
+                  
+                
+            </div>
+
           </div>
+
 
         </div>
       </div>
-  
-    </section><!-- End Hero -->
-   <!-- MAIN SECTION -->
-   <section id="hero" class="d-flex align-items-center">
-    <main id="about">
-      <div class="wrapper">
-          <div id="slider">
-              <div class="material-icons arrow--left">
-                  arrow_left
-              </div>
-              <div class="slide slide1">
-                  <div class="slide__content">
-                  </div>
-              </div>
-              <div class="slide slide2">
-                  <div class="slide__content">
-                  </div>
-              </div>
-              <div class="slide slide3">
-                  <div class="slide__content">
-                  </div>
-              </div>
-              <div class="slide slide4">
-                  <div class="slide__content">
-                  </div>
-              </div>
-              <div class="slide slide5">
-                  <div class="slide__content">
-                  </div>
-              </div>
-              <div class="slide slide6">
-                  <div class="slide__content">
-                  </div>
-              </div>
-              <div class="material-icons arrow--right">
-                  arrow_right
-              </div>
-              <div class="dots">
-                  <div class="dot dot1"></div>
-                  <div class="dot dot2"></div>
-                  <div class="dot dot3"></div>
-                  <div class="dot dot4"></div>
-                  <div class="dot dot5"></div>
-                  <div class="dot dot6"></div>
-              </div>
-          </div>
-      </div>
-      <div class="ininin">
-        <form action="/uploadMemorize" id ="memoryText">
-          <input id="inputbox" type="text" name="memtext" ><br>
-          <button id="inbutbutton" type="submit" style="margin:auto; WIDTH: 70pt; HEIGHT: 30pt; FONT-SIZE:12px; background-color: #b3cc62;  margin-bottom:10px;" form="memoryText"><p>저장</p></button>
- 
-        </form>
-        <form action="/calendar/upload" method="POST" enctype="multipart/form-data">
-          <input id="intputbox" style=" padding: 23px 25px ;display : flex; justify-content : center;" type="file" name="file">
-          <button id="inputbotton" type="submit" style="margin:auto; WIDTH: 70pt; HEIGHT: 30pt; FONT-SIZE:12px; background-color: #b3cc62; margin-bottom:10px;">업로드</button>
-        </form>
-         </div>
-    </main></section>
+
+    </div>
+  </div>
+
+</section><!-- End Hero -->
+
+<%-include('calendar_memory.ejs') %>
