@@ -586,6 +586,7 @@ dot6.addEventListener("click", function(){
     dots[current].style.background = '#1107ff'
 })
 
+
 // 아이템들을 담을 아이템 리스트
 let itemList = [];
 // 아이템 중복확인 위한 변수
@@ -649,14 +650,14 @@ function showList() {
   // 아이템 리스트를 for 문을 돌면서 테이블 태그로 생성
   let list = "<table>";
   for (let i = 0; i < itemList.length; i++) {
-    list += <tr>
+    list += `<tr>
       <td class="item">
         <div class="checkbox">
           <input type="checkbox" id="${i}" />
         </div>
         <div class="content">${itemList[i]}</div>
       </td>
-      </tr>;
+      </tr>`;
   }
   list += "</table>";
 
