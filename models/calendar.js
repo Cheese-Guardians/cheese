@@ -7,6 +7,22 @@ async function selectCalendar(pool, userId) {
   const [userRow] = await pool.promise().query(selectCalendarQuery, userId);
   return userRow;
 }
+//캘린더 조회
+async function getSelectedCalendar(pool, date) {
+    const getSelectedCalendarQuery = `
+                SELECT *
+                FROM hospital_schedule
+                WHERE user_id = 'handakyeng'
+                AND calendar_id = (
+                SELECT calendar_id
+                FROM calendar
+                WHERE \`date\` = str_to_date(\'${date}\','%Y%M%D') 
+                AND user_id = 'handakyeng'
+                );
+    `;
+    const [dateRow] = await pool.promise().query(getSelectedCalendarQuery, date);
+    return dateRow;
+}
 
 // 파일 업로드
 async function insertFileMem(pool, insertFileMemParams) {
@@ -34,4 +50,5 @@ async function insertFileMem(pool, insertFileMemParams) {
 module.exports = {
     selectCalendar,
     insertFileMem,
+    getSelectedCalendar,
 }

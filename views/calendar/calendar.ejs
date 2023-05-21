@@ -59,6 +59,9 @@
                 <div class="title"><p>병원 일정</p></div>
                 <div class="hospitalContent">
                   <input id="inputhosName" type="text" name="inputhosNametext">
+                  <% if (typeof calendarDataResult !== 'undefined') { %>
+                    <% console.log("Date"+ calendarDataResult) %>
+                 <% } %>
                   <div class="hospitalTime">
                     <div class="box-body">
                       <select id="9to6" name="rating" autocomplete="off">
@@ -299,7 +302,7 @@
                     
                 </div>
                 <div class="symBtndiv">
-                  <button type="button" id="symB" class="symBtn">저장</button>
+                  <button type="submit" id="symB" class="symBtn">저장</button>
                 </div>
               </div>
                   
@@ -316,5 +319,5 @@
   </div>
 
 </section><!-- End Hero -->
-
+<!-- <script src="/js/calendar.js"></script> -->
 <%-include('calendar_memory.ejs') %>
