@@ -61,10 +61,7 @@ app.get(
     "/login", (req,res) =>
     {res.render("users/login");}
 );
-app.get(
-    "/signup", (req,res) =>
-    {res.render("users/signup");}
-);
+
 app.get(
     "/", (req,res) =>
     {

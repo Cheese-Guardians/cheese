@@ -144,14 +144,14 @@
       transform: translateY(-10px);
     }
   }
-  
-  
-
   .user{
-    /* margin: 30%; */
-    margin-top: 30%;
+    margin: 15%;
+    padding-top: 25%;
+    
   }
-
+.user1 {
+  margin: 30%;
+}
   .submit_btn{
     float:right;
   }
