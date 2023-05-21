@@ -6,6 +6,7 @@
     height: 80vh;
     background: #fff;
     padding-top: 82px;
+    overflow: scroll;
   }
   
   #logincontainer {
@@ -147,7 +148,8 @@
   
 
   .user{
-    margin: 30%;
+    /* margin: 30%; */
+    margin-top: 30%;
   }
 
   .submit_btn{
