@@ -180,9 +180,7 @@ input:checked + .slider:before {
   height:30px;
   font-size:15px;
   color:#B3CC62;
-  border-radius: 15px;
-
-}
+  border-radius: 15px;}
 #item{
   width: 150px;
   height:30px;
