@@ -5,6 +5,8 @@ const jwt = require("jsonwebtoken");
 const crypto = require("crypto");
 const { connect } = require("http2");
 const { userInfo } = require("os");
+const secret = require('../config/secret');
+const baseResponse = require("../config/baseResponseStatus");
 
 // 회원가입
 exports.createUser = async function (
@@ -79,12 +81,12 @@ exports.createUser = async function (
     return passwordCheckResult[0];
   };
 
-  // // 계정 상태 확인
-  // exports.accountCheck = async function (user_id) {
-  //   const userAccountResult = await usersModel.selectUserAccount(pool, user_id);
+  // 이름 조회
+  exports.accountCheck = async function (user_id) {
+    const userAccountResult = await usersModel.selectUserAccount(pool, user_id);
 
-  //   return userAccountResult;
-  // };
+    return userAccountResult;
+  };
 
   // 로그인
   exports.postSignIn = async function (user_id, password) {
@@ -111,8 +113,8 @@ exports.createUser = async function (
           return baseResponse.SIGNIN_PASSWORD_WRONG;
       }
 
-      // 계정 상태 확인
-      // const userInfoRows = await accountCheck(user_id);
+      // 이름 조회
+      const userInfoRows = await accountCheck(user_id);
   
       // if (userInfoRows[0].status === "비활성") {
       //   return errResponse(baseResponse.SIGNIN_INACTIVE_ACCOUNT);
@@ -123,27 +125,22 @@ exports.createUser = async function (
       //토큰 생성 Service
       let token = await jwt.sign(
         {
-          userId: userInfoRows[0].userId,
-          nickname: userInfoRows[0].nickname,
+          userId: user_id,
+          nickname: userInfoRows[0].user_name,
         }, // 토큰의 내용(payload)
-        secret_config.jwtsecret, // 비밀키
+        secret.jwtsecret, // 비밀키
         {
-          expiresIn: "365d",
-          subject: "userInfo",
-        } // 유효 기간 365일
+          expiresIn: "60m",
+          subject: "user",
+        } // 유효 기간 60분
       );
   
-      return response(baseResponse.SUCCESS, {
-        userId: userInfoRows[0].userId,
-        nickname: userInfoRows[0].nickname,
+      return {
+        userId: user_id,
+        nickname: userInfoRows[0].user_name,
         jwt: token,
-      });
+      };
     } catch (err) {
-      logger.error(
-        `App - postSignIn Service error\n: ${err.message} \n${JSON.stringify(
-          err
-        )}`
-      );
-      return errResponse(baseResponse.DB_ERROR);
+      return baseResponse.DB_ERROR;
     }
   }

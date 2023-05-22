@@ -55,9 +55,25 @@ async function selectUserPassword(pool, selectUserPasswordParams) {
   return selectUserPasswordRow;
 }
 
+// 이름 조회
+async function selectUserAccount(pool, user_id) {
+  const selectUserAccountQuery = `
+        SELECT up.user_name
+        FROM user u
+        JOIN user_phone up ON u.gd_phone = up.gd_phone
+        WHERE u.user_id = ?;
+        `;
+  const selectUserAccountRow = await pool.query(
+      selectUserAccountQuery,
+      user_id
+  );
+  return selectUserAccountRow[0];
+}
+
+
 module.exports = {
   insertUserInfo,
   selectUserId,
   selectUserPassword,
-  
+  selectUserAccount,
 };
