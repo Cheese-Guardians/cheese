@@ -3,8 +3,6 @@ const pool = require('../main');
 const usersModel = require('../models/usersModel');
 const jwt = require("jsonwebtoken");
 const crypto = require("crypto");
-const { connect } = require("http2");
-const { userInfo } = require("os");
 const secret = require('../config/secret');
 const baseResponse = require("../config/baseResponseStatus");
 
@@ -92,7 +90,7 @@ exports.createUser = async function (
   exports.postSignIn = async function (user_id, password) {
     try {
       // 아이디 여부 확인
-      const userIdRows = await userIdCheck(user_id);
+      const userIdRows = await exports.userIdCheck(user_id);
       if (userIdRows.length < 1)
         return baseResponse.SIGNIN_EMAIL_WRONG;
   
@@ -104,23 +102,17 @@ exports.createUser = async function (
           .update(password)
           .digest("hex");
   
-      const selectUserPasswordParams = [selectUserId, hashedPassword];
-      const passwordRows = await passwordCheck(
+      const selectUserPasswordParams = [selectUserId, password];
+      const passwordRows = await exports.passwordCheck(
         selectUserPasswordParams
       );
   
-      if (passwordRows[0].password !== hashedPassword) {
+      if (passwordRows[0].password !== password) {
           return baseResponse.SIGNIN_PASSWORD_WRONG;
       }
 
       // 이름 조회
-      const userInfoRows = await accountCheck(user_id);
-  
-      // if (userInfoRows[0].status === "비활성") {
-      //   return errResponse(baseResponse.SIGNIN_INACTIVE_ACCOUNT);
-      // } else if (userInfoRows[0].status === "삭제") {
-      //   return errResponse(baseResponse.SIGNIN_WITHDRAWAL_ACCOUNT);
-      // }
+      const userInfoRows = await exports.accountCheck(user_id);
   
       //토큰 생성 Service
       let token = await jwt.sign(
