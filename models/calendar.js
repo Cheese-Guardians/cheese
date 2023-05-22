@@ -8,30 +8,40 @@ async function selectCalendar(pool, userId) {
   return userRow;
 }
 //캘린더 조회
-async function getHospital_schedule(pool, date) {
-  const getHospital_scheduleQuery = `
-    SELECT hospital_name, TIME(booking_time) AS booking_hour
-    FROM hospital_schedule
-    WHERE user_id = 'handakyeng'
-    AND calendar_id = (
-      SELECT calendar_id
-      FROM calendar
-      WHERE \`date\` = \'${date}\' 
-      AND user_id = 'handakyeng'
-    );
-  `;
-  const [rows] = await pool.promise().query(getHospital_scheduleQuery, date);
-  const hospital_scheduler = {
-    hospital_name: "",
-    booking_hour: ""
-  };
-  if (rows.length > 0) {
-    hospital_scheduler.hospital_name = rows[0].hospital_name;
-    hospital_scheduler.booking_hour = rows[0].booking_hour;
-  }
-  return hospital_scheduler;
-}
+async function getSelectedCalendar(pool, date) {
+    const getSelectedCalendarQuery = `
+      SELECT hospital_name
+      FROM hospital_schedule
+      WHERE user_id = 'handakyeng'
+      AND calendar_id = (
+        SELECT calendar_id
+        FROM calendar
+        WHERE \`date\` = \'${date}\' 
+        AND user_id = 'handakyeng'
+      );
+    `;
+    const getSelectedCalendarCKLQuery = `
+      SELECT check_content
+      FROM check_list
+      WHERE user_id = 'handakyeng'
+      AND calendar_id = (
+        SELECT calendar_id
+        FROM calendar
+        WHERE \`date\` = \'${date}\' 
+        AND user_id = 'handakyeng'
+      );
+    `;
+    const [rows] = await pool.promise().query(getSelectedCalendarQuery, date);
+    const hospitalName = rows.length > 0 ? rows[0].hospital_name : "";
 
+    const [checkRows] = await pool.promise().query(getSelectedCalendarCKLQuery, date);
+    const checkContents  = rows.length > 0 ? checkRows.map(row => row.check_content) : "";
+    //console.log(rows);
+    //console.log("date" + date);
+    console.log("models" + hospitalName);
+     console.log("ck" + checkContents);
+    return {hospitalName, checkContents};
+  }
   
 
 // 파일 업로드
@@ -60,5 +70,5 @@ async function insertFileMem(pool, insertFileMemParams) {
 module.exports = {
     selectCalendar,
     insertFileMem,
-    getHospital_schedule,
+    getSelectedCalendar,
 }
