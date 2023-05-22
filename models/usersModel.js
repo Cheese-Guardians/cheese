@@ -33,21 +33,21 @@ async function insertUserInfo(pool, insertUserPhoneParams, insertUserInfoParams,
 // 아이디 확인
 async function selectUserId(pool, user_id) {
   const selectUserIdQuery = `
-                SELECT email 
-                FROM UserInfo 
-                WHERE email = ?;
+                SELECT user_id 
+                FROM user 
+                WHERE user_id = ?;
                 `;
-  const [emailRows] = await pool.query(selectUserIdQuery, user_id);
-  return emailRows;
+  const [userIdRows] = await pool.promise().query(selectUserIdQuery, user_id);
+  return userIdRows;
 }
 
 // 비밀번호 확인
 async function selectUserPassword(pool, selectUserPasswordParams) {
   const selectUserPasswordQuery = `
         SELECT user_id, password
-        FROM UserInfo 
+        FROM user 
         WHERE user_id = ? AND password = ?;`;
-  const selectUserPasswordRow = await pool.query(
+  const selectUserPasswordRow = await pool.promise().query(
       selectUserPasswordQuery,
       selectUserPasswordParams
   );
@@ -63,7 +63,7 @@ async function selectUserAccount(pool, user_id) {
         JOIN user_phone up ON u.gd_phone = up.gd_phone
         WHERE u.user_id = ?;
         `;
-  const selectUserAccountRow = await pool.query(
+  const selectUserAccountRow = await pool.promise().query(
       selectUserAccountQuery,
       user_id
   );
