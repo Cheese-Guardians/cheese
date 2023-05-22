@@ -58,9 +58,8 @@
               <div class="hospital">
                 <div class="title"><p>병원 일정</p></div>
                 <div class="hospitalContent">
-                  <% if (typeof calendarDataResult !== 'undefined') { %>
-                    <% console.log("Date" + calendarDataResult) %>
-                    <input id="inputhosName" type="text" name="inputhosNametext" value="<%= calendarDataResult %>">
+                  <% if (typeof calendarDataResult.hospital_name !== 'undefined') { %>
+                    <input id="inputhosName" type="text" name="inputhosNametext" value="<%= calendarDataResult.hospital_name %>">
                   <% } else { %>
                     <input id="inputhosName" type="text" name="inputhosNametext" value="">
                   <% } %>
@@ -68,18 +67,36 @@
                   
                   <div class="hospitalTime">
                     <div class="box-body">
-                      <select id="9to6" name="rating" autocomplete="off">
-                        <option value="1">9:00</option>
-                        <option value="2">10:00</option>
-                        <option value="3">11:00</option>
-                        <option value="4">12:00</option>
-                        <option value="5">13:00</option>
-                        <option value="6">14:00</option>
-                        <option value="7">15:00</option>
-                        <option value="8">16:00</option>
-                        <option value="9">17:00</option>
-                        <option value="10">18:00</option>
-                      </select>
+                      <% if (typeof calendarDataResult.booking_hour !== 'undefined') { %>
+                        <% console.log(calendarDataResult.booking_hour) %>
+                        <select id="9to6" name="rating" autocomplete="off">
+                          <option value="1" <% if (calendarDataResult.booking_hour === '9:00:00') { %>selected<% } %>>9:00</option>
+                          <option value="2" <% if (calendarDataResult.booking_hour === '10:00:00') { %>selected<% } %>>10:00</option>
+                          <option value="3" <% if (calendarDataResult.booking_hour === '11:00:00') { %>selected<% } %>>11:00</option>
+                          <option value="4" <% if (calendarDataResult.booking_hour === '12:00:00') { %>selected<% } %>>12:00</option>
+                          <option value="5" <% if (calendarDataResult.booking_hour === '13:00:00') { %>selected<% } %>>13:00</option>
+                          <option value="6" <% if (calendarDataResult.booking_hour === '14:00:00') { %>selected<% } %>>14:00</option>
+                          <option value="7" <% if (calendarDataResult.booking_hour === '15:00:00') { %>selected<% } %>>15:00</option>
+                          <option value="8" <% if (calendarDataResult.booking_hour === '16:00:00') { %>selected<% } %>>16:00</option>
+                          <option value="9" <% if (calendarDataResult.booking_hour === '17:00:00') { %>selected<% } %>>17:00</option>
+                          <option value="10" <% if (calendarDataResult.booking_hour === '18:00:00') { %>selected<% } %>>18:00</option>
+                        </select>
+                        <% } else { %>
+                          <select id="9to6" name="rating" autocomplete="off">
+                            <option value="1">9:00</option>
+                            <option value="2">10:00</option>
+                            <option value="3">11:00</option>
+                            <option value="4">12:00</option>
+                            <option value="5">13:00</option>
+                            <option value="6">14:00</option>
+                            <option value="7">15:00</option>
+                            <option value="8">16:00</option>
+                            <option value="9">17:00</option>
+                            <option value="10">18:00</option>
+                          </select>
+                          <% }  %>
+
+
                     </div>
                   </div>
                 </div>
