@@ -5,6 +5,7 @@ const jwtMiddleware = require('../middlewares/jwtMiddleware');
 
 // 1. 유저 생성 (회원가입)
 router.post('/signup', users.postUsers);
+
 router.get(
     "/signup", (req,res) =>
     {res.render("users/signup");}
