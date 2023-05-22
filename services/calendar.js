@@ -8,6 +8,7 @@ exports.retrieveCalendar = async function (userId) {
 }
 exports.retrieveSelectedCalendar = async function (date) {
     const calendarDataResult = await calendarModel.getSelectedCalendar(pool, date);
+    console.log("service: "+calendarDataResult);
     return calendarDataResult;
 }
 exports.createFileMem = async function (server_name, user_name, extension) {

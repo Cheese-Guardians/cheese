@@ -60,7 +60,7 @@
                 <div class="hospitalContent">
                   <% if (typeof calendarDataResult !== 'undefined') { %>
                     <% console.log("Date" + calendarDataResult) %>
-                    <input id="inputhosName" type="text" name="inputhosNametext" value="<%= calendarDataResult %>">
+                    <input id="inputhosName" type="text" name="inputhosNametext" value="<%= calendarDataResult.hospitalName %>">
                   <% } else { %>
                     <input id="inputhosName" type="text" name="inputhosNametext" value="">
                   <% } %>
@@ -107,7 +107,27 @@
               <div class="check">
                 <div class="titleC"> <p id="checkli"> 체크사항 </p> </div>
               <div class="checkTB1">
-                  <div id="item_list"></div>
+                  <div id="item_list">
+                    <table>
+                      <% if (typeof calendarDataResult !== 'undefined') { %>
+                        <% console.log("checkMeow!! " + calendarDataResult) %>
+                    
+                      <% for (let i = 0; i < calendarDataResult.checkContents.length; i++) { %>
+                        <tr>
+                          <td class="item">
+                            <div class="checkbox">
+                              <input type="checkbox" id="<%= i %>" />
+                            </div>
+                            <div class="content"><%= calendarDataResult.checkContents[i] %></div>
+                          </td>
+                        </tr>
+                      <% } %>
+                      <% } else { %>
+                        <!-- <input id="inputhosName" type="text" name="inputhosNametext" value=""> -->
+                        <% console.log("checkMeow!!fail " ) %>
+                      <% } %>
+                    </table>
+                  </div>
                   <form id="checkForm">
                     <div class="additemdiv">
                     <input type="text" id="item"  />
