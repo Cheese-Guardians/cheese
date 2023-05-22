@@ -9,24 +9,29 @@ async function selectCalendar(pool, userId) {
 }
 //캘린더 조회
 async function getSelectedCalendar(pool, date) {
-    const getSelectedCalendarQuery = `
-      SELECT hospital_name
-      FROM hospital_schedule
-      WHERE user_id = 'handakyeng'
-      AND calendar_id = (
-        SELECT calendar_id
-        FROM calendar
-        WHERE \`date\` = \'${date}\' 
-        AND user_id = 'handakyeng'
-      );
-    `;
-    const [rows] = await pool.promise().query(getSelectedCalendarQuery, date);
-    const hospitalName = rows.length > 0 ? rows[0].hospital_name : "";
-    //console.log(rows);
-    //console.log("date" + date);
-    //console.log("models" + hospitalName);
-    return hospitalName;
+  const getSelectedCalendarQuery = `
+    SELECT hospital_name, TIME(booking_time) AS booking_hour
+    FROM hospital_schedule
+    WHERE user_id = 'handakyeng'
+    AND calendar_id = (
+      SELECT calendar_id
+      FROM calendar
+      WHERE \`date\` = \'${date}\' 
+      AND user_id = 'handakyeng'
+    );
+  `;
+  const [rows] = await pool.promise().query(getSelectedCalendarQuery, date);
+  const selectedCalendar = {
+    hospital_name: "",
+    booking_hour: ""
+  };
+  if (rows.length > 0) {
+    selectedCalendar.hospital_name = rows[0].hospital_name;
+    selectedCalendar.booking_hour = rows[0].booking_hour;
   }
+  return selectedCalendar;
+}
+
   
 
 // 파일 업로드
