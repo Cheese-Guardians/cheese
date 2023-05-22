@@ -31,3 +31,13 @@ exports.postUsers = async function (req,res) {
       );
       return res.send(signUpResponse);
 };
+
+exports.login = async function (req, res) {
+    const { user_id, password } = req.body;
+
+  // TODO: email, password 형식적 Validation
+
+  const signInResponse = await usersService.postSignIn(user_id, password);
+
+  return res.send(signInResponse);
+};
