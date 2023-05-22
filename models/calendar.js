@@ -8,8 +8,8 @@ async function selectCalendar(pool, userId) {
   return userRow;
 }
 //캘린더 조회
-async function getSelectedCalendar(pool, date) {
-  const getSelectedCalendarQuery = `
+async function getHospital_schedule(pool, date) {
+  const getHospital_scheduleQuery = `
     SELECT hospital_name, TIME(booking_time) AS booking_hour
     FROM hospital_schedule
     WHERE user_id = 'handakyeng'
@@ -20,16 +20,16 @@ async function getSelectedCalendar(pool, date) {
       AND user_id = 'handakyeng'
     );
   `;
-  const [rows] = await pool.promise().query(getSelectedCalendarQuery, date);
-  const selectedCalendar = {
+  const [rows] = await pool.promise().query(getHospital_scheduleQuery, date);
+  const hospital_scheduler = {
     hospital_name: "",
     booking_hour: ""
   };
   if (rows.length > 0) {
-    selectedCalendar.hospital_name = rows[0].hospital_name;
-    selectedCalendar.booking_hour = rows[0].booking_hour;
+    hospital_scheduler.hospital_name = rows[0].hospital_name;
+    hospital_scheduler.booking_hour = rows[0].booking_hour;
   }
-  return selectedCalendar;
+  return hospital_scheduler;
 }
 
   
@@ -60,5 +60,5 @@ async function insertFileMem(pool, insertFileMemParams) {
 module.exports = {
     selectCalendar,
     insertFileMem,
-    getSelectedCalendar,
+    getHospital_schedule,
 }

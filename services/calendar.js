@@ -7,7 +7,10 @@ exports.retrieveCalendar = async function (userId) {
     return calendarResult;
 }
 exports.retrieveSelectedCalendar = async function (date) {
-    const calendarDataResult = await calendarModel.getSelectedCalendar(pool, date);
+    const calendarDataResult = {
+        hospital_schedule: await calendarModel.getHospital_schedule(pool, date),
+        booking_hour: ""
+      };
     return calendarDataResult;
 }
 exports.createFileMem = async function (server_name, user_name, extension) {
