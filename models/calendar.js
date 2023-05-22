@@ -20,12 +20,27 @@ async function getSelectedCalendar(pool, date) {
         AND user_id = 'handakyeng'
       );
     `;
+    const getSelectedCalendarCKLQuery = `
+      SELECT check_content
+      FROM check_list
+      WHERE user_id = 'handakyeng'
+      AND calendar_id = (
+        SELECT calendar_id
+        FROM calendar
+        WHERE \`date\` = \'${date}\' 
+        AND user_id = 'handakyeng'
+      );
+    `;
     const [rows] = await pool.promise().query(getSelectedCalendarQuery, date);
     const hospitalName = rows.length > 0 ? rows[0].hospital_name : "";
+
+    const [checkRows] = await pool.promise().query(getSelectedCalendarCKLQuery, date);
+    const checkContents  = rows.length > 0 ? checkRows.map(row => row.check_content) : "";
     //console.log(rows);
     //console.log("date" + date);
-    //console.log("models" + hospitalName);
-    return hospitalName;
+    console.log("models" + hospitalName);
+     console.log("ck" + checkContents);
+    return {hospitalName, checkContents};
   }
   
 
