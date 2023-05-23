@@ -60,7 +60,7 @@
                 <div class="hospitalContent">
                   <% if (typeof calendarDataResult !== 'undefined') { %>
                     <% console.log("Date" + calendarDataResult) %>
-                    <input id="inputhosName" type="text" name="inputhosNametext" value="<%= calendarDataResult.hospital_scheduler.hospital_name %>">
+                    <input id="inputhosName" type="text" name="inputhosNametext" value="<%= calendarDataResult.hospital_schedule.hospital_name %>">
                   <% } else { %>
                     <input id="inputhosName" type="text" name="inputhosNametext" value="">
                   <% } %>
