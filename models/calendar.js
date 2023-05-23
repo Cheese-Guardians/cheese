@@ -31,16 +31,32 @@ async function getSelectedCalendar(pool, date) {
         AND user_id = 'handakyeng'
       );
     `;
+    const getSelectedCalendarDiaryQuery = `
+      SELECT diary
+      FROM calendar
+      WHERE user_id = 'handakyeng'
+      AND calendar_id = (
+        SELECT calendar_id
+        FROM calendar
+        WHERE \`date\` = \'${date}\' 
+        AND user_id = 'handakyeng'
+      );
+    `;
+    //병원 이름
     const [rows] = await pool.promise().query(getSelectedCalendarQuery, date);
     const hospitalName = rows.length > 0 ? rows[0].hospital_name : "";
-
+    //체크 사항    
     const [checkRows] = await pool.promise().query(getSelectedCalendarCKLQuery, date);
-    const checkContents  = rows.length > 0 ? checkRows.map(row => row.check_content) : "";
+    const checkContents  = rows.length > 0 ? checkRows.map(row => row.check_content) : "";    
+    //관찰 일기
+    const [diaryRows] = await pool.promise().query(getSelectedCalendarDiaryQuery, date);
+    const diaryContents  = rows.length > 0 ? diaryRows.map(row => row.diary) : "";
     //console.log(rows);
     //console.log("date" + date);
-    console.log("models" + hospitalName);
-     console.log("ck" + checkContents);
-    return {hospitalName, checkContents};
+    console.log("hos: " + hospitalName);
+    console.log("ck: " + checkContents);
+    console.log("diary: " + diaryContents);
+    return {hospitalName, checkContents, diaryContents};
   }
   
 
