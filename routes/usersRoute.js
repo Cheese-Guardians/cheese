@@ -14,4 +14,9 @@ router.get(
 // 2. 로그인 (JWT 생성)
 router.post('/login', users.login);
 
+router.get(
+    "/login", (req,res) =>
+    {res.render("users/login");}
+);
+
 module.exports = router;

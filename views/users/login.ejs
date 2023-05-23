@@ -12,7 +12,7 @@
         <div class="margin 0 auto">
           
     <h3></h3>
-    <form class="user1" action="/login" method="POST">
+    <form class="user1" action="/users/login" method="POST">
             
               <div id="logintext">Login</div>
                     <div class="form-group">
@@ -21,7 +21,7 @@
                         </div>
                         <input type="text" class="form-control form-control-user"
                             id="username" name="user_id" aria-describedby="emailHelp"
-                            placeholder="cheese@#####.com">
+                            placeholder="cheese">
                     </div>
                     <div class="form-group">
                         <div class="logininfo">
@@ -36,8 +36,13 @@
                     </div>
            
         </form>
-
-                                    
+        <% if (typeof(state) !== 'undefined' && state !== null && state == '성공') { %>
+          <script>
+            if (confirm('로그인에 성공했습니다.')) {
+              window.location.href = "/calendar";
+            }
+          </script>
+        <% } %>                         
                                         
         </div>
       </div>

@@ -29,7 +29,24 @@ exports.postUsers = async function (req,res) {
         medicine,
         address
       );
-      return res.send(signUpResponse);
+      if (signUpResponse == "성공") {
+        return res.status(200).send(`
+        <script>
+          if (confirm('회원가입에 성공했습니다.')) {
+            window.location.href = "/users/login";
+          }
+        </script>
+      `)
+      }
+      else {
+        return res.send(`
+        <script>
+          if (confirm('회원가입에 실패했습니다.')) {
+            window.location.href = "/users/signup";
+          }
+        </script>
+      `);
+      }
 };
 
 exports.login = async function (req, res) {
@@ -39,5 +56,16 @@ exports.login = async function (req, res) {
 
   const signInResponse = await usersService.postSignIn(user_id, password);
 
-  return res.send(signInResponse);
+  if (signInResponse.user_id == user_id) {
+    return res.render('users/login.ejs', { signInResponse: signInResponse, state : '성공'});
+  }
+  else {
+    return res.send(`
+    <script>
+      if (confirm('로그인에 실패했습니다.')) {
+        window.location.href = "/users/login";
+      }
+    </script>
+  `);
+  }
 };
