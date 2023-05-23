@@ -10,6 +10,8 @@
 
   <div class="container">
     <div class="row">
+
+
       <div class="col-lg-6 pt-5 pt-lg-0 order-2 order-lg-1 d-flex flex-column justify-content-center">
 
         <!-- ======= calendar ======= -->
@@ -375,95 +377,6 @@
                 <div class="symBtndiv">
                   <button type="submit" id="symB" class="symBtn">저장</button>
                 </div>
-                
-
-                
-              </div>
-
-            </div>
-
-
-            <div class="symtom_check_right">
-              <div class="symtom">
-                <div class="title"> <p> 증상 </p> </div>
-                <div>
-                  <div class="symtomTextBox 1">
-                  <% if (typeof calendarDataResult !== 'undefined') { %>
-                    <% console.log("Date" + calendarDataResult) %>
-                    <input class="inputbX" type="text" name="diarytext" placeholder="기억력 저하" value="<%= calendarDataResult.symptom.symptom_name %>">
-                  <% } else { %> 
-                    <input class="inputbX" type="text" name="diarytext" placeholder="기억력 저하">
-                    <% } %>
-
-                    <p><input type="time" class="symtom-time"></p>             
-                  </div>
-                  
-                  <div class="box-body"> 
-                      <input type="range" min="1" max="10" id="ex-in1" class="range-in">   
-                    <div id="ex-out1" class="range-out"></div>
-                    <script>
-                    document.querySelector('#ex-in1').addEventListener('input',e=>{
-                    document.querySelector('#ex-out1').innerHTML= e.target.value;
-                    });
-                    </script>           
-                    </div>
-
-                  <div class="symtomTextBox 2">
-                    <input class="inputbX" type="text" name="diarytext" placeholder="감정 조절 불가">
-                    <p><input type="time" class="symtom-time"></p>                     
-                  </div>
-                  <div class="box-body"> 
-                    <input type="range" min="1" max="10" id="ex-in2" class="range-in">   
-                  <div id="ex-out2" class="range-out"></div>
-                  <script>
-                  document.querySelector('#ex-in2').addEventListener('input',e=>{
-                  document.querySelector('#ex-out2').innerHTML= e.target.value;
-                  });
-                  </script>           
-                  </div>
-                  <div class="symtomTextBox 3">
-                    <input class="inputbX" type="text" name="diarytext" placeholder="폭력성">
-                    <p><input type="time" class="symtom-time"></p>                     
-                  </div>
-                  <div class="box-body"> 
-                    <input type="range" min="1" max="10" id="ex-in3" class="range-in">   
-                  <div id="ex-out3" class="range-out"></div>
-                  <script>
-                  document.querySelector('#ex-in3').addEventListener('input',e=>{
-                  document.querySelector('#ex-out3').innerHTML= e.target.value;
-                  });
-                  </script>           
-                  </div>
-                  <div class="symtomTextBox 4">
-                    <input class="inputbX" type="text" name="diarytext" placeholder="배회 증상">
-                    <p><input type="time" class="symtom-time"></p>                     
-                  </div>
-                  <div class="box-body"> 
-                    <input type="range" min="1" max="10" id="ex-in4" class="range-in">   
-                  <div id="ex-out4" class="range-out"></div>
-                  <script>
-                  document.querySelector('#ex-in4').addEventListener('input',e=>{
-                  document.querySelector('#ex-out4').innerHTML= e.target.value;
-                  });
-                  </script>           
-                  </div>
-
-                </div>
-              </div>
-
-              <div class="diary">
-                <div class="title"> <p> 관찰일기 </p> </div>
-                <div class="diaryTextBox">
-                  <% if (typeof calendarDataResult !== 'undefined') { %>
-                    <% console.log("Date" + calendarDataResult) %>
-                    <input id="inputBx" type="text" name="diarytext" value="<%= calendarDataResult.calendar.diary %>">
-                  <% } else { %>
-                    <input id="inputBx" type="text" name="diarytext" value="">
-                  <% } %>                    
-                </div>
-                <div class="symBtndiv">
-                  <button type="submit" id="symB" class="symBtn">저장</button>
-                </div>
               </div>
                   
                 
@@ -480,6 +393,4 @@
 
 </section><!-- End Hero -->
 <!-- <script src="/js/calendar.js"></script> -->
-
 <%-include('calendar_memory.ejs') %>
-
