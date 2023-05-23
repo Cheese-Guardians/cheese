@@ -111,21 +111,46 @@
                     <table>
                       <% if (typeof calendarDataResult !== 'undefined') { %>
                         <% console.log("checkMeow!! " + calendarDataResult) %>
-                    
-                      <% for (let i = 0; i < calendarDataResult.checkContents.length; i++) { %>
-                        <tr>
-                          <td class="item">
-                            <div class="checkbox">
-                              <input type="checkbox" id="<%= i %>" />
-                            </div>
-                            <div class="content"><%= calendarDataResult.checkContents[i] %></div>
-                          </td>
-                        </tr>
-                      <% } %>
+                        <% for (let i = 0; i < calendarDataResult.checkContents.length; i++) { %>
+                          <tr>
+                            <td class="item">
+                              <div class="checkbox">
+                                <input type="checkbox" id="<%= i %>" />
+                              </div>
+                              <div class="content"><%= calendarDataResult.checkContents[i] %></div>
+                            </td>
+                          </tr>
+                        <% } %>
                       <% } else { %>
                         <!-- <input id="inputhosName" type="text" name="inputhosNametext" value=""> -->
                         <% console.log("checkMeow!!fail " ) %>
+                        <!-- Default Contents -->
+                        <tr>
+                          <td class="item">
+                            <div class="checkbox">
+                              <input type="checkbox" id="morning" />
+                            </div>
+                            <div class="content">아침 약 복용</div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="item">
+                            <div class="checkbox">
+                              <input type="checkbox" id="lunch" />
+                            </div>
+                            <div class="content">점심 약 복용</div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="item">
+                            <div class="checkbox">
+                              <input type="checkbox" id="dinner" />
+                            </div>
+                            <div class="content">저녁 약 복용</div>
+                          </td>
+                        </tr>
                       <% } %>
+                      
                     </table>
                   </div>
                   <form id="checkForm">
