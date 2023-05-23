@@ -20,7 +20,6 @@ async function getSelectedCalendar(pool, date) {
       AND user_id = 'handakyeng'
     );
   `;
-
   const getCheck_listQuery = `
     SELECT check_content, is_check
     FROM check_list
@@ -78,8 +77,8 @@ async function getSelectedCalendar(pool, date) {
 
   //체크 사항    
   const [checkRows] = await pool.promise().query(getCheck_listQuery, date);
-  const check_list  = rows.length > 0 ? checkRows.map(row => row.check_content) : "";
-  //잠잔 시간 //관찰 일기
+  const check_list  = checkRows.length > 0 ? checkRows.map(row => ({ content: row.check_content, is_check: row.is_check })) : [];
+  //잔 시간 //관찰 일기
   const [calendarRows] = await pool.promise().query(getCalendarQuery, date);
   const calendar =  {
     sleep_time: "",
