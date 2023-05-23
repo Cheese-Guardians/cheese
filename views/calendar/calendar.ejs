@@ -128,7 +128,7 @@
               <div class="checkTB1">
                   <div id="item_list">
                     <table>
-                        <% if (typeof calendarDataResult !== 'undefined' && calendarDataResult && typeof calendarDataResult.check_list !== 'undefined' && calendarDataResult.check_list) { %>
+                        <% if (typeof calendarDataResult !== 'undefined' && calendarDataResult && typeof calendarDataResult.check_list !== 'undefined' && calendarDataResult.check_list && calendarDataResult.check_list.length !== 0) { %>
                         <% console.log("checkMeow!! " + calendarDataResult) %>
                     
                         <% for (let i = 0; i < calendarDataResult.check_list.length; i++) { %>
