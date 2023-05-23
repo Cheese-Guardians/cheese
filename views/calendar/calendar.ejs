@@ -111,13 +111,13 @@
                     <table>
                       <% if (typeof calendarDataResult !== 'undefined') { %>
                         <% console.log("checkMeow!! " + calendarDataResult) %>
-                        <% for (let i = 0; i < calendarDataResult.checkContents.length; i++) { %>
+                        <% for (let i = 0; i < calendarDataResult.check_list.length; i++) { %>
                           <tr>
                             <td class="item">
                               <div class="checkbox">
                                 <input type="checkbox" id="<%= i %>" />
                               </div>
-                              <div class="content"><%= calendarDataResult.checkContents[i] %></div>
+                              <div class="content"><%= calendarDataResult.check_list[i] %></div>
                             </td>
                           </tr>
                         <% } %>
