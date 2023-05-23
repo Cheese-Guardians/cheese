@@ -56,6 +56,16 @@ async function getSelectedCalendar(pool, date) {
   `;
 
   //병원 이름
+  const [hosRows] = await pool.promise().query(getHospital_scheduleQuery, date);
+  const hospital_schedule = {
+    hospital_name: "",
+    booking_hour: ""
+  };
+  if (hosRows.length > 0) {
+    hospital_schedule.hospital_name = hosRows[0].hospital_name;
+    hospital_schedule.booking_hour = hosRows[0].booking_hour;
+  }
+  //병원 이름
   const [rows] = await pool.promise().query(getHospital_scheduleQuery, date);
   const hospital_scheduler = {
     hospital_name: "",
@@ -94,6 +104,7 @@ async function getSelectedCalendar(pool, date) {
 }
 
 
+
 // 파일 업로드
 async function insertFileMem(pool, insertFileMemParams) {
   //console.log(typeof(insertFileMemParams[0]));
@@ -120,5 +131,5 @@ async function insertFileMem(pool, insertFileMemParams) {
 module.exports = {
   selectCalendar,
   insertFileMem,
-  getSelectedCalendar
+  getSelectedCalendar,
 }
