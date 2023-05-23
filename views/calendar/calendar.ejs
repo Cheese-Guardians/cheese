@@ -60,7 +60,7 @@
                 <div class="hospitalContent">
                   <% if (typeof calendarDataResult !== 'undefined') { %>
                     <% console.log("Date" + calendarDataResult) %>
-                    <input id="inputhosName" type="text" name="inputhosNametext" value="<%= calendarDataResult.hospitalName %>">
+                    <input id="inputhosName" type="text" name="inputhosNametext" value="<%= calendarDataResult.hospital_scheduler.hospital_name %>">
                   <% } else { %>
                     <input id="inputhosName" type="text" name="inputhosNametext" value="">
                   <% } %>
@@ -85,6 +85,25 @@
                 </div>
               </div>
 
+              <div class="alarm">
+                <div class="title"> <p>알림</p> </div>
+                
+                <div class="medicine_alarm">
+                  <div class="name"> <p>복용약</p> </div>
+                  <label class="switch">
+                    <input type="checkbox">
+                    <span class="slider round"></span>
+                  </label>
+                </div>
+                <div class="hospital_alarm">
+                  <div class="name"> <p> 병원 일정 </p> </div>                  
+                  <label class="switch">
+                    <input type="checkbox">
+                    <span class="slider round"></span>
+                  </label>
+                </div>
+              </div>
+
               <div class="check">
                 <div class="titleC"> <p id="checkli"> 체크사항 </p> </div>
               <div class="checkTB1">
@@ -92,21 +111,46 @@
                     <table>
                       <% if (typeof calendarDataResult !== 'undefined') { %>
                         <% console.log("checkMeow!! " + calendarDataResult) %>
-                    
-                      <% for (let i = 0; i < calendarDataResult.checkContents.length; i++) { %>
-                        <tr>
-                          <td class="item">
-                            <div class="checkbox">
-                              <input type="checkbox" id="<%= i %>" />
-                            </div>
-                            <div class="content"><%= calendarDataResult.checkContents[i] %></div>
-                          </td>
-                        </tr>
-                      <% } %>
+                        <% for (let i = 0; i < calendarDataResult.check_list.length; i++) { %>
+                          <tr>
+                            <td class="item">
+                              <div class="checkbox">
+                                <input type="checkbox" id="<%= i %>" />
+                              </div>
+                              <div class="content"><%= calendarDataResult.check_list[i] %></div>
+                            </td>
+                          </tr>
+                        <% } %>
                       <% } else { %>
                         <!-- <input id="inputhosName" type="text" name="inputhosNametext" value=""> -->
                         <% console.log("checkMeow!!fail " ) %>
+                        <!-- Default Contents -->
+                        <tr>
+                          <td class="item">
+                            <div class="checkbox">
+                              <input type="checkbox" id="morning" />
+                            </div>
+                            <div class="content">아침 약 복용</div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="item">
+                            <div class="checkbox">
+                              <input type="checkbox" id="lunch" />
+                            </div>
+                            <div class="content">점심 약 복용</div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="item">
+                            <div class="checkbox">
+                              <input type="checkbox" id="dinner" />
+                            </div>
+                            <div class="content">저녁 약 복용</div>
+                          </td>
+                        </tr>
                       <% } %>
+                      
                     </table>
                   </div>
                   <form id="checkForm">
@@ -243,7 +287,13 @@
                 <div class="title"> <p> 증상 </p> </div>
                 <div>
                   <div class="symtomTextBox 1">
-                    <input class="inputbX" type="text" name="diarytext" placeholder="분노 조절 불가">
+                  <% if (typeof calendarDataResult !== 'undefined') { %>
+                    <% console.log("Date" + calendarDataResult) %>
+                    <input class="inputbX" type="text" name="diarytext" placeholder="기억력 저하" value="<%= calendarDataResult.symptom.symptom_name %>">
+                  <% } else { %> 
+                    <input class="inputbX" type="text" name="diarytext" placeholder="기억력 저하">
+                    <% } %>
+
                     <p><input type="time" class="symtom-time"></p>             
                   </div>
                   
@@ -258,7 +308,7 @@
                     </div>
 
                   <div class="symtomTextBox 2">
-                    <input class="inputbX" type="text" name="diarytext" placeholder="배회">
+                    <input class="inputbX" type="text" name="diarytext" placeholder="감정 조절 불가">
                     <p><input type="time" class="symtom-time"></p>                     
                   </div>
                   <div class="box-body"> 
@@ -284,7 +334,7 @@
                   </script>           
                   </div>
                   <div class="symtomTextBox 4">
-                    <input class="inputbX" type="text" name="diarytext" placeholder="기억력 저하">
+                    <input class="inputbX" type="text" name="diarytext" placeholder="배회 증상">
                     <p><input type="time" class="symtom-time"></p>                     
                   </div>
                   <div class="box-body"> 
@@ -305,7 +355,7 @@
                 <div class="diaryTextBox">
                   <% if (typeof calendarDataResult !== 'undefined') { %>
                     <% console.log("Date" + calendarDataResult) %>
-                    <input id="inputBx" type="text" name="diarytext" value="<%= calendarDataResult.diaryContents %>">
+                    <input id="inputBx" type="text" name="diarytext" value="<%= calendarDataResult.calendar.diary %>">
                   <% } else { %>
                     <input id="inputBx" type="text" name="diarytext" value="">
                   <% } %>                    
