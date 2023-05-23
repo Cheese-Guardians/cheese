@@ -58,11 +58,6 @@ app.get(
 );
 
 app.get(
-    "/login", (req,res) =>
-    {res.render("users/login");}
-);
-
-app.get(
     "/", (req,res) =>
     {
         const sql = "select * from category;";
@@ -70,24 +65,6 @@ app.get(
             if (err) {
               throw err;
             }
-            // var token = jwt.sign({
-            //     test: "test"
-            // },
-            // "cheese1234!",
-            // {
-            //     subject: "Cheese jwtToken",
-            //     expiresIn: '60m',
-            //     issuer: 'Cheese'
-            // });
-            // console.log('토큰생성\n', token);
-            // try {
-            //     var check = jwt.verify(token, "cheese1234!");
-            //     if (check) {
-            //         console.log('검증', check.test);
-            //     }
-            // } catch (e) {
-            //     console.log(e);
-            // }
             res.render('calendar/calendar.ejs', { data: results });
         });
 

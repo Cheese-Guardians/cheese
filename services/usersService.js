@@ -102,12 +102,12 @@ exports.createUser = async function (
           .update(password)
           .digest("hex");
   
-      const selectUserPasswordParams = [selectUserId, password];
+      const selectUserPasswordParams = [selectUserId, hashedPassword];
       const passwordRows = await exports.passwordCheck(
         selectUserPasswordParams
       );
   
-      if (passwordRows[0].password !== password) {
+      if (passwordRows[0].password !== hashedPassword) {
           return baseResponse.SIGNIN_PASSWORD_WRONG;
       }
 
@@ -117,8 +117,8 @@ exports.createUser = async function (
       //토큰 생성 Service
       let token = await jwt.sign(
         {
-          userId: user_id,
-          nickname: userInfoRows[0].user_name,
+          user_id: user_id,
+          user_name: userInfoRows[0].user_name,
         }, // 토큰의 내용(payload)
         secret.jwtsecret, // 비밀키
         {
@@ -128,8 +128,8 @@ exports.createUser = async function (
       );
   
       return {
-        userId: user_id,
-        nickname: userInfoRows[0].user_name,
+        user_id: user_id,
+        user_name: userInfoRows[0].user_name,
         jwt: token,
       };
     } catch (err) {
