@@ -254,7 +254,6 @@
 
 })()
 
-
 //캘린더
 document.addEventListener("DOMContentLoaded", function() {
   buildCalendar();
@@ -720,4 +719,3 @@ function showList() {
     checkboxes[i].onclick = toggleItem;
   }
 }
-
