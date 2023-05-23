@@ -694,10 +694,24 @@ function checkDupl(item) {
 }
 
 // 아이템리스트 출력 메서드 (테이블)
-// 아이템리스트 출력 메서드 (테이블)
 function showList() {
   // 아이템 리스트를 for 문을 돌면서 테이블 태그로 생성
   let list = "<table>";
+
+  // 디폴트 항목 출력
+  const defaultItems = ["아침 약 복용", "점심 약 복용", "저녁 약 복용"];
+  for (let i = 0; i < defaultItems.length; i++) {
+    list += `<tr>
+      <td class="item">
+        <div class="checkbox">
+        <input type="checkbox" id="default_${i}" />
+        </div>
+        <div class="content">${defaultItems[i]}</div>
+      </td>
+    </tr>`;
+  }
+
+  // 추가된 아이템 출력
   for (let i = 0; i < itemList.length; i++) {
     list += `<tr>
       <td class="item">
@@ -706,8 +720,9 @@ function showList() {
         </div>
         <div class="content">${itemList[i]}</div>
       </td>
-      </tr>`;
+    </tr>`;
   }
+
   list += "</table>";
 
   // 테이블 태그 출력
@@ -719,3 +734,10 @@ function showList() {
     checkboxes[i].onclick = toggleItem;
   }
 }
+
+
+
+// 페이지 로드 시 리스트 출력
+window.addEventListener("load", function () {
+  showList();
+});
