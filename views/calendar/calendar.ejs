@@ -347,8 +347,12 @@
               <div class="diary">
                 <div class="title"> <p> 관찰일기 </p> </div>
                 <div class="diaryTextBox">
-                  <input id="inputBx" type="text" name="diarytext"><br>
-                    
+                  <% if (typeof calendarDataResult !== 'undefined') { %>
+                    <% console.log("Date" + calendarDataResult) %>
+                    <input id="inputBx" type="text" name="diarytext" value="<%= calendarDataResult.diaryContents %>">
+                  <% } else { %>
+                    <input id="inputBx" type="text" name="diarytext" value="">
+                  <% } %>                    
                 </div>
                 <div class="symBtndiv">
                   <button type="submit" id="symB" class="symBtn">저장</button>
