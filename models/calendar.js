@@ -33,7 +33,7 @@ async function getSelectedCalendar(pool, date) {
       );
     `;
     const getCalendarQuery = `
-      SELECT sleep_time, symptom_name, degree, diary
+      SELECT sleep_time,  diary
       FROM calendar
       WHERE user_id = 'handakyeng'
       AND calendar_id = (
@@ -45,28 +45,35 @@ async function getSelectedCalendar(pool, date) {
     `;
 
     //병원 이름
-    const [rows] = await pool.promise().query(getHospital_scheduleQuery, date);
-    const hospital_scheduler = {
+    const [hosRows] = await pool.promise().query(getHospital_scheduleQuery, date);
+    const hospital_schedule = {
       hospital_name: "",
       booking_hour: ""
     };
-    if (rows.length > 0) {
-      hospital_scheduler.hospital_name = rows[0].hospital_name;
-      hospital_scheduler.booking_hour = rows[0].booking_hour;
+    if (hosRows.length > 0) {
+      hospital_schedule.hospital_name = hosRows[0].hospital_name;
+      hospital_schedule.booking_hour = hosRows[0].booking_hour;
     }
   
     //체크 사항    
-    const [checkRows] = await pool.promise().query(getSelectedCalendarCKLQuery, date);
-    const checkContents  = rows.length > 0 ? checkRows.map(row => row.check_content) : "";
+    const [checkRows] = await pool.promise().query(getCheck_listQuery, date);
+    const check_list  = checkRows.length > 0 ? checkRows.map(checkRows => checkRows.check_content) : "";
     //잠잔 시간 //증상  //관찰 일기
-    const [diaryRows] = await pool.promise().query(getCalendarQuery, date);
-    const calendarContents  = rows.length > 0 ? diaryRows.map(row => row.diary) : "";
+    const [calRows] = await pool.promise().query(getCalendarQuery, date);
+    const calendar = {
+      sleep_time: "",
+      diary:""
+    };
+    if (calRows.length > 0) {
+      calendar.sleep_time = calRows[0].sleep_time;
+      calendar.diary = calRows[0].diary;
+    }
     //console.log(rows);
     //console.log("date" + date);
-    console.log("hos: " + hospitalName);
-    console.log("ck: " + checkContents);
-    console.log("sleepTime: " + calendarContents);
-    return {hospital_scheduler, checkContents, calendarContents};
+    console.log("hos: " + hospital_schedule);
+    console.log("ck: " + check_list);
+    console.log("sleepTime: " + calendar);
+    return {hospital_schedule, check_list, calendar};
   }
   
 
