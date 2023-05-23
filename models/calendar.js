@@ -56,15 +56,15 @@ async function getSelectedCalendar(pool, date) {
   `;
 
   //병원 이름
-    const [hosRows] = await pool.promise().query(getHospital_scheduleQuery, date);
-    const hospital_schedule = {
-      hospital_name: "",
-      booking_hour: ""
-    };
-    if (hosRows.length > 0) {
-      hospital_schedule.hospital_name = hosRows[0].hospital_name;
-      hospital_schedule.booking_hour = hosRows[0].booking_hour;
-    }
+  const [rows] = await pool.promise().query(getHospital_scheduleQuery, date);
+  const hospital_scheduler = {
+    hospital_name: "",
+    booking_hour: ""
+  };
+  if (rows.length > 0) {
+    hospital_scheduler.hospital_name = rows[0].hospital_name;
+    hospital_scheduler.booking_hour = rows[0].booking_hour;
+  }
 
   //체크 사항    
   const [checkRows] = await pool.promise().query(getCheck_listQuery, date);
