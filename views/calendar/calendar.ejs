@@ -131,16 +131,16 @@
                         <% if (typeof calendarDataResult !== 'undefined' && calendarDataResult && typeof calendarDataResult.check_list !== 'undefined' && calendarDataResult.check_list) { %>
                         <% console.log("checkMeow!! " + calendarDataResult) %>
                     
-                      <% for (let i = 0; i < calendarDataResult.check_list.length; i++) { %>
-                        <tr>
-                          <td class="item">
-                            <div class="checkbox">
-                              <input type="checkbox" id="<%= i %>" />
-                            </div>
-                            <div class="content"><%= calendarDataResult.check_list[i] %></div>
-                          </td>
-                        </tr>
-                      <% } %>
+                        <% for (let i = 0; i < calendarDataResult.check_list.length; i++) { %>
+                          <tr>
+                            <td class="item">
+                              <div class="checkbox">
+                                <input type="checkbox" id="<%= i %>" <%= calendarDataResult.check_list[i].is_check === 1 ? 'checked' : '' %> />
+                              </div>
+                              <div class="content"><%= calendarDataResult.check_list[i].content %></div>
+                            </td>
+                          </tr>
+                        <% } %>
                       <% } else { %>
                         <!-- <input id="inputhosName" type="text" name="inputhosNametext" value=""> -->
                         <% console.log("checkMeow!!fail " ) %>
@@ -170,6 +170,7 @@
                           </td>
                         </tr>
                       <% } %>
+                      
                     </table>
                   </div>
                   <form id="checkForm">
