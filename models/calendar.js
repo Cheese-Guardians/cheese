@@ -100,7 +100,7 @@ async function getSelectedCalendar(pool, date) {
     symptom.degree = symptomRows[0].degree;
   }
   
-  return {hospital_scheduler, check_list, calendar, symptom};
+  return {hospital_schedule, check_list, calendar, symptom};
 }
 
 
