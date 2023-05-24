@@ -3,6 +3,7 @@
   <link href="/css/calendar/calendar_check.css" rel="stylesheet">
 
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  
 </head>
 
 <!-- ======= Hero Section ======= -->
@@ -112,7 +113,7 @@
                   <div id="item_list">
                     <table>
                         <% if (typeof calendarDataResult !== 'undefined' && calendarDataResult && typeof calendarDataResult.check_list !== 'undefined' && calendarDataResult.check_list && calendarDataResult.check_list.length !== 0) { %>
-                        <% console.log("checkMeow!! " + calendarDataResult) %>
+                        <% console.log("hospital time: " + calendarDataResult) %>
                     
                         <% for (let i = 0; i < calendarDataResult.check_list.length; i++) { %>
                           <tr>
@@ -161,14 +162,14 @@
                     <input type="text" id="item"  />
                   <button type="button" id="add" class="addBtn">추가</button> 
                     </div></form></div>
-                   </div>
-                  
+                   </div>                 
                   
              
 
               <div class="sleeping-time">
                 <div class="title"> <p> 수면시간 </p> </div>
                 <div class="time">
+                
                   <button class="btn one">                    
                     <label>
                       <input type="checkbox">
@@ -213,7 +214,7 @@
                   </button>
                   <button class="btn eight">
                     <label>
-                      <input type="checkbox">
+                      <input type="checkbox" checked>
                       <span>10시간</span>
                     </label> 
                   </button>
@@ -260,8 +261,8 @@
                     </label> 
                   </button>
                   <script>
-                    // 이벤트 핸들러 함수
-                    function handleButtonClick(event) {
+                     // 이벤트 핸들러 함수
+                     function handleButtonClick(event) {
                       const buttons = document.getElementsByClassName('btn');
                       for (let i = 0; i < buttons.length; i++) {
                         buttons[i].classList.remove('active');
@@ -290,66 +291,81 @@
               <div class="symtom">
                 <div class="title"> <p> 증상 </p> </div>
                 <div>
-                  <div class="symtomTextBox 1">
-                  <% if (typeof calendarDataResult !== 'undefined') { %>
-                    <% console.log("Date" + calendarDataResult) %>
-                    <input class="inputbX" type="text" name="diarytext" placeholder="기억력 저하" value="<%= calendarDataResult.symptom.symptom_name %>">
-                  <% } else { %> 
-                    <input class="inputbX" type="text" name="diarytext" placeholder="기억력 저하">
-                    <% } %>
-
-                    <p><input type="time" class="symtom-time"></p>             
-                  </div>
-                  
-                  <div class="box-body"> 
-                      <input type="range" min="1" max="10" id="ex-in1" class="range-in">   
-                    <div id="ex-out1" class="range-out"></div>
-                    <script>
-                    document.querySelector('#ex-in1').addEventListener('input',e=>{
-                    document.querySelector('#ex-out1').innerHTML= e.target.value;
-                    });
-                    </script>           
+                  <% if (typeof calendarDataResult !== 'undefined' && calendarDataResult && typeof calendarDataResult.symptom_list !== 'undefined' && calendarDataResult.symptom_list && calendarDataResult.symptom_list.length !== 0) { %>
+                    <% console.log("symptom: " + calendarDataResult) %>
+                    <% for (let i = 0; i < calendarDataResult.symptom_list.length; i++) { %>
+                    <div class="symtomTextBox ">                    
+                      <input class="inputbX" type="text" id="<%= i %>" name="diarytext" value="<%= calendarDataResult.symptom_list[i].symptom_name %>">
+                      <p><input type="time" class="symtom-time" value="<%= calendarDataResult.symptom_list[i].onset_time%>" ></p>                      
+                      
                     </div>
 
-                  <div class="symtomTextBox 2">
-                    <input class="inputbX" type="text" name="diarytext" placeholder="감정 조절 불가">
-                    <p><input type="time" class="symtom-time"></p>                     
-                  </div>
-                  <div class="box-body"> 
-                    <input type="range" min="1" max="10" id="ex-in2" class="range-in">   
-                  <div id="ex-out2" class="range-out"></div>
-                  <script>
-                  document.querySelector('#ex-in2').addEventListener('input',e=>{
-                  document.querySelector('#ex-out2').innerHTML= e.target.value;
-                  });
-                  </script>           
-                  </div>
-                  <div class="symtomTextBox 3">
-                    <input class="inputbX" type="text" name="diarytext" placeholder="폭력성">
-                    <p><input type="time" class="symtom-time"></p>                     
-                  </div>
-                  <div class="box-body"> 
-                    <input type="range" min="1" max="10" id="ex-in3" class="range-in">   
-                  <div id="ex-out3" class="range-out"></div>
-                  <script>
-                  document.querySelector('#ex-in3').addEventListener('input',e=>{
-                  document.querySelector('#ex-out3').innerHTML= e.target.value;
-                  });
-                  </script>           
-                  </div>
-                  <div class="symtomTextBox 4">
-                    <input class="inputbX" type="text" name="diarytext" placeholder="배회 증상">
-                    <p><input type="time" class="symtom-time"></p>                     
-                  </div>
-                  <div class="box-body"> 
-                    <input type="range" min="1" max="10" id="ex-in4" class="range-in">   
-                  <div id="ex-out4" class="range-out"></div>
-                  <script>
-                  document.querySelector('#ex-in4').addEventListener('input',e=>{
-                  document.querySelector('#ex-out4').innerHTML= e.target.value;
-                  });
-                  </script>           
-                  </div>
+                    <div class="box-body "> 
+                        <input type="range" min="1" max="10" id="<%= i %>" class="range-in" value="<%= calendarDataResult.symptom_list[i].degree %>">   
+                      <div id="<%= i %>" class="range-out"></div>
+                      <script>
+                        document.querySelector("<%= i %>").addEventListener('input',e=>{
+                        document.querySelector("<%= i %>").innerHTML= "<%= calendarDataResult.symptom_list[i].degree %>";
+                        });
+                      </script>           
+                    </div>
+                    <% } %>
+                  <% } else { %>
+                    <div class="symtomTextBox 1">                    
+                      <input class="inputbX" type="text" name="diarytext" placeholder="기억력 저하" >
+                      <p><input type="time" class="symtom-time"></p>             
+                    </div>
+                  
+                    <div class="box-body"> 
+                        <input type="range" min="1" max="10" id="ex-in1" class="range-in">   
+                      <div id="ex-out1" class="range-out"></div>
+                      <script>
+                      document.querySelector('#ex-in1').addEventListener('input',e=>{
+                      document.querySelector('#ex-out1').innerHTML= e.target.value;
+                      });
+                      </script>           
+                    </div>
+
+                    <div class="symtomTextBox 2">
+                      <input class="inputbX" type="text" name="diarytext" placeholder="감정 조절 불가">
+                      <p><input type="time" class="symtom-time"></p>                     
+                    </div>
+                    <div class="box-body"> 
+                      <input type="range" min="1" max="10" id="ex-in2" class="range-in">   
+                      <div id="ex-out2" class="range-out"></div>
+                      <script>
+                        document.querySelector('#ex-in2').addEventListener('input',e=>{
+                        document.querySelector('#ex-out2').innerHTML= e.target.value;
+                        });
+                      </script>           
+                    </div>
+                    <div class="symtomTextBox 3">
+                      <input class="inputbX" type="text" name="diarytext" placeholder="폭력성">
+                      <p><input type="time" class="symtom-time"></p>                     
+                    </div>
+                    <div class="box-body"> 
+                      <input type="range" min="1" max="10" id="ex-in3" class="range-in">   
+                      <div id="ex-out3" class="range-out"></div>
+                      <script>
+                        document.querySelector('#ex-in3').addEventListener('input',e=>{
+                        document.querySelector('#ex-out3').innerHTML= e.target.value;
+                        });
+                      </script>           
+                    </div>
+                    <div class="symtomTextBox 4">
+                      <input class="inputbX" type="text" name="diarytext" placeholder="배회 증상">
+                      <p><input type="time" class="symtom-time"></p>                     
+                    </div>
+                    <div class="box-body"> 
+                      <input type="range" min="1" max="10" id="ex-in4" class="range-in">   
+                      <div id="ex-out4" class="range-out"></div>
+                      <script>
+                        document.querySelector('#ex-in4').addEventListener('input',e=>{
+                        document.querySelector('#ex-out4').innerHTML= e.target.value;
+                        });
+                      </script>           
+                    </div>
+                  <% } %>
 
                 </div>
               </div>
