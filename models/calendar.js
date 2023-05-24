@@ -43,7 +43,7 @@ async function getSelectedCalendar(pool, date) {
     );
   `;
   const getSymptomQuery = `
-    SELECT symptom_name, degree
+    SELECT symptom_name, onset_time, degree
     FROM symptom
     WHERE user_id = 'handakyeng'
     AND calendar_id = (
@@ -88,18 +88,14 @@ async function getSelectedCalendar(pool, date) {
     calendar.sleep_time = calendarRows[0].sleep_time;
     calendar.diary = calendarRows[0].diary;
   }
+  console.log(calendar.sleep_time);
+
+
   //증상
   const [symptomRows] = await pool.promise().query(getSymptomQuery, date);
-  const symptom = {
-    symptom_name: "",
-    degree: ""
-  };
-  if (rows.length > 0) {
-    symptom.symptom_name = symptomRows[0].symptom_name;
-    symptom.degree = symptomRows[0].degree;
-  }
+  const symptom_list = symptomRows.length > 0 ? symptomRows.map(row => ({ symptom_name: row.symptom_name, degree: row.degree, onset_time: row.onset_time})) : [];
   
-  return {hospital_schedule, check_list, calendar, symptom};
+  return {hospital_schedule, check_list, calendar, symptom_list};
 }
 
 
