@@ -36,7 +36,7 @@
                     </div>
            
         </form>
-        <% if (typeof(state) !== 'undefined' && state !== null && state == '성공') { %>
+        <% if (typeof(loginState) !== 'undefined' && loginState !== null && loginState == '성공') { %>
           <script>
             if (confirm('로그인에 성공했습니다.')) {
               window.location.href = "/calendar";
