@@ -1038,3 +1038,19 @@
     }
   }
   
+  .logout {
+    padding: 10px 25px;
+    margin-left: 30px;
+    border-radius: 4px;
+    line-height: 1;
+    color: #5f687b;
+    font-size: 14px;
+    font-weight: 500;
+    border: 1px solid #cdd1d9;
+    width: 100px;
+    height: 36.5px;
+  }
+
+  .logout:hover {
+
+  }
