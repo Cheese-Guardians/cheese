@@ -57,7 +57,13 @@ exports.login = async function (req, res) {
   const signInResponse = await usersService.postSignIn(user_id, password);
 
   if (signInResponse.user_id == user_id) {
-    return res.render('users/login.ejs', { signInResponse: signInResponse, state : '성공'});
+    // return res.render('users/login.ejs', { signInResponse: signInResponse, state : '성공'});
+    return res
+                .cookie("x_auth", signInResponse.jwt, {
+                  maxAge: 1000 * 60 * 60 * 24 * 7, // 7일간 유지
+                  httpOnly: true,
+                })
+                .render('users/login.ejs', { signInResponse: signInResponse, state : '성공'});
   }
   else {
     return res.send(`
