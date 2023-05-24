@@ -29,7 +29,7 @@ const port = 3000,
     calendarRouter = require('./routes/calendar'),
     usersRouter = require('./routes/usersRoute');
 
-const jwt = require('jsonwebtoken');
+const cookieParser = require('cookie-parser');
 
 
 app.set("view engine", "ejs");
@@ -39,6 +39,7 @@ app.use('/uploads',express.static("uploads/"));
 app.use(layouts);
 app.use(express.urlencoded());
 app.use(express.json());
+app.use(cookieParser());
 
 //라우터 등록
 app.use('/calendar', calendarRouter);
