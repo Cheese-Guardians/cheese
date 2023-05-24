@@ -1037,10 +1037,12 @@
       display: inline-block;
     }
   }
-  
+  .logout_container {
+    width : 0;
+  }
   .logout {
-    padding: 10px 25px;
-    margin-left: 30px;
+    /* padding: 10px 25px; */
+    margin: 0;
     border-radius: 4px;
     line-height: 1;
     color: #5f687b;
@@ -1049,8 +1051,10 @@
     border: 1px solid #cdd1d9;
     width: 100px;
     height: 36.5px;
+    position: relative;
+    left: 50px;
   }
 
   .logout:hover {
-
+    background-color: #16df7e;
   }
