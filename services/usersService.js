@@ -122,10 +122,13 @@ exports.createUser = async function (
         }, // 토큰의 내용(payload)
         secret.jwtsecret, // 비밀키
         {
-          expiresIn: "60m",
+          expiresIn: "7d",
           subject: "user",
         } // 유효 기간 60분
       );
+
+      const insertUserJWTParams = [token, user_id];
+      await usersModel.insertUserJWT(pool, insertUserJWTParams);
   
       return {
         user_id: user_id,
