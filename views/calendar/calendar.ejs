@@ -41,6 +41,7 @@
 
       <!-- ======= symtom_check ======= -->
       <div class="col-lg-6 pt-lg-0 order-2 order-lg-1">
+        <form action="http://localhost:3000/calendar/1" method="post">
         <div class="symtom_check">
           <div>
             <div class="symtom_check_left">
@@ -59,7 +60,7 @@
                 <div class="title"><p>병원 일정</p></div>
                 <div class="hospitalContent">
                   <% if (typeof calendarDataResult !== 'undefined' && calendarDataResult && typeof calendarDataResult.hospital_schedule !== 'undefined' && calendarDataResult.hospital_schedule && typeof calendarDataResult.hospital_schedule.hospital_name !== 'undefined') { %>
-                    <input id="inputhosName" type="text" name="inputhosNametext" value="<%= calendarDataResult.hospital_schedule.hospital_name %>">
+                    <input id="inputhosName" type="text" name="hospital_name" value="<%= calendarDataResult.hospital_schedule.hospital_name %>">
                   <% } else { %>
                     <input id="inputhosName" type="text" name="inputhosNametext" value="">
                   <% } %>
@@ -70,32 +71,32 @@
                   <div class="hospitalTime">
                     <div class="box-body">
                       <% if (typeof calendarDataResult !== 'undefined' && calendarDataResult && typeof calendarDataResult.hospital_schedule !== 'undefined' && calendarDataResult.hospital_schedule && typeof calendarDataResult.hospital_schedule.booking_hour !== 'undefined') { %>
-                        <% console.log(calendarDataResult.hospital_schedule.booking_hour) %>
+                        <!-- <% console.log(calendarDataResult.hospital_schedule.booking_hour) %> -->
                         <% const hour =  calendarDataResult.hospital_schedule.booking_hour%>
-                        <select id="9to6" name="rating" autocomplete="off">
-                          <option value="1" <% if (hour === '9:00:00') { %>selected<% } %>>9:00</option>
-                          <option value="2" <% if (hour === '10:00:00') { %>selected<% } %>>10:00</option>
-                          <option value="3" <% if (hour === '11:00:00') { %>selected<% } %>>11:00</option>
-                          <option value="4" <% if (hour === '12:00:00') { %>selected<% } %>>12:00</option>
-                          <option value="5" <% if (hour === '13:00:00') { %>selected<% } %>>13:00</option>
-                          <option value="6" <% if (hour === '14:00:00') { %>selected<% } %>>14:00</option>
-                          <option value="7" <% if (hour === '15:00:00') { %>selected<% } %>>15:00</option>
-                          <option value="8" <% if (hour === '16:00:00') { %>selected<% } %>>16:00</option>
-                          <option value="9" <% if (hour === '17:00:00') { %>selected<% } %>>17:00</option>
-                          <option value="10" <% if (hour === '18:00:00') { %>selected<% } %>>18:00</option>
+                        <select id="9to6" name="hospital_schedule" autocomplete="off">
+                          <option value="9:00:00" <% if (hour === '9:00:00') { %>selected<% } %>>9:00</option>
+                          <option value="10:00:00" <% if (hour === '10:00:00') { %>selected<% } %>>10:00</option>
+                          <option value="11:00:00" <% if (hour === '11:00:00') { %>selected<% } %>>11:00</option>
+                          <option value="12:00:00" <% if (hour === '12:00:00') { %>selected<% } %>>12:00</option>
+                          <option value="13:00:00" <% if (hour === '13:00:00') { %>selected<% } %>>13:00</option>
+                          <option value="14:00:00" <% if (hour === '14:00:00') { %>selected<% } %>>14:00</option>
+                          <option value="15:00:00" <% if (hour === '15:00:00') { %>selected<% } %>>15:00</option>
+                          <option value="16:00:00" <% if (hour === '16:00:00') { %>selected<% } %>>16:00</option>
+                          <option value="17:00:00" <% if (hour === '17:00:00') { %>selected<% } %>>17:00</option>
+                          <option value="18:00:00" <% if (hour === '18:00:00') { %>selected<% } %>>18:00</option>
                         </select>
                         <% } else { %>
-                          <select id="9to6" name="rating" autocomplete="off">
-                            <option value="1">9:00</option>
-                            <option value="2">10:00</option>
-                            <option value="3">11:00</option>
-                            <option value="4">12:00</option>
-                            <option value="5">13:00</option>
-                            <option value="6">14:00</option>
-                            <option value="7">15:00</option>
-                            <option value="8">16:00</option>
-                            <option value="9">17:00</option>
-                            <option value="10">18:00</option>
+                          <select id="9to6" name="hospital_schedule" autocomplete="off">
+                            <option value="9:00:00">9:00</option>
+                            <option value="10:00:00">10:00</option>
+                            <option value="11:00:00">11:00</option>
+                            <option value="12:00:00">12:00</option>
+                            <option value="13:00:00">13:00</option>
+                            <option value="14:00:00">14:00</option>
+                            <option value="15:00:00">15:00</option>
+                            <option value="16:00:00">16:00</option>
+                            <option value="17:00:00">17:00</option>
+                            <option value="18:00:00">18:00</option>
                           </select>
                           <% }  %>
 
@@ -104,24 +105,6 @@
                 </div>
               </div>
 
-              <div class="alarm">
-                <div class="title"> <p>알림</p> </div>
-                
-                <div class="medicine_alarm">
-                  <div class="name"> <p>복용약</p> </div>
-                  <label class="switch">
-                    <input type="checkbox">
-                    <span class="slider round"></span>
-                  </label>
-                </div>
-                <div class="hospital_alarm">
-                  <div class="name"> <p> 병원 일정 </p> </div>                  
-                  <label class="switch">
-                    <input type="checkbox">
-                    <span class="slider round"></span>
-                  </label>
-                </div>
-              </div>
 
               <div class="check">
                 <div class="titleC"> <p id="checkli"> 체크사항 </p> </div>
@@ -129,13 +112,13 @@
                   <div id="item_list">
                     <table>
                         <% if (typeof calendarDataResult !== 'undefined' && calendarDataResult && typeof calendarDataResult.check_list !== 'undefined' && calendarDataResult.check_list && calendarDataResult.check_list.length !== 0) { %>
-                        <% console.log("checkMeow!! " + calendarDataResult) %>
+                        <!-- <% console.log("checkMeow!! " + calendarDataResult) %> -->
                     
                         <% for (let i = 0; i < calendarDataResult.check_list.length; i++) { %>
                           <tr>
                             <td class="item">
                               <div class="checkbox">
-                                <input type="checkbox" id="<%= i %>" <%= calendarDataResult.check_list[i].is_check === 1 ? 'checked' : '' %> />
+                                <input type="checkbox" name="check_list" id="<%= i %>" <%= calendarDataResult.check_list[i].is_check === 1 ? 'checked' : '' %> />
                               </div>
                               <div class="content"><%= calendarDataResult.check_list[i].content %></div>
                             </td>
@@ -143,12 +126,12 @@
                         <% } %>
                       <% } else { %>
                         <!-- <input id="inputhosName" type="text" name="inputhosNametext" value=""> -->
-                        <% console.log("checkMeow!!fail " ) %>
+                        <!-- <% console.log("checkMeow!!fail " ) %> -->
                         <!-- Default Contents -->
                         <tr>
                           <td class="item">
                             <div class="checkbox">
-                              <input type="checkbox" id="morning" />
+                              <input type="checkbox" name="check_list" id="morning" />
                             </div>
                             <div class="content">아침 약 복용</div>
                           </td>
@@ -156,7 +139,7 @@
                         <tr>
                           <td class="item">
                             <div class="checkbox">
-                              <input type="checkbox" id="lunch" />
+                              <input type="checkbox" name="check_list" id="lunch" />
                             </div>
                             <div class="content">점심 약 복용</div>
                           </td>
@@ -164,7 +147,7 @@
                         <tr>
                           <td class="item">
                             <div class="checkbox">
-                              <input type="checkbox" id="dinner" />
+                              <input type="checkbox" name="check_list" id="dinner" />
                             </div>
                             <div class="content">저녁 약 복용</div>
                           </td>
@@ -173,11 +156,11 @@
                       
                     </table>
                   </div>
-                  <form id="checkForm">
+                  <div id="checkForm">
                     <div class="additemdiv">
                     <input type="text" id="item"  />
                   <button type="button" id="add" class="addBtn">추가</button> 
-                    </div></form></div>
+                    </div></div></div>
                    </div>
                   
              
@@ -185,93 +168,77 @@
               <div class="sleeping-time">
                 <div class="title"> <p> 수면시간 </p> </div>
                 <div class="time">
-                  <button class="btn one">                    
-                    <label>
-                      <input type="checkbox">
+                  <button class="btn one" type="button"  onclick="setSelectedValue('3')">        
                       <span> 3시간↓ </span>
                     </label> 
                   </button>
-                  <button class="btn two">
+                  <button class="btn two" type="button" name="sleeping_time" value="4">     
                     <label>
-                      <input type="checkbox">
                       <span>4시간</span>
                     </label> 
                   </button>
-                  <button class="btn three">
+                  <button class="btn three" type="button" name="sleeping_time" value="5">    
                     <label>
-                      <input type="checkbox">
                       <span>5시간</span>
                     </label> 
                   </button>
-                  <button class="btn four">
+                  <button class="btn four" type="button" name="sleeping_time" value="6">    
                     <label>
-                      <input type="checkbox">
                       <span>6시간</span>
                     </label> 
                   </button>
-                  <button class="btn five">
+                  <button class="btn five" type="button" name="sleeping_time" value="7">    
                     <label>
-                      <input type="checkbox">
                       <span>7시간</span>
                     </label> 
                   </button>
-                  <button class="btn six">
+                  <button class="btn six" type="button" name="sleeping_time" value="8">    
                     <label>
-                      <input type="checkbox">
                       <span>8시간</span>
                     </label> 
                   </button>
-                  <button class="btn seven">
+                  <button class="btn seven" type="button" name="sleeping_time" value="9">    
                     <label>
-                      <input type="checkbox">
                       <span>9시간</span>
                     </label> 
                   </button>
-                  <button class="btn eight">
+                  <button class="btn eight" type="button" name="sleeping_time" value="10">    
                     <label>
-                      <input type="checkbox">
                       <span>10시간</span>
                     </label> 
                   </button>
-                  <button class="btn nine">
+                  <button class="btn nine" type="button" name="sleeping_time" value="11">    
                     <label>
-                      <input type="checkbox">
                       <span>11시간</span>
                     </label> 
                   </button>
-                  <button class="btn ten">
+                  <button class="btn ten" type="button" name="sleeping_time" value="12">    
                     <label>
-                      <input type="checkbox">
                       <span>12시간</span>
                     </label> 
                   </button>
-                  <button class="btn eleven">
+                  <button class="btn eleven" type="button" name="sleeping_time" value="13">    
                     <label>
-                      <input type="checkbox">
                       <span>13시간</span>
                     </label> 
                   </button>
-                  <button class="btn twelve">
+                  <button class="btn twelve" type="button" name="sleeping_time" value="14">    
                     <label>
-                      <input type="checkbox">
                       <span>14시간</span>
                     </label> 
                   </button>
-                  <button class="btn thirteen">
+                  <button class="btn thirteen" type="button" name="sleeping_time" value="15">    
                     <label>
-                      <input type="checkbox">
                       <span>15시간</span>
                     </label> 
                   </button>
-                  <button class="btn fourteen">
+                  <button class="btn fourteen" type="button" name="sleeping_time" value="16">     
                     <label>
-                      <input type="checkbox">
                       <span>16시간</span>
                     </label> 
                   </button>
-                  <button class="btn fifteen">
+                  <button class="btn fifteen" type="button" name="sleeping_time" value="17">      
                     <label>
-                      <input type="checkbox">
                       <span>17시간↑</span>
                     </label> 
                   </button>
@@ -368,7 +335,7 @@
                 <div class="title"> <p> 관찰일기 </p> </div>
                 <div class="diaryTextBox">
                   <% if (typeof calendarDataResult !== 'undefined' && calendarDataResult && typeof calendarDataResult.calendar !== 'undefined' && calendarDataResult.calendar && typeof calendarDataResult.calendar.diary !== 'undefined') { %>
-                    <% console.log("Date" + calendarDataResult.calendar.diary) %>
+                    <!-- <% console.log("Date" + calendarDataResult.calendar.diary) %> -->
                     <input id="inputBx" type="text" name="diarytext" value="<%= calendarDataResult.calendar.diary %>">
                   <% } else { %>
                     <input id="inputBx" type="text" name="diarytext" value="">
@@ -386,6 +353,7 @@
 
 
         </div>
+      </form>
       </div>
 
     </div>
