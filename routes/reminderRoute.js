@@ -4,10 +4,8 @@ const reminder = require('../controllers/reminderController');
 //const jwtMiddleware = require('../middlewares/jwtMiddleware');
 
 router.get(
-    "/meditation", (req,res) =>
-    {res.render("reminder/meditation");}
+    "/", (req, res) => 
+        {return res.render('reminder/reminder.ejs');}
 );
-
-
 
 module.exports = router;

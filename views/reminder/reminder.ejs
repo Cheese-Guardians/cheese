@@ -1,85 +1,9 @@
 <head>
-    <link href="/css/calendar/calendar.css" rel="stylesheet">
-    <link href="/css/calendar/calendar_memory.css" rel="stylesheet">
+    <link href="/css/reminder.css" rel="stylesheet">
+    <!-- <link href="/css/calendar/calendar_memory.css" rel="stylesheet"> -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   </head>
-  
-  <!-- MAIN SECTION -->
-  <section id="hero" class="d-flex align-items-center">
-    <main id="about">
-      <div class="col-lg-6 pt-lg-0 order-2 order-lg-1">
-        <div class="wrapper">
-          <div id="slider">
-            <div class="material-icons arrow--left">
-              arrow_left
-            </div>
-            <% let link = '/img/about.png'; %>
-            <% if (typeof(calendarResult) !== 'undefined' && calendarResult !== null && calendarResult.length > 0) { %>
-               <!-- <% console.log("upload!") %> -->
-              <% link = '../uploads/' + calendarResult[calendarResult.length - 1].server_name + calendarResult[calendarResult.length - 1].extension; %>
-              
-            <% } %>
-            <!-- <% console.log(link) %> -->
-            <div class="slide slide1" style = "background-image: url('<%= link %>');">
-              <div class="slide__content">
-               </div>
-            </div>
-            <div class="slide slide2">
-              <div class="slide__content">
-              </div>
-            </div>
-            <div class="slide slide3">
-              <div class="slide__content">
-              </div>
-            </div>
-            <div class="slide slide4">
-              <div class="slide__content">
-              </div>
-            </div>
-            <div class="slide slide5">
-              <div class="slide__content">
-              </div>
-            </div>
-            <div class="slide slide6">
-              <div class="slide__content">
-              </div>
-            </div>
-            <div class="material-icons arrow--right">
-              arrow_right
-            </div>
-            <div class="dots">
-              <div class="dot dot1"></div>
-              <div class="dot dot2"></div>
-              <div class="dot dot3"></div>
-              <div class="dot dot4"></div>
-              <div class="dot dot5"></div>
-              <div class="dot dot6"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-  
-      <div class="col-lg-6 pt-lg-0 order-2 order-lg-1">
-        <div class="ininin">
-          <form action="/uploadMemorize" id="memoryText">
-            <input id="inputbox" type="text" name="memtext"><br>
-            <button id="inbutbutton" type="submit"
-              style="margin:auto; WIDTH: 70pt; HEIGHT: 30pt; FONT-SIZE:12px; background-color: #b3cc62;  margin-bottom:10px;"
-              form="memoryText">
-              <p>저장</p>
-            </button>
-    
-          </form>
-          <form action="/calendar/upload" method="POST" enctype="multipart/form-data">
-            <input id="intputbox" style=" padding: 23px 25px ;display : flex; justify-content : center;" type="file"
-              name="file">
-            <button id="inputbotton" type="submit"
-              style="margin:auto; WIDTH: 70pt; HEIGHT: 30pt; FONT-SIZE:12px; background-color: #b3cc62; margin-bottom:10px;">업로드</button>
-          </form>
-        </div>
-        
-      </div>
-      
-      
-    </main>
-  </section>
+
+<div class="reminder_wrapper">
+  <div class="reminder_container"></div>
+</div>
