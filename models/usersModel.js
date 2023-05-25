@@ -70,10 +70,23 @@ async function selectUserAccount(pool, user_id) {
   return selectUserAccountRow[0];
 }
 
+// jwt 저장
+async function insertUserJWT(pool, insertUserJWTParams) {
+  const insertUserJWTQuery = `
+        UPDATE user
+        SET jwt = ?
+        WHERE user_id = ?;
+  `;
+
+  const insertUserJWTRow = await pool.promise().query(insertUserJWTQuery, insertUserJWTParams);
+  return insertUserJWTRow;
+}
+
 
 module.exports = {
   insertUserInfo,
   selectUserId,
   selectUserPassword,
   selectUserAccount,
+  insertUserJWT,
 };
