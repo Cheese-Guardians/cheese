@@ -5,8 +5,8 @@
    
 }
 .diagnosis_container {
-    width: 700px;
-    height: 550px;
+    width:50%;
+    height: 70%;
    
     background-color: white;
     border-color: #E0E0E0;
@@ -19,6 +19,81 @@
     position: relative;
 }
 
-#title{
-    margin: 0 auto;
+.left{
+    display: inline-block;
+    width: 50%;
+    height: 100%;
+    margin-left: 5%;
+
+}
+
+.right{
+    display: inline-block;
+    height: 100%;
+
+}.titleDiagnosis{
+    text-align: center;
+    font-style:bold;
+width: 100%;
+font-size:20px;
+}
+.doctor{
+    width:40%;
+    padding:5%;
+}
+.doctorPic{
+    width:40%;
+  
+    
+}
+.doctorPicImg{
+    margin-right:30%;
+    margin-left:30%;
+}
+.doctorName{
+    text-align:center;
+    font-size:18px;
+    font-style: bold;
+}
+.doctorInfo{
+    text-align: center;
+    font-size: 16px;
+    font-style: bold;
+}
+.doctorBtnContainer{
+    /* display:flex; */
+    flex-direction: row;
+}
+
+.doctorBtn{
+    display: inline-block;
+    width:50%;
+
+}
+
+.doctorBtn{
+    text-align: center;
+    width:100%;
+}
+.doctorChoose{
+    margin: 10%;
+}
+.choose{
+    margin: 5%;
+}
+
+.send{
+    float:right;
+    right:0%;
+}
+.sendme{
+    margin: 2%;
+}
+
+.title{
+    font-size: 20px;
+    font-weight: 400;
+    margin-top: 10%;
+    margin-left: 30%;
+    margin-right: 30%;
 }
