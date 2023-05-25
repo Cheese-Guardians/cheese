@@ -1,9 +1,15 @@
 const calendarService = require('../services/calendar');
 const path = require('path');
 const calendarDate = require('../public/js/calendar.js');
+const jwt = require('jsonwebtoken');
+const secret = require('../config/secret');
 
 exports.getCalendar = async function (req, res) {
-  const userId = req.params.userId;
+  const token = req.cookies.x_auth;
+  console.log(secret)
+  const decodedToken = jwt.verify(token, secret.jwtsecret); // 토큰 검증, 복호화
+  const user_id = decodedToken.user_id; // user_id를 추출
+
   let date = req.query.selectedYear + req.query.selectedMonth + req.query.selectedDate;
   if (!req.query.selectedYear || !req.query.selectedMonth || !req.query.selectedDate) {
     const today = new Date();
@@ -20,15 +26,15 @@ exports.getCalendar = async function (req, res) {
     }
   }
   // validation
-  if(!userId) {
+  if(!user_id) {
     return res.send(errResponse(baseResponse.USER_USERIDX_EMPTY));
   } 
-  if (userId <= 0) {
+  if (user_id <= 0) {
     return res.send(errResponse(baseResponse.USER_USERIDX_LENGTH));
   }
   //sconsole.log("date!"+date);
-  const calendarResult = await calendarService.retrieveCalendar(userId);
-  const calendarDataResult = await calendarService.retrieveSelectedCalendar(date);
+  const calendarResult = await calendarService.retrieveCalendar(user_id);
+  const calendarDataResult = await calendarService.retrieveSelectedCalendar(user_id, date);
   
   if (calendarResult.length > 0) {
     //console.log(calendarResult);
