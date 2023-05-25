@@ -340,11 +340,12 @@
                     }
                   
                     // sleep_time 값을 가져와 해당 시간을 활성화
-                    <% if (typeof calendarDataResult !== 'undefined') { %>
+                    <% if (typeof calendarDataResult.calendar.sleep_time !== 'undefined') { %>
                       const sleepTime = <%= calendarDataResult.calendar.sleep_time %>;
                       const sleepButton = document.getElementsByClassName('btn')[sleepTime -3];
                       sleepButton.classList.add('active');
                     <% } %>
+                    
                   </script>
                         
                     
