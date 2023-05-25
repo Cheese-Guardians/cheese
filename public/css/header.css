@@ -52,6 +52,8 @@
     display: flex;
     list-style: none;
     align-items: center;
+    right: 25%;
+    position: relative;
   }
   
   .navbar li {
@@ -1037,4 +1039,24 @@
       display: inline-block;
     }
   }
-  
+  .logout_container {
+    width : 0;
+  }
+  .logout {
+    /* padding: 10px 25px; */
+    margin: 0;
+    border-radius: 4px;
+    line-height: 1;
+    color: #5f687b;
+    font-size: 14px;
+    font-weight: 500;
+    border: 1px solid #cdd1d9;
+    width: 100px;
+    height: 36.5px;
+    position: relative;
+    left: 50px;
+  }
+
+  .logout:hover {
+    background-color: #16df7e;
+  }

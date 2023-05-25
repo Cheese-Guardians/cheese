@@ -54,7 +54,7 @@
           <li><a class="nav-link scrollto" href="#about">커뮤니티</a></li>
           <li><a class="nav-link scrollto" href="#services">비대면진료</a></li>
           <li><a class="nav-link scrollto " href="#portfolio">마이페이지</a></li>
-          <li><a class="nav-link scrollto" href="#team">Team</a></li>
+          <!-- <li><a class="nav-link scrollto" href="#team">Team</a></li>
           <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
               <li><a href="#">Drop Down 1</a></li>
@@ -72,8 +72,19 @@
               <li><a href="#">Drop Down 4</a></li>
             </ul>
           </li>
-          <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
-          <li><a class="getstarted scrollto" href="#about">로그아웃</a></li>
+          <li><a class="nav-link scrollto" href="#contact">Contact</a></li> -->
+          
+            <form class = "logout_container" action="/users/logout" method="POST">
+              <button type="submit" class="logout">로그아웃</button>
+            </form>
+            <% if (typeof(logoutState) !== 'undefined' && logoutState !== null && logoutState == '성공') { %>
+              <script>
+                if (confirm('로그아웃에 성공했습니다.')) {
+                  window.location.href = "/";
+                }
+              </script>
+            <% } %>
+          </li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
@@ -117,6 +128,9 @@
     
       <!-- Template Main JS File -->
       <script src="/js/main.js"></script>
+      <script src="/js/calendar.js"></script>
+
+      
     
     </body>
     

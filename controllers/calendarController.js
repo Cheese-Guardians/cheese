@@ -32,8 +32,8 @@ exports.getCalendar = async function (req, res) {
   
   if (calendarResult.length > 0) {
     //console.log(calendarResult);
-    console.log("controller: "+ calendarDataResult);
-    console.log(calendarResult[calendarResult.length-1].server_name + calendarResult[calendarResult.length-1].extension);
+    //console.log("controller: "+ calendarDataResult);
+    //console.log(calendarResult[calendarResult.length-1].server_name + calendarResult[calendarResult.length-1].extension);
     
     return res.render('calendar/calendar.ejs', { calendarResult: calendarResult, calendarDataResult: calendarDataResult });
   } else {
