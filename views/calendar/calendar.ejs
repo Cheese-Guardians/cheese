@@ -3,6 +3,7 @@
   <link href="/css/calendar/calendar_check.css" rel="stylesheet">
 
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  
 </head>
 
 <!-- ======= Hero Section ======= -->
@@ -58,146 +59,272 @@
               <div class="hospital">
                 <div class="title"><p>병원 일정</p></div>
                 <div class="hospitalContent">
-                  <input id="inputhosName" type="text" name="inputhosNametext">
+                  <% if (typeof calendarDataResult !== 'undefined' && calendarDataResult && typeof calendarDataResult.hospital_schedule !== 'undefined' && calendarDataResult.hospital_schedule && typeof calendarDataResult.hospital_schedule.hospital_name !== 'undefined') { %>
+                    <input id="inputhosName" type="text" name="inputhosNametext" value="<%= calendarDataResult.hospital_schedule.hospital_name %>">
+                  <% } else { %>
+                    <input id="inputhosName" type="text" name="inputhosNametext" value="">
+                  <% } %>
+                  
+                  
+                  
+                  
                   <div class="hospitalTime">
                     <div class="box-body">
-                      <select id="9to6" name="rating" autocomplete="off">
-                        <option value="1">9:00</option>
-                        <option value="2">10:00</option>
-                        <option value="3">11:00</option>
-                        <option value="4">12:00</option>
-                        <option value="5">13:00</option>
-                        <option value="6">14:00</option>
-                        <option value="7">15:00</option>
-                        <option value="8">16:00</option>
-                        <option value="9">17:00</option>
-                        <option value="10">18:00</option>
-                      </select>
+                      <% if (typeof calendarDataResult !== 'undefined' && calendarDataResult && typeof calendarDataResult.hospital_schedule !== 'undefined' && calendarDataResult.hospital_schedule && typeof calendarDataResult.hospital_schedule.booking_hour !== 'undefined') { %>
+                        <% console.log(calendarDataResult.hospital_schedule.booking_hour) %>
+                        <% const hour =  calendarDataResult.hospital_schedule.booking_hour%>
+                        <select id="9to6" name="rating" autocomplete="off">
+                          <option value="1" <% if (hour === '9:00:00') { %>selected<% } %>>9:00</option>
+                          <option value="2" <% if (hour === '10:00:00') { %>selected<% } %>>10:00</option>
+                          <option value="3" <% if (hour === '11:00:00') { %>selected<% } %>>11:00</option>
+                          <option value="4" <% if (hour === '12:00:00') { %>selected<% } %>>12:00</option>
+                          <option value="5" <% if (hour === '13:00:00') { %>selected<% } %>>13:00</option>
+                          <option value="6" <% if (hour === '14:00:00') { %>selected<% } %>>14:00</option>
+                          <option value="7" <% if (hour === '15:00:00') { %>selected<% } %>>15:00</option>
+                          <option value="8" <% if (hour === '16:00:00') { %>selected<% } %>>16:00</option>
+                          <option value="9" <% if (hour === '17:00:00') { %>selected<% } %>>17:00</option>
+                          <option value="10" <% if (hour === '18:00:00') { %>selected<% } %>>18:00</option>
+                        </select>
+                        <% } else { %>
+                          <select id="9to6" name="rating" autocomplete="off">
+                            <option value="1">9:00</option>
+                            <option value="2">10:00</option>
+                            <option value="3">11:00</option>
+                            <option value="4">12:00</option>
+                            <option value="5">13:00</option>
+                            <option value="6">14:00</option>
+                            <option value="7">15:00</option>
+                            <option value="8">16:00</option>
+                            <option value="9">17:00</option>
+                            <option value="10">18:00</option>
+                          </select>
+                          <% }  %>
+
                     </div>
                   </div>
                 </div>
               </div>
 
-              <div class="alarm">
-                <div class="title"> <p>알림</p> </div>
-                
-                <div class="medicine_alarm">
-                  <div class="name"> <p>복용약</p> </div>
-                  <label class="switch">
-                    <input type="checkbox">
-                    <span class="slider round"></span>
-                  </label>
-                </div>
-                <div class="hospital_alarm">
-                  <div class="name"> <p> 병원 일정 </p> </div>                  
-                  <label class="switch">
-                    <input type="checkbox">
-                    <span class="slider round"></span>
-                  </label>
-                </div>
-              </div>
+        
 
+             
               <div class="check">
                 <div class="titleC"> <p id="checkli"> 체크사항 </p> </div>
               <div class="checkTB1">
-                  <div id="item_list"></div>
+                  <div id="item_list">
+                    <table>
+                        <% if (typeof calendarDataResult !== 'undefined' && calendarDataResult && typeof calendarDataResult.check_list !== 'undefined' && calendarDataResult.check_list && calendarDataResult.check_list.length !== 0) { %>
+                          <% console.log("checkMeow!! " + calendarDataResult) %>
+                          <script>
+                            // 아이템들을 담을 아이템 리스트
+                            let itemList = [];
+                            let chkList = [];
+                          
+                            // 아이템리스트 출력 메서드 (테이블)
+                            function showList() {
+                              // 아이템 리스트를 for 문을 돌면서 테이블 태그로 생성
+                              let list = "<table>";
+                        
+                              // 추가된 아이템 출력
+                              for (let i = 0; i < itemList.length; i++) {
+                                list += `<tr>
+                                  <td class="item">
+                                    <div class="checkbox">
+                                      <input type="checkbox" id="${i}" ${chkList[i] == 1 ? 'checked' : ''} />
+                                    </div>
+                                    <div class="content">${itemList[i]}</div>
+                                  </td>
+                                </tr>`;
+                              }
+                        
+                              list += "</table>";
+                        
+                              // 테이블 태그 출력
+                              document.querySelector("#item_list").innerHTML = list;
+                        
+                              // 아이템 리스트에서 체크박스 이벤트를 할당
+                              let checkboxes = document.querySelectorAll(".item input[type='checkbox']");
+                              for (let i = 0; i < checkboxes.length; i++) {
+                                checkboxes[i].onclick = toggleItem;
+                              }
+                            }
+                          </script>
+
+                          <% for (let i = 0; i < calendarDataResult.check_list.length; i++) { %>
+                            <tr>
+                              <td class="item">
+                                <div class="checkbox">
+                                  <script> itemList.push('<%= calendarDataResult.check_list[i].content %>');
+                                    chkList.push('<%= calendarDataResult.check_list[i].is_check %>');
+                                  </script>
+                                  <input type="checkbox" id="<%= i %>" <%= calendarDataResult.check_list[i].is_check === 1 ? 'checked' : '' %> />
+                                </div>
+                                <div class="content"><%= calendarDataResult.check_list[i].content %></div>
+                              </td>
+                            </tr>                         
+                            
+                          <% } %>
+
+                        <% } else { %>
+                          <!-- <input id="inputhosName" type="text" name="inputhosNametext" value=""> -->
+                          <% console.log("checkMeow!!fail " ) %>
+                          <!-- Default Contents -->
+                          <script>
+                            // 아이템들을 담을 아이템 리스트
+                            itemList = [];
+                            chkList = [];
+                                                  // 아이템리스트 출력 메서드 (테이블)
+                            function showList() {
+                              // 아이템 리스트를 for 문을 돌면서 테이블 태그로 생성
+                              let list = "<table>";
+
+                              // 디폴트 항목 출력
+                              const defaultItems = ["아침 약 복용", "점심 약 복용", "저녁 약 복용"];
+                              for (let i = 0; i < defaultItems.length; i++) {
+                                list += `<tr>
+                                  <td class="item">
+                                    <div class="checkbox">
+                                    <input type="checkbox" id="default_${i}" />
+                                    </div>
+                                    <div class="content">${defaultItems[i]}</div>
+                                  </td>
+                                </tr>`;
+                            }
+
+                            // 추가된 아이템 출력
+                            for (let i = 0; i < itemList.length; i++) {
+                                  list += `<tr>
+                                    <td class="item">
+                                      <div class="checkbox">
+                                        <input type="checkbox" id="${i}" ${chkList[i] == 1 ? 'checked' : ''} />
+                                      </div>
+                                      <div class="content">${itemList[i]}</div>
+                                    </td>
+                                  </tr>`;
+                                }
+
+                            list += "</table>";
+
+                            // 테이블 태그 출력
+                            document.querySelector("#item_list").innerHTML = list;
+
+                            // 아이템 리스트에서 체크박스 이벤트를 할당
+                            let checkboxes = document.querySelectorAll(".item input[type='checkbox']");
+                            for (let i = 0; i < checkboxes.length; i++) {
+                              checkboxes[i].onclick = toggleItem;
+                            }
+                            }
+                            // 페이지 로드 시 리스트 출력
+                            window.addEventListener("load", function () {
+                              showList();
+                            });
+
+                          </script>
+                        <% } %>
+                      
+                    </table>
+                  </div>
+
                   <form id="checkForm">
                     <div class="additemdiv">
-                    <input type="text" id="item"  />
-                  <button type="button" id="add" class="addBtn">추가</button> 
-                    </div></form></div>
+                      <input type="text" id="item"  />
+                      <button type="button" id="add" class="addBtn">추가</button> 
+                      </div></form></div>
                    </div>
+                  </form>
+                                 
                   
              
 
               <div class="sleeping-time">
                 <div class="title"> <p> 수면시간 </p> </div>
                 <div class="time">
-                  <button class="btn one">                    
+                
+                  <button class="btn three">                    
                     <label>
                       <input type="checkbox">
                       <span> 3시간↓ </span>
                     </label> 
                   </button>
-                  <button class="btn two">
+                  <button class="btn four">
                     <label>
                       <input type="checkbox">
                       <span>4시간</span>
                     </label> 
                   </button>
-                  <button class="btn three">
+                  <button class="btn five">
                     <label>
                       <input type="checkbox">
                       <span>5시간</span>
                     </label> 
                   </button>
-                  <button class="btn four">
+                  <button class="btn six">
                     <label>
                       <input type="checkbox">
                       <span>6시간</span>
                     </label> 
                   </button>
-                  <button class="btn five">
+                  <button class="btn seven">
                     <label>
                       <input type="checkbox">
                       <span>7시간</span>
                     </label> 
                   </button>
-                  <button class="btn six">
+                  <button class="btn eight">
                     <label>
                       <input type="checkbox">
                       <span>8시간</span>
                     </label> 
                   </button>
-                  <button class="btn seven">
+                  <button class="btn nine">
                     <label>
                       <input type="checkbox">
                       <span>9시간</span>
                     </label> 
                   </button>
-                  <button class="btn eight">
-                    <label>
-                      <input type="checkbox">
-                      <span>10시간</span>
-                    </label> 
-                  </button>
-                  <button class="btn nine">
-                    <label>
-                      <input type="checkbox">
-                      <span>11시간</span>
-                    </label> 
-                  </button>
                   <button class="btn ten">
                     <label>
-                      <input type="checkbox">
-                      <span>12시간</span>
+                      <input type="checkbox" checked>
+                      <span>10시간</span>
                     </label> 
                   </button>
                   <button class="btn eleven">
                     <label>
                       <input type="checkbox">
-                      <span>13시간</span>
+                      <span>11시간</span>
                     </label> 
                   </button>
                   <button class="btn twelve">
                     <label>
                       <input type="checkbox">
-                      <span>14시간</span>
+                      <span>12시간</span>
                     </label> 
                   </button>
                   <button class="btn thirteen">
                     <label>
                       <input type="checkbox">
-                      <span>15시간</span>
+                      <span>13시간</span>
                     </label> 
                   </button>
                   <button class="btn fourteen">
                     <label>
                       <input type="checkbox">
-                      <span>16시간</span>
+                      <span>14시간</span>
                     </label> 
                   </button>
                   <button class="btn fifteen">
+                    <label>
+                      <input type="checkbox">
+                      <span>15시간</span>
+                    </label> 
+                  </button>
+                  <button class="btn sixteen">
+                    <label>
+                      <input type="checkbox">
+                      <span>16시간</span>
+                    </label> 
+                  </button>
+                  <button class="btn seventeen">
                     <label>
                       <input type="checkbox">
                       <span>17시간↑</span>
@@ -218,6 +345,13 @@
                     for (let i = 0; i < buttons.length; i++) {
                       buttons[i].addEventListener('click', handleButtonClick);
                     }
+                  
+                    // sleep_time 값을 가져와 해당 시간을 활성화
+                    <% if (typeof calendarDataResult !== 'undefined') { %>
+                      const sleepTime = <%= calendarDataResult.calendar.sleep_time %>;
+                      const sleepButton = document.getElementsByClassName('btn')[sleepTime -3];
+                      sleepButton.classList.add('active');
+                    <% } %>
                   </script>
                         
                     
@@ -234,60 +368,84 @@
               <div class="symtom">
                 <div class="title"> <p> 증상 </p> </div>
                 <div>
-                  <div class="symtomTextBox 1">
-                    <input class="inputbX" type="text" name="diarytext">
-                    <p><input type="time" class="symtom-time"></p>             
-                  </div>
-                  
-                  <div class="box-body"> 
-                      <input type="range" min="1" max="10" id="ex-in1" class="range-in">   
-                    <div id="ex-out1" class="range-out"></div>
-                    <script>
-                    document.querySelector('#ex-in1').addEventListener('input',e=>{
-                    document.querySelector('#ex-out1').innerHTML= e.target.value;
-                    });
-                    </script>           
+                  <% if (typeof calendarDataResult !== 'undefined' && calendarDataResult && typeof calendarDataResult.symptom_list !== 'undefined' && calendarDataResult.symptom_list && calendarDataResult.symptom_list.length !== 0) { %>
+                    <% console.log("symptom: " + calendarDataResult) %>
+                    <% for (let i = 0; i < calendarDataResult.symptom_list.length; i++) { %>
+                    <div class="symtomTextBox ">                    
+                      <input class="inputbX" type="text" id="<%= i %>" name="diarytext" value="<%= calendarDataResult.symptom_list[i].symptom_name %>">
+                      <p><input type="time" class="symtom-time" value="<%= calendarDataResult.symptom_list[i].onset_time%>" ></p>                      
+                      
                     </div>
 
-                  <div class="symtomTextBox 2">
-                    <input class="inputbX" type="text" name="diarytext">
-                    <p><input type="time" class="symtom-time"></p>                     
-                  </div>
-                  <div class="box-body"> 
-                    <input type="range" min="1" max="10" id="ex-in2" class="range-in">   
-                  <div id="ex-out2" class="range-out"></div>
-                  <script>
-                  document.querySelector('#ex-in2').addEventListener('input',e=>{
-                  document.querySelector('#ex-out2').innerHTML= e.target.value;
-                  });
-                  </script>           
-                  </div>
-                  <div class="symtomTextBox 3">
-                    <input class="inputbX" type="text" name="diarytext">
-                    <p><input type="time" class="symtom-time"></p>                     
-                  </div>
-                  <div class="box-body"> 
-                    <input type="range" min="1" max="10" id="ex-in3" class="range-in">   
-                  <div id="ex-out3" class="range-out"></div>
-                  <script>
-                  document.querySelector('#ex-in3').addEventListener('input',e=>{
-                  document.querySelector('#ex-out3').innerHTML= e.target.value;
-                  });
-                  </script>           
-                  </div>
-                  <div class="symtomTextBox 4">
-                    <input class="inputbX" type="text" name="diarytext">
-                    <p><input type="time" class="symtom-time"></p>                     
-                  </div>
-                  <div class="box-body"> 
-                    <input type="range" min="1" max="10" id="ex-in4" class="range-in">   
-                  <div id="ex-out4" class="range-out"></div>
-                  <script>
-                  document.querySelector('#ex-in4').addEventListener('input',e=>{
-                  document.querySelector('#ex-out4').innerHTML= e.target.value;
-                  });
-                  </script>           
-                  </div>
+                    <div class="box-body">
+                      <input type="range" min="1" max="10" id="ex-in-<%= i %>" class="range-in" value="<%= calendarDataResult.symptom_list[i].degree %>">
+                      <div id="ex-out-<%= i %>" class="range-out"> <%= calendarDataResult.symptom_list[i].degree %> </div>
+                      <script>
+                        const exIn<%= i %> = document.querySelector('#ex-in-<%= i %>');
+                        const exOut<%= i %> = document.querySelector('#ex-out-<%= i %>');
+                
+                        exIn<%= i %>.addEventListener('input', e => {
+                          exOut<%= i %>.innerHTML = e.target.value;
+                        });
+                      </script>
+                    </div>
+                    <% } %>
+                  <% } else { %>
+                    <div class="symtomTextBox 1">                    
+                      <input class="inputbX" type="text" name="diarytext" placeholder="기억력 저하" >
+                      <p><input type="time" class="symtom-time"></p>             
+                    </div>
+                  
+                    <div class="box-body"> 
+                        <input type="range" min="1" max="10" id="ex-in1" class="range-in">   
+                      <div id="ex-out1" class="range-out"></div>
+                      <script>
+                      document.querySelector('#ex-in1').addEventListener('input',e=>{
+                      document.querySelector('#ex-out1').innerHTML= e.target.value;
+                      });
+                      </script>           
+                    </div>
+
+                    <div class="symtomTextBox 2">
+                      <input class="inputbX" type="text" name="diarytext" placeholder="감정 조절 불가">
+                      <p><input type="time" class="symtom-time"></p>                     
+                    </div>
+                    <div class="box-body"> 
+                      <input type="range" min="1" max="10" id="ex-in2" class="range-in">   
+                      <div id="ex-out2" class="range-out"></div>
+                      <script>
+                        document.querySelector('#ex-in2').addEventListener('input',e=>{
+                        document.querySelector('#ex-out2').innerHTML= e.target.value;
+                        });
+                      </script>           
+                    </div>
+                    <div class="symtomTextBox 3">
+                      <input class="inputbX" type="text" name="diarytext" placeholder="폭력성">
+                      <p><input type="time" class="symtom-time"></p>                     
+                    </div>
+                    <div class="box-body"> 
+                      <input type="range" min="1" max="10" id="ex-in3" class="range-in">   
+                      <div id="ex-out3" class="range-out"></div>
+                      <script>
+                        document.querySelector('#ex-in3').addEventListener('input',e=>{
+                        document.querySelector('#ex-out3').innerHTML= e.target.value;
+                        });
+                      </script>           
+                    </div>
+                    <div class="symtomTextBox 4">
+                      <input class="inputbX" type="text" name="diarytext" placeholder="배회 증상">
+                      <p><input type="time" class="symtom-time"></p>                     
+                    </div>
+                    <div class="box-body"> 
+                      <input type="range" min="1" max="10" id="ex-in4" class="range-in">   
+                      <div id="ex-out4" class="range-out"></div>
+                      <script>
+                        document.querySelector('#ex-in4').addEventListener('input',e=>{
+                        document.querySelector('#ex-out4').innerHTML= e.target.value;
+                        });
+                      </script>           
+                    </div>
+                  <% } %>
 
                 </div>
               </div>
@@ -295,11 +453,15 @@
               <div class="diary">
                 <div class="title"> <p> 관찰일기 </p> </div>
                 <div class="diaryTextBox">
-                  <input id="inputBx" type="text" name="diarytext"><br>
-                    
+                  <% if (typeof calendarDataResult !== 'undefined') { %>
+                    <% console.log("Date" + calendarDataResult) %>
+                    <input id="inputBx" type="text" name="diarytext" value="<%= calendarDataResult.calendar.diary %>">
+                  <% } else { %>
+                    <input id="inputBx" type="text" name="diarytext" value="">
+                  <% } %>                    
                 </div>
                 <div class="symBtndiv">
-                  <button type="button" id="symB" class="symBtn">저장</button>
+                  <button type="submit" id="symB" class="symBtn">저장</button>
                 </div>
               </div>
                   
@@ -316,5 +478,5 @@
   </div>
 
 </section><!-- End Hero -->
-
+<!-- <script src="/js/calendar.js"></script> -->
 <%-include('calendar_memory.ejs') %>

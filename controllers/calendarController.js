@@ -1,9 +1,23 @@
 const calendarService = require('../services/calendar');
 const path = require('path');
-
+const calendarDate = require('../public/js/calendar.js');
 exports.getCalendar = async function (req, res) {
   const userId = req.params.userId;
+  let date = req.query.selectedYear + req.query.selectedMonth + req.query.selectedDate;
+  if (!req.query.selectedYear || !req.query.selectedMonth || !req.query.selectedDate) {
+    const today = new Date();
+    const selectedYear = String(today.getFullYear()).padStart(4, '0');
+    const selectedMonth = String(today.getMonth() + 1).padStart(2, '0');
+    const selectedDate = String(today.getDate()).padStart(2, '0');
 
+    
+    const existingQueryString = req.query;
+    
+    if (Object.keys(existingQueryString).length === 0) {
+      const newURL = `${req.protocol}://${req.get('host')}${req.baseUrl}${req.path}?selectedYear=${selectedYear}&selectedMonth=${selectedMonth}&selectedDate=${selectedDate}`;
+      return res.redirect(newURL);
+    }
+  }
   // validation
   if(!userId) {
     return res.send(errResponse(baseResponse.USER_USERIDX_EMPTY));
@@ -11,15 +25,20 @@ exports.getCalendar = async function (req, res) {
   if (userId <= 0) {
     return res.send(errResponse(baseResponse.USER_USERIDX_LENGTH));
   }
-
+  //sconsole.log("date!"+date);
   const calendarResult = await calendarService.retrieveCalendar(userId);
+  const calendarDataResult = await calendarService.retrieveSelectedCalendar(date);
+  
   if (calendarResult.length > 0) {
-    console.log(calendarResult);
-    console.log(calendarResult[calendarResult.length-1].server_name + calendarResult[calendarResult.length-1].extension);
-    return res.render('calendar/calendar.ejs', { calendarResult: calendarResult});
+    //console.log(calendarResult);
+    //console.log("controller: "+ calendarDataResult);
+    //console.log(calendarResult[calendarResult.length-1].server_name + calendarResult[calendarResult.length-1].extension);
+    
+    return res.render('calendar/calendar.ejs', { calendarResult: calendarResult, calendarDataResult: calendarDataResult });
   } else {
-    return res.render('calendar/calendar.ejs', { calendarResult: null})
+    return res.render('calendar/calendar.ejs', { calendarResult: null, calendarDataResult: calendarDataResult });
   }
+  
   // return res.send(response(baseResponse.SUCCESS, calendarResult));
 }
 
