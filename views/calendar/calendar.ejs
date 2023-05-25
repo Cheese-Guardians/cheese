@@ -165,62 +165,69 @@
                             
                           <% } %>
 
-                        <% } else { %>
-                          <!-- <input id="inputhosName" type="text" name="inputhosNametext" value=""> -->
-                          <% console.log("checkMeow!!fail " ) %>
-                          <!-- Default Contents -->
-                          <script>
-                            // 아이템들을 담을 아이템 리스트
-                            itemList = [];
-                            chkList = [];
-                                                  // 아이템리스트 출력 메서드 (테이블)
-                            function showList() {
-                              // 아이템 리스트를 for 문을 돌면서 테이블 태그로 생성
-                              let list = "<table>";
-
-                              // 디폴트 항목 출력
-                              const defaultItems = ["아침 약 복용", "점심 약 복용", "저녁 약 복용"];
-                              for (let i = 0; i < defaultItems.length; i++) {
-                                list += `<tr>
-                                  <td class="item">
-                                    <div class="checkbox">
-                                    <input type="checkbox" id="default_${i}" />
-                                    </div>
-                                    <div class="content">${defaultItems[i]}</div>
-                                  </td>
-                                </tr>`;
+                          <% } else { %>
+                            <!-- <input id="inputhosName" type="text" name="inputhosNametext" value=""> -->
+                            <% console.log("checkMeow!!fail " ) %>
+                            <!-- Default Contents -->
+                            <script>
+                              // 아이템들을 담을 아이템 리스트
+                              itemList = [];
+                              chkList = [];
+                              function toggleItem(event, index) {
+    const itemId = index !== undefined ? `default_${index}` : event.target.id;
+    const itemIndex = parseInt(itemId.replace('default_', ''));
+    chkList[itemIndex] = event.target.checked ? 1 : 0;
+  }
+   // 디폴트 항목 출력
+   const defaultItems = [
+                              { content: "아침 약 복용", is_check: 0 },
+                              { content: "점심 약 복용", is_check: 0 },
+                              { content: "저녁 약 복용", is_check: 0 }
+                            ];
+                           
+                            // defaultItems의 체크 여부를 chkList 배열에 초기값으로 설정
+                            for (let i = 0; i < defaultItems.length; i++) {
+                              itemList.push(defaultItems[i].content);
+                              chkList.push(defaultItems[i].is_check);
                             }
-
-                            // 추가된 아이템 출력
-                            for (let i = 0; i < itemList.length; i++) {
-                                  list += `<tr>
-                                    <td class="item">
-                                      <div class="checkbox">
-                                        <input type="checkbox" id="${i}" ${chkList[i] == 1 ? 'checked' : ''} />
-                                      </div>
-                                      <div class="content">${itemList[i]}</div>
-                                    </td>
-                                  </tr>`;
-                                }
-
-                            list += "</table>";
-
-                            // 테이블 태그 출력
-                            document.querySelector("#item_list").innerHTML = list;
-
-                            // 아이템 리스트에서 체크박스 이벤트를 할당
-                            let checkboxes = document.querySelectorAll(".item input[type='checkbox']");
-                            for (let i = 0; i < checkboxes.length; i++) {
-                              checkboxes[i].onclick = toggleItem;
-                            }
-                            }
-                            // 페이지 로드 시 리스트 출력
-                            window.addEventListener("load", function () {
-                              showList();
-                            });
-
-                          </script>
-                        <% } %>
+  
+                                                    // 아이템리스트 출력 메서드 (테이블)
+                              function showList() {
+                                // 아이템 리스트를 for 문을 돌면서 테이블 태그로 생성
+                                let list = "<table>";
+  
+                               
+  
+                              // 추가된 아이템 출력
+                              for (let i = 0; i < itemList.length; i++) {
+                                    list += `<tr>
+                                      <td class="item">
+                                        <div class="checkbox">
+                                          <input type="checkbox" id="${i}" ${chkList[i] == 1 ? 'checked' : ''} />
+                                        </div>
+                                        <div class="content">${itemList[i]}</div>
+                                      </td>
+                                    </tr>`;
+                                  }
+  
+                              list += "</table>";
+  
+                              // 테이블 태그 출력
+                              document.querySelector("#item_list").innerHTML = list;
+  
+                              // 아이템 리스트에서 체크박스 이벤트를 할당
+                              let checkboxes = document.querySelectorAll(".item input[type='checkbox']");
+                              for (let i = 0; i < checkboxes.length; i++) {
+                                checkboxes[i].onclick = toggleItem;
+                              }
+                              }
+                              // 페이지 로드 시 리스트 출력
+                              window.addEventListener("load", function () {
+                                showList();
+                              });
+  
+                            </script>
+                          <% } %>
                       
                     </table>
                   </div>
