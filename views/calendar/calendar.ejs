@@ -170,99 +170,99 @@
                 <div class="title"> <p> 수면시간 </p> </div>
                 <div class="time">
                 
-                  <button class="btn one">                    
+                  <button class="btn three">                    
                     <label>
                       <input type="checkbox">
                       <span> 3시간↓ </span>
                     </label> 
                   </button>
-                  <button class="btn two">
+                  <button class="btn four">
                     <label>
                       <input type="checkbox">
                       <span>4시간</span>
                     </label> 
                   </button>
-                  <button class="btn three">
+                  <button class="btn five">
                     <label>
                       <input type="checkbox">
                       <span>5시간</span>
                     </label> 
                   </button>
-                  <button class="btn four">
+                  <button class="btn six">
                     <label>
                       <input type="checkbox">
                       <span>6시간</span>
                     </label> 
                   </button>
-                  <button class="btn five">
+                  <button class="btn seven">
                     <label>
                       <input type="checkbox">
                       <span>7시간</span>
                     </label> 
                   </button>
-                  <button class="btn six">
+                  <button class="btn eight">
                     <label>
                       <input type="checkbox">
                       <span>8시간</span>
                     </label> 
                   </button>
-                  <button class="btn seven">
+                  <button class="btn nine">
                     <label>
                       <input type="checkbox">
                       <span>9시간</span>
                     </label> 
                   </button>
-                  <button class="btn eight">
+                  <button class="btn ten">
                     <label>
                       <input type="checkbox" checked>
                       <span>10시간</span>
                     </label> 
                   </button>
-                  <button class="btn nine">
+                  <button class="btn eleven">
                     <label>
                       <input type="checkbox">
                       <span>11시간</span>
                     </label> 
                   </button>
-                  <button class="btn ten">
+                  <button class="btn twelve">
                     <label>
                       <input type="checkbox">
                       <span>12시간</span>
                     </label> 
                   </button>
-                  <button class="btn eleven">
+                  <button class="btn thirteen">
                     <label>
                       <input type="checkbox">
                       <span>13시간</span>
                     </label> 
                   </button>
-                  <button class="btn twelve">
+                  <button class="btn fourteen">
                     <label>
                       <input type="checkbox">
                       <span>14시간</span>
                     </label> 
                   </button>
-                  <button class="btn thirteen">
+                  <button class="btn fifteen">
                     <label>
                       <input type="checkbox">
                       <span>15시간</span>
                     </label> 
                   </button>
-                  <button class="btn fourteen">
+                  <button class="btn sixteen">
                     <label>
                       <input type="checkbox">
                       <span>16시간</span>
                     </label> 
                   </button>
-                  <button class="btn fifteen">
+                  <button class="btn seventeen">
                     <label>
                       <input type="checkbox">
                       <span>17시간↑</span>
                     </label> 
                   </button>
                   <script>
-                     // 이벤트 핸들러 함수
-                     function handleButtonClick(event) {
+                    // 이벤트 핸들러 함수
+                    function handleButtonClick(event) {
                       const buttons = document.getElementsByClassName('btn');
                       for (let i = 0; i < buttons.length; i++) {
                         buttons[i].classList.remove('active');
@@ -275,6 +275,13 @@
                     for (let i = 0; i < buttons.length; i++) {
                       buttons[i].addEventListener('click', handleButtonClick);
                     }
+                  
+                    // sleep_time 값을 가져와 해당 시간을 활성화
+                    <% if (typeof calendarDataResult !== 'undefined') { %>
+                      const sleepTime = <%= calendarDataResult.calendar.sleep_time %>;
+                      const sleepButton = document.getElementsByClassName('btn')[sleepTime - 1];
+                      sleepButton.classList.add('active');
+                    <% } %>
                   </script>
                         
                     
@@ -300,13 +307,16 @@
                       
                     </div>
 
-                    <div class="box-body "> 
-                        <input type="range" min="1" max="10" id="<%= i %>" class="range-in" value="<%= calendarDataResult.symptom_list[i].degree %>">   
-                      <div id="<%= i %>" class="range-out"></div>
+                    <div class="box-body">
+                      <input type="range" min="1" max="10" id='#ex-in-<%= i %>' class="range-in" value="<%= calendarDataResult.symptom_list[i].degree %>">   
+                      <div id='#ex-out-<%= i %>' class="range-out"> <%= calendarDataResult.symptom_list[i].degree %> </div>
                       <script>
-                        document.querySelector("<%= i %>").addEventListener('input',e=>{
-                        document.querySelector("<%= i %>").innerHTML= "<%= calendarDataResult.symptom_list[i].degree %>";
-                        });
+
+                        const exIn= document.querySelector('#ex-in-<%= i %>');
+                        const exOut = document.querySelector('#ex-out-<%= i %>');
+
+                        exIn.addEventListener('input', e => {exOut.innerHTML = e.target.value;});
+
                       </script>           
                     </div>
                     <% } %>
