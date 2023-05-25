@@ -110,7 +110,7 @@
              
               <div class="check">
                 <div class="titleC"> <p id="checkli"> 체크사항 </p> </div>
-              <div class="checkTB1">
+                <div class="checkTB1">
                   <div id="item_list">
                     <table>
                         <% if (typeof calendarDataResult !== 'undefined' && calendarDataResult && typeof calendarDataResult.check_list !== 'undefined' && calendarDataResult.check_list && calendarDataResult.check_list.length !== 0) { %>
@@ -141,12 +141,7 @@
                         
                               // 테이블 태그 출력
                               document.querySelector("#item_list").innerHTML = list;
-                        
-                              // 아이템 리스트에서 체크박스 이벤트를 할당
-                              let checkboxes = document.querySelectorAll(".item input[type='checkbox']");
-                              for (let i = 0; i < checkboxes.length; i++) {
-                                checkboxes[i].onclick = toggleItem;
-                              }
+                      
                             }
                           </script>
 
@@ -236,9 +231,10 @@
                     <div class="additemdiv">
                       <input type="text" id="item"  />
                       <button type="button" id="add" class="addBtn">추가</button> 
-                      </div></form></div>
-                   </div>
+                    </div>
                   </form>
+                </div>
+              </div>
                                  
                   
              
