@@ -308,16 +308,16 @@
                     </div>
 
                     <div class="box-body">
-                      <input type="range" min="1" max="10" id='#ex-in-<%= i %>' class="range-in" value="<%= calendarDataResult.symptom_list[i].degree %>">   
-                      <div id='#ex-out-<%= i %>' class="range-out"> <%= calendarDataResult.symptom_list[i].degree %> </div>
+                      <input type="range" min="1" max="10" id="ex-in-<%= i %>" class="range-in" value="<%= calendarDataResult.symptom_list[i].degree %>">
+                      <div id="ex-out-<%= i %>" class="range-out"> <%= calendarDataResult.symptom_list[i].degree %> </div>
                       <script>
-
-                        const exIn= document.querySelector('#ex-in-<%= i %>');
-                        const exOut = document.querySelector('#ex-out-<%= i %>');
-
-                        exIn.addEventListener('input', e => {exOut.innerHTML = e.target.value;});
-
-                      </script>           
+                        const exIn<%= i %> = document.querySelector('#ex-in-<%= i %>');
+                        const exOut<%= i %> = document.querySelector('#ex-out-<%= i %>');
+                
+                        exIn<%= i %>.addEventListener('input', e => {
+                          exOut<%= i %>.innerHTML = e.target.value;
+                        });
+                      </script>
                     </div>
                     <% } %>
                   <% } else { %>
