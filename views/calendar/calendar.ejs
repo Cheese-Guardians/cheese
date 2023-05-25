@@ -364,7 +364,7 @@
                     }
                   
                     // sleep_time 값을 가져와 해당 시간을 활성화
-                    <% if (typeof calendarDataResult.calendar.sleep_time !== 'undefined') { %>
+                    <% if (typeof calendarDataResult !== 'undefined' && calendarDataResult && typeof calendarDataResult.calendar !== 'undefined' && calendarDataResult.calendar && typeof calendarDataResult.calendar.sleep_time !== 'undefined') { %>
                       const sleepTime = <%= calendarDataResult.calendar.sleep_time %>;
                       const sleepButton = document.getElementsByClassName('btn')[sleepTime -3];
                       sleepButton.classList.add('active');
@@ -471,7 +471,8 @@
               <div class="diary">
                 <div class="title"> <p> 관찰일기 </p> </div>
                 <div class="diaryTextBox">
-                  <% if (typeof calendarDataResult !== 'undefined') { %>
+                  <% if (typeof calendarDataResult !== 'undefined' && calendarDataResult && typeof calendarDataResult.calendar !== 'undefined' && calendarDataResult.calendar && typeof calendarDataResult.calendar.diary !== 'undefined') { %>
+                    <% console.log("checkMeow!! " + calendarDataResult) %>
                     <% console.log("Date" + calendarDataResult) %>
                     <input id="inputBx" type="text" name="diarytext" value="<%= calendarDataResult.calendar.diary %>">
                   <% } else { %>
