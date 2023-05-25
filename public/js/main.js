@@ -654,8 +654,7 @@ document
       addList();
     }
   });
-                            // 아이템들을 담을 아이템 리스트
-                            let itemList = [];
+                          
 // 아이템 추가 메서드
 function addList() {
   // 아이템 값 담음
