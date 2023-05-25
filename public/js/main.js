@@ -636,15 +636,13 @@ dot6.addEventListener("click", function(){
 })
 
 
-// 아이템들을 담을 아이템 리스트
-let itemList = [];
+
 // 아이템 중복확인 위한 변수
 let dupl;
 // 추가 버튼에 대한 이벤트
 let addBtn = document.querySelector("#add");
 addBtn.addEventListener("click", addList);
-// 전체삭제 버튼에 대한 이벤트
-let removeAllBtn = document.querySelector("#remove_all");
+
 //removeAllBtn.addEventListener("click", removeList);
 
 // 엔터 입력시 이벤트 발생
@@ -656,7 +654,8 @@ document
       addList();
     }
   });
-
+                            // 아이템들을 담을 아이템 리스트
+                            let itemList = [];
 // 아이템 추가 메서드
 function addList() {
   // 아이템 값 담음
@@ -693,51 +692,7 @@ function checkDupl(item) {
   }
 }
 
-// 아이템리스트 출력 메서드 (테이블)
-function showList() {
-  // 아이템 리스트를 for 문을 돌면서 테이블 태그로 생성
-  let list = "<table>";
-
-  // 디폴트 항목 출력
-  const defaultItems = ["아침 약 복용", "점심 약 복용", "저녁 약 복용"];
-  for (let i = 0; i < defaultItems.length; i++) {
-    list += `<tr>
-      <td class="item">
-        <div class="checkbox">
-        <input type="checkbox" id="default_${i}" />
-        </div>
-        <div class="content">${defaultItems[i]}</div>
-      </td>
-    </tr>`;
-  }
-
-  // 추가된 아이템 출력
-  for (let i = 0; i < itemList.length; i++) {
-    list += `<tr>
-      <td class="item">
-        <div class="checkbox">
-          <input type="checkbox" id="${i}" />
-        </div>
-        <div class="content">${itemList[i]}</div>
-      </td>
-    </tr>`;
-  }
-
-  list += "</table>";
-
-  // 테이블 태그 출력
-  document.querySelector("#item_list").innerHTML = list;
-
-  // 아이템 리스트에서 체크박스 이벤트를 할당
-  let checkboxes = document.querySelectorAll(".item input[type='checkbox']");
-  for (let i = 0; i < checkboxes.length; i++) {
-    checkboxes[i].onclick = toggleItem;
-  }
-}
 
 
 
-// 페이지 로드 시 리스트 출력
-window.addEventListener("load", function () {
-  showList();
-});
+
