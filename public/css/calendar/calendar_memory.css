@@ -10,6 +10,7 @@ main {
     justify-content: center;
     display: inline-block;  
     width: 100%; 
+    margin-left: 15%;
     
   }
   .ininin{
@@ -134,11 +135,11 @@ main {
   }
   
   main .wrapper #slider .arrow--left {
-    left: 4%;
+    left: 9%;
   }
   
   main .wrapper #slider .arrow--right {
-    right: 54.5%;
+    right: 55%;
   }
   
   /* SLIDER DOTS */
