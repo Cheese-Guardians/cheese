@@ -667,6 +667,7 @@ function addList() {
   // 조건을 확인하고 아이템 리스트에 푸시
   if (item != "" && dupl) {
     itemList.push(item);
+    chkList.push(0);
     // console.log(itemList);
 
     // 아이템 input 창 초기화

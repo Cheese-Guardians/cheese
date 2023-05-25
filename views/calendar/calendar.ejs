@@ -130,50 +130,54 @@
                     <table>
                         <% if (typeof calendarDataResult !== 'undefined' && calendarDataResult && typeof calendarDataResult.check_list !== 'undefined' && calendarDataResult.check_list && calendarDataResult.check_list.length !== 0) { %>
                         <% console.log("checkMeow!! " + calendarDataResult) %>
-                    
+                        <script>
+                          // 아이템들을 담을 아이템 리스트
+                          let itemList = [];
+                          let chkList = [];
+                        
+                          // 아이템리스트 출력 메서드 (테이블)
+                          function showList() {
+                            // 아이템 리스트를 for 문을 돌면서 테이블 태그로 생성
+                            let list = "<table>";
+                        
+                            // 추가된 아이템 출력
+                            for (let i = 0; i < itemList.length; i++) {
+                              list += `<tr>
+                                <td class="item">
+                                  <div class="checkbox">
+                                    <input type="checkbox" id="${i}" ${chkList[i] == 1 ? 'checked' : ''} />
+                                  </div>
+                                  <div class="content">${itemList[i]}</div>
+                                </td>
+                              </tr>`;
+                            }
+                        
+                            list += "</table>";
+                        
+                            // 테이블 태그 출력
+                            document.querySelector("#item_list").innerHTML = list;
+                        
+                            // 아이템 리스트에서 체크박스 이벤트를 할당
+                            let checkboxes = document.querySelectorAll(".item input[type='checkbox']");
+                            for (let i = 0; i < checkboxes.length; i++) {
+                              checkboxes[i].onclick = toggleItem;
+                            }
+                          }
+                        </script>
                         <% for (let i = 0; i < calendarDataResult.check_list.length; i++) { %>
                           <tr>
                             <td class="item">
                               <div class="checkbox">
+                                <script> itemList.push('<%= calendarDataResult.check_list[i].content %>');
+                                  chkList.push('<%= calendarDataResult.check_list[i].is_check %>');
+                                </script>
                                 <input type="checkbox" id="<%= i %>" <%= calendarDataResult.check_list[i].is_check === 1 ? 'checked' : '' %> />
                               </div>
                               <div class="content"><%= calendarDataResult.check_list[i].content %></div>
-                              <script> itemList.push('<%= calendarDataResult.check_list[i].content %>');</script>
                             </td>
                           </tr>
-                          <script>
-                            // 아이템들을 담을 아이템 리스트
-let itemList = [];
-                            // 아이템리스트 출력 메서드 (테이블)
-function showList() {
-  // 아이템 리스트를 for 문을 돌면서 테이블 태그로 생성
-  let list = "<table>";
-
-  // 추가된 아이템 출력
-  for (let i = 0; i < itemList.length; i++) {
-    list += `<tr>
-      <td class="item">
-        <div class="checkbox">
-          <input type="checkbox" id="${i}" />
-        </div>
-        <div class="content">${itemList[i]}</div>
-      </td>
-    </tr>`;
-  }
-
-  list += "</table>";
-
-  // 테이블 태그 출력
-  document.querySelector("#item_list").innerHTML = list;
-
-  // 아이템 리스트에서 체크박스 이벤트를 할당
-  let checkboxes = document.querySelectorAll(".item input[type='checkbox']");
-  for (let i = 0; i < checkboxes.length; i++) {
-    checkboxes[i].onclick = toggleItem;
-  }
-}
-
-                          </script>
+                          
+                          
                         <% } %>
                       <% } else { %>
                         <!-- <input id="inputhosName" type="text" name="inputhosNametext" value=""> -->
@@ -182,6 +186,7 @@ function showList() {
                        <script>
                         // 아이템들을 담을 아이템 리스트
 itemList = [];
+chkList = [];
                         // 아이템리스트 출력 메서드 (테이블)
 function showList() {
   // 아이템 리스트를 for 문을 돌면서 테이블 태그로 생성
@@ -202,15 +207,15 @@ function showList() {
 
   // 추가된 아이템 출력
   for (let i = 0; i < itemList.length; i++) {
-    list += `<tr>
-      <td class="item">
-        <div class="checkbox">
-          <input type="checkbox" id="${i}" />
-        </div>
-        <div class="content">${itemList[i]}</div>
-      </td>
-    </tr>`;
-  }
+                                list += `<tr>
+                                  <td class="item">
+                                    <div class="checkbox">
+                                      <input type="checkbox" id="${i}" ${chkList[i] == 1 ? 'checked' : ''} />
+                                    </div>
+                                    <div class="content">${itemList[i]}</div>
+                                  </td>
+                                </tr>`;
+                              }
 
   list += "</table>";
 
