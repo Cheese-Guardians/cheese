@@ -284,21 +284,27 @@
               <div class="symtom">
                 <div class="title"> <p> 증상 </p> </div>
                 <div>
-                  <% if (typeof calendarDataResult !== 'undefined' && calendarDataResult && typeof calendarDataResult.symptom_list !== 'undefined' && calendarDataResult.symptom_list && calendarDataResult.symptom_list.length !== 0) { %>
-                    <% console.log("symptom: " + calendarDataResult) %>
-                    <% for (let i = 0; i < calendarDataResult.symptom_list.length; i++) { %>
-                    <div class="symtomTextBox ">                    
-                      <input class="inputbX" type="text" id="<%= i %>" name="diarytext" value="<%= calendarDataResult.symptom_list[i].symptom_name %>">
-                      <p><input type="time" class="symtom-time" value="<%= calendarDataResult.symptom_list[i].onset_time%>" ></p>                      
-                      
+                  <div class="symtomTextBox 1">
+                    <input class="inputbX" type="text" name="symtom_text">
+                    <p><input type="time" class="symtom-time" name="symtom_time"></p>             
+                  </div>
+                  
+                  <div class="box-body"> 
+                      <input type="range" min="1" max="10" id="ex-in1" class="range-in" name="symtom_range">  
+                    <div id="ex-out1" class="range-out"></div>
+                    <script>
+                    document.querySelector('#ex-in1').addEventListener('input',e=>{
+                    document.querySelector('#ex-out1').innerHTML= e.target.value;
+                    });
+                    </script>           
                     </div>
 
                   <div class="symtomTextBox 2">
-                    <input class="inputbX" type="text" name="diarytext">
-                    <p><input type="time" class="symtom-time"></p>                     
+                    <input class="inputbX" type="text"  name="symtom_text">
+                    <p><input type="time" class="symtom-time" name="symtom_time"></p>                     
                   </div>
                   <div class="box-body"> 
-                    <input type="range" min="1" max="10" id="ex-in2" class="range-in">   
+                    <input type="range" min="1" max="10" id="ex-in2" class="range-in" name="symtom_range">    
                   <div id="ex-out2" class="range-out"></div>
                   <script>
                   document.querySelector('#ex-in2').addEventListener('input',e=>{
@@ -307,11 +313,11 @@
                   </script>           
                   </div>
                   <div class="symtomTextBox 3">
-                    <input class="inputbX" type="text" name="diarytext">
-                    <p><input type="time" class="symtom-time"></p>                     
+                    <input class="inputbX" type="text"  name="symtom_text">
+                    <p><input type="time" class="symtom-time"  name="symtom_range"></p>                     
                   </div>
                   <div class="box-body"> 
-                    <input type="range" min="1" max="10" id="ex-in3" class="range-in">   
+                    <input type="range" min="1" max="10" id="ex-in3" class="range-in" name="symtom_range">    
                   <div id="ex-out3" class="range-out"></div>
                   <script>
                   document.querySelector('#ex-in3').addEventListener('input',e=>{
@@ -320,11 +326,11 @@
                   </script>           
                   </div>
                   <div class="symtomTextBox 4">
-                    <input class="inputbX" type="text" name="diarytext">
-                    <p><input type="time" class="symtom-time"></p>                     
+                    <input class="inputbX" type="text" name="symtom_text">
+                    <p><input type="time" class="symtom-time" name="symtom_range"></p>                     
                   </div>
                   <div class="box-body"> 
-                    <input type="range" min="1" max="10" id="ex-in4" class="range-in">   
+                    <input type="range" min="1" max="10" id="ex-in4" class="range-in" name="symtom_range">
                   <div id="ex-out4" class="range-out"></div>
                   <script>
                   document.querySelector('#ex-in4').addEventListener('input',e=>{
