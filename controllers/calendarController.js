@@ -6,7 +6,6 @@ const secret = require('../config/secret');
 
 exports.getCalendar = async function (req, res) {
   const token = req.cookies.x_auth;
-  console.log(secret)
   const decodedToken = jwt.verify(token, secret.jwtsecret); // 토큰 검증, 복호화
   const user_id = decodedToken.user_id; // user_id를 추출
 
@@ -21,7 +20,7 @@ exports.getCalendar = async function (req, res) {
     const existingQueryString = req.query;
     
     if (Object.keys(existingQueryString).length === 0) {
-      const newURL = `${req.protocol}://${req.get('host')}${req.baseUrl}${req.path}?selectedYear=${selectedYear}&selectedMonth=${selectedMonth}&selectedDate=${selectedDate}`;
+      const newURL = `${req.protocol}://${req.get('host')}${req.baseUrl}?selectedYear=${selectedYear}&selectedMonth=${selectedMonth}&selectedDate=${selectedDate}`;
       return res.redirect(newURL);
     }
   }
@@ -40,9 +39,9 @@ exports.getCalendar = async function (req, res) {
     //console.log(calendarResult);
     //console.log("controller: "+ calendarDataResult);
     //console.log(calendarResult[calendarResult.length-1].server_name + calendarResult[calendarResult.length-1].extension);
-    
     return res.render('calendar/calendar.ejs', { calendarResult: calendarResult, calendarDataResult: calendarDataResult });
   } else {
+    console.log(calendarDataResult);
     return res.render('calendar/calendar.ejs', { calendarResult: null, calendarDataResult: calendarDataResult });
   }
   
