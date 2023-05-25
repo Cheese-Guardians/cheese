@@ -1,7 +1,6 @@
 const calendarService = require('../services/calendar');
 const path = require('path');
 const calendarDate = require('../public/js/calendar.js');
-
 exports.getCalendar = async function (req, res) {
   const userId = req.params.userId;
   let date = req.query.selectedYear + req.query.selectedMonth + req.query.selectedDate;
@@ -42,18 +41,6 @@ exports.getCalendar = async function (req, res) {
   
   // return res.send(response(baseResponse.SUCCESS, calendarResult));
 }
-
-exports.postCalendar = async function (req, res) {
-  if (!req.body) {
-      return req.send(`
-        내용이 없음
-      `);
-  }
-
-  console.log(req.body);
-  //return res.redirect('/calendar');
-  res.send(req.body);
-};
 
 exports.postFile = async function (req, res) {
     if (!req.file) {
