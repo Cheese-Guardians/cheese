@@ -257,6 +257,7 @@
 //캘린더
 document.addEventListener("DOMContentLoaded", function() {
   buildCalendar();
+  parseQueryString();
 });
 
 var today = new Date(); // @param 전역 변수, 오늘 날짜 / 내 컴퓨터 로컬을 기준으로 today에 Date 객체를 넣어줌
@@ -358,29 +359,25 @@ function buildCalendar() {
 
               // @details 현재일보다 이전인 경우이면서 현재월에 포함되는 일인경우
               if(date.getDate() > day && Math.sign(day) == 1) {
-                  column.style.backgroundColor = "#FFFFFF";
                   column.style.cursor = "pointer";
                   column.onclick = function(){ calendarChoiceDay(this); }
               }
 
               // @details 현재일보다 이후이면서 현재월에 포함되는 일인경우
               else if(date.getDate() < day && lastDate.getDate() >= day) {
-                  column.style.backgroundColor = "#FFFFFF";
                   column.style.cursor = "pointer";
                   column.onclick = function(){ calendarChoiceDay(this); }
               }
 
               // @details 현재일인 경우
               else if(date.getDate() == day) {
-                column.style.backgroundColor = "#A9A9A9";
                 column.style.cursor = "pointer";
                 column.onclick = function(){ calendarChoiceDay(this); }
-                calendarChoiceDay(column);
+                //calendarChoiceDay(column);
               }
 
           // @details 현재월보다 이전인경우
           } else if(today.getMonth() < date.getMonth()) {
-            column.style.backgroundColor = "#FFFFFF";
             column.style.cursor = "pointer";
             column.onclick = function(){ calendarChoiceDay(this);
             }
@@ -389,7 +386,6 @@ function buildCalendar() {
           // @details 현재월보다 이후인경우
           else {
               if(Math.sign(day) == 1 && day <= lastDate.getDate()) {
-                  column.style.backgroundColor = "#FFFFFF";
                   column.style.cursor = "pointer";
                   column.onclick = function(){ calendarChoiceDay(this); }
               }
@@ -398,7 +394,6 @@ function buildCalendar() {
 
       // @details 선택한년도가 현재년도보다 작은경우
       else if(today.getFullYear() < date.getFullYear()) {
-        column.style.backgroundColor = "#FFFFFF";
         column.style.cursor = "pointer";
         column.onclick = function(){ calendarChoiceDay(this);
         }
@@ -407,7 +402,6 @@ function buildCalendar() {
       // @details 선택한년도가 현재년도보다 큰경우
       else {
           if(Math.sign(day) == 1 && day <= lastDate.getDate()) {
-              column.style.backgroundColor = "#FFFFFF";
               column.style.cursor = "pointer";
               column.onclick = function(){ calendarChoiceDay(this); }
           }
@@ -425,16 +419,14 @@ function buildCalendar() {
 */
 
 function calendarChoiceDay(column) {
-
   // @param 기존 선택일이 존재하는 경우 기존 선택일의 표시형식을 초기화 한다.
-  if(document.getElementsByClassName("choiceDay")[0]) {
-      document.getElementsByClassName("choiceDay")[0].style.backgroundColor = "#FFFFFF";
-      document.getElementsByClassName("choiceDay")[0].classList.remove("choiceDay");
+  if (document.getElementsByClassName("choiceDay")[0]) {
+    document.getElementsByClassName("choiceDay")[0].style.backgroundColor = "#FFFFFF";
+    document.getElementsByClassName("choiceDay")[0].classList.remove("choiceDay");
   }
 
   // @param 선택일 체크 표시
   column.style.backgroundColor = "#B3CC62";
-
 
   // @param 선택일 클래스명 변경
   column.classList.add("choiceDay");
@@ -444,8 +436,54 @@ function calendarChoiceDay(column) {
   let selectedYear = document.getElementById("calYear").innerText;
   let selectedMonth = document.getElementById("calMonth").innerText;
   document.getElementById("selected_date").innerText = selectedYear + "년 " + selectedMonth + "월 " + selectedDate + "일";
+
+  // @param 선택한 날짜 정보를 쿼리스트링으로 전달하여 새로운 URL로 이동
+  const queryString = `?selectedYear=${selectedYear}&selectedMonth=${selectedMonth}&selectedDate=${selectedDate}`;
+  const newURL = window.location.origin + window.location.pathname + queryString;
+  window.location.href = newURL;
 }
-  
+//쿼리스트링 파싱해서 해당 일에 불 들어오게 html안에 년월일 넣어줌
+function parseQueryString() {
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+  const selectedYear = urlParams.get('selectedYear');
+  const selectedMonth = urlParams.get('selectedMonth');
+  const selectedDate = urlParams.get('selectedDate');
+
+  if (selectedYear && selectedMonth && selectedDate) {
+    const tbCalendar = document.querySelector(".scriptCalendar > tbody");
+    const rows = tbCalendar.getElementsByTagName("tr");
+    for (let i = 0; i < rows.length; i++) {
+      const columns = rows[i].getElementsByTagName("td");
+      for (let j = 0; j < columns.length; j++) {
+        if (columns[j].innerText === selectedDate) {
+          calendarColorDay(columns[j]);
+          return;
+        }
+      }
+    }
+  }
+}
+function calendarColorDay(column) {
+  // @param 기존 선택일이 존재하는 경우 기존 선택일의 표시형식을 초기화 한다.
+  if (document.getElementsByClassName("choiceDay")[0]) {
+    document.getElementsByClassName("choiceDay")[0].style.backgroundColor = "#FFFFFF";
+    document.getElementsByClassName("choiceDay")[0].classList.remove("choiceDay");
+  }
+
+  // @param 선택일 체크 표시
+  column.style.backgroundColor = "#B3CC62";
+
+  // @param 선택일 클래스명 변경
+  column.classList.add("choiceDay");
+
+  // @param 선택한 날짜를 HTML 요소에 표시
+  let selectedDate = column.innerText;
+  let selectedYear = document.getElementById("calYear").innerText;
+  let selectedMonth = document.getElementById("calMonth").innerText;
+  document.getElementById("selected_date").innerText = selectedYear + "년 " + selectedMonth + "월 " + selectedDate + "일";
+
+}
 /**
 * @brief   숫자 두자릿수( 00 ) 변경
 * @details 자릿수가 한자리인 ( 1, 2, 3등 )의 값을 10, 11, 12등과 같은 두자리수 형식으로 맞추기위해 0을 붙인다.
@@ -597,17 +635,13 @@ dot6.addEventListener("click", function(){
     dots[current].style.background = '#1107ff'
 })
 
-
-// 아이템들을 담을 아이템 리스트
-let itemList = [];
 // 아이템 중복확인 위한 변수
 let dupl;
 // 추가 버튼에 대한 이벤트
 let addBtn = document.querySelector("#add");
 addBtn.addEventListener("click", addList);
-// 전체삭제 버튼에 대한 이벤트
-let removeAllBtn = document.querySelector("#remove_all");
-removeAllBtn.addEventListener("click", removeList);
+
+//removeAllBtn.addEventListener("click", removeList);
 
 // 엔터 입력시 이벤트 발생
 document
@@ -618,7 +652,7 @@ document
       addList();
     }
   });
-
+                          
 // 아이템 추가 메서드
 function addList() {
   // 아이템 값 담음
@@ -631,6 +665,7 @@ function addList() {
   // 조건을 확인하고 아이템 리스트에 푸시
   if (item != "" && dupl) {
     itemList.push(item);
+    chkList.push(0);
     // console.log(itemList);
 
     // 아이템 input 창 초기화
@@ -650,34 +685,8 @@ function checkDupl(item) {
     document.querySelector("#item").value = "";
     document.querySelector("#item").focus();
     dupl = false;
-  } else {
+  } 
+  else {
     dupl = true;
-  }
-}
-
-// 아이템리스트 출력 메서드 (테이블)
-// 아이템리스트 출력 메서드 (테이블)
-function showList() {
-  // 아이템 리스트를 for 문을 돌면서 테이블 태그로 생성
-  let list = "<table>";
-  for (let i = 0; i < itemList.length; i++) {
-    list += `<tr>
-      <td class="item">
-        <div class="checkbox">
-          <input type="checkbox" id="${i}" />
-        </div>
-        <div class="content">${itemList[i]}</div>
-      </td>
-      </tr>`;
-  }
-  list += "</table>";
-
-  // 테이블 태그 출력
-  document.querySelector("#item_list").innerHTML = list;
-
-  // 아이템 리스트에서 체크박스 이벤트를 할당
-  let checkboxes = document.querySelectorAll(".item input[type='checkbox']");
-  for (let i = 0; i < checkboxes.length; i++) {
-    checkboxes[i].onclick = toggleItem;
   }
 }
