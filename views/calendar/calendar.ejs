@@ -362,14 +362,14 @@
                     for (let i = 0; i < buttons.length; i++) {
                       buttons[i].addEventListener('click', handleButtonClick);
                     }
-                  
-                    // sleep_time 값을 가져와 해당 시간을 활성화
+                  </script>
                     <% if (typeof calendarDataResult !== 'undefined' && calendarDataResult && typeof calendarDataResult.calendar !== 'undefined' && calendarDataResult.calendar && typeof calendarDataResult.calendar.sleep_time !== 'undefined') { %>
+                      <script>
                       const sleepTime = <%= calendarDataResult.calendar.sleep_time %>;
                       const sleepButton = document.getElementsByClassName('btn')[sleepTime -3];
                       sleepButton.classList.add('active');
+                    </script>
                     <% } %>
-                  </script>
                         
                     
                 </div>
