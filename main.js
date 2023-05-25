@@ -53,7 +53,7 @@ const authenticateUser = (req, res, next) => {
 //라우터 등록
 app.use('/calendar', calendarRouter);
 app.use('/users', usersRouter);
-
+//app.use('/reminder', reminderRouter);
 app.get(
     "/", (req,res) =>
     {res.render("users/login.ejs");}
@@ -63,6 +63,11 @@ app.get(
     "/calendar", authenticateUser, (req,res) =>
     {return res.render('calendar/calendar.ejs');}
 );
+app.get(
+    "/reminder", (req, res) => 
+        {return res.render('reminder/reminder.ejs');}
+        );
+    
 
 // app.get(
 //     "/", (req,res) =>
