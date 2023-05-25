@@ -33,7 +33,7 @@ exports.postUsers = async function (req,res) {
         return res.status(200).send(`
         <script>
           if (confirm('회원가입에 성공했습니다.')) {
-            window.location.href = "/users/login";
+            window.location.href = "/";
           }
         </script>
       `)
@@ -69,7 +69,7 @@ exports.login = async function (req, res) {
     return res.send(`
     <script>
       if (confirm('로그인에 실패했습니다.')) {
-        window.location.href = "/users/login";
+        window.location.href = "/";
       }
     </script>
   `);
