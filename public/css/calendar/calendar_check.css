@@ -76,95 +76,6 @@ padding-right:10px;
       width: 30%;
       margin-left: 0;
     }
-
-    
-
-  /*알림*/
-    .alarm{
-      width: 100%;    
-    }
-    
-    .name{
-      font-size: 13px;
-      font-weight: 500;
-      display: inline-block;
-      position: static;
-      margin-right: 5px;
-    }
-    .medicine_alarm{    
-      display: inline-block;
-      position: relative;
-      margin-right: 20px;
-    }
-    .hospital_alarm{
-      position: static;
-      margin-left: 30%;
-      margin-right: 20px;
-    }
-
-    
- /*toggle*/
- .switch {
-  position: relative;
-  display: inline-block;
-  width: 45px;
-  height: 23px;
-}
-
-.switch input { 
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-
-.slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #ccc;
-  -webkit-transition: .4s;
-  transition: .4s;
-}
-
-.slider:before {
-  position: absolute;
-  content: "";
-  height: 15px;
-  width: 15px;
-  left: 4px;
-  bottom: 4px;
-  background-color: white;
-  -webkit-transition: .4s;
-  transition: .4s;
-}
-
-input:checked + .slider {
-  background-color: #B3CC62;
-}
-
-input:focus + .slider {
-  box-shadow: 0 0 1px #B3CC62;
-}
-
-input:checked + .slider:before {
-  -webkit-transform: translateX(23px);
-  -ms-transform: translateX(23px);
-  transform: translateX(23px);
-}
-
-    /* Rounded sliders */
-.slider.round {
-  width: auto;
-  border-radius: 34px;
-}
-
-.slider.round:before {
-  border-radius: 50%;
-}
-
     
     /*CHECK*/
     .check{
@@ -322,9 +233,8 @@ padding-left:8px;
   /*증상*/
   .symtom{
     height: 50%;
-    width:100%
+    width:100%;
   }
-     
 
   .symtomTextBox {
     width: 100%;
