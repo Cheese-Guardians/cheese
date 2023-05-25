@@ -52,6 +52,8 @@
     display: flex;
     list-style: none;
     align-items: center;
+    right: 25%;
+    position: relative;
   }
   
   .navbar li {
