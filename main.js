@@ -25,7 +25,6 @@ const port = 3000,
     app = express(),
     fs = require("fs"),
     layouts = require("express-ejs-layouts"),
-    //const { logger } = require("./config/winston");
     calendarRouter = require('./routes/calendar'),
     usersRouter = require('./routes/usersRoute');
 
