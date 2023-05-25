@@ -59,7 +59,7 @@ exports.createUser = async function (
       //console.log(`추가된 회원 : ${userIdResult[0].insertId}`);
       return '성공';
     } catch (err) {
-        return 'error';
+        return 'createUserError';
     }
   };
 

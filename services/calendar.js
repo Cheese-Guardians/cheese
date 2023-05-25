@@ -13,7 +13,7 @@ exports.retrieveSelectedCalendar = async function (user_id, date) {
 
         return calendarDataResult;
     } catch (err) {
-        return 'error';
+        return 'retrieveSelectedCalendarError';
     }
     
 }
@@ -25,7 +25,7 @@ exports.createFileMem = async function (server_name, user_name, extension) {
 
         return '성공';
     } catch (err) {
-        return 'error';
+        return 'createFileMemError';
     }
 }
 
