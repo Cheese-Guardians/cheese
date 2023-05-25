@@ -65,7 +65,10 @@ app.get(
     {return res.render('calendar/calendar.ejs');}
 );
 
-    
+app.get(
+    "/diagnosis", (req,res) =>
+    {res.render("diagnosis/diagnosis.ejs");}
+);    
 
 // app.get(
 //     "/", (req,res) =>
