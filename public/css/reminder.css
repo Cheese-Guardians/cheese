@@ -1,0 +1,20 @@
+.reminder_wrapper {
+    
+    /* height: 550px; */
+    height: 90vh;
+   
+}
+.reminder_container {
+    width: 700px;
+    height: 550px;
+   
+    background-color: white;
+    border-color: #E0E0E0;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 3%;
+    font-size: 15px;
+    margin: 0 auto;
+    top: 20%;
+    position: relative;
+}
