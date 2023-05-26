@@ -258,93 +258,92 @@
                 <div class="title"> <p> 수면시간 </p> </div>
                 <div class="time">
                 
-                  <button class="btn three" type="button" name="sleeping_time" value="3">                   
+                  <button class="btn three" type="button" value="3">
                     <label>
-                      <!-- <input type="checkbox">     -->
-                      <span> 3시간↓ </span>
-                    </label> 
+                      <!-- <input type="checkbox"> -->
+                      <span>3시간↓</span>
+                    </label>
                   </button>
-                  <button class="btn four" type="button" name="sleeping_time" value="4">
+                  <button class="btn four" type="button" value="4">
                     <label>
-                      <input type="checkbox">
-                      <span>4시간</span>
-                    </label> 
-                  </button>
-                  <button class="btn five" type="button" name="sleeping_time" value="5">
+                      <!-- <input type="checkbox"> -->
+                      <span>3시간↓</span>
+                    </label>
+                  <button class="btn five" type="button" value="5">
                     <label>
-                      <input type="checkbox">
+                      <!-- <input type="checkbox"> -->
                       <span>5시간</span>
                     </label> 
                   </button>
-                  <button class="btn six" type="button" name="sleeping_time" value="6">    
+                  <button class="btn six" type="button" value="6">    
                     <label>
-                      <input type="checkbox">
+                      <!-- <input type="checkbox"> -->
                       <span>6시간</span>
                     </label> 
                   </button>
-                  <button class="btn seven" type="button" name="sleeping_time" value="7">    
+                  <button class="btn seven" type="button" value="7">    
                     <label>
-                      <input type="checkbox">
+                      <!-- <input type="checkbox"> -->
                       <span>7시간</span>
                     </label> 
                   </button>
-                  <button class="btn eight" type="button" name="sleeping_time" value="8">    
+                  <button class="btn eight" type="button" value="8">    
                     <label>
-                      <input type="checkbox">
+                      <!-- <input type="checkbox"> -->
                       <span>8시간</span>
                     </label> 
                   </button>
-                  <button class="btn nine" type="button" name="sleeping_time" value="9">   
+                  <button class="btn nine" type="button" value="9">   
                     <label>
-                      <input type="checkbox">
+                      <!-- <input type="checkbox"> -->
                       <span>9시간</span>
                     </label> 
                   </button>
-                  <button class="btn ten" type="button" name="sleeping_time" value="10">   
+                  <button class="btn ten" type="button"  value="10">   
                     <label>
-                      <input type="checkbox" checked>
+                      <!-- <input type="checkbox" checked> -->
                       <span>10시간</span>
                     </label> 
                   </button>
-                  <button class="btn eleven" type="button" name="sleeping_time" value="11">   
+                  <button class="btn eleven" type="button" value="11">   
                     <label>
-                      <input type="checkbox">
+                      <!-- <input type="checkbox"> -->
                       <span>11시간</span>
                     </label> 
                   </button>
-                  <button class="btn twelve"  type="button" name="sleeping_time" value="12">  
+                  <button class="btn twelve"  type="button" value="12">  
                     <label>
-                      <input type="checkbox">
+                      <!-- <input type="checkbox"> -->
                       <span>12시간</span>
                     </label> 
                   </button>
-                  <button class="btn thirteen"  type="button" name="sleeping_time" value="13">   
+                  <button class="btn thirteen"  type="button" value="13">   
                     <label>
-                      <input type="checkbox">
+                      <!-- <input type="checkbox"> -->
                       <span>13시간</span>
                     </label> 
                   </button>
-                  <button class="btn fourteen" type="button" name="sleeping_time" value="14">   
+                  <button class="btn fourteen" type="button" value="14">   
                     <label>
-                      <input type="checkbox">
+                      <!-- <input type="checkbox"> -->
                       <span>14시간</span>
                     </label> 
                   </button>
-                  <button class="btn fifteen" type="button" name="sleeping_time" value="15">   
+                  <button class="btn fifteen" type="button" value="15">   
                     <label>
-                      <input type="checkbox">
+                      <!-- <input type="checkbox"> -->
                       <span>15시간</span>
                     </label> 
                   </button>
-                  <button class="btn sixteen" type="button" name="sleeping_time" value="16">   
+                  <button class="btn sixteen" type="button" value="16">   
                     <label>
-                      <input type="checkbox">
+                      <!-- <input type="checkbox"> -->
                       <span>16시간</span>
                     </label> 
                   </button>
-                  <button class="btn seventeen"  type="button" name="sleeping_time" value="17">   
+                  <button class="btn seventeen"  type="button" value="17">   
                     <label>
-                      <input type="checkbox">
+                      <!-- <input type="checkbox"> -->
                       <span>17시간↑</span>
                     </label> 
                   </button>
@@ -356,6 +355,8 @@
                         buttons[i].classList.remove('active');
                       }
                       event.currentTarget.classList.add('active');
+                      const sleepingTimeInput = document.getElementById('sleeping_time');
+                      sleepingTimeInput.value = event.currentTarget.value;
                     }
                   
                     // 버튼들에 클릭 이벤트 핸들러 등록
@@ -372,7 +373,7 @@
                     </script>
                     <% } %>
                         
-                    
+                    <input type="hidden" id="sleeping_time" name="sleep_time" value="">
                 </div>
                 
 
