@@ -42,7 +42,7 @@
 
       <!-- ======= symtom_check ======= -->
       <div class="col-lg-6 pt-lg-0 order-2 order-lg-1">
-        <form action="http://localhost:3000/calendar/1" method="post">
+        <form action="http://localhost:3000/calendar/1" method="post" id="calendarForm">
         <div class="symtom_check">
           <div>
             <div class="symtom_check_left">
@@ -138,7 +138,7 @@
                                     <div class="checkbox">
                                       <input type="checkbox" id="${i}" ${chkList[i] == 1 ? 'checked' : ''} />
                                     </div>
-                                    <div class="content">${itemList[i]}</div>
+                                    <div class="content"><input type="text" name="check_content" style="border:none" value="${itemList[i]}" readonly/ ></div>
                                   </td>
                                 </tr>`;
                               }
@@ -213,9 +213,9 @@
                                     list += `<tr>
                                       <td class="item">
                                         <div class="checkbox">
-                                          <input type="checkbox" id="${i}" ${chkList[i] == 1 ? 'checked' : ''} />
+                                          <input type="checkbox"  id="${i}" ${chkList[i] == 1 ? 'checked' : ''} />
                                         </div>
-                                        <div class="content">${itemList[i]}</div>
+                                        <div class="content"><input type="text" name="check_content" style="border:none" value="${itemList[i]}" readonly/ ></div>
                                       </td>
                                     </tr>`;
                                   }
@@ -241,7 +241,23 @@
                       
                     </table>
                   </div>
-
+                  <script>
+                    // 폼 제출 시 chkList 값을 전송하는 함수
+                   function submitCheck() {
+                       const form = document.getElementById("calendarForm");
+                       const chkInputs = form.querySelectorAll(".item input[type='checkbox']");
+    
+                       chkInputs.forEach((input, index) => {
+                      const hiddenInput = document.createElement("input");
+                     hiddenInput.type = "hidden";
+                     hiddenInput.name = "is_check[]";
+                      hiddenInput.value = input.checked ? 1 : 0;
+                          form.appendChild(hiddenInput);
+                          });
+                      
+                          form.submit();
+                        }
+                  </script>
                   <form id="checkForm">
                     <div class="additemdiv">
                       <input type="text" id="item"  />
@@ -251,7 +267,7 @@
                 </div>
               </div>
                                  
-                  
+    
              
 
               <div class="sleeping-time">
@@ -481,7 +497,7 @@
                   <% } %>                    
                 </div>
                 <div class="symBtndiv">
-                  <button type="submit" id="symB" class="symBtn">저장</button>
+                  <button type="submit" id="symB" class="symBtn" onclick="submitCheck()">저장</button>
                 </div>
               </div>
                   
