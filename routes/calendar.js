@@ -6,7 +6,7 @@ const { upload } = require('../middlewares/multerMiddleware');
 // calendar 조회 
 router.get('/', calendarController.getCalendar);
 // calendar post
-router.post('/:userId', calendarController.postCalendar);
+router.post('/', calendarController.postCalendar);
 // calendar 추억보관함 파일 첨부
 router.post('/upload', upload.single('file'), calendarController.postFile);
 
