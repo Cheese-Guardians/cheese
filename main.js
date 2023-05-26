@@ -66,7 +66,7 @@ app.get(
 
 app.get(
     "/calendar", (req,res) =>
-    {return res.render('calendar/calendar.ejs');}
+    {res.render('calendar/calendar.ejs');}
 );
     
 // app.get(
