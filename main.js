@@ -27,7 +27,8 @@ const port = 3000,
     layouts = require("express-ejs-layouts"),
     calendarRouter = require('./routes/calendar'),
     usersRouter = require('./routes/usersRoute'),
-    reminderRouter = require('./routes/reminderRoute');
+    reminderRouter = require('./routes/reminderRoute'),
+    diagnosisRouter = require('./routes/diagnosisRoute');
 
 const cookieParser = require('cookie-parser');
 
@@ -41,42 +42,33 @@ app.use(express.urlencoded());
 app.use(express.json());
 app.use(cookieParser());
 
-const authenticateUser = (req, res, next) => {
-    const token = req.cookies.x_auth;
-    // 로그인 여부를 확인하고 로그인되어 있지 않으면 로그인 페이지로 리다이렉트 또는 다른 처리를 수행할 수 있습니다.
-    if (!token) { // req.user는 로그인된 사용자 정보를 담고 있는 객체입니다.
-      return res.redirect('/'); // 로그인 페이지로 리다이렉트
-    }
-    // 로그인된 사용자이면 다음 미들웨어로 진행
-    next();
-  };
+// const authenticateUser = (req, res, next) => {
+//     const token = req.cookies.x_auth;
+//     // 로그인 여부를 확인하고 로그인되어 있지 않으면 로그인 페이지로 리다이렉트 또는 다른 처리를 수행할 수 있습니다.
+//     if (!token) { // req.user는 로그인된 사용자 정보를 담고 있는 객체입니다.
+//       return res.redirect('/'); // 로그인 페이지로 리다이렉트
+//     }
+//     // 로그인된 사용자이면 다음 미들웨어로 진행
+//     next();
+//   };
 
 //라우터 등록
 app.use('/calendar', calendarRouter);
 app.use('/users', usersRouter);
 app.use('/reminder', reminderRouter);
+app.use('/diagnosis', diagnosisRouter);
+
+
 app.get(
     "/", (req,res) =>
     {res.render("users/login.ejs");}
 );
 
 app.get(
-    "/calendar", authenticateUser, (req,res) =>
+    "/calendar", (req,res) =>
     {return res.render('calendar/calendar.ejs');}
 );
-
-app.get(
-    "/diagnosis", (req,res) =>
-    {res.render("diagnosis/diagnosis.ejs");}
-);    
-app.get(
-    "/diagnosis/export", (req,res) =>
-    {res.render("diagnosis/export.ejs");}
-);    
-app.get(
-    "/diagnosis/check/password", (req,res) =>
-    {res.render("diagnosis/password.ejs");}
-);    
+    
 // app.get(
 //     "/", (req,res) =>
 //     {
@@ -112,5 +104,5 @@ app.listen(port,() => {
 );
 
 module.exports = {
-    authenticateUser
+    // authenticateUser
 }
