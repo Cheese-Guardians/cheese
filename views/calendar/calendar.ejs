@@ -136,9 +136,9 @@
                                 list += `<tr>
                                   <td class="item">
                                     <div class="checkbox">
-                                      <input type="checkbox" id="${i}" ${chkList[i] == 1 ? 'checked' : ''} />
+                                      <input type="checkbox" name="is_check"  id="${i}" ${chkList[i] == 1 ? 'checked' : ''} />
                                     </div>
-                                    <div class="content">${itemList[i]}</div>
+                                    <div class="content"><input type="text" name="check_content" style="border:none" value="${itemList[i]}" readonly/ ></div>
                                   </td>
                                 </tr>`;
                               }
@@ -213,9 +213,9 @@
                                     list += `<tr>
                                       <td class="item">
                                         <div class="checkbox">
-                                          <input type="checkbox" id="${i}" ${chkList[i] == 1 ? 'checked' : ''} />
+                                          <input type="checkbox" name="is_check" id="${i}" ${chkList[i] == 1 ? 'checked' : ''} />
                                         </div>
-                                        <div class="content">${itemList[i]}</div>
+                                        <div class="content"><input type="text" name="check_content" style="border:none" value="${itemList[i]}" readonly/ ></div>
                                       </td>
                                     </tr>`;
                                   }
