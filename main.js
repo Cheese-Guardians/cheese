@@ -69,7 +69,14 @@ app.get(
     "/diagnosis", (req,res) =>
     {res.render("diagnosis/diagnosis.ejs");}
 );    
-
+app.get(
+    "/diagnosis/export", (req,res) =>
+    {res.render("diagnosis/export.ejs");}
+);    
+app.get(
+    "/diagnosis/check/password", (req,res) =>
+    {res.render("diagnosis/password.ejs");}
+);    
 // app.get(
 //     "/", (req,res) =>
 //     {
