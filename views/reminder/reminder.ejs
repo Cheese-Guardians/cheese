@@ -5,8 +5,9 @@
  </head>
 <div class="reminder_wrapper">
   <div class="reminder_container">
+    <form id="myForm">
     <div class="medicine_reminder"> 복용약 알림
-      <button type="button" id="medicationAdd" class="addBtn1">+</button>
+      <button type="button" id="medicationAdd" class="addBtn1 AddBtn">+</button>
       <div id="medicationInputs">
         <input type="time" class="symtom-time">
         <input type="time" class="symtom-time">
@@ -14,12 +15,16 @@
     </div>
     <br/>
     <div class="medicine_reminder"> 병원일정 알림
-      <button type="button" id="hospitalAdd" class="addBtn2">+</button>
+      <button type="button" id="hospitalAdd" class="addBtn2 AddBtn">+</button>
       <div id="hospitalInputs">
         <input type="time" class="symtom-time">
         <input type="time" class="symtom-time">
       </div>
     </div>
+ 
+         
+      <button class="reminder_submitBtn" type="submit" onclick="submitForm(event)">저장</button>
+    </form>
   </div>
 </div>
 
