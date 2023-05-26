@@ -65,7 +65,7 @@ async function getSelectedCalendar(pool, selectedCalendarParams) {
     hospital_schedule.booking_hour = hosRows[0].booking_hour;
   }
 
-  //체크 사항    
+  //체크 사항
   const [checkRows] = await pool.promise().query(getCheck_listQuery, selectedCalendarParams);
   const check_list  = checkRows.length > 0 ? checkRows.map(row => ({ content: row.check_content, is_check: row.is_check })) : [];
 
@@ -79,6 +79,7 @@ async function getSelectedCalendar(pool, selectedCalendarParams) {
   if (calendarRows.length > 0) {
     calendar.sleep_time = calendarRows[0].sleep_time;
     calendar.diary = calendarRows[0].diary;
+
   }
 
   //증상
