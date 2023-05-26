@@ -26,7 +26,8 @@ const port = 3000,
     fs = require("fs"),
     layouts = require("express-ejs-layouts"),
     calendarRouter = require('./routes/calendar'),
-    usersRouter = require('./routes/usersRoute');
+    usersRouter = require('./routes/usersRoute'),
+    reminderRouter = require('./routes/reminderRoute');
 
 const cookieParser = require('cookie-parser');
 
@@ -53,7 +54,7 @@ const authenticateUser = (req, res, next) => {
 //라우터 등록
 app.use('/calendar', calendarRouter);
 app.use('/users', usersRouter);
-
+app.use('/reminder', reminderRouter);
 app.get(
     "/", (req,res) =>
     {res.render("users/login.ejs");}
@@ -64,6 +65,18 @@ app.get(
     {return res.render('calendar/calendar.ejs');}
 );
 
+app.get(
+    "/diagnosis", (req,res) =>
+    {res.render("diagnosis/diagnosis.ejs");}
+);    
+app.get(
+    "/diagnosis/export", (req,res) =>
+    {res.render("diagnosis/export.ejs");}
+);    
+app.get(
+    "/diagnosis/check/password", (req,res) =>
+    {res.render("diagnosis/password.ejs");}
+);    
 // app.get(
 //     "/", (req,res) =>
 //     {
