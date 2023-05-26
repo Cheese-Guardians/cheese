@@ -19,6 +19,14 @@
     position: relative;
 }
 
+.title{
+    font-size: 20px;
+    font-weight: 400;
+    margin-top: 10%;
+    margin-left: 35%;
+    margin-right: 30%;
+}
+
 .left{
     display: inline-block;
     width: 50%;
@@ -90,10 +98,3 @@ font-size:20px;
     margin: 2%;
 }
 
-.title{
-    font-size: 20px;
-    font-weight: 400;
-    margin-top: 10%;
-    margin-left: 30%;
-    margin-right: 30%;
-}
