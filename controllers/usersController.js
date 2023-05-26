@@ -1,7 +1,7 @@
 const usersService = require('../services/usersService');
 const jwtMiddleware = require('../middlewares/jwtMiddleware');
 
-
+// 회원가입
 exports.postUsers = async function (req,res) {
     const {
         user_id,
@@ -49,6 +49,7 @@ exports.postUsers = async function (req,res) {
       }
 };
 
+// 로그인
 exports.login = async function (req, res) {
     const { user_id, password } = req.body;
 

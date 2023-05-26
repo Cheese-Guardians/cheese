@@ -39,11 +39,12 @@
     display: inline-block;
     height: 100%;
 
-}.titleDiagnosis{
-    text-align: center;
+}
+.titleDiagnosis{
+
     font-style:bold;
-width: 100%;
-font-size:20px;
+    width: 100%;
+    font-size:20px;
 }
 .doctor{
     width:40%;
@@ -96,5 +97,11 @@ font-size:20px;
 }
 .sendme{
     margin: 2%;
+}
+
+
+
+#monthInput{
+    width: 50%;
 }
 

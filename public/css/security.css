@@ -1,0 +1,39 @@
+.security_wrapper {
+    
+    /* height: 550px; */
+    height: 90vh;
+   
+}
+.security_container {
+    width: 700px;
+    height: 550px;
+   
+    background-color: white;
+    border-color: #E0E0E0;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 3%;
+    font-size: 15px;
+    margin: 0 auto;
+    top: 20%;
+    position: relative;
+}
+
+.security_title{
+    width:100%;
+    text-align: center;
+    font-size:20px;
+    font-weight:bolder;
+    color:black;
+    padding-top:30%;
+}
+.security_form{
+    width:100%;
+    text-align: center;
+    padding-top:2%;
+}
+.security_Btn{
+    font-weight:bolder; 
+    font-size:4mm;
+    background-color: #B3CC62;
+}
