@@ -29,5 +29,49 @@ exports.postUsers = async function (req,res) {
         medicine,
         address
       );
-      return res.send(signUpResponse);
+      if (signUpResponse == "성공") {
+        return res.status(200).send(`
+        <script>
+          if (confirm('회원가입에 성공했습니다.')) {
+            window.location.href = "/";
+          }
+        </script>
+      `)
+      }
+      else {
+        return res.send(`
+        <script>
+          if (confirm('회원가입에 실패했습니다.')) {
+            window.location.href = "/users/signup";
+          }
+        </script>
+      `);
+      }
+};
+
+exports.login = async function (req, res) {
+    const { user_id, password } = req.body;
+
+  // TODO: email, password 형식적 Validation
+
+  const signInResponse = await usersService.postSignIn(user_id, password);
+
+  if (signInResponse.user_id == user_id) {
+    // return res.render('users/login.ejs', { signInResponse: signInResponse, state : '성공'});
+    return res
+                .cookie("x_auth", signInResponse.jwt, {
+                  maxAge: 1000 * 60 * 60 * 24 * 7, // 7일간 유지
+                  httpOnly: true,
+                })
+                .render('users/login.ejs', { signInResponse: signInResponse, loginState : '성공'});
+  }
+  else {
+    return res.send(`
+    <script>
+      if (confirm('로그인에 실패했습니다.')) {
+        window.location.href = "/";
+      }
+    </script>
+  `);
+  }
 };

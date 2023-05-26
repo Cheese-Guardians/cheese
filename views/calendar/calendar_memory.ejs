@@ -7,7 +7,7 @@
 <!-- MAIN SECTION -->
 <section id="hero" class="d-flex align-items-center">
   <main id="about">
-    <div class="col-lg-6 pt-lg-0 order-2 order-lg-1">
+    <div class="col-lg-5 pt-lg-0 order-2 order-lg-1  justify-content-center">
       <div class="wrapper">
         <div id="slider">
           <div class="material-icons arrow--left">
@@ -15,11 +15,9 @@
           </div>
           <% let link = '/img/about.png'; %>
           <% if (typeof(calendarResult) !== 'undefined' && calendarResult !== null && calendarResult.length > 0) { %>
-             <!-- <% console.log("upload!") %> -->
             <% link = '../uploads/' + calendarResult[calendarResult.length - 1].server_name + calendarResult[calendarResult.length - 1].extension; %>
             
           <% } %>
-          <!-- <% console.log(link) %> -->
           <div class="slide slide1" style = "background-image: url('<%= link %>');">
             <div class="slide__content">
              </div>

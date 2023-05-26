@@ -635,8 +635,6 @@ dot6.addEventListener("click", function(){
     dots[current].style.background = '#1107ff'
 })
 
-
-
 // 아이템 중복확인 위한 변수
 let dupl;
 // 추가 버튼에 대한 이벤트
@@ -687,12 +685,9 @@ function checkDupl(item) {
     document.querySelector("#item").value = "";
     document.querySelector("#item").focus();
     dupl = false;
-  } else {
+  } 
+  else {
     dupl = true;
   }
+
 }
-
-
-
-
-
