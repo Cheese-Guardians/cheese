@@ -18,3 +18,30 @@
     top: 20%;
     position: relative;
 }
+.medicine_reminder {
+    /* background-color: blue; */
+    width: 80%;
+    height: 100px;
+    margin: 0 auto;
+    position: relative;
+    top: 20%;
+}
+input {
+    margin-left: 10%;
+}
+button {
+    box-sizing: border-box;
+
+
+width: 38px;
+height: 22.4px;
+left:60%;
+position: relative;
+background: rgba(255, 255, 255, 0.5);
+border: 0.4px solid #000000;
+border-radius: 46px;
+}
+
+#medicationAdd {
+    right:30px;
+}

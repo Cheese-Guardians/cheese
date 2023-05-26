@@ -1,11 +1,47 @@
-<head>
-    <link href="/css/reminder.css" rel="stylesheet">
-    <!-- <link href="/css/calendar/calendar_memory.css" rel="stylesheet"> -->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  </head>
 
+ <head>
+  <link href="/css/reminder.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+ </head>
 <div class="reminder_wrapper">
   <div class="reminder_container">
-    
+    <div class="medicine_reminder"> 복용약 알림
+      <button type="button" id="medicationAdd" class="addBtn1">+</button>
+      <div id="medicationInputs">
+        <input type="time" class="symtom-time">
+        <input type="time" class="symtom-time">
+      </div>
+    </div>
+    <br/>
+    <div class="medicine_reminder"> 병원일정 알림
+      <button type="button" id="hospitalAdd" class="addBtn2">+</button>
+      <div id="hospitalInputs">
+        <input type="time" class="symtom-time">
+        <input type="time" class="symtom-time">
+      </div>
+    </div>
   </div>
 </div>
+
+<script>
+  const medicationAddButton = document.getElementById("medicationAdd");
+  const hospitalAddButton = document.getElementById("hospitalAdd");
+  const medicationInputs = document.getElementById("medicationInputs");
+  const hospitalInputs = document.getElementById("hospitalInputs");
+
+  medicationAddButton.addEventListener("click", function() {
+    const input = document.createElement("input");
+    input.type = "time";
+    input.classList.add("symtom-time");
+
+    medicationInputs.appendChild(input);
+  });
+
+  hospitalAddButton.addEventListener("click", function() {
+    const input = document.createElement("input");
+    input.type = "time";
+    input.classList.add("symtom-time");
+
+    hospitalInputs.appendChild(input);
+  });
+</script>
