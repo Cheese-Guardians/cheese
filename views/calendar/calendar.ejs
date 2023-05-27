@@ -393,19 +393,19 @@
                       buttons[i].addEventListener('click', handleButtonClick);
                     }
                   </script>
+                  <input type="hidden" id="sleeping_time" name="sleep_time" value="">
                     <% if (typeof calendarDataResult !== 'undefined' && calendarDataResult && typeof calendarDataResult.calendar !== 'undefined' && calendarDataResult.calendar && typeof calendarDataResult.calendar.sleep_time !== 'undefined') { %>
                       <script>
                       const sleepTime = <%= calendarDataResult.calendar.sleep_time %>;
                       const sleepButton = document.getElementsByClassName('btn')[sleepTime -3];
                       sleepButton.classList.add('active');
-
                       const sleepingTimeInput = document.getElementById('sleeping_time');
-                      sleepingTimeInput.value = sleepButton.value;
-
+                      sleepingTimeInput.value =  sleepTime;
+                      
                     </script>
                     <% } %>
                         
-                    <input type="hidden" id="sleeping_time" name="sleep_time" value="">
+                    
                 </div>
                 
 
