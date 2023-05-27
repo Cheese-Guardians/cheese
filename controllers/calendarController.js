@@ -3,6 +3,7 @@ const path = require('path');
 const calendarDate = require('../public/js/calendar.js');
 const jwt = require('jsonwebtoken');
 const secret = require('../config/secret');
+const baseResponse = require("../config/baseResponseStatus");
 
 exports.getCalendar = async function (req, res) {
   const token = req.cookies.x_auth;
@@ -27,10 +28,10 @@ exports.getCalendar = async function (req, res) {
     }
     // validation
     if(!user_id) {
-      return res.send(errResponse(baseResponse.USER_USERIDX_EMPTY));
+      return res.send(baseResponse.USER_USERIDX_EMPTY);
     } 
     if (user_id <= 0) {
-      return res.send(errResponse(baseResponse.USER_USERIDX_LENGTH));
+      return res.send(baseResponse.USER_USERIDX_LENGTH);
     }
     //sconsole.log("date!"+date);
     const calendarResult = await calendarService.retrieveCalendar(user_id);

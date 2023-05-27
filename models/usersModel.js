@@ -33,9 +33,9 @@ async function insertUserInfo(pool, insertUserPhoneParams, insertUserInfoParams,
 // 아이디 확인
 async function selectUserId(pool, user_id) {
   const selectUserIdQuery = `
-                SELECT user_id 
-                FROM user 
-                WHERE user_id = ?;
+        SELECT user_id 
+        FROM user 
+        WHERE user_id = ?;
                 `;
   const [userIdRows] = await pool.promise().query(selectUserIdQuery, user_id);
   return userIdRows;
