@@ -41,7 +41,7 @@
       </div>
 
       <!-- ======= symtom_check ======= -->
-      <div class="col-lg-6 pt-lg-0 order-2 order-lg-1">
+      <div class="col-lg-5 pt-lg-0 order-2 order-lg-1">
         <form action="http://localhost:3000/calendar" method="post" id="calendarForm">
           <!-- post시 쿼리스트링 그대로 보내기 -->
           <script>
@@ -398,6 +398,10 @@
                       const sleepTime = <%= calendarDataResult.calendar.sleep_time %>;
                       const sleepButton = document.getElementsByClassName('btn')[sleepTime -3];
                       sleepButton.classList.add('active');
+
+                      const sleepingTimeInput = document.getElementById('sleeping_time');
+                      sleepingTimeInput.value = sleepButton.value;
+
                     </script>
                     <% } %>
                         
