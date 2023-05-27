@@ -8,16 +8,20 @@
     <form id="myForm">
     <div class="medicine_reminder"> 복용약 알림
       <button type="button" id="medicationAdd" class="addBtn1 AddBtn">+</button>
+      <% if (typeof mediResult !== 'undefined' && mediResult !== null && mediResult.length > 0) { %>
+        <% for (let i = 0; i < mediResult.length; i++) { %>
       <div id="medicationInputs">
-        <input type="time" class="symtom-time">
-        <input type="time" class="symtom-time">
+        <input type="time" class="symtom-time" value="<%= mediResult[i].medi_reminder_time%>">
       </div>
+      <% } %>
+      <% } else { %>
+        <input type="time" class="symtom-time">
+      <% } %>
     </div>
     <br/>
     <div class="medicine_reminder"> 병원일정 알림
       <button type="button" id="hospitalAdd" class="addBtn2 AddBtn">+</button>
       <div id="hospitalInputs">
-        <input type="time" class="symtom-time">
         <input type="time" class="symtom-time">
       </div>
     </div>
