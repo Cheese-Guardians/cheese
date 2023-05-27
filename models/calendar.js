@@ -89,7 +89,87 @@ async function getSelectedCalendar(pool, selectedCalendarParams) {
   return {hospital_schedule, check_list, calendar, symptom_list};
 }
 
+//캘린더 저장
+async function insertCalInfo(pool, deleteCalendarParams, insertCalendarParams, getCalendarIdParams, deleteHospital_scheduleParams, insertHospital_scheduleParams, user_id, check_content, is_check){
+  let calendar_id;
+  // try{
+    //1. 캘린더 insert 
+    const deleteCalendarQuery = `
+    DELETE FROM calendar WHERE user_id = ? AND \`date\` = ?;
+    `;
+    const insertCalendarQuery = `
+      INSERT INTO calendar (user_id, \`date\`, sleep_time, diary) VALUES (?, ?, ?, ?);
+    `;
+    //2. 캘린더에서 해당 id select
+    const getCalendarIdQuery = `
+    SELECT calendar_id FROM calendar WHERE  user_id = ? AND \`date\` = ?;
+    `;
+    console.log("model2");
+    //3. 병원일정 insert
+    const deleteHospital_scheduleQuery = `
+    DELETE FROM hospital_schedule WHERE calendar_id = ? AND user_id = ?; 
+    `;
+    const insertHospital_scheduleQuery = `
+    INSERT INTO hospital_schedule (calendar_id, user_id, hospital_name, booking_time) VALUES (?, ?, ?, ?);
+    `;
+    //4. map 이용해 캘린더에서 checkContent 길이만큼 쿼리 생성(delete)
+    const deleteCheck_listqueries = check_content.map(() => `
+    DELETE FROM check_list WHERE calendar_id = ? AND user_id = ? AND check_content = ?;
+    `);
+    //3(1). insertCheck_listqueries배열을 join으로 연결(insert)
+    //const checkFlattenedQuery = insertCheck_listqueries.join('\n');
+    //5. map 이용해 캘린더에서 checkContent 길이만큼 쿼리 생성(insert)
+    const insertCheck_listqueries = check_content.map(() => `
+    INSERT INTO check_list (calendar_id, user_id, check_content, is_check) VALUES (?, ?, ?, ?);
+    `);
+    
+    // }catch(err){
+    //   console.log(err);
+    // }
+  const connection = await pool.promise().getConnection();
+  
+  console.log("why");
+  try {
+      await connection.query('START TRANSACTION');
+      await connection.query(deleteCalendarQuery, deleteCalendarParams);
+      await connection.query(insertCalendarQuery, insertCalendarParams);
+      const [calendarIDRow] =  await connection.query(getCalendarIdQuery, getCalendarIdParams);
+      calendar_id = calendarIDRow[0].calendar_id;
+      console.log("calId: "+calendar_id);
+      //가져온 calendar id로 params 수정
+      deleteHospital_scheduleParams.unshift(calendar_id);
+      insertHospital_scheduleParams.unshift(calendar_id);
 
+      await connection.query(deleteHospital_scheduleQuery, deleteHospital_scheduleParams);
+      await connection.query(insertHospital_scheduleQuery, insertHospital_scheduleParams);
+      //가져온 calendar id로 params 동적으로 checkcontents 파라미터 만듦
+      const deleteCheck_listParams = check_content.flatMap((checkContent, index) => [
+      calendar_id,
+      user_id,
+      checkContent,
+      ]);
+      //가져온 calendar id로 params 동적으로 checkcontents 파라미터 만듦
+      const insertCheck_listParams = check_content.flatMap((checkContent, index) => [
+      calendar_id,
+      user_id,
+      checkContent,
+      is_check[index]
+      ]);
+      console.log(insertCheck_listParams);
+      await Promise.all(deleteCheck_listqueries.map((query, index) => connection.query(query, deleteCheck_listParams.slice(index * 3, (index + 1) * 3))));
+      await Promise.all(insertCheck_listqueries.map((query, index) => connection.query(query, insertCheck_listParams.slice(index * 4, (index + 1) * 4))));
+      
+      console.log("model");
+
+      await connection.query('COMMIT');
+  } catch (error) {
+      await connection.query('ROLLBACK');
+      console.log(error);
+      throw error;
+  } finally {
+      connection.release();
+  }
+}
 
 // 파일 업로드
 async function insertFileMem(pool, insertFileMemParams) {
@@ -118,4 +198,5 @@ module.exports = {
   selectCalendar,
   insertFileMem,
   getSelectedCalendar,
+  insertCalInfo,
 }
