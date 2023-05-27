@@ -13,7 +13,7 @@
       </div>
       <button class="medi_submitBtn" type="submit" onclick="submitForm(event)">저장</button>
     </div>
-    <br/>
+    
     <div class="medicine_reminder"> 병원일정 알림
       <button type="button" id="hospitalAdd" class="addBtn2 AddBtn">+</button>
       <div id="hospitalInputs">
@@ -35,18 +35,22 @@
   const hospitalInputs = document.getElementById("hospitalInputs");
 
   medicationAddButton.addEventListener("click", function() {
+    if (medicationInputs.childElementCount < 6) {
     const input = document.createElement("input");
     input.type = "time";
     input.classList.add("symtom-time");
 
     medicationInputs.appendChild(input);
+    }
   });
 
   hospitalAddButton.addEventListener("click", function() {
+    if (hospitalInputs.childElementCount < 6) {
     const input = document.createElement("input");
     input.type = "time";
     input.classList.add("symtom-time");
 
     hospitalInputs.appendChild(input);
+    }
   });
 </script>
