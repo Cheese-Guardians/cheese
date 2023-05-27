@@ -17,6 +17,59 @@ exports.retrieveSelectedCalendar = async function (user_id, date) {
     }
     
 }
+exports.createCalendar = async function (
+    user_id,
+    date,
+    hospital_name,
+    hospital_schedule,
+    check_content,
+    sleep_time,
+    symtom_text,
+    symtom_time,
+    symtom_range,
+    diary_text,
+    is_check
+) {
+  try {
+
+    const deleteCalendarParams = [
+        user_id,
+        date
+      ];
+   
+    const insertCalendarParams = [
+      user_id,
+      date,
+      sleep_time,
+      diary_text,
+    ];
+
+    const getCalendarIdParams = [
+        user_id,
+        date
+      ];
+
+    const deleteHospital_scheduleParams = [
+        user_id
+      ];
+    const insertHospital_scheduleParams = [
+        user_id,
+        hospital_name,
+        hospital_schedule,
+      
+    ];
+    console.log(Array.isArray(check_content));
+    console.log(Array.isArray(is_check));
+    await calendarModel.insertCalInfo(pool, deleteCalendarParams, insertCalendarParams, getCalendarIdParams, deleteHospital_scheduleParams, insertHospital_scheduleParams, user_id, check_content, is_check);
+    console.log("aervice");
+    
+    return '성공';
+  } catch (err) {
+      return err;
+  }
+};
+
+
 exports.createFileMem = async function (server_name, user_name, extension) {
     try {
         const insertFileMemParams = [server_name, user_name, extension];
@@ -28,4 +81,3 @@ exports.createFileMem = async function (server_name, user_name, extension) {
         return 'createFileMemError';
     }
 }
-
