@@ -124,7 +124,7 @@ async function insertCalInfo(pool, deleteCalendarParams, insertCalendarParams, g
 
     //6. 증상 insert
     const deleteSymptomQueries = symptom_text.map((symptom_name) => {
-      if (symptom_name == undefined)
+      if (symptom_name == undefined || symptom_name == '')
         return null
       return `
       DELETE FROM symptom WHERE calendar_id = ? AND user_id = ? AND symptom_name = ? ; 
@@ -132,7 +132,7 @@ async function insertCalInfo(pool, deleteCalendarParams, insertCalendarParams, g
     });
    
     const insertSymptomQueries = symptom_text.map((symptom_name, index) => {
-      if (symptom_name == undefined)
+      if (symptom_name == undefined|| symptom_name == '')
         return null
       return `
       INSERT INTO symptom (calendar_id, user_id, symptom_name, onset_time, degree) VALUES (?, ?, ?, ?, ?);
@@ -184,7 +184,7 @@ async function insertCalInfo(pool, deleteCalendarParams, insertCalendarParams, g
       ]);
       //가져온 calendar id로 params 동적으로 Symptoms 파라미터 만듦(insert)
       const insertSymptomParams = symptom_text.flatMap((symptom_name, index) => {
-      if (symptom_time[index] == null || symptom_time[index] == '' ||symptom_time[index] == undefined)
+      if (symptom_time[index] == undefined || symptom_time[index] == '')
       return [
         calendar_id,
         user_id,
