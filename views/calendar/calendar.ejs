@@ -441,23 +441,24 @@
                       </script>
                     </div>
                     <% } %>
-                    <% for (let i = 0; i < 4 - calendarDataResult.symptom_list.length; i++) { %>
+                    <% for (let i = calendarDataResult.symptom_list.length; i < 4; i++) { %>
                       <div class="symptomTextBox ">
                       <input class="inputbX" type="text"  name="symptom_text" placeholder="감정 조절 불가">
                       <p><input type="time" name="symptom_time" class="symptom-time"></p>                     
                     </div>
-                    <div class="box-body">
-                      <input type="range" name="symptom_range" min="1" max="10" id="ex-in-<%= i %>" class="range-in" >
-                      <div id="ex-out-<%= i %>" class="range-out"></div>
-                      <script>
-                        const exIn<%= i %> = document.querySelector('#ex-in-<%= i %>');
-                        const exOut<%= i %> = document.querySelector('#ex-out-<%= i %>');
-                
-                        exIn<%= i %>.addEventListener('input', e => {
-                          exOut<%= i %>.innerHTML = e.target.value;
-                        });
-                      </script>
-                    </div>
+                    <div class="box-body"> 
+                      <input type="range" name="symptom_range" min="1" max="10" id="ex-in-<%= i %>"  class="range-in">   
+                    <div id="ex-out-<%= i %>" class="range-out"></div>
+                    <script>
+                      const exIn<%= i %> = document.querySelector('#ex-in-<%= i %>');
+                      const exOut<%= i %> = document.querySelector('#ex-out-<%= i %>');
+              
+                      exIn<%= i %>.addEventListener('input', e => {
+                        exOut<%= i %>.innerHTML = e.target.value;
+                      });
+                    </script>          
+                  </div>
+
                     <% } %>
                   <% } else { %>
                     <div class="symptomTextBox 1">                    
