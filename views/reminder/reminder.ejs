@@ -5,27 +5,27 @@
  </head>
 <div class="reminder_wrapper">
   <div class="reminder_container">
-    <form id="myForm">
+    <form id="myForm" action="/reminder/medication" method="POST">
     <div class="medicine_reminder"> 복용약 &nbsp 알림
       <button type="button" id="medicationAdd" class="addBtn1 AddBtn">+</button>
       <div id="medicationInputs">
-        <input type="time" class="symtom-time">
+        <input type="time" class="symtom-time" id="medi_reminder_time" name="medi_reminder_time">
       </div>
-      <button class="medi_submitBtn" type="submit" onclick="submitForm(event)">저장</button>
+      <div class="medi_submitBtn" type="submit" onclick="submitForm(event)">
+        <input type="submit" value="저장" id="loginsubmit" class="btn btn-success btn-user btn-block">
+      </div>
     </div>
     
-    <div class="medicine_reminder"> 병원일정 알림
+    <!-- <div class="medicine_reminder"> 병원일정 알림
       <button type="button" id="hospitalAdd" class="addBtn2 AddBtn">+</button>
       <div id="hospitalInputs">
         <input type="time" class="symtom-time">
       </div>
       <button class="hospital_submitBtn" type="submit" onclick="submitForm(event)">저장</button>
-    </div>
- 
-         
-      
-    </form>
+    </div> -->
+    
   </div>
+</form>
 </div>
 
 <script>
