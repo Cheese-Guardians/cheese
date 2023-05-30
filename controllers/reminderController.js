@@ -5,8 +5,8 @@ const baseResponse = require("../config/baseResponseStatus");
 const path = require('path');
 const axios = require('axios');
 const Cache = require('memory-cache');
-const CryptoJS = require('crypto-js');
-require('dotenv').config({path: "../config/sens.env"});
+const crypto = require('crypto');
+
 // 복용약 알림 get
 exports.getMedi = async function (req,res) {
     const token = req.cookies.x_auth;
@@ -34,7 +34,9 @@ exports.getMedi = async function (req,res) {
 
 const date = Date.now().toString();
 const uri = process.env.SENS_SERVICE_ID;
+console.log(uri);
 const secretKey = process.env.SENS_SECRET_KEY;
+console.log(secretKey);
 const accessKey = process.env.SENS_ACCESS_KEY;
 const method = 'POST';
 const space = " ";
@@ -42,7 +44,7 @@ const newLine = "\n";
 const url = `https://sens.apigw.ntruss.com/sms/v2/services/${uri}/messages`;
 const url2 = `/sms/v2/services/${uri}/messages`;
 
-const  hmac = CryptoJS.algo.HMAC.create(CryptoJS.algo.SHA256, secretKey);
+const hmac = crypto.createHmac('sha256', secretKey);
 
 hmac.update(method);
 hmac.update(space);
@@ -52,8 +54,8 @@ hmac.update(date);
 hmac.update(newLine);
 hmac.update(accessKey);
 
-const hash = hmac.finalize();
-const signature = hash.toString(CryptoJS.enc.Base64);
+const hash = hmac.digest('base64');
+const signature = hash;
 
 exports.send = async function (req, res) {
   const phoneNumber = req.body.phoneNumber;

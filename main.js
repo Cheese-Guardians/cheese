@@ -13,12 +13,8 @@ const pool = mysql.createPool({
 
 module.exports = pool;  //모듈로 내보내기
 
-    //let sql = "INSERT INTO category (category_name, description)  VALUES  ('통합게시판', '아무거나 의견을 나눠주세용!!');";
-    //let sql2 = "select * from category;";
-    //let[rows, fields] = await db.query(sql,sql2);
-  
-  
-    //console.log(rows);
+require('dotenv').config({path: "./config/sens.env"}); // sens.env 불러오기
+
 const port = 3030,
     express = require("express"),
     cors = require("cors")
