@@ -116,12 +116,18 @@ async function insertCalInfo(pool, deleteCalendarParams, insertCalendarParams, g
     const deleteCheck_listqueries = check_content.map(() => `
     DELETE FROM check_list WHERE calendar_id = ? AND user_id = ? AND check_content = ?;
     `);
-    //3(1). insertCheck_listqueries배열을 join으로 연결(insert)
-    //const checkFlattenedQuery = insertCheck_listqueries.join('\n');
+
     //5. map 이용해 캘린더에서 checkContent 길이만큼 쿼리 생성(insert)
     const insertCheck_listqueries = check_content.map(() => `
     INSERT INTO check_list (calendar_id, user_id, check_content, is_check) VALUES (?, ?, ?, ?);
     `);
+    //6. 증상 insert
+    const deletSymptomQuery = `
+    DELETE FROM symptom WHERE calendar_id = ? AND user_id = ? AND symptom_name = ? ; 
+    `;
+    const insertSymptomQuery = `
+    INSERT INTO hospital_schedule (calendar_id, user_id, symptom_name, onset_time, degree) VALUES (?, ?, ?, ?, ?);
+    `;
     
     // }catch(err){
     //   console.log(err);

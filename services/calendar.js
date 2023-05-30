@@ -24,9 +24,9 @@ exports.createCalendar = async function (
     hospital_schedule,
     check_content,
     sleep_time,
-    symtom_text,
-    symtom_time,
-    symtom_range,
+    symptom_text,
+    symptom_time,
+    symptom_range,
     diary_text,
     is_check
 ) {
@@ -60,7 +60,7 @@ exports.createCalendar = async function (
     ];
     console.log(Array.isArray(check_content));
     console.log(Array.isArray(is_check));
-    await calendarModel.insertCalInfo(pool, deleteCalendarParams, insertCalendarParams, getCalendarIdParams, deleteHospital_scheduleParams, insertHospital_scheduleParams, user_id, check_content, is_check);
+    await calendarModel.insertCalInfo(pool, deleteCalendarParams, insertCalendarParams, getCalendarIdParams, deleteHospital_scheduleParams, insertHospital_scheduleParams, user_id, check_content, is_check, symptom_text, symptom_time, symptom_range);
     console.log("aervice");
     
     return '성공';

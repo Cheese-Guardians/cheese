@@ -40,7 +40,7 @@
         </table>
       </div>
 
-      <!-- ======= symtom_check ======= -->
+      <!-- ======= symptom_check ======= -->
       <div class="col-lg-5 pt-lg-0 order-2 order-lg-1">
         <form action="http://localhost:3000/calendar" method="post" id="calendarForm">
           <!-- post시 쿼리스트링 그대로 보내기 -->
@@ -52,9 +52,9 @@
             const form = document.getElementById('calendarForm');
             form.action += queryString;
           </script>
-        <div class="symtom_check">
+        <div class="symptom_check">
           <div>
-            <div class="symtom_check_left">
+            <div class="symptom_check_left">
               <div class="date">
                 <div class="title"> <p id = "selected_date"> 날짜 </p></div>
                   <!-- <script>
@@ -415,21 +415,21 @@
             </div>
 
 
-            <div class="symtom_check_right">
-              <div class="symtom">
+            <div class="symptom_check_right">
+              <div class="symptom">
                 <div class="title"> <p> 증상 </p> </div>
                 <div>
                   <% if (typeof calendarDataResult !== 'undefined' && calendarDataResult && typeof calendarDataResult.symptom_list !== 'undefined' && calendarDataResult.symptom_list && calendarDataResult.symptom_list.length !== 0) { %>
                     
                     <% for (let i = 0; i < calendarDataResult.symptom_list.length; i++) { %>
-                    <div class="symtomTextBox ">                    
-                      <input class="inputbX" type="text" id="<%= i %>" name="symtom_text" value="<%= calendarDataResult.symptom_list[i].symptom_name %>">
-                      <p><input type="time"  name="symtom_time" class="symtom-time" value="<%= calendarDataResult.symptom_list[i].onset_time%>" ></p>                      
+                    <div class="symptomTextBox ">                    
+                      <input class="inputbX" type="text" id="<%= i %>" name="symptom_text" value="<%= calendarDataResult.symptom_list[i].symptom_name %>">
+                      <p><input type="time"  name="symptom_time" class="symptom-time" value="<%= calendarDataResult.symptom_list[i].onset_time%>" ></p>                      
                       
                     </div>
 
                     <div class="box-body">
-                      <input type="range" name="symtom_range" min="1" max="10" id="ex-in-<%= i %>" class="range-in" value="<%= calendarDataResult.symptom_list[i].degree %>">
+                      <input type="range" name="symptom_range" min="1" max="10" id="ex-in-<%= i %>" class="range-in" value="<%= calendarDataResult.symptom_list[i].degree %>">
                       <div id="ex-out-<%= i %>" class="range-out"> <%= calendarDataResult.symptom_list[i].degree %> </div>
                       <script>
                         const exIn<%= i %> = document.querySelector('#ex-in-<%= i %>');
@@ -442,13 +442,13 @@
                     </div>
                     <% } %>
                   <% } else { %>
-                    <div class="symtomTextBox 1">                    
-                      <input class="inputbX" type="text"  name="symtom_text" placeholder="기억력 저하" >
-                      <p><input type="time" name="symtom_time" class="symtom-time"></p>             
+                    <div class="symptomTextBox 1">                    
+                      <input class="inputbX" type="text"  name="symptom_text" placeholder="기억력 저하" >
+                      <p><input type="time" name="symptom_time" class="symptom-time"></p>             
                     </div>
                   
                     <div class="box-body"> 
-                        <input type="range" name="symtom_range" min="1" max="10" id="ex-in1" class="range-in">   
+                        <input type="range" name="symptom_range" min="1" max="10" id="ex-in1" class="range-in">   
                       <div id="ex-out1" class="range-out"></div>
                       <script>
                       document.querySelector('#ex-in1').addEventListener('input',e=>{
@@ -457,12 +457,12 @@
                       </script>           
                     </div>
 
-                    <div class="symtomTextBox 2">
-                      <input class="inputbX" type="text"  name="symtom_text" placeholder="감정 조절 불가">
-                      <p><input type="time" name="symtom_time" class="symtom-time"></p>                     
+                    <div class="symptomTextBox 2">
+                      <input class="inputbX" type="text"  name="symptom_text" placeholder="감정 조절 불가">
+                      <p><input type="time" name="symptom_time" class="symptom-time"></p>                     
                     </div>
                     <div class="box-body"> 
-                      <input type="range" name="symtom_range" min="1" max="10" id="ex-in2" class="range-in">   
+                      <input type="range" name="symptom_range" min="1" max="10" id="ex-in2" class="range-in">   
                       <div id="ex-out2" class="range-out"></div>
                       <script>
                         document.querySelector('#ex-in2').addEventListener('input',e=>{
@@ -470,12 +470,12 @@
                         });
                       </script>           
                     </div>
-                    <div class="symtomTextBox 3">
-                      <input class="inputbX" type="text"  name="symtom_text" placeholder="폭력성">
-                      <p><input type="time" name="symtom_time" class="symtom-time"></p>                     
+                    <div class="symptomTextBox 3">
+                      <input class="inputbX" type="text"  name="symptom_text" placeholder="폭력성">
+                      <p><input type="time" name="symptom_time" class="symptom-time"></p>                     
                     </div>
                     <div class="box-body"> 
-                      <input type="range" name="symtom_range" min="1" max="10" id="ex-in3" class="range-in">   
+                      <input type="range" name="symptom_range" min="1" max="10" id="ex-in3" class="range-in">   
                       <div id="ex-out3" class="range-out"></div>
                       <script>
                         document.querySelector('#ex-in3').addEventListener('input',e=>{
@@ -483,12 +483,12 @@
                         });
                       </script>           
                     </div>
-                    <div class="symtomTextBox 4">
-                      <input class="inputbX" type="text"  name="symtom_text" placeholder="배회 증상">
-                      <p><input type="time" name="symtom_time" class="symtom-time"></p>                     
+                    <div class="symptomTextBox 4">
+                      <input class="inputbX" type="text"  name="symptom_text" placeholder="배회 증상">
+                      <p><input type="time" name="symptom_time" class="symptom-time"></p>                     
                     </div>
                     <div class="box-body"> 
-                      <input type="range" name="symtom_range" min="1" max="10" id="ex-in4" class="range-in">   
+                      <input type="range" name="symptom_range" min="1" max="10" id="ex-in4" class="range-in">   
                       <div id="ex-out4" class="range-out"></div>
                       <script>
                         document.querySelector('#ex-in4').addEventListener('input',e=>{
