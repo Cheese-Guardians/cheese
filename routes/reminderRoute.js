@@ -25,4 +25,7 @@ app.post('/verify', user.verify);
 // 복용약 알림 get
 router.get('/medication', reminders.getMedi);
 
+// 병원 일정 알림 get
+// router.get('/hospital', reminders.getHospital);
+
 module.exports = router;
