@@ -3,6 +3,7 @@ const path = require('path');
 const calendarDate = require('../public/js/calendar.js');
 const jwt = require('jsonwebtoken');
 const secret = require('../config/secret');
+const querystring = require('querystring');
 
 exports.getCalendar = async function (req, res) {
   const token = req.cookies.x_auth;
@@ -90,25 +91,25 @@ exports.postCalendar = async function (req, res) {
     );
     console.log(diary_text);
     if (createCalResponse == "성공") {
+      const queryString = querystring.stringify(req.query);
       return res.status(200).send(`
-      <script>
-        if (confirm('캘린더 등록에 성공했습니다.')) {
-          window.location.href = "/calendar";
-        }
-      </script>
-    `)    
-    }
-    else {
+        <script>
+          if (confirm('캘린더 등록에 성공했습니다.')) {
+            window.location.href = "/calendar?${queryString}";
+          }
+        </script>
+      `);
+    } else {
+      const queryString = querystring.stringify(req.query);
       return res.send(`
-      <script>
-        if (confirm('캘린더 등록에 실패했습니다.')) {
-          window.location.href = "/calendar";
-        }
-      </script>
-    `);
-    }    
+        <script>
+          if (confirm('캘린더 등록에 실패했습니다.')) {
+            window.location.href = "/calendar?${queryString}";
+          }
+        </script>
+      `);
+    }
   }
-
   else {
     return res.send('calendar req error(token)');
   }
