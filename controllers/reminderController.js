@@ -28,10 +28,7 @@ exports.getMedi = async function (req,res) {
     }
 }
 
-
-
-
-
+// 문자 세팅
 const date = Date.now().toString();
 const uri = process.env.SENS_SERVICE_ID;
 console.log(uri);
@@ -57,64 +54,50 @@ hmac.update(accessKey);
 const hash = hmac.digest('base64');
 const signature = hash;
 
-exports.send = async function (req, res) {
-  const phoneNumber = req.body.phoneNumber;
+// 문자 보내기
+exports.sendSMS = async function (req, res) {
+    const token = req.cookies.x_auth;
+    if (token) {
+        const decodedToken = jwt.verify(token, secret.jwtsecret); // 토큰 검증, 복호화
+        const user_id = decodedToken.user_id; // user_id를 추출
+        const phoneNumber = await reminderService.retrievePhoneNum(user_id);
 
-  Cache.del(phoneNumber);
-
-  //인증번호 생성
-  const verifyCode = Math.floor(Math.random() * (999999 - 100000)) + 100000;
-
-  Cache.put(phoneNumber, verifyCode.toString());
-
-  axios({
-    method: method,
-    json: true,
-    url: url,
-    headers: {
-      'Content-Type': 'application/json',
-      'x-ncp-iam-access-key': accessKey,
-      'x-ncp-apigw-timestamp': date,
-      'x-ncp-apigw-signature-v2': signature,
-    },
-    data: {
-      type: 'SMS',
-      contentType: 'COMM',
-      countryCode: '82',
-      from: '01063007753',
-      content: `[Milli] 인증번호 [${verifyCode}]를 입력해주세요.`,
-      messages: [
-        {
-          to: `${phoneNumber}`,
-        },
-      ],
-    }, 
-    })
-  .then(function (res) {
-    res.send(response(baseResponse.SMS_SEND_SUCCESS));
-  })
-  .catch((err) => {
-    if(err.res == undefined){
-      res.send(response(baseResponse.SMS_SEND_SUCCESS));
+        axios({
+            method: method,
+            json: true,
+            url: url,
+            headers: {
+                'Content-Type': 'application/json',
+                'x-ncp-iam-access-key': accessKey,
+                'x-ncp-apigw-timestamp': date,
+                'x-ncp-apigw-signature-v2': signature,
+            },
+            data: {
+            type: 'SMS',
+            contentType: 'COMM',
+            countryCode: '82',
+            from: '01063007753',
+            content: `
+                <치매 가디언즈 알림>
+                복용약 드실 시간입니다.
+                `,
+            messages: [
+                {
+                    to: `${phoneNumber}`,
+                },
+            ],
+            }, 
+        })
+        .then(function (res) {
+            res.send(baseResponse.SMS_SEND_SUCCESS);
+        })
+        .catch((err) => {
+            if(err.res == undefined){
+            res.send(baseResponse.SMS_SEND_SUCCESS);
+            }
+            else res.sned(baseResponse.SMS_SEND_FAILURE);
+        });
     }
-    else res.sned(errResponse(baseResponse.SMS_SEND_FAILURE));
-  });
-};
-
-exports.verify = async function (req, res) {
-  const phoneNumber = req.body.phoneNumber;
-  const verifyCode = req.body.verifyCode;
-
-  const CacheData = Cache.get(phoneNumber);
-
-  if (!CacheData) {
-    return res.send(errResponse(baseResponse.FAILURE_SMS_AUTHENTICATION));
-  } else if (CacheData !== verifyCode) {
-      return res.send(errResponse(baseResponse.FAILURE_SMS_AUTHENTICATION));
-  } else {
-    Cache.del(phoneNumber);
-    return res.send(response(baseResponse.SMS_VERIFY_SUCCESS));     
-  }
 };
 
 // 병원 일정 알림 get

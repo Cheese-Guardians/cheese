@@ -47,6 +47,10 @@ module.exports = {
     //Connection, Transaction 등의 서버 오류
     DB_ERROR : { "isSuccess": false, "code": 4000, "message": "데이터 베이스 에러"},
     SERVER_ERROR : { "isSuccess": false, "code": 4001, "message": "서버 에러"},
- 
- 
+
+    // SMS
+    SMS_SEND_SUCCESS : { "isSuccess": true, "code": 5000, "message": "SMS 전송 성공"},
+    SMS_SEND_FAILURE : { "isSuccess": false, "code": 5001, "message": "SMS 전송 실패"},
+    SMS_VERIFY_SUCCESS : { "isSuccess": true, "code": 5002, "message": "SMS 검증 인증 성공"},
+    FAILURE_SMS_AUTHENTICATION : { "isSuccess": false, "code": 5003, "message": "SMS 검증 인증 실패"},
 }

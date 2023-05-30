@@ -11,6 +11,16 @@ exports.retrieveMedi = async function (user_id) {
     }
 }
 
+// 문자 보내기
+exports.retrievePhoneNum = async function (user_id) {
+    try {
+        const phoneNumResult = await reminderModel.selectretrievePhoneNum(pool, user_id);
+        return phoneNumResult;
+    } catch (err) {
+        return 'retrievePhoneNumError';
+    }
+}
+
 // 병원 일정 알림 get
 /*
 exports.retrieveHospital = async function (user_id) {
