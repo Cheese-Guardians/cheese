@@ -43,7 +43,9 @@ exports.createCalendar = async function (
       sleep_time,
       diary_text,
     ];
-
+    if (insertCalendarParams[2] == undefined ||insertCalendarParams[2] == ''){
+      insertCalendarParams[2] = null;
+    }
     const getCalendarIdParams = [
         user_id,
         date
