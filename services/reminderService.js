@@ -7,6 +7,18 @@ exports.retrieveMedi = async function (user_id) {
         const mediResult = await reminderModel.selectMedi(pool, user_id);
         return mediResult;
     } catch (err) {
-        return 'retrieveMediError'
+        return 'retrieveMediError';
     }
 }
+
+// 병원 일정 알림 get
+/*
+exports.retrieveHospital = async function (user_id) {
+    try {
+        const hospitalResult = await reminderModel.selectHospital(pool, user_id);
+        return hospitalResult;
+    } catch (err) {
+        return 'retrieveHospitalError';
+    }
+}
+*/
