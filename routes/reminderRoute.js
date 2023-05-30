@@ -7,6 +7,15 @@ router.get("/", (req, res) => {
     return res.render('reminder/reminder.ejs');
 });
 
+// SMS 메시지 보내기를 처리하는 라우트 핸들러
+// 문자인증(SENS를 통한) 전송 API
+app.post('/send', user.send);
+
+// 문자인증(SENS를 통한) 검증 API
+app.post('/verify', user.verify);
+  
+  module.exports = router;
+
 // 문자 보내기
 // router.post('/', reminders.sendSMS);
 

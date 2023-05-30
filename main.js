@@ -19,7 +19,7 @@ module.exports = pool;  //모듈로 내보내기
   
   
     //console.log(rows);
-const port = 3000,
+const port = 3030,
     express = require("express"),
     cors = require("cors")
     app = express(),
