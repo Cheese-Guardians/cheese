@@ -90,7 +90,7 @@ async function getSelectedCalendar(pool, selectedCalendarParams) {
 }
 
 //캘린더 저장
-async function insertCalInfo(pool, deleteCalendarParams, insertCalendarParams, getCalendarIdParams, deleteHospital_scheduleParams, insertHospital_scheduleParams, user_id, check_content, is_check){
+async function insertCalInfo(pool, deleteCalendarParams, insertCalendarParams, getCalendarIdParams, deleteHospital_scheduleParams, insertHospital_scheduleParams, user_id, check_content, is_check, symptom_text, symptom_time, symptom_range){
   let calendar_id;
   // try{
     //1. 캘린더 insert 
@@ -113,21 +113,32 @@ async function insertCalInfo(pool, deleteCalendarParams, insertCalendarParams, g
     INSERT INTO hospital_schedule (calendar_id, user_id, hospital_name, booking_time) VALUES (?, ?, ?, ?);
     `;
     //4. map 이용해 캘린더에서 checkContent 길이만큼 쿼리 생성(delete)
-    const deleteCheck_listqueries = check_content.map(() => `
+    const deleteCheck_listQueries = check_content.map(() => `
     DELETE FROM check_list WHERE calendar_id = ? AND user_id = ? AND check_content = ?;
     `);
 
     //5. map 이용해 캘린더에서 checkContent 길이만큼 쿼리 생성(insert)
-    const insertCheck_listqueries = check_content.map(() => `
+    const insertCheck_listQueries = check_content.map(() => `
     INSERT INTO check_list (calendar_id, user_id, check_content, is_check) VALUES (?, ?, ?, ?);
     `);
+
     //6. 증상 insert
-    const deletSymptomQuery = `
-    DELETE FROM symptom WHERE calendar_id = ? AND user_id = ? AND symptom_name = ? ; 
-    `;
-    const insertSymptomQuery = `
-    INSERT INTO hospital_schedule (calendar_id, user_id, symptom_name, onset_time, degree) VALUES (?, ?, ?, ?, ?);
-    `;
+    const deleteSymptomQueries = symptom_text.map((symptom_name) => {
+      if (symptom_name == undefined)
+        return null
+      return `
+      DELETE FROM symptom WHERE calendar_id = ? AND user_id = ? AND symptom_name = ? ; 
+      `;
+    });
+   
+    const insertSymptomQueries = symptom_text.map((symptom_name, index) => {
+      if (symptom_name == undefined)
+        return null
+      return `
+      INSERT INTO symptom (calendar_id, user_id, symptom_name, onset_time, degree) VALUES (?, ?, ?, ?, ?);
+      `;
+    });
+    
     
     // }catch(err){
     //   console.log(err);
@@ -148,13 +159,13 @@ async function insertCalInfo(pool, deleteCalendarParams, insertCalendarParams, g
 
       await connection.query(deleteHospital_scheduleQuery, deleteHospital_scheduleParams);
       await connection.query(insertHospital_scheduleQuery, insertHospital_scheduleParams);
-      //가져온 calendar id로 params 동적으로 checkcontents 파라미터 만듦
+      //가져온 calendar id로 params 동적으로 checkcontents 파라미터 만듦(delete)
       const deleteCheck_listParams = check_content.flatMap((checkContent, index) => [
       calendar_id,
       user_id,
       checkContent,
       ]);
-      //가져온 calendar id로 params 동적으로 checkcontents 파라미터 만듦
+      //가져온 calendar id로 params 동적으로 checkcontents 파라미터 만듦(insert)
       const insertCheck_listParams = check_content.flatMap((checkContent, index) => [
       calendar_id,
       user_id,
@@ -162,12 +173,50 @@ async function insertCalInfo(pool, deleteCalendarParams, insertCalendarParams, g
       is_check[index]
       ]);
       console.log(insertCheck_listParams);
-      await Promise.all(deleteCheck_listqueries.map((query, index) => connection.query(query, deleteCheck_listParams.slice(index * 3, (index + 1) * 3))));
-      await Promise.all(insertCheck_listqueries.map((query, index) => connection.query(query, insertCheck_listParams.slice(index * 4, (index + 1) * 4))));
-      
+      await Promise.all(deleteCheck_listQueries.map((query, index) => connection.query(query, deleteCheck_listParams.slice(index * 3, (index + 1) * 3))));
+      await Promise.all(insertCheck_listQueries.map((query, index) => connection.query(query, insertCheck_listParams.slice(index * 4, (index + 1) * 4))));
+
+      //가져온 calendar id로 params 동적으로 Symptoms 파라미터 만듦(delete)
+      const deleteSymptomParams = symptom_text.flatMap((symptom_name, index) => [
+        calendar_id,
+        user_id,
+        symptom_name
+      ]);
+      //가져온 calendar id로 params 동적으로 Symptoms 파라미터 만듦(insert)
+      const insertSymptomParams = symptom_text.flatMap((symptom_name, index) => {
+      if (symptom_time[index] == null || symptom_time[index] == '' ||symptom_time[index] == undefined)
+      return [
+        calendar_id,
+        user_id,
+        symptom_name,
+        null,
+        symptom_range[index]
+      ];
+      else 
+      return [
+        calendar_id,
+        user_id,
+        symptom_name,
+        symptom_time[index],
+        symptom_range[index]
+      ];
+    });
+    console.log(deleteSymptomParams);
+    console.log(insertSymptomParams);
+    await Promise.all(deleteSymptomQueries.map((query, index) => {
+      if (query==null)
+        return;
+      else return connection.query(query, deleteSymptomParams.slice(index * 3, (index + 1) * 3));
+      }));
+    console.log("delete완료");
+    await Promise.all(insertSymptomQueries.map((query, index) => {
+        if (query==null)
+          return;
+        else return connection.query(query, insertSymptomParams.slice(index * 5, (index + 1) * 5));
+        }));
       console.log("model");
 
-      await connection.query('COMMIT');
+    await connection.query('COMMIT');
   } catch (error) {
       await connection.query('ROLLBACK');
       console.log(error);
