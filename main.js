@@ -15,7 +15,8 @@ module.exports = pool;  //모듈로 내보내기
 
 require('dotenv').config({path: "./config/sens.env"}); // sens.env 불러오기
 
-const port = 3030,
+// 기본 설정
+const port = 3000,
     express = require("express"),
     cors = require("cors")
     app = express(),
