@@ -68,12 +68,12 @@
           </button>
   
         </form>
-        <form action="/calendar/upload" method="POST" enctype="multipart/form-data">
-          <input id="intputbox" style=" padding: 23px 25px ;display : flex; justify-content : center;" type="file"
-            name="file">
-          <button id="inputbotton" type="submit"
-            style="margin:auto; WIDTH: 70pt; HEIGHT: 30pt; FONT-SIZE:12px; background-color: #b3cc62; margin-bottom:10px;">업로드</button>
+        <form action="/calendar/upload" method="POST" enctype="multipart/form-data" id="fileForm">
+          <input id="inputbox" style="padding: 23px 25px; display: flex; justify-content: center;" type="file" name="file">
+          <input id="fileDate" type="hidden" name="fileDate" value="">
+          <button id="inputbutton" type="submit" style="margin:auto; width: 70pt; height: 30pt; font-size: 12px; background-color: #b3cc62; margin-bottom: 10px;">업로드</button>
         </form>
+        
       </div>
       
     </div>

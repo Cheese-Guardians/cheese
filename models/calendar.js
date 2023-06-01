@@ -235,7 +235,8 @@ return userRow;
 
 // 파일 업로드
 async function insertFileMem(pool, insertFileMemParams) {
-  //console.log(typeof(insertFileMemParams[0]));
+  try{
+    //console.log(typeof(insertFileMemParams[0]));
   //const server_name = parseInt(insertFileMemParams[0]);
   const connection = await pool.promise().getConnection();
   //console.log("number "+ typeof(server_name));
@@ -257,6 +258,9 @@ async function insertFileMem(pool, insertFileMemParams) {
   const [insertFileRow] =  await connection.query(insertFileMemQuery, insertFileMemParams);  
 
   return {calendarIDRow, insertFileRow};
+  }catch (error) {
+      console.log(error);
+  }
 }
 
 module.exports = {
