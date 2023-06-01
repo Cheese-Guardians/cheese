@@ -19,23 +19,25 @@
           <% let link4 = '/img/about.png'; %>
           <% let link5 = '/img/about.png'; %>
           <% let link6 = '/img/about.png'; %>
-          <% if (typeof(calendarResult) !== 'undefined' && calendarResult !== null && calendarResult.length > 0) { %>
-            <% link1 = '../uploads/' + calendarResult[calendarResult.length - 1].server_name + calendarResult[calendarResult.length - 1].extension; %>
-          <% } %>
-          <% if (typeof(calendarResult) !== 'undefined' && calendarResult !== null && calendarResult.length > 1) { %>
-            <% link2 = '../uploads/' + calendarResult[calendarResult.length - 2].server_name + calendarResult[calendarResult.length - 1].extension; %>
-          <% } %>
-          <% if (typeof(calendarResult) !== 'undefined' && calendarResult !== null && calendarResult.length > 2) { %>
-            <% link3 = '../uploads/' + calendarResult[calendarResult.length - 3].server_name + calendarResult[calendarResult.length - 1].extension; %>
-          <% } %>
-          <% if (typeof(calendarResult) !== 'undefined' && calendarResult !== null && calendarResult.length > 3) { %>
-            <% link4 = '../uploads/' + calendarResult[calendarResult.length - 4].server_name + calendarResult[calendarResult.length - 1].extension; %>
-          <% } %>
-          <% if (typeof(calendarResult) !== 'undefined' && calendarResult !== null && calendarResult.length > 4) { %>
-            <% link5 = '../uploads/' + calendarResult[calendarResult.length - 5].server_name + calendarResult[calendarResult.length - 1].extension; %>
-          <% } %>
-          <% if (typeof(calendarResult) !== 'undefined' && calendarResult !== null && calendarResult.length > 5) { %>
-            <% link6 = '../uploads/' + calendarResult[calendarResult.length - 6].server_name + calendarResult[calendarResult.length - 1].extension; %>
+          <% if (typeof(calendarResult) !== 'undefined' && calendarResult !== null ) { %>
+            <% if ( calendarResult.length > 5 ) { %>
+              <% link6 = '../uploads/' + calendarResult[calendarResult.length - 6].server_name + calendarResult[calendarResult.length - 6].extension; %>
+            <% } %>
+            <% if ( calendarResult.length > 4 ) { %>
+              <% link5 = '../uploads/' + calendarResult[calendarResult.length - 5].server_name + calendarResult[calendarResult.length - 5].extension; %>
+              <% } %>
+            <% if ( calendarResult.length > 3 ) { %>
+              <% link4 = '../uploads/' + calendarResult[calendarResult.length - 4].server_name + calendarResult[calendarResult.length - 4].extension; %>
+              <% } %>
+            <% if ( calendarResult.length > 2 ) { %>
+              <% link3 = '../uploads/' + calendarResult[calendarResult.length - 3].server_name + calendarResult[calendarResult.length - 3].extension; %>  
+              <% } %>
+            <% if ( calendarResult.length > 1 ) { %>
+              <% link2 = '../uploads/' + calendarResult[calendarResult.length - 2].server_name + calendarResult[calendarResult.length - 2].extension; %>
+              <% } %>
+            <% if ( calendarResult.length > 0 ) { %>
+              <% link1 = '../uploads/' + calendarResult[calendarResult.length - 1].server_name + calendarResult[calendarResult.length - 1].extension; %>
+              <% } %>
           <% } %>
           <div class="slide slide1" style = "background-image: url('<%= link1 %>');">
             <div class="slide__content">
