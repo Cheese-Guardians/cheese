@@ -41,9 +41,66 @@
     el.addEventListener('scroll', listener)
   }
 
-  /**
-   * Navbar links active state on scroll
-   */
+  // /**
+  //  * Navbar links active state on scroll
+  //  */
+  // let navbarlinks = select('#navbar .scrollto', true)
+  // const navbarlinksActive = () => {
+  //   let position = window.scrollY + 200
+  //   navbarlinks.forEach(navbarlink => {
+  //     if (!navbarlink.hash) return
+  //     let section = select(navbarlink.hash)
+  //     if (!section) return
+  //     if (position >= section.offsetTop && position <= (section.offsetTop + section.offsetHeight)) {
+  //       navbarlink.classList.add('active')
+  //     } else {
+  //       navbarlink.classList.remove('active')
+  //     }
+  //   })
+  // }
+  // window.addEventListener('load', navbarlinksActive)
+  // onscroll(document, navbarlinksActive)
+// 현재 URL 가져오는 함수
+function getCurrentURL() {
+  return window.location.pathname;
+}
+
+// 페이지 로드 시 실행되는 함수
+window.addEventListener('DOMContentLoaded', function() {
+  // 현재 URL
+  var currentURL = getCurrentURL();
+
+  // 링크 요소들
+  var calendarLink = document.querySelector('.calendaractive');
+  var alarmLink = document.querySelector('.alarmactive');
+  var checkLink = document.querySelector('.checkactive');
+  var mypageLink = document.querySelector('.mypageactive');
+
+  // 현재 URL에 따라 'active' 클래스 추가/제거
+  if (currentURL === '/calendar') {
+    calendarLink.classList.add('active');
+    alarmLink.classList.remove('active');
+    checkLink.classList.remove('active');
+    mypageLink.classList.remove('active');
+  } else if (currentURL === '/reminder') {
+    calendarLink.classList.remove('active');
+    alarmLink.classList.add('active');
+    checkLink.classList.remove('active');
+    mypageLink.classList.remove('active');
+  } else if (currentURL === '/diagnosis/check/password') {
+    calendarLink.classList.remove('active');
+    alarmLink.classList.remove('active');
+    checkLink.classList.add('active');
+    mypageLink.classList.remove('active');
+  } else if (currentURL === '/mypage') {
+    calendarLink.classList.remove('active');
+    alarmLink.classList.remove('active');
+    checkLink.classList.remove('active');
+    mypageLink.classList.add('active');
+  }
+});
+
+
   let navbarlinks = select('#navbar .scrollto', true)
   const navbarlinksActive = () => {
     let position = window.scrollY + 200
@@ -60,7 +117,6 @@
   }
   window.addEventListener('load', navbarlinksActive)
   onscroll(document, navbarlinksActive)
-
   /**
    * Scrolls to an element with header offset
    */
@@ -169,30 +225,30 @@
   /**
    * Porfolio isotope and filter
    */
-  window.addEventListener('load', () => {
-    let portfolioContainer = select('.portfolio-container');
-    if (portfolioContainer) {
-      let portfolioIsotope = new Isotope(portfolioContainer, {
-        itemSelector: '.portfolio-item'
-      });
+  // window.addEventListener('load', () => {
+  //   let portfolioContainer = select('.portfolio-container');
+  //   if (portfolioContainer) {
+  //     let portfolioIsotope = new Isotope(portfolioContainer, {
+  //       itemSelector: '.portfolio-item'
+  //     });
 
-      let portfolioFilters = select('#portfolio-flters li', true);
+  //     let portfolioFilters = select('#portfolio-flters li', true);
 
-      on('click', '#portfolio-flters li', function(e) {
-        e.preventDefault();
-        portfolioFilters.forEach(function(el) {
-          el.classList.remove('filter-active');
-        });
-        this.classList.add('filter-active');
+  //     on('click', '#portfolio-flters li', function(e) {
+  //       e.preventDefault();
+  //       portfolioFilters.forEach(function(el) {
+  //         el.classList.remove('filter-active');
+  //       });
+  //       this.classList.add('filter-active');
 
-        portfolioIsotope.arrange({
-          filter: this.getAttribute('data-filter')
-        });
+  //       portfolioIsotope.arrange({
+  //         filter: this.getAttribute('data-filter')
+  //       });
 
-      }, true);
-    }
+  //     }, true);
+  //   }
 
-  });
+  // });
 
   /**
    * Initiate portfolio lightbox 
