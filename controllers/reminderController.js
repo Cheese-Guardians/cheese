@@ -116,7 +116,6 @@ exports.sendSMS = async function (req, res) {
           // 현재 시간과 medi_reminder_time 값을 비교하여 SMS를 보낼 시간이라면 sendSMS 함수 호출
           const currentTime = new Date();
           const reminderTime = new Date(currentTime.toDateString() + ' ' + time);
-  
           if (currentTime.getHours() === reminderTime.getHours() && currentTime.getMinutes() === reminderTime.getMinutes()) {
             sendSMS(phoneNumber);
             console.log("sms전송 완료!><");
