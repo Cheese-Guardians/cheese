@@ -454,10 +454,13 @@ function parseQueryString() {
   if (selectedYear && selectedMonth && selectedDate) {
     const tbCalendar = document.querySelector(".scriptCalendar > tbody");
     const rows = tbCalendar.getElementsByTagName("tr");
+    var monthStart = false;
     for (let i = 0; i < rows.length; i++) {
       const columns = rows[i].getElementsByTagName("td");
       for (let j = 0; j < columns.length; j++) {
-        if (columns[j].innerText === selectedDate) {
+        if (columns[j].innerText === "01")
+            monthStart = true;
+        if (columns[j].innerText === selectedDate && monthStart) {
           calendarColorDay(columns[j]);
           return;
         }
