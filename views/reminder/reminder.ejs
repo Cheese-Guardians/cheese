@@ -5,31 +5,33 @@
  </head>
 <div class="reminder_wrapper">
   <div class="reminder_container">
-    <form id="myForm">
-    <div class="medicine_reminder"> 복용약 알림
+    <form id="myForm" action="/reminder/medication" method="POST">
+    <div class="medicine_reminder"> 복용약 &nbsp 알림
       <button type="button" id="medicationAdd" class="addBtn1 AddBtn">+</button>
       <% if (typeof mediResult !== 'undefined' && mediResult !== null && mediResult.length > 0) { %>
         <% for (let i = 0; i < mediResult.length; i++) { %>
       <div id="medicationInputs">
-        <input type="time" class="symtom-time" value="<%= mediResult[i].medi_reminder_time%>">
+        <input type="time" class="symtom-time" id="medi_reminder_time" name="medi_reminder_time" value="<%= mediResult[i].medi_reminder_time %>">
       </div>
       <% } %>
       <% } else { %>
         <input type="time" class="symtom-time">
       <% } %>
+      <div class="medi_submitBtn" type="submit" onclick="submitForm(event)">
+        <input type="submit" value="저장" id="loginsubmit" class="btn btn-success btn-user btn-block">
+      </div>
     </div>
-    <br/>
-    <div class="medicine_reminder"> 병원일정 알림
+    
+    <!-- <div class="medicine_reminder"> 병원일정 알림
       <button type="button" id="hospitalAdd" class="addBtn2 AddBtn">+</button>
       <div id="hospitalInputs">
         <input type="time" class="symtom-time">
       </div>
-    </div>
- 
-         
-      <button class="reminder_submitBtn" type="submit" onclick="submitForm(event)">저장</button>
-    </form>
+      <button class="hospital_submitBtn" type="submit" onclick="submitForm(event)">저장</button>
+    </div> -->
+    
   </div>
+</form>
 </div>
 
 <script>
@@ -39,18 +41,22 @@
   const hospitalInputs = document.getElementById("hospitalInputs");
 
   medicationAddButton.addEventListener("click", function() {
+    if (medicationInputs.childElementCount < 6) {
     const input = document.createElement("input");
     input.type = "time";
     input.classList.add("symtom-time");
 
     medicationInputs.appendChild(input);
+    }
   });
 
   hospitalAddButton.addEventListener("click", function() {
+    if (hospitalInputs.childElementCount < 6) {
     const input = document.createElement("input");
     input.type = "time";
     input.classList.add("symtom-time");
 
     hospitalInputs.appendChild(input);
+    }
   });
 </script>
