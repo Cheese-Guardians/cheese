@@ -120,7 +120,7 @@ main {
     justify-content: center;
     position: absolute;
     top: 50%;
-    margin-top: -40px;
+    margin-top: -10%;
     font-size: 80px;
     color: #F6F5F0;
   }
@@ -129,17 +129,18 @@ main {
     cursor: pointer;
     position: absolute;
     top: 50%;
-    margin-top: -50px;
     width: 0;
     height: 0;
   }
   
   main .wrapper #slider .arrow--left {
     left: 9%;
+    margin-bottom: 10%;
   }
   
   main .wrapper #slider .arrow--right {
     right: 55%;
+    margin-bottom: 10%;
   }
   
   /* SLIDER DOTS */
