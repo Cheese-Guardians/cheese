@@ -13,32 +13,51 @@
           <div class="material-icons arrow--left">
             arrow_left
           </div>
-          <% let link = '/img/about.png'; %>
+          <% let link1 = '/img/about.png'; %>
+          <% let link2 = '/img/about.png'; %>
+          <% let link3 = '/img/about.png'; %>
+          <% let link4 = '/img/about.png'; %>
+          <% let link5 = '/img/about.png'; %>
+          <% let link6 = '/img/about.png'; %>
           <% if (typeof(calendarResult) !== 'undefined' && calendarResult !== null && calendarResult.length > 0) { %>
-            <% link = '../uploads/' + calendarResult[calendarResult.length - 1].server_name + calendarResult[calendarResult.length - 1].extension; %>
-            
+            <% link1 = '../uploads/' + calendarResult[calendarResult.length - 1].server_name + calendarResult[calendarResult.length - 1].extension; %>
           <% } %>
-          <div class="slide slide1" style = "background-image: url('<%= link %>');">
+          <% if (typeof(calendarResult) !== 'undefined' && calendarResult !== null && calendarResult.length > 1) { %>
+            <% link2 = '../uploads/' + calendarResult[calendarResult.length - 2].server_name + calendarResult[calendarResult.length - 1].extension; %>
+          <% } %>
+          <% if (typeof(calendarResult) !== 'undefined' && calendarResult !== null && calendarResult.length > 2) { %>
+            <% link3 = '../uploads/' + calendarResult[calendarResult.length - 3].server_name + calendarResult[calendarResult.length - 1].extension; %>
+          <% } %>
+          <% if (typeof(calendarResult) !== 'undefined' && calendarResult !== null && calendarResult.length > 3) { %>
+            <% link4 = '../uploads/' + calendarResult[calendarResult.length - 4].server_name + calendarResult[calendarResult.length - 1].extension; %>
+          <% } %>
+          <% if (typeof(calendarResult) !== 'undefined' && calendarResult !== null && calendarResult.length > 4) { %>
+            <% link5 = '../uploads/' + calendarResult[calendarResult.length - 5].server_name + calendarResult[calendarResult.length - 1].extension; %>
+          <% } %>
+          <% if (typeof(calendarResult) !== 'undefined' && calendarResult !== null && calendarResult.length > 5) { %>
+            <% link6 = '../uploads/' + calendarResult[calendarResult.length - 6].server_name + calendarResult[calendarResult.length - 1].extension; %>
+          <% } %>
+          <div class="slide slide1" style = "background-image: url('<%= link1 %>');">
             <div class="slide__content">
              </div>
           </div>
-          <div class="slide slide2">
+          <div class="slide slide2" style = "background-image: url('<%= link2 %>');">
             <div class="slide__content">
             </div>
           </div>
-          <div class="slide slide3">
+          <div class="slide slide3" style = "background-image: url('<%= link3 %>');">
             <div class="slide__content">
             </div>
           </div>
-          <div class="slide slide4">
+          <div class="slide slide4" style = "background-image: url('<%= link4 %>');">
             <div class="slide__content">
             </div>
           </div>
-          <div class="slide slide5">
+          <div class="slide slide5" style = "background-image: url('<%= link5 %>');">
             <div class="slide__content">
             </div>
           </div>
-          <div class="slide slide6">
+          <div class="slide slide6" style = "background-image: url('<%= link6 %>');">
             <div class="slide__content">
             </div>
           </div>
