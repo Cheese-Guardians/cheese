@@ -1,3 +1,4 @@
+
 //connect database
 require('dotenv').config({path: "./config/database.env"});
 const mysql = require ('mysql2');
@@ -10,15 +11,16 @@ const pool = mysql.createPool({
     waitForConnections: true,
     insecureAuth: true
 });
+// 스케줄링을 위한 패키지 추가
+const schedule = require('node-schedule');
+
+
 
 module.exports = pool;  //모듈로 내보내기
 
-    //let sql = "INSERT INTO category (category_name, description)  VALUES  ('통합게시판', '아무거나 의견을 나눠주세용!!');";
-    //let sql2 = "select * from category;";
-    //let[rows, fields] = await db.query(sql,sql2);
-  
-  
-    //console.log(rows);
+require('dotenv').config({path: "./config/sens.env"}); // sens.env 불러오기
+
+// 기본 설정
 const port = 3000,
     express = require("express"),
     cors = require("cors")
@@ -57,8 +59,14 @@ app.use('/calendar', calendarRouter);
 app.use('/users', usersRouter);
 app.use('/reminder', reminderRouter);
 app.use('/diagnosis', diagnosisRouter);
-
-
+reminderController = require('./controllers/reminderController');
+// 주기적인 작업 스케줄링
+schedule.scheduleJob('* * * * *', function() { //1분
+    reminderController.sendSMS();
+  });
+// schedule.scheduleJob('*/15 * * * * *', function() {
+//     reminderController.sendSMS();
+//   });
 app.get(
     "/", (req,res) =>
     {res.render("users/login.ejs");}
