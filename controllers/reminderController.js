@@ -47,10 +47,11 @@ exports.getMedi = async function (req,res) {
 
 // 문자 세팅
 const date = Date.now().toString();
-const uri = "ncp:sms:kr:306175251860:cheese";
-// const secretKey = process.env.SENS_SECRET_KEY;
-const secretKey = "XMUohUdzLleJx10GT0FAbhV4oMEcfo30bSdVIPAY";
-const accessKey = "avHSuHkmrkQDaSld3GUB"
+const uri = process.env.SENS_SERVICE_ID;
+console.log(uri);
+const secretKey = process.env.SENS_SECRET_KEY;
+console.log(secretKey);
+const accessKey = process.env.SENS_ACCESS_KEY;
 const method = 'POST';
 const space = " ";
 const newLine = "\n";
@@ -72,47 +73,42 @@ const signature = hash;
 
 // 문자 보내기
 exports.sendSMS = async function (req, res) {
-  const mediResult = await reminderService.SMSInfo();
-  function sendSMS(phoneNumber) {
-        axios({
-            method: method,
-            json: true,
-            url: url,
-            headers: {
-                'Content-Type': 'application/json',
-                'x-ncp-iam-access-key': accessKey,
-                'x-ncp-apigw-timestamp': date,
-                'x-ncp-apigw-signature-v2': signature,
-            },
-            data: {
-            type: 'SMS',
-            contentType: 'COMM',
-            countryCode: '82',
-            from: '01063007753',
-            content: `
-                <치매 가디언즈 알림>
-                복용약 드실 시간입니다.
-                `,
-            messages: [
-                {
-                    to: `${phoneNumber}`,
+    const mediSMSResult = await reminderService.SMSInfo();
+    function sendSMS(phoneNumber) {
+        try {
+            axios({
+                method: method,
+                json: true,
+                url: url,
+                headers: {
+                    'Content-Type': 'application/json',
+                    'x-ncp-iam-access-key': accessKey,
+                    'x-ncp-apigw-timestamp': date,
+                    'x-ncp-apigw-signature-v2': signature,
                 },
-            ],
-            }, 
-        })
-        .then(function (response) {
-          res.send(response(baseResponse.SMS_SEND_SUCCESS));
-        })
-        .catch((err) => {
-          if (err.res == undefined) {
-            res.send(response(baseResponse.SMS_SEND_SUCCESS));
-          } else {
-            res.send(errResponse(baseResponse.SMS_SEND_FAILURE));
-          }
-        });
-      }
+                data: {
+                type: 'SMS',
+                contentType: 'COMM',
+                countryCode: '82',
+                from: '01063007753',
+                content: `
+                    <치매 가디언즈 알림>
+                    복용약 드실 시간입니다.
+                    `,
+                messages: [
+                    {
+                        to: `${phoneNumber}`,
+                    },
+                ],
+                }, 
+            })
+            return baseResponse.SMS_SEND_SUCCESS;
+        } catch (err) {
+            return baseResponse.SMS_SEND_FAILURE;
+        }
+    }
         // 메일을 보낼 시간에 대한 처리
-        mediResult.forEach((row) => {
+        mediSMSResult.forEach((row) => {
           console.log(row);
           const time = row.medi_reminder_time; // medi_reminder_time 값
           const phoneNumber = row.gd_phone; // gd_phone 값
@@ -148,4 +144,6 @@ exports.getHospital = async function (req, res) {
         const hospitalResult = await reminderService.retrieveHospital(user_id);
         console.log(hospitalResult);
         return res.render('reminder/reminder.ejs', { hospitalResult : hospitalResult});
-    */
+    }
+}
+*/
