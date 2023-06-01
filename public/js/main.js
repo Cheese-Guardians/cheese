@@ -449,7 +449,8 @@ function parseQueryString() {
   const selectedYear = urlParams.get('selectedYear');
   const selectedMonth = urlParams.get('selectedMonth');
   const selectedDate = urlParams.get('selectedDate');
-
+  this.today = new Date(selectedYear, selectedMonth - 1, selectedDate);
+  buildCalendar();
   if (selectedYear && selectedMonth && selectedDate) {
     const tbCalendar = document.querySelector(".scriptCalendar > tbody");
     const rows = tbCalendar.getElementsByTagName("tr");
