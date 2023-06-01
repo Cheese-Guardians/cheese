@@ -1,18 +1,3 @@
-async function selectCalendar(pool, userId, date) {
-  const selectCalendarQuery =`
-  SELECT server_name, extension
-  FROM file_memories
-  WHERE user_id = '${userId}'
-    AND calendar_id = (
-      SELECT calendar_id
-      FROM calendar
-      WHERE user_id = '${userId}'
-        AND date = '${date}'
-    )
-`;
-const [userRow] = await pool.promise().query(selectCalendarQuery, userId);
-return userRow;
-}
 //캘린더 조회
 async function getSelectedCalendar(pool, selectedCalendarParams) {
   const getHospital_scheduleQuery = `
@@ -231,28 +216,47 @@ async function insertCalInfo(pool, deleteCalendarParams, insertCalendarParams, g
       connection.release();
   }
 }
+// file_memories
+async function selectCalendar(pool, userId, date) {
+  const selectCalendarQuery =`
+  SELECT server_name, extension
+  FROM file_memories
+  WHERE user_id = '${userId}'
+    AND calendar_id = (
+      SELECT calendar_id
+      FROM calendar
+      WHERE user_id = '${userId}'
+        AND date = '${date}'
+    )
+`;
+const [userRow] = await pool.promise().query(selectCalendarQuery, userId);
+return userRow;
+}
 
 // 파일 업로드
 async function insertFileMem(pool, insertFileMemParams) {
   //console.log(typeof(insertFileMemParams[0]));
   //const server_name = parseInt(insertFileMemParams[0]);
-  console.log("number "+ typeof(server_name));
-  const insertFileMemQuery = `INSERT INTO file_memories (calendar_id, user_id, server_name, user_name, extension)
-      VALUES (1, 'handakyeng', \'${insertFileMemParams[0]}\', \'${insertFileMemParams[1]}\', \'${insertFileMemParams[2]}\');
+  const connection = await pool.promise().getConnection();
+  //console.log("number "+ typeof(server_name));
+  const getCalendarIdQuery = `
+    SELECT calendar_id FROM calendar WHERE  user_id = '${insertFileMemParams[0]}' AND \`date\` = '${insertFileMemParams[1]}' ;
+    `;
+    
+  const insertFileMemQuery = `INSERT INTO file_memories (user_id, calendar_id, server_name, user_name, extension)
+      VALUES (?, ?, ?, ?, ?);
   `;
+  console.log("csss: ");
   
- pool.query(
-      insertFileMemQuery, (err, results) => {
-          console.log("insert test");
-          if (err) {
-            console.log("insert error");
-            throw err;
-          }
-          //return insertFileMemRow;);
-      }
-  );
 
-  //return insertFileMemRow;
+  const [calendarIDRow] =  await connection.query(getCalendarIdQuery);  
+  calendar_id = calendarIDRow[0].calendar_id;
+  console.log("calId: "+calendar_id);
+  //가져온 calendar id로 params 수정
+  insertFileMemParams[1] = calendar_id;    
+  const [insertFileRow] =  await connection.query(insertFileMemQuery, insertFileMemParams);  
+
+  return {calendarIDRow, insertFileRow};
 }
 
 module.exports = {
