@@ -1,37 +1,62 @@
-<head>
-    <link href="/css/reminder.css" rel="stylesheet">
-    <!-- <link href="/css/calendar/calendar_memory.css" rel="stylesheet"> -->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-   
-  </head>
 
+ <head>
+  <link href="/css/reminder.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+ </head>
 <div class="reminder_wrapper">
-  <div class="reminder_container" >
-    <div class="titleReminder doctorChoose">의사 선택</div>
-    <div class="doctors" style="display:flex;">
-    <div class="doctor doctor1">
-      <img src="/img/doctor.png">
-      <div class="doctorName">박수빈</div>
-      <div class="doctorInfo">소속: 성신병원</div>
-      <div class="doctorInfo">정신건강의학과</div>
+  <div class="reminder_container">
+    <form id="myForm" action="/reminder/medication" method="POST">
+    <div class="medicine_reminder"> 복용약 &nbsp 알림
+      <button type="button" id="medicationAdd" class="addBtn1 AddBtn">+</button>
+      <% if (typeof mediResult !== 'undefined' && mediResult !== null && mediResult.length > 0) { %>
+        <% for (let i = 0; i < mediResult.length; i++) { %>
+      <div id="medicationInputs">
+        <input type="time" class="symtom-time" id="medi_reminder_time" name="medi_reminder_time" value="<%= mediResult[i].medi_reminder_time %>">
+      </div>
+      <% } %>
+      <% } else { %>
+        <input type="time" class="symtom-time">
+      <% } %>
+      <div class="medi_submitBtn" type="submit" onclick="submitForm(event)">
+        <input type="submit" value="저장" id="loginsubmit" class="btn btn-success btn-user btn-block">
+      </div>
     </div>
-    <div class="doctor doctor2">
-      <img src="/img/doctor.png">
-      <div class="doctorName">한다경</div>
-      <div class="doctorInfo">소속: 성신병원</div>
-      <div class="doctorInfo">정신건강의학과</div>
-    </div></div>
-    <form>
-      <label>
-        <input type="radio" name="option" value="A" onchange="handleRadioChange()" checked /> A
-      </label>
-      <label>
-        <input type="radio" name="option" value="B" onchange="handleRadioChange()" /> B
-      </label>
-    </form>
-
-    <div class="outFileCalendar">
+    
+    <!-- <div class="medicine_reminder"> 병원일정 알림
+      <button type="button" id="hospitalAdd" class="addBtn2 AddBtn">+</button>
+      <div id="hospitalInputs">
+        <input type="time" class="symtom-time">
+      </div>
+      <button class="hospital_submitBtn" type="submit" onclick="submitForm(event)">저장</button>
+    </div> -->
     
   </div>
+</form>
 </div>
+
+<script>
+  const medicationAddButton = document.getElementById("medicationAdd");
+  const hospitalAddButton = document.getElementById("hospitalAdd");
+  const medicationInputs = document.getElementById("medicationInputs");
+  const hospitalInputs = document.getElementById("hospitalInputs");
+
+  medicationAddButton.addEventListener("click", function() {
+    if (medicationInputs.childElementCount < 6) {
+    const input = document.createElement("input");
+    input.type = "time";
+    input.classList.add("symtom-time");
+
+    medicationInputs.appendChild(input);
+    }
+  });
+
+  hospitalAddButton.addEventListener("click", function() {
+    if (hospitalInputs.childElementCount < 6) {
+    const input = document.createElement("input");
+    input.type = "time";
+    input.classList.add("symtom-time");
+
+    hospitalInputs.appendChild(input);
+    }
+  });
+</script>
