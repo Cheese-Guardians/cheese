@@ -124,6 +124,7 @@ exports.postFile = async function (req, res) {
       const date = req.body.fileDate;
       console.log("date: "+req.body.fileDate);
 
+    
       const server_name = path.basename(req.file.filename, path.extname(req.file.originalname)); //서버증상
        const user_name = path.basename(req.file.originalname, path.extname(req.file.originalname));
        const extension = path.extname(req.file.filename);
@@ -135,6 +136,11 @@ exports.postFile = async function (req, res) {
        user_name,
        extension
     );
+    
+    const selectedYear = String(date).slice(0, 4); // 처음 4글자는 년도
+    const selectedMonth =  String(date).slice(4, 6); // 다음 2글자는 월
+    const selectedDate =  String(date).slice(6, 9); // 다음 2글자는 일
+    const newURL = `${req.protocol}://${req.get('host')}${req.baseUrl}?selectedYear=${selectedYear}&selectedMonth=${selectedMonth}&selectedDate=${selectedDate}`;     
 
     if (!req.file) {
       return res.send(`
@@ -147,7 +153,7 @@ exports.postFile = async function (req, res) {
   }
   // Code for handling file upload and database query goes here
   if (attachFileResponse == "성공") {
-    return res.redirect('/calendar');
+    return res.redirect(newURL);
   }
   else res.send(attachFileResponse);
   //return res.redirect('/calendar');
