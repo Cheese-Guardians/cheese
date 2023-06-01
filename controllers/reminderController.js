@@ -30,11 +30,10 @@ exports.getMedi = async function (req,res) {
 
 // 문자 세팅
 const date = Date.now().toString();
-const uri = process.env.SENS_SERVICE_ID;
-console.log(uri);
-const secretKey = process.env.SENS_SECRET_KEY;
-console.log(secretKey);
-const accessKey = process.env.SENS_ACCESS_KEY;
+const uri = "ncp:sms:kr:306175251860:cheese";
+// const secretKey = process.env.SENS_SECRET_KEY;
+const secretKey = "XMUohUdzLleJx10GT0FAbhV4oMEcfo30bSdVIPAY";
+const accessKey = "avHSuHkmrkQDaSld3GUB"
 const method = 'POST';
 const space = " ";
 const newLine = "\n";
@@ -56,12 +55,9 @@ const signature = hash;
 
 // 문자 보내기
 exports.sendSMS = async function (req, res) {
-    const token = req.cookies.x_auth;
-    if (token) {
-        const decodedToken = jwt.verify(token, secret.jwtsecret); // 토큰 검증, 복호화
-        const user_id = decodedToken.user_id; // user_id를 추출
-        const phoneNumber = await reminderService.retrievePhoneNum(user_id);
-
+   
+  const mediResult = await reminderService.SMSInfo();
+  function sendSMS(phoneNumber) {
         axios({
             method: method,
             json: true,
@@ -88,18 +84,34 @@ exports.sendSMS = async function (req, res) {
             ],
             }, 
         })
-        .then(function (res) {
-            res.send(baseResponse.SMS_SEND_SUCCESS);
+        .then(function (response) {
+          res.send(response(baseResponse.SMS_SEND_SUCCESS));
         })
         .catch((err) => {
-            if(err.res == undefined){
-            res.send(baseResponse.SMS_SEND_SUCCESS);
-            }
-            else res.sned(baseResponse.SMS_SEND_FAILURE);
+          if (err.res == undefined) {
+            res.send(response(baseResponse.SMS_SEND_SUCCESS));
+          } else {
+            res.send(errResponse(baseResponse.SMS_SEND_FAILURE));
+          }
         });
-    }
-};
-
+      }
+        // 메일을 보낼 시간에 대한 처리
+        mediResult.forEach((row) => {
+          console.log(row);
+          const time = row.medi_reminder_time; // medi_reminder_time 값
+          const phoneNumber = row.gd_phone; // gd_phone 값
+  
+          // 현재 시간과 medi_reminder_time 값을 비교하여 SMS를 보낼 시간이라면 sendSMS 함수 호출
+          const currentTime = new Date();
+          const reminderTime = new Date(currentTime.toDateString() + ' ' + time);
+  
+          if (currentTime.getHours() === reminderTime.getHours() && currentTime.getMinutes() === reminderTime.getMinutes()) {
+            sendSMS(phoneNumber);
+            console.log("sms전송 완료!><");
+          }
+        });
+}
+    
 // 병원 일정 알림 get
 /*
 exports.getHospital = async function (req, res) {
@@ -120,6 +132,4 @@ exports.getHospital = async function (req, res) {
         const hospitalResult = await reminderService.retrieveHospital(user_id);
         console.log(hospitalResult);
         return res.render('reminder/reminder.ejs', { hospitalResult : hospitalResult});
-    }
-}
-*/
+    */
