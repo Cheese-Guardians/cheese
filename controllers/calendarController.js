@@ -120,11 +120,9 @@ exports.postFile = async function (req, res) {
     if (token) {
       const decodedToken = jwt.verify(token, secret.jwtsecret); // 토큰 검증, 복호화
       const user_id = decodedToken.user_id; // user_id를 추출
-      const {
-        date
-    } = req.body;
-    
-      console.log("date: "+date);
+      
+      const date = req.body.fileDate;
+      console.log("date: "+req.body.fileDate);
 
       const server_name = path.basename(req.file.filename, path.extname(req.file.originalname)); //서버증상
        const user_name = path.basename(req.file.originalname, path.extname(req.file.originalname));

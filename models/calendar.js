@@ -251,10 +251,17 @@ async function insertFileMem(pool, insertFileMemParams) {
   
 
   const [calendarIDRow] =  await connection.query(getCalendarIdQuery);  
-  calendar_id = calendarIDRow[0].calendar_id;
-  console.log("calId: "+calendar_id);
+  var calendar_id;
+  if (calendarIDRow && calendarIDRow.length > 0) {
+    calendar_id = calendarIDRow[0].calendar_id;
+    console.log("calId: " + calendar_id);
+  } else {
+    console.log("No calendar ID found.");
+  }
+
   //가져온 calendar id로 params 수정
   insertFileMemParams[1] = calendar_id;    
+  console.log(insertFileMemParams);
   const [insertFileRow] =  await connection.query(insertFileMemQuery, insertFileMemParams);  
 
   return {calendarIDRow, insertFileRow};
