@@ -1,9 +1,15 @@
-async function selectCalendar(pool, userId) {
-  const selectCalendarQuery = `
-              SELECT server_name, extension 
-              FROM file_memories 
-              WHERE calendar_id = ? and user_id = 'handakyeng';
-               `;
+async function selectCalendar(pool, userId, date) {
+  const selectCalendarQuery =`
+  SELECT server_name, extension
+  FROM file_memories
+  WHERE user_id = '${userId}'
+    AND calendar_id = (
+      SELECT calendar_id
+      FROM calendar
+      WHERE user_id = '${userId}'
+        AND date = '${date}'
+    )
+`;
 const [userRow] = await pool.promise().query(selectCalendarQuery, userId);
 return userRow;
 }
