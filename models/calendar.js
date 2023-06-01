@@ -250,13 +250,21 @@ async function insertFileMem(pool, insertFileMemParams) {
   console.log("csss: ");
   
 
-  const [calendarIDRow] =  await connection.query(getCalendarIdQuery);  
+  var [calendarIDRow] =  await connection.query(getCalendarIdQuery);  
   var calendar_id;
   if (calendarIDRow && calendarIDRow.length > 0) {
     calendar_id = calendarIDRow[0].calendar_id;
     console.log("calId: " + calendar_id);
   } else {
     console.log("No calendar ID found.");
+    const insertCalendarQuery = `
+      INSERT INTO calendar (user_id, date) VALUES ('${insertFileMemParams[0]}' , '${insertFileMemParams[1]}' );
+    `;
+    await connection.query(insertCalendarQuery);
+    [calendarIDRow] =  await connection.query(getCalendarIdQuery); 
+    calendar_id = calendarIDRow[0].calendar_id;
+    console.log("calId: " + calendar_id);
+
   }
 
   //가져온 calendar id로 params 수정
