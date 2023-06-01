@@ -40,12 +40,21 @@
         </table>
       </div>
 
-      <!-- ======= symtom_check ======= -->
-      <div class="col-lg-6 pt-lg-0 order-2 order-lg-1">
-        <form action="http://localhost:3000/calendar/1" method="post" id="calendarForm">
-        <div class="symtom_check">
+      <!-- ======= symptom_check ======= -->
+      <div class="col-lg-5 pt-lg-0 order-2 order-lg-1">
+        <form action="http://localhost:3000/calendar" method="post" id="calendarForm">
+          <!-- post시 쿼리스트링 그대로 보내기 -->
+          <script>
+            // 현재 URL에서 쿼리 문자열 가져오기
+            const queryString = window.location.search;
+            
+            // form의 action URL에 쿼리 문자열 추가
+            const form = document.getElementById('calendarForm');
+            form.action += queryString;
+          </script>
+        <div class="symptom_check">
           <div>
-            <div class="symtom_check_left">
+            <div class="symptom_check_left">
               <div class="date">
                 <div class="title"> <p id = "selected_date"> 날짜 </p></div>
                   <!-- <script>
@@ -73,7 +82,7 @@
                   <div class="hospitalTime">
                     <div class="box-body">
                       <% if (typeof calendarDataResult !== 'undefined' && calendarDataResult && typeof calendarDataResult.hospital_schedule !== 'undefined' && calendarDataResult.hospital_schedule && typeof calendarDataResult.hospital_schedule.booking_hour !== 'undefined') { %>
-                        <% console.log(calendarDataResult.hospital_schedule.booking_hour) %>
+                      
                         <% const hour =  calendarDataResult.hospital_schedule.booking_hour%>
 
                         <select id="9to6" name="hospital_schedule"  autocomplete="off">
@@ -116,7 +125,7 @@
                   <div id="item_list">
                     <table>
                         <% if (typeof calendarDataResult !== 'undefined' && calendarDataResult && typeof calendarDataResult.check_list !== 'undefined' && calendarDataResult.check_list && calendarDataResult.check_list.length !== 0) { %>
-                          <% console.log("checkMeow!! " + calendarDataResult) %>
+                  
                           <script>
                             // 아이템들을 담을 아이템 리스트
                             let itemList = [];
@@ -179,7 +188,7 @@
 
                           <% } else { %>
                             <!-- <input id="inputhosName" type="text" name="inputhosNametext" value=""> -->
-                            <% console.log("checkMeow!!fail " ) %>
+              
                             <!-- Default Contents -->
                             <script>
                               // 아이템들을 담을 아이템 리스트
@@ -286,7 +295,7 @@
                   <button class="btn four" type="button" value="4">
                     <label>
                       <!-- <input type="checkbox"> -->
-                      <span>3시간↓</span>
+                      <span>4시간</span>
                     </label>
                   <button class="btn five" type="button" value="5">
                     <label>
@@ -384,15 +393,19 @@
                       buttons[i].addEventListener('click', handleButtonClick);
                     }
                   </script>
+                  <input type="hidden" id="sleeping_time" name="sleep_time" value="">
                     <% if (typeof calendarDataResult !== 'undefined' && calendarDataResult && typeof calendarDataResult.calendar !== 'undefined' && calendarDataResult.calendar && typeof calendarDataResult.calendar.sleep_time !== 'undefined') { %>
                       <script>
                       const sleepTime = <%= calendarDataResult.calendar.sleep_time %>;
                       const sleepButton = document.getElementsByClassName('btn')[sleepTime -3];
                       sleepButton.classList.add('active');
+                      const sleepingTimeInput = document.getElementById('sleeping_time');
+                      sleepingTimeInput.value =  sleepTime;
+                      
                     </script>
                     <% } %>
                         
-                    <input type="hidden" id="sleeping_time" name="sleep_time" value="">
+                    
                 </div>
                 
 
@@ -402,21 +415,21 @@
             </div>
 
 
-            <div class="symtom_check_right">
-              <div class="symtom">
+            <div class="symptom_check_right">
+              <div class="symptom">
                 <div class="title"> <p> 증상 </p> </div>
                 <div>
                   <% if (typeof calendarDataResult !== 'undefined' && calendarDataResult && typeof calendarDataResult.symptom_list !== 'undefined' && calendarDataResult.symptom_list && calendarDataResult.symptom_list.length !== 0) { %>
-                    <% console.log("symptom: " + calendarDataResult) %>
+                    
                     <% for (let i = 0; i < calendarDataResult.symptom_list.length; i++) { %>
-                    <div class="symtomTextBox ">                    
-                      <input class="inputbX" type="text" id="<%= i %>" name="symtom_text" value="<%= calendarDataResult.symptom_list[i].symptom_name %>">
-                      <p><input type="time"  name="symtom_time" class="symtom-time" value="<%= calendarDataResult.symptom_list[i].onset_time%>" ></p>                      
+                    <div class="symptomTextBox ">                    
+                      <input class="inputbX" type="text" id="<%= i %>" name="symptom_text" value="<%= calendarDataResult.symptom_list[i].symptom_name %>">
+                      <p><input type="time"  name="symptom_time" class="symptom-time" value="<%= calendarDataResult.symptom_list[i].onset_time%>" ></p>                      
                       
                     </div>
 
                     <div class="box-body">
-                      <input type="range" name="symtom_range" min="1" max="10" id="ex-in-<%= i %>" class="range-in" value="<%= calendarDataResult.symptom_list[i].degree %>">
+                      <input type="range" name="symptom_range" min="1" max="10" id="ex-in-<%= i %>" class="range-in" value="<%= calendarDataResult.symptom_list[i].degree %>">
                       <div id="ex-out-<%= i %>" class="range-out"> <%= calendarDataResult.symptom_list[i].degree %> </div>
                       <script>
                         const exIn<%= i %> = document.querySelector('#ex-in-<%= i %>');
@@ -428,14 +441,33 @@
                       </script>
                     </div>
                     <% } %>
+                    <% for (let i = calendarDataResult.symptom_list.length; i < 4; i++) { %>
+                      <div class="symptomTextBox ">
+                      <input class="inputbX" type="text"  name="symptom_text" placeholder="감정 조절 불가">
+                      <p><input type="time" name="symptom_time" class="symptom-time"></p>                     
+                    </div>
+                    <div class="box-body"> 
+                      <input type="range" name="symptom_range" min="1" max="10" id="ex-in-<%= i %>"  class="range-in">   
+                    <div id="ex-out-<%= i %>" class="range-out"></div>
+                    <script>
+                      const exIn<%= i %> = document.querySelector('#ex-in-<%= i %>');
+                      const exOut<%= i %> = document.querySelector('#ex-out-<%= i %>');
+              
+                      exIn<%= i %>.addEventListener('input', e => {
+                        exOut<%= i %>.innerHTML = e.target.value;
+                      });
+                    </script>          
+                  </div>
+
+                    <% } %>
                   <% } else { %>
-                    <div class="symtomTextBox 1">                    
-                      <input class="inputbX" type="text"  name="symtom_text" placeholder="기억력 저하" >
-                      <p><input type="time" name="symtom_time" class="symtom-time"></p>             
+                    <div class="symptomTextBox 1">                    
+                      <input class="inputbX" type="text"  name="symptom_text" placeholder="기억력 저하" >
+                      <p><input type="time" name="symptom_time" class="symptom-time"></p>             
                     </div>
                   
                     <div class="box-body"> 
-                        <input type="range" name="symtom_range" min="1" max="10" id="ex-in1" class="range-in">   
+                        <input type="range" name="symptom_range" min="1" max="10" id="ex-in1" class="range-in">   
                       <div id="ex-out1" class="range-out"></div>
                       <script>
                       document.querySelector('#ex-in1').addEventListener('input',e=>{
@@ -444,12 +476,12 @@
                       </script>           
                     </div>
 
-                    <div class="symtomTextBox 2">
-                      <input class="inputbX" type="text"  name="symtom_text" placeholder="감정 조절 불가">
-                      <p><input type="time" name="symtom_time" class="symtom-time"></p>                     
+                    <div class="symptomTextBox 2">
+                      <input class="inputbX" type="text"  name="symptom_text" placeholder="감정 조절 불가">
+                      <p><input type="time" name="symptom_time" class="symptom-time"></p>                     
                     </div>
                     <div class="box-body"> 
-                      <input type="range" name="symtom_range" min="1" max="10" id="ex-in2" class="range-in">   
+                      <input type="range" name="symptom_range" min="1" max="10" id="ex-in2" class="range-in">   
                       <div id="ex-out2" class="range-out"></div>
                       <script>
                         document.querySelector('#ex-in2').addEventListener('input',e=>{
@@ -457,12 +489,12 @@
                         });
                       </script>           
                     </div>
-                    <div class="symtomTextBox 3">
-                      <input class="inputbX" type="text"  name="symtom_text" placeholder="폭력성">
-                      <p><input type="time" name="symtom_time" class="symtom-time"></p>                     
+                    <div class="symptomTextBox 3">
+                      <input class="inputbX" type="text"  name="symptom_text" placeholder="폭력성">
+                      <p><input type="time" name="symptom_time" class="symptom-time"></p>                     
                     </div>
                     <div class="box-body"> 
-                      <input type="range" name="symtom_range" min="1" max="10" id="ex-in3" class="range-in">   
+                      <input type="range" name="symptom_range" min="1" max="10" id="ex-in3" class="range-in">   
                       <div id="ex-out3" class="range-out"></div>
                       <script>
                         document.querySelector('#ex-in3').addEventListener('input',e=>{
@@ -470,12 +502,12 @@
                         });
                       </script>           
                     </div>
-                    <div class="symtomTextBox 4">
-                      <input class="inputbX" type="text"  name="symtom_text" placeholder="배회 증상">
-                      <p><input type="time" name="symtom_time" class="symtom-time"></p>                     
+                    <div class="symptomTextBox 4">
+                      <input class="inputbX" type="text"  name="symptom_text" placeholder="배회 증상">
+                      <p><input type="time" name="symptom_time" class="symptom-time"></p>                     
                     </div>
                     <div class="box-body"> 
-                      <input type="range" name="symtom_range" min="1" max="10" id="ex-in4" class="range-in">   
+                      <input type="range" name="symptom_range" min="1" max="10" id="ex-in4" class="range-in">   
                       <div id="ex-out4" class="range-out"></div>
                       <script>
                         document.querySelector('#ex-in4').addEventListener('input',e=>{
@@ -493,12 +525,11 @@
                 <div class="diaryTextBox">
                   <% if (typeof calendarDataResult !== 'undefined' && calendarDataResult && typeof calendarDataResult.calendar !== 'undefined' && calendarDataResult.calendar && typeof calendarDataResult.calendar.diary !== 'undefined') { %>
 
-                    <% console.log("checkMeow!! " + calendarDataResult) %>
-                    <% console.log("Date" + calendarDataResult) %>
+                  
 
-                    <input id="inputBx" type="text" name="diarytext" value="<%= calendarDataResult.calendar.diary %>">
+                    <input id="inputBx" type="text" name="diary_text" value="<%= calendarDataResult.calendar.diary %>">
                   <% } else { %>
-                    <input id="inputBx" type="text" name="diarytext" value="">
+                    <input id="inputBx" type="text" name="diary_text" value="">
                   <% } %>                    
                 </div>
                 <div class="symBtndiv">

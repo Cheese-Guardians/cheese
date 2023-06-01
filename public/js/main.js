@@ -492,11 +492,11 @@ function calendarChoiceDay(column) {
   let selectedYear = document.getElementById("calYear").innerText;
   let selectedMonth = document.getElementById("calMonth").innerText;
   document.getElementById("selected_date").innerText = selectedYear + "년 " + selectedMonth + "월 " + selectedDate + "일";
-
   // @param 선택한 날짜 정보를 쿼리스트링으로 전달하여 새로운 URL로 이동
   const queryString = `?selectedYear=${selectedYear}&selectedMonth=${selectedMonth}&selectedDate=${selectedDate}`;
   const newURL = window.location.origin + window.location.pathname + queryString;
   window.location.href = newURL;
+  
 }
 //쿼리스트링 파싱해서 해당 일에 불 들어오게 html안에 년월일 넣어줌
 function parseQueryString() {
@@ -505,14 +505,18 @@ function parseQueryString() {
   const selectedYear = urlParams.get('selectedYear');
   const selectedMonth = urlParams.get('selectedMonth');
   const selectedDate = urlParams.get('selectedDate');
-
+  this.today = new Date(selectedYear, selectedMonth - 1, selectedDate);
+  buildCalendar();
   if (selectedYear && selectedMonth && selectedDate) {
     const tbCalendar = document.querySelector(".scriptCalendar > tbody");
     const rows = tbCalendar.getElementsByTagName("tr");
+    var monthStart = false;
     for (let i = 0; i < rows.length; i++) {
       const columns = rows[i].getElementsByTagName("td");
       for (let j = 0; j < columns.length; j++) {
-        if (columns[j].innerText === selectedDate) {
+        if (columns[j].innerText === "01")
+            monthStart = true;
+        if (columns[j].innerText === selectedDate && monthStart) {
           calendarColorDay(columns[j]);
           return;
         }
@@ -538,6 +542,7 @@ function calendarColorDay(column) {
   let selectedYear = document.getElementById("calYear").innerText;
   let selectedMonth = document.getElementById("calMonth").innerText;
   document.getElementById("selected_date").innerText = selectedYear + "년 " + selectedMonth + "월 " + selectedDate + "일";
+  document.getElementById("fileDate").value = selectedYear +selectedMonth + selectedDate;
 
 }
 /**

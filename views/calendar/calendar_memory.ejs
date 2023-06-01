@@ -13,32 +13,53 @@
           <div class="material-icons arrow--left">
             arrow_left
           </div>
-          <% let link = '/img/about.png'; %>
-          <% if (typeof(calendarResult) !== 'undefined' && calendarResult !== null && calendarResult.length > 0) { %>
-            <% link = '../uploads/' + calendarResult[calendarResult.length - 1].server_name + calendarResult[calendarResult.length - 1].extension; %>
-            
+          <% let link1 = '/img/about.png'; %>
+          <% let link2 = '/img/about.png'; %>
+          <% let link3 = '/img/about.png'; %>
+          <% let link4 = '/img/about.png'; %>
+          <% let link5 = '/img/about.png'; %>
+          <% let link6 = '/img/about.png'; %>
+          <% if (typeof(calendarResult) !== 'undefined' && calendarResult !== null ) { %>
+            <% if ( calendarResult.length > 5 ) { %>
+              <% link6 = '../uploads/' + calendarResult[calendarResult.length - 6].server_name + calendarResult[calendarResult.length - 6].extension; %>
+            <% } %>
+            <% if ( calendarResult.length > 4 ) { %>
+              <% link5 = '../uploads/' + calendarResult[calendarResult.length - 5].server_name + calendarResult[calendarResult.length - 5].extension; %>
+              <% } %>
+            <% if ( calendarResult.length > 3 ) { %>
+              <% link4 = '../uploads/' + calendarResult[calendarResult.length - 4].server_name + calendarResult[calendarResult.length - 4].extension; %>
+              <% } %>
+            <% if ( calendarResult.length > 2 ) { %>
+              <% link3 = '../uploads/' + calendarResult[calendarResult.length - 3].server_name + calendarResult[calendarResult.length - 3].extension; %>  
+              <% } %>
+            <% if ( calendarResult.length > 1 ) { %>
+              <% link2 = '../uploads/' + calendarResult[calendarResult.length - 2].server_name + calendarResult[calendarResult.length - 2].extension; %>
+              <% } %>
+            <% if ( calendarResult.length > 0 ) { %>
+              <% link1 = '../uploads/' + calendarResult[calendarResult.length - 1].server_name + calendarResult[calendarResult.length - 1].extension; %>
+              <% } %>
           <% } %>
-          <div class="slide slide1" style = "background-image: url('<%= link %>');">
+          <div class="slide slide1" style = "background-image: url('<%= link1 %>');">
             <div class="slide__content">
              </div>
           </div>
-          <div class="slide slide2">
+          <div class="slide slide2" style = "background-image: url('<%= link2 %>');">
             <div class="slide__content">
             </div>
           </div>
-          <div class="slide slide3">
+          <div class="slide slide3" style = "background-image: url('<%= link3 %>');">
             <div class="slide__content">
             </div>
           </div>
-          <div class="slide slide4">
+          <div class="slide slide4" style = "background-image: url('<%= link4 %>');">
             <div class="slide__content">
             </div>
           </div>
-          <div class="slide slide5">
+          <div class="slide slide5" style = "background-image: url('<%= link5 %>');">
             <div class="slide__content">
             </div>
           </div>
-          <div class="slide slide6">
+          <div class="slide slide6" style = "background-image: url('<%= link6 %>');">
             <div class="slide__content">
             </div>
           </div>
@@ -68,12 +89,12 @@
           </button>
   
         </form>
-        <form action="/calendar/upload" method="POST" enctype="multipart/form-data">
-          <input id="intputbox" style=" padding: 23px 25px ;display : flex; justify-content : center;" type="file"
-            name="file">
-          <button id="inputbotton" type="submit"
-            style="margin:auto; WIDTH: 70pt; HEIGHT: 30pt; FONT-SIZE:12px; background-color: #b3cc62; margin-bottom:10px;">업로드</button>
+        <form action="/calendar/upload" method="POST" enctype="multipart/form-data" id="fileForm">
+          <input id="inputbox" style="padding: 23px 25px; display: flex; justify-content: center;" type="file" name="file">
+          <input id="fileDate" type="hidden" name="fileDate" value="">
+          <button id="inputbutton" type="submit" style="margin:auto; width: 70pt; height: 30pt; font-size: 12px; background-color: #b3cc62; margin-bottom: 10px;">업로드</button>
         </form>
+        
       </div>
       
     </div>
