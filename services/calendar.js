@@ -72,12 +72,12 @@ exports.createCalendar = async function (
 };
 
 
-exports.createFileMem = async function (server_name, user_name, extension) {
+exports.createFileMem = async function ( user_id, date, server_name, user_name, extension) {
     try {
-        const insertFileMemParams = [server_name, user_name, extension];
-        
+        const insertFileMemParams = [ user_id, date, server_name, user_name, extension];
+        console.log("dd");
         await calendarModel.insertFileMem(pool, insertFileMemParams);
-
+        console.log("ddd");
         return '성공';
     } catch (err) {
         return 'createFileMemError';
