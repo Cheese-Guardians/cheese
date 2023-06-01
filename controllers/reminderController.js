@@ -7,6 +7,23 @@ const axios = require('axios');
 const Cache = require('memory-cache');
 const crypto = require('crypto');
 
+exports.postMedi = async function (req, res) {
+    const token = req.cookies.x_auth;
+    const decodedToken = jwt.verify(token, secret.jwtsecret); // 토큰 검증, 복호화
+    const user_id = decodedToken.user_id; // user_id를 추출
+
+    const {
+        medi_reminder_time
+    } = req.body;
+    console.log(req.body);
+    const MediResponse = await reminderService.createMediReminder(
+        user_id,
+        medi_reminder_time
+    );
+    
+   return res.send(MediResponse);
+};
+
 // 복용약 알림 get
 exports.getMedi = async function (req,res) {
     const token = req.cookies.x_auth;
@@ -55,7 +72,6 @@ const signature = hash;
 
 // 문자 보내기
 exports.sendSMS = async function (req, res) {
-   
   const mediResult = await reminderService.SMSInfo();
   function sendSMS(phoneNumber) {
         axios({
@@ -110,8 +126,8 @@ exports.sendSMS = async function (req, res) {
             console.log("sms전송 완료!><");
           }
         });
-}
-    
+};
+
 // 병원 일정 알림 get
 /*
 exports.getHospital = async function (req, res) {
