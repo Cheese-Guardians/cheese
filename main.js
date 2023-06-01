@@ -1,3 +1,4 @@
+
 //connect database
 require('dotenv').config({path: "./config/database.env"});
 const mysql = require ('mysql2');
@@ -10,6 +11,10 @@ const pool = mysql.createPool({
     waitForConnections: true,
     insecureAuth: true
 });
+// 스케줄링을 위한 패키지 추가
+const schedule = require('node-schedule');
+
+
 
 module.exports = pool;  //모듈로 내보내기
 
@@ -54,8 +59,14 @@ app.use('/calendar', calendarRouter);
 app.use('/users', usersRouter);
 app.use('/reminder', reminderRouter);
 app.use('/diagnosis', diagnosisRouter);
-
-
+reminderController = require('./controllers/reminderController');
+// 주기적인 작업 스케줄링
+schedule.scheduleJob('* * * * *', function() { //1분
+    reminderController.sendSMS();
+  });
+// schedule.scheduleJob('*/15 * * * * *', function() {
+//     reminderController.sendSMS();
+//   });
 app.get(
     "/", (req,res) =>
     {res.render("users/login.ejs");}
