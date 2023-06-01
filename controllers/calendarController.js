@@ -33,7 +33,7 @@ exports.getCalendar = async function (req, res) {
     if (user_id <= 0) {
       return res.send(errResponse(baseResponse.USER_USERIDX_LENGTH));
     }
-    const calendarResult = await calendarService.retrieveCalendar(user_id);
+    const calendarResult = await calendarService.retrieveCalendar(user_id, date);
     const calendarDataResult = await calendarService.retrieveSelectedCalendar(user_id, date);
     
     if (calendarResult.length > 0) {
@@ -123,7 +123,7 @@ exports.postFile = async function (req, res) {
               window.location.href = "/";
             }
           </script>
-        `);
+        `); 
     }
 
     // const {calendar_id, user_id} = req.body;
