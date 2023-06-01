@@ -436,11 +436,11 @@ function calendarChoiceDay(column) {
   let selectedYear = document.getElementById("calYear").innerText;
   let selectedMonth = document.getElementById("calMonth").innerText;
   document.getElementById("selected_date").innerText = selectedYear + "년 " + selectedMonth + "월 " + selectedDate + "일";
-
   // @param 선택한 날짜 정보를 쿼리스트링으로 전달하여 새로운 URL로 이동
   const queryString = `?selectedYear=${selectedYear}&selectedMonth=${selectedMonth}&selectedDate=${selectedDate}`;
   const newURL = window.location.origin + window.location.pathname + queryString;
   window.location.href = newURL;
+  
 }
 //쿼리스트링 파싱해서 해당 일에 불 들어오게 html안에 년월일 넣어줌
 function parseQueryString() {
@@ -486,6 +486,7 @@ function calendarColorDay(column) {
   let selectedYear = document.getElementById("calYear").innerText;
   let selectedMonth = document.getElementById("calMonth").innerText;
   document.getElementById("selected_date").innerText = selectedYear + "년 " + selectedMonth + "월 " + selectedDate + "일";
+  document.getElementById("fileDate").value = selectedYear +selectedMonth + selectedDate;
 
 }
 /**
