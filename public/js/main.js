@@ -41,9 +41,66 @@
     el.addEventListener('scroll', listener)
   }
 
-  /**
-   * Navbar links active state on scroll
-   */
+  // /**
+  //  * Navbar links active state on scroll
+  //  */
+  // let navbarlinks = select('#navbar .scrollto', true)
+  // const navbarlinksActive = () => {
+  //   let position = window.scrollY + 200
+  //   navbarlinks.forEach(navbarlink => {
+  //     if (!navbarlink.hash) return
+  //     let section = select(navbarlink.hash)
+  //     if (!section) return
+  //     if (position >= section.offsetTop && position <= (section.offsetTop + section.offsetHeight)) {
+  //       navbarlink.classList.add('active')
+  //     } else {
+  //       navbarlink.classList.remove('active')
+  //     }
+  //   })
+  // }
+  // window.addEventListener('load', navbarlinksActive)
+  // onscroll(document, navbarlinksActive)
+// 현재 URL 가져오는 함수
+function getCurrentURL() {
+  return window.location.pathname;
+}
+
+// 페이지 로드 시 실행되는 함수
+window.addEventListener('DOMContentLoaded', function() {
+  // 현재 URL
+  var currentURL = getCurrentURL();
+
+  // 링크 요소들
+  var calendarLink = document.querySelector('.calendaractive');
+  var alarmLink = document.querySelector('.alarmactive');
+  var checkLink = document.querySelector('.checkactive');
+  var mypageLink = document.querySelector('.mypageactive');
+
+  // 현재 URL에 따라 'active' 클래스 추가/제거
+  if (currentURL === '/calendar') {
+    calendarLink.classList.add('active');
+    alarmLink.classList.remove('active');
+    checkLink.classList.remove('active');
+    mypageLink.classList.remove('active');
+  } else if (currentURL === '/reminder') {
+    calendarLink.classList.remove('active');
+    alarmLink.classList.add('active');
+    checkLink.classList.remove('active');
+    mypageLink.classList.remove('active');
+  } else if (currentURL === '/diagnosis/check/password') {
+    calendarLink.classList.remove('active');
+    alarmLink.classList.remove('active');
+    checkLink.classList.add('active');
+    mypageLink.classList.remove('active');
+  } else if (currentURL === '/mypage') {
+    calendarLink.classList.remove('active');
+    alarmLink.classList.remove('active');
+    checkLink.classList.remove('active');
+    mypageLink.classList.add('active');
+  }
+});
+
+
   let navbarlinks = select('#navbar .scrollto', true)
   const navbarlinksActive = () => {
     let position = window.scrollY + 200
@@ -60,7 +117,6 @@
   }
   window.addEventListener('load', navbarlinksActive)
   onscroll(document, navbarlinksActive)
-
   /**
    * Scrolls to an element with header offset
    */
@@ -169,30 +225,30 @@
   /**
    * Porfolio isotope and filter
    */
-  window.addEventListener('load', () => {
-    let portfolioContainer = select('.portfolio-container');
-    if (portfolioContainer) {
-      let portfolioIsotope = new Isotope(portfolioContainer, {
-        itemSelector: '.portfolio-item'
-      });
+  // window.addEventListener('load', () => {
+  //   let portfolioContainer = select('.portfolio-container');
+  //   if (portfolioContainer) {
+  //     let portfolioIsotope = new Isotope(portfolioContainer, {
+  //       itemSelector: '.portfolio-item'
+  //     });
 
-      let portfolioFilters = select('#portfolio-flters li', true);
+  //     let portfolioFilters = select('#portfolio-flters li', true);
 
-      on('click', '#portfolio-flters li', function(e) {
-        e.preventDefault();
-        portfolioFilters.forEach(function(el) {
-          el.classList.remove('filter-active');
-        });
-        this.classList.add('filter-active');
+  //     on('click', '#portfolio-flters li', function(e) {
+  //       e.preventDefault();
+  //       portfolioFilters.forEach(function(el) {
+  //         el.classList.remove('filter-active');
+  //       });
+  //       this.classList.add('filter-active');
 
-        portfolioIsotope.arrange({
-          filter: this.getAttribute('data-filter')
-        });
+  //       portfolioIsotope.arrange({
+  //         filter: this.getAttribute('data-filter')
+  //       });
 
-      }, true);
-    }
+  //     }, true);
+  //   }
 
-  });
+  // });
 
   /**
    * Initiate portfolio lightbox 
@@ -257,6 +313,7 @@
 //캘린더
 document.addEventListener("DOMContentLoaded", function() {
   buildCalendar();
+  parseQueryString();
 });
 
 var today = new Date(); // @param 전역 변수, 오늘 날짜 / 내 컴퓨터 로컬을 기준으로 today에 Date 객체를 넣어줌
@@ -336,6 +393,8 @@ function buildCalendar() {
               column.style.color = "#4D4DFF";
               row = tbCalendar.insertRow();   // @param 토요일이 지나면 다시 가로 행을 한줄 추가한다.
           }
+        
+            
 
       }
 
@@ -345,6 +404,7 @@ function buildCalendar() {
           column.innerText = autoLeftPad(exceptDay.getDate(), 2);
           column.style.color = "#A9A9A9";
       }
+      
 
       // @brief   전월, 명월 음영처리
       // @details 현재년과 선택 년도가 같은경우
@@ -355,28 +415,25 @@ function buildCalendar() {
 
               // @details 현재일보다 이전인 경우이면서 현재월에 포함되는 일인경우
               if(date.getDate() > day && Math.sign(day) == 1) {
-                  column.style.backgroundColor = "#FFFFFF";
                   column.style.cursor = "pointer";
                   column.onclick = function(){ calendarChoiceDay(this); }
               }
 
               // @details 현재일보다 이후이면서 현재월에 포함되는 일인경우
               else if(date.getDate() < day && lastDate.getDate() >= day) {
-                  column.style.backgroundColor = "#FFFFFF";
                   column.style.cursor = "pointer";
                   column.onclick = function(){ calendarChoiceDay(this); }
               }
 
               // @details 현재일인 경우
               else if(date.getDate() == day) {
-                column.style.backgroundColor = "#FFFFFF";
                 column.style.cursor = "pointer";
                 column.onclick = function(){ calendarChoiceDay(this); }
+                //calendarChoiceDay(column);
               }
 
           // @details 현재월보다 이전인경우
           } else if(today.getMonth() < date.getMonth()) {
-            column.style.backgroundColor = "#FFFFFF";
             column.style.cursor = "pointer";
             column.onclick = function(){ calendarChoiceDay(this);
             }
@@ -385,7 +442,6 @@ function buildCalendar() {
           // @details 현재월보다 이후인경우
           else {
               if(Math.sign(day) == 1 && day <= lastDate.getDate()) {
-                  column.style.backgroundColor = "#FFFFFF";
                   column.style.cursor = "pointer";
                   column.onclick = function(){ calendarChoiceDay(this); }
               }
@@ -394,7 +450,6 @@ function buildCalendar() {
 
       // @details 선택한년도가 현재년도보다 작은경우
       else if(today.getFullYear() < date.getFullYear()) {
-        column.style.backgroundColor = "#FFFFFF";
         column.style.cursor = "pointer";
         column.onclick = function(){ calendarChoiceDay(this);
         }
@@ -403,7 +458,6 @@ function buildCalendar() {
       // @details 선택한년도가 현재년도보다 큰경우
       else {
           if(Math.sign(day) == 1 && day <= lastDate.getDate()) {
-              column.style.backgroundColor = "#FFFFFF";
               column.style.cursor = "pointer";
               column.onclick = function(){ calendarChoiceDay(this); }
           }
@@ -419,22 +473,78 @@ function buildCalendar() {
 * @brief   날짜 선택
 * @details 사용자가 선택한 날짜에 체크표시를 남긴다.
 */
-function calendarChoiceDay(column) {
 
+function calendarChoiceDay(column) {
   // @param 기존 선택일이 존재하는 경우 기존 선택일의 표시형식을 초기화 한다.
-  if(document.getElementsByClassName("choiceDay")[0]) {
-      document.getElementsByClassName("choiceDay")[0].style.backgroundColor = "#FFFFFF";
-      document.getElementsByClassName("choiceDay")[0].classList.remove("choiceDay");
+  if (document.getElementsByClassName("choiceDay")[0]) {
+    document.getElementsByClassName("choiceDay")[0].style.backgroundColor = "#FFFFFF";
+    document.getElementsByClassName("choiceDay")[0].classList.remove("choiceDay");
   }
 
   // @param 선택일 체크 표시
-  column.style.backgroundColor = "#FF9999";
-
+  column.style.backgroundColor = "#B3CC62";
 
   // @param 선택일 클래스명 변경
   column.classList.add("choiceDay");
-}
 
+  // @param 선택한 날짜를 HTML 요소에 표시
+  let selectedDate = column.innerText;
+  let selectedYear = document.getElementById("calYear").innerText;
+  let selectedMonth = document.getElementById("calMonth").innerText;
+  document.getElementById("selected_date").innerText = selectedYear + "년 " + selectedMonth + "월 " + selectedDate + "일";
+  // @param 선택한 날짜 정보를 쿼리스트링으로 전달하여 새로운 URL로 이동
+  const queryString = `?selectedYear=${selectedYear}&selectedMonth=${selectedMonth}&selectedDate=${selectedDate}`;
+  const newURL = window.location.origin + window.location.pathname + queryString;
+  window.location.href = newURL;
+  
+}
+//쿼리스트링 파싱해서 해당 일에 불 들어오게 html안에 년월일 넣어줌
+function parseQueryString() {
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+  const selectedYear = urlParams.get('selectedYear');
+  const selectedMonth = urlParams.get('selectedMonth');
+  const selectedDate = urlParams.get('selectedDate');
+  this.today = new Date(selectedYear, selectedMonth - 1, selectedDate);
+  buildCalendar();
+  if (selectedYear && selectedMonth && selectedDate) {
+    const tbCalendar = document.querySelector(".scriptCalendar > tbody");
+    const rows = tbCalendar.getElementsByTagName("tr");
+    var monthStart = false;
+    for (let i = 0; i < rows.length; i++) {
+      const columns = rows[i].getElementsByTagName("td");
+      for (let j = 0; j < columns.length; j++) {
+        if (columns[j].innerText === "01")
+            monthStart = true;
+        if (columns[j].innerText === selectedDate && monthStart) {
+          calendarColorDay(columns[j]);
+          return;
+        }
+      }
+    }
+  }
+}
+function calendarColorDay(column) {
+  // @param 기존 선택일이 존재하는 경우 기존 선택일의 표시형식을 초기화 한다.
+  if (document.getElementsByClassName("choiceDay")[0]) {
+    document.getElementsByClassName("choiceDay")[0].style.backgroundColor = "#FFFFFF";
+    document.getElementsByClassName("choiceDay")[0].classList.remove("choiceDay");
+  }
+
+  // @param 선택일 체크 표시
+  column.style.backgroundColor = "#B3CC62";
+
+  // @param 선택일 클래스명 변경
+  column.classList.add("choiceDay");
+
+  // @param 선택한 날짜를 HTML 요소에 표시
+  let selectedDate = column.innerText;
+  let selectedYear = document.getElementById("calYear").innerText;
+  let selectedMonth = document.getElementById("calMonth").innerText;
+  document.getElementById("selected_date").innerText = selectedYear + "년 " + selectedMonth + "월 " + selectedDate + "일";
+  document.getElementById("fileDate").value = selectedYear +selectedMonth + selectedDate;
+
+}
 /**
 * @brief   숫자 두자릿수( 00 ) 변경
 * @details 자릿수가 한자리인 ( 1, 2, 3등 )의 값을 10, 11, 12등과 같은 두자리수 형식으로 맞추기위해 0을 붙인다.
@@ -585,3 +695,60 @@ dot6.addEventListener("click", function(){
     sliderImages[current].style.display = 'block';
     dots[current].style.background = '#1107ff'
 })
+
+// 아이템 중복확인 위한 변수
+let dupl;
+// 추가 버튼에 대한 이벤트
+let addBtn = document.querySelector("#add");
+addBtn.addEventListener("click", addList);
+
+//removeAllBtn.addEventListener("click", removeList);
+
+// 엔터 입력시 이벤트 발생
+document
+  .querySelector("#item")
+  .addEventListener("keypress", function (e) {
+    if (e.keyCode === 13) {
+      e.preventDefault();
+      addList();
+    }
+  });
+                          
+// 아이템 추가 메서드
+function addList() {
+  // 아이템 값 담음
+  let item = document.querySelector("#item").value;
+  // console.log(item);
+
+  // 중복체크 실행
+  checkDupl(item);
+
+  // 조건을 확인하고 아이템 리스트에 푸시
+  if (item != "" && dupl) {
+    itemList.push(item);
+    chkList.push(0);
+    // console.log(itemList);
+
+    // 아이템 input 창 초기화
+    document.querySelector("#item").value = "";
+    document.querySelector("#item").focus();
+
+    // 아이템 리스트 출력
+    showList();
+  }
+}
+
+// 중복확인 메서드
+function checkDupl(item) {
+  // 입력한 아이템이 아이템 리스트에 있는지 확인
+  if (itemList.includes(item)) {
+    alert("이미 추가한 항목입니다.");
+    document.querySelector("#item").value = "";
+    document.querySelector("#item").focus();
+    dupl = false;
+  } 
+  else {
+    dupl = true;
+  }
+
+}
