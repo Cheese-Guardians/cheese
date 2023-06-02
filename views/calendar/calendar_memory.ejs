@@ -1,0 +1,96 @@
+<head>
+  <link href="/css/calendar/calendar.css" rel="stylesheet">
+  <link href="/css/calendar/calendar_memory.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<!-- MAIN SECTION -->
+<section id="hero" class="d-flex align-items-center">
+  <main id="about">
+    <div class="col-lg-5 pt-lg-0 order-2 order-lg-1  justify-content-center">
+      <div class="wrapper">
+        <div id="slider">
+          <div class="material-icons arrow--left">
+            arrow_left
+          </div>
+          <% let link1 = '/img/about.png'; %>
+          <% let link2 = '/img/about.png'; %>
+          <% let link3 = '/img/about.png'; %>
+          <% let link4 = '/img/about.png'; %>
+          <% let link5 = '/img/about.png'; %>
+          <% let link6 = '/img/about.png'; %>
+          <% if (typeof(calendarResult) !== 'undefined' && calendarResult !== null ) { %>
+            <% if ( calendarResult.length > 5 ) { %>
+              <% link6 = '../uploads/' + calendarResult[calendarResult.length - 6].server_name + calendarResult[calendarResult.length - 6].extension; %>
+            <% } %>
+            <% if ( calendarResult.length > 4 ) { %>
+              <% link5 = '../uploads/' + calendarResult[calendarResult.length - 5].server_name + calendarResult[calendarResult.length - 5].extension; %>
+              <% } %>
+            <% if ( calendarResult.length > 3 ) { %>
+              <% link4 = '../uploads/' + calendarResult[calendarResult.length - 4].server_name + calendarResult[calendarResult.length - 4].extension; %>
+              <% } %>
+            <% if ( calendarResult.length > 2 ) { %>
+              <% link3 = '../uploads/' + calendarResult[calendarResult.length - 3].server_name + calendarResult[calendarResult.length - 3].extension; %>  
+              <% } %>
+            <% if ( calendarResult.length > 1 ) { %>
+              <% link2 = '../uploads/' + calendarResult[calendarResult.length - 2].server_name + calendarResult[calendarResult.length - 2].extension; %>
+              <% } %>
+            <% if ( calendarResult.length > 0 ) { %>
+              <% link1 = '../uploads/' + calendarResult[calendarResult.length - 1].server_name + calendarResult[calendarResult.length - 1].extension; %>
+              <% } %>
+          <% } %>
+          <div class="slide slide1" style = "background-image: url('<%= link1 %>');">
+            <div class="slide__content">
+             </div>
+          </div>
+          <div class="slide slide2" style = "background-image: url('<%= link2 %>');">
+            <div class="slide__content">
+            </div>
+          </div>
+          <div class="slide slide3" style = "background-image: url('<%= link3 %>');">
+            <div class="slide__content">
+            </div>
+          </div>
+          <div class="slide slide4" style = "background-image: url('<%= link4 %>');">
+            <div class="slide__content">
+            </div>
+          </div>
+          <div class="slide slide5" style = "background-image: url('<%= link5 %>');">
+            <div class="slide__content">
+            </div>
+          </div>
+          <div class="slide slide6" style = "background-image: url('<%= link6 %>');">
+            <div class="slide__content">
+            </div>
+          </div>
+          <div class="material-icons arrow--right">
+            arrow_right
+          </div>
+          <div class="dots">
+            <div class="dot dot1"></div>
+            <div class="dot dot2"></div>
+            <div class="dot dot3"></div>
+            <div class="dot dot4"></div>
+            <div class="dot dot5"></div>
+            <div class="dot dot6"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-6 pt-lg-0 order-2 order-lg-1">
+      <div class="ininin">
+        </form>
+        <form action="/calendar/upload" method="POST" enctype="multipart/form-data" id="fileForm">
+          <input id="inputbox" style="padding: 23px 25px; display: flex; justify-content: center;" type="file" name="file">
+          <input id="fileDate" type="hidden" name="fileDate" value="">
+          <button id="inputbutton" type="submit" style="margin:auto; width: 70pt; height: 30pt; font-size: 12px; background-color: #b3cc62; margin-bottom: 10px;">업로드</button>
+        </form>
+        
+      </div>
+      
+    </div>
+    
+    
+  </main>
+</section>

@@ -6,6 +6,7 @@
     height: 80vh;
     background: #fff;
     padding-top: 82px;
+    overflow: scroll;
   }
   
   #logincontainer {
@@ -143,15 +144,19 @@
       transform: translateY(-10px);
     }
   }
-  
-  
-
   .user{
-    margin: 30%;
+    margin: 15%;
+    padding-top: 25%;
+    
   }
-
+.user1 {
+  margin: 30%;
+}
   .submit_btn{
-    float:right;
+    /* float:right; */
+    margin-top: 20px;
+    position: relative;
+    left: 85%;
   }
   
  .navbar{

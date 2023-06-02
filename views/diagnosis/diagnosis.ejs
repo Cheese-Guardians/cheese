@@ -1,0 +1,88 @@
+<head>
+  <link href="/css/diagnosis.css" rel="stylesheet">
+  <!-- <link href="/css/calendar/calendar_memory.css" rel="stylesheet"> -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  
+</head>
+
+<div class="diagnosis_wrapper">
+  <div class="diagnosis_container">
+      <div class="title"> <p>이용자 캘린더 정보 내보내기</p> </div>
+      
+      <div class="left">
+        <div class="reminder_container" >
+          <div class="titleDiagnosis doctorChoose">의사 선택</div>
+          <div class="doctors" style="display:flex;">
+              <div class="doctor doctor1">
+                  <img class="doctorPicImg" src="/img/doctor.png">
+                  <div class="doctorName">박수빈</div>
+                  <div class="doctorInfo">소속: 성신병원</div>
+                  <div class="doctorInfo">정신건강의학과</div>
+
+                  <form>
+                      <label class="doctorBtn">
+                        <input type="radio" name="option" value="A" onchange="handleRadioChange()" checked /> A
+                      </label>
+                  </form>
+              </div>
+
+              <div class="doctor doctor2">
+                  <img class="doctorPicImg" src="/img/doctor.png">
+                  <div class="doctorName">한다경</div>
+                  <div class="doctorInfo">소속: 성신병원</div>
+                  <div class="doctorInfo">정신건강의학과</div>
+                  <form>
+                      <label class="doctorBtn">
+                        <input type="radio" name="option" value="A" onchange="handleRadioChange()" checked /> B
+                      </label>
+                  </form>
+
+      
+              </div>
+          </div>
+
+      </div>
+  </div>
+
+      <div class="right">
+        <div class="titleDiagnosis doctorChoose">내보낼 캘린더 선택</div>
+        <div class="choose">
+          <form>               
+            <label>
+                <button type="button" onclick="increaseMonth()"> △ </button>
+                <input type="text" id="monthInput" name="monthInput" value="1" readonly />
+                <button type="button" onclick="decreaseMonth()"> ▽ </button>
+                <span id="monthText">개월 전</span>                
+            </label>               
+        </form>
+
+          <script>
+              function increaseMonth() {
+              var monthInput = document.getElementById("monthInput");
+              var monthText = document.getElementById("monthText");
+              var monthValue = parseInt(monthInput.value);
+              monthInput.value = monthValue + 1;
+              monthText.innerText = "개월 전";
+              }
+      
+              function decreaseMonth() {
+              var monthInput = document.getElementById("monthInput");
+              var monthText = document.getElementById("monthText");
+              var monthValue = parseInt(monthInput.value);
+              if (monthValue > 1) {
+                  monthInput.value = monthValue - 1;
+                  monthText.innerText =  "개월 전";
+              }
+              }
+          </script>
+      </div>    
+     
+          <div class="send">
+              <div class="sendme"> <input type="submit" value="나에게 전송" id="to-me-submit" > </div>
+              <div class="senddoctor"> </div><input type="submit" value="의사에게 전송" id="to-doctor-submit" > </div>
+          </div>   
+      </div>   
+
+</div>
+</div>

@@ -1,0 +1,51 @@
+<head>
+  <link href="/css/reminder.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<div class="reminder_wrapper">
+  <div class="reminder_container">
+    <form id="myForm" action="/reminder/medication" method="POST">
+      <div class="medicine_reminder">
+        복용약 알림
+        <button type="button" id="medicationAdd" class="addBtn1 AddBtn">+</button>
+        <div id="medicationInputs">
+          <% if (typeof mediResult !== 'undefined' && mediResult !== null && mediResult.length > 0) { %>
+            <% for (let i = 0; i < mediResult.length; i++) { %>
+              <input type="time" class="symtom-time" name="medi_reminder_time" value="<%= mediResult[i].medi_reminder_time %>">
+            <% } %>
+          <% } else { %>
+            <input type="time" class="symtom-time" name="medi_reminder_time">
+          <% } %>
+        </div>
+        <div class="medi_submitBtn">
+          <input type="submit" value="저장" id="loginsubmit" class="btn btn-success btn-user btn-block">
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+  const medicationAddButton = document.getElementById("medicationAdd");
+  const medicationInputsContainer = document.getElementById("medicationInputs");
+
+  medicationAddButton.addEventListener("click", function() {
+    if (medicationInputsContainer.childElementCount < 6) {
+      const input = document.createElement("input");
+      input.type = "time";
+      input.classList.add("symtom-time");
+      input.name = "medi_reminder_time";
+
+      medicationInputsContainer.appendChild(input);
+    }
+  });
+  // hospitalAddButton.addEventListener("click", function() {
+  //   if (hospitalInputs.childElementCount < 6) {
+  //   const input = document.createElement("input");
+  //   input.type = "time";
+  //   input.classList.add("symtom-time");
+
+  //   hospitalInputs.appendChild(input);
+  //   }
+  // });
+</script>

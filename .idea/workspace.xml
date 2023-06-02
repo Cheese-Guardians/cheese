@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="NONE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="472d2bc9-327e-44f9-8702-6725505952a3" name="Changes" comment="" />
+    <list default="true" id="472d2bc9-327e-44f9-8702-6725505952a3" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/calendarController.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/calendarController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/calendar.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/calendar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/calendar.js" beforeDir="false" afterPath="$PROJECT_DIR$/services/calendar.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -21,6 +29,7 @@
     <property name="RunOnceActivity.cidr.known.project.marker" value="true" />
     <property name="cidr.known.project.marker" value="true" />
     <property name="dart.analysis.tool.window.visible" value="false" />
+    <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
