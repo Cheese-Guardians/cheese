@@ -61,9 +61,9 @@ app.use('/reminder', reminderRouter);
 app.use('/diagnosis', diagnosisRouter);
 reminderController = require('./controllers/reminderController');
 // 주기적인 작업 스케줄링
-schedule.scheduleJob('* * * * *', function() { //1분
-    reminderController.sendSMS();
-  });
+// schedule.scheduleJob('* * * * *', function() { //1분
+//     reminderController.sendSMS();
+//   });
 // schedule.scheduleJob('*/15 * * * * *', function() {
 //     reminderController.sendSMS();
 //   });
