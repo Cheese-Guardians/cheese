@@ -8,15 +8,12 @@ exports.createMediReminder = async function (
     medi_reminder_time
 ) {
     try {
-        const insertMediReminderParams = [
-            user_id,
-            medi_reminder_time
-        ];
-        const mediReminderResult = await reminderModel.insertMediReminder(pool, insertMediReminderParams);
+        const mediReminderResult = await reminderModel.insertMediReminder(pool, user_id, medi_reminder_time);
         //console.log(mediReminderResult[0].user_id)
-        return baseResponse.SUCCESS;
+        return "성공";
     } catch (err) {
-        return baseResponse.DB_ERROR;
+
+        return err;
     }
 }
 
