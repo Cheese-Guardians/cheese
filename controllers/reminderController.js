@@ -9,19 +9,41 @@ const crypto = require('crypto');
 
 exports.postMedi = async function (req, res) {
     const token = req.cookies.x_auth;
-    const decodedToken = jwt.verify(token, secret.jwtsecret); // 토큰 검증, 복호화
+    const decodedToken = jwt.verify(token, secret.jwtsecret); // 토큰 검증, 복호화 
     const user_id = decodedToken.user_id; // user_id를 추출
+    if (token) {
+        const {
+            medi_reminder_time
+        } = req.body;
+        console.log(medi_reminder_time);
+        const MediResponse = await reminderService.createMediReminder(
+            user_id,
+            medi_reminder_time
+        );
+        if (MediResponse == "성공") {
+            return res.status(200).send(`
+              <script>
+                if (confirm('알림 등록에 성공했습니다.')) {
+                  window.location.href = "/reminder";
+                }
+              </script>
+            `);
+          } else {
+            return res.send(`
+              <script>
+                if (confirm('알림 등록에 실패했습니다.')) {
+                  window.location.href = "/reminder";
+                }
+              </script>
+            `);
+          }
+    }
+    else {
+        return res.send('reminder req error(token)');
+      }
 
-    const {
-        medi_reminder_time
-    } = req.body;
-    console.log(req.body);
-    const MediResponse = await reminderService.createMediReminder(
-        user_id,
-        medi_reminder_time
-    );
     
-   return res.send(MediResponse);
+    
 };
 
 // 복용약 알림 get
@@ -46,35 +68,36 @@ exports.getMedi = async function (req,res) {
 }
 
 // 문자 세팅
-const date = Date.now().toString();
-const uri = process.env.SENS_SERVICE_ID;
-console.log(uri);
-const secretKey = process.env.SENS_SECRET_KEY;
-console.log(secretKey);
-const accessKey = process.env.SENS_ACCESS_KEY;
-const method = 'POST';
-const space = " ";
-const newLine = "\n";
-const url = `https://sens.apigw.ntruss.com/sms/v2/services/${uri}/messages`;
-const url2 = `/sms/v2/services/${uri}/messages`;
-
-const hmac = crypto.createHmac('sha256', secretKey);
-
-hmac.update(method);
-hmac.update(space);
-hmac.update(url2);
-hmac.update(newLine);
-hmac.update(date);
-hmac.update(newLine);
-hmac.update(accessKey);
-
-const hash = hmac.digest('base64');
-const signature = hash;
 
 // 문자 보내기
 exports.sendSMS = async function (req, res) {
     const mediSMSResult = await reminderService.SMSInfo();
     function sendSMS(phoneNumber) {
+        const date = Date.now().toString();
+        const uri = process.env.SENS_SERVICE_ID;
+        console.log(uri);
+        const secretKey = process.env.SENS_SECRET_KEY;
+        console.log(secretKey);
+        const accessKey = process.env.SENS_ACCESS_KEY;
+        const method = 'POST';
+        const space = " ";
+        const newLine = "\n";
+        const url = `https://sens.apigw.ntruss.com/sms/v2/services/${uri}/messages`;
+        const url2 = `/sms/v2/services/${uri}/messages`;
+
+        const hmac = crypto.createHmac('sha256', secretKey);
+
+        hmac.update(method);
+        hmac.update(space);
+        hmac.update(url2);
+        hmac.update(newLine);
+        hmac.update(date);
+        hmac.update(newLine);
+        hmac.update(accessKey);
+
+        const hash = hmac.digest('base64');
+        const signature = hash;
+
         try {
             axios({
                 method: method,

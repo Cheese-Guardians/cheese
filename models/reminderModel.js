@@ -1,14 +1,58 @@
-async function insertMediReminder(pool, insertMediReminderParams) {
-    const insertMediReminderQuery = `
-    insert into medication_reminder (user_id,medi_reminder_time)
-    values (?,?);
-    `;
-    const insertMediReminderRow = await pool.promise().query(
-        insertMediReminderQuery,
-        insertMediReminderParams
-      );
+async function insertMediReminder(pool, user_id, medi_reminder_time) {
+    const connection = await pool.promise().getConnection();
+   
+    const deleteMediReminderQuery = medi_reminder_time.map((time) => {
+        if (time == undefined || time == '')
+          return null
+        return `
+        DELETE FROM medication_reminder WHERE user_id = ?; 
+        `;
+      });
+      
+    const insertMediReminderQuery = medi_reminder_time.map((time) => {
+        if (time == undefined || time == '')
+          return null
+        return `
+        insert into medication_reminder (user_id, medi_reminder_time)
+        values (?,?);
+        `;
+      });
+
+      
+        const mediReminderParams = medi_reminder_time.flatMap((time, index) => {
+          if (time == undefined || time == '')
+          return [
+            'nothing',
+            'nothing'
+          ];
+          else 
+          return [
+            user_id,
+            time
+          ];
+        });
+  
+     
+      
+     try{
+        await Promise.all(deleteMediReminderQuery.map((query, index) => {
+            if (query==null)
+              return;
+            else return connection.query(query, user_id);
+            }));
+          await Promise.all(insertMediReminderQuery.map((query, index) => {
+            if (query==null)
+              return;
+            else return connection.query(query, mediReminderParams.slice(index * 2, (index + 1) * 2));
+            }));
+     }catch(err){
+        console.log(err);
+        throw err;
+     }
+        
+      connection.release();
     
-      return insertMediReminderRow;
+      //return insertMediReminderRow;
 }
 
 // 복용약 알림 get
