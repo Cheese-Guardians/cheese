@@ -63,6 +63,8 @@ exports.getMedi = async function (req,res) {
         // service 호출
         const mediResult = await reminderService.retrieveMedi(user_id);
         return res.render('reminder/reminder.ejs', { mediResult : mediResult});
+    } else {
+        return res.redirect('/');
     }
 }
 
