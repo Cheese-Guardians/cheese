@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const reminderController = require('../controllers/reminderController');
 
-// 화면 조회
+// 화면 조회, 복용약 알림 get
 router.get("/", reminderController.getMedi, (req, res) => {
     return res.render('reminder/reminder.ejs');
 });
@@ -12,13 +12,13 @@ router.get("/", reminderController.getMedi, (req, res) => {
 router.post('/send', (req, res) => {
     console.log("POST request received on /send");
     reminders.sendSMS(req, res);
-  });
-
-// 문자 보내기
-// router.post('/', reminders.sendSMS);
+});
 
 // 복용약 알림 추가
  router.post('/medication', reminderController.postMedi);
+
+ // 복용약 알림 추가
+ router.post('/medicationDelete', reminderController.deleteMedi);
 
 // 복용약 알림 get
 //  router.get('/medication', reminderController.getMedi);
