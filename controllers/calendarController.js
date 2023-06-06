@@ -153,7 +153,7 @@ exports.postFile = async function (req, res) {
       return res.send(`
         <script>
           if (confirm('png, jpg, jpeg, tif, tiff, gif, webp, heif, heic의 사진 확장자인 파일만 업로드할 수 있습니다. 확인을 누르면 메인 페이지로 돌아갑니다.')) {
-            window.location.href = "/"; 
+            window.location.href = "/calendar"; 
           }
         </script>
       `); 
@@ -165,7 +165,7 @@ exports.postFile = async function (req, res) {
       return res.send(`
         <script>
           if (confirm('파일이 없습니다. 확인을 누르면 메인 페이지로 돌아갑니다.')) {
-            window.location.href = "/";
+            window.location.href = "/calendar";
           }
         </script>
       `); 
