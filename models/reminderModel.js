@@ -34,16 +34,25 @@ async function insertMediReminder(pool, user_id, medi_reminder_time) {
           ];
         });
      try{
-        await Promise.all(deleteMediReminderQuery.map((query, index) => {
-            if (query==null)
-              return;
-            else return connection.query(query, user_id);
-            }));
-          await Promise.all(insertMediReminderQuery.map((query, index) => {
-            if (query==null)
-              return;
-            else return connection.query(query, mediReminderParams.slice(index * 2, (index + 1) * 2));
-            }));
+      for (let i = 0; i < deleteMediReminderQuery.length; i++) {
+        if (deleteMediReminderQuery[i]!==null)
+             await connection.query(deleteMediReminderQuery[i], user_id);
+      }
+      for (let i = 0; i < insertMediReminderQuery.length; i++) {
+        if (insertMediReminderQuery[i]!=null)
+              await connection.query(insertMediReminderQuery[i], mediReminderParams.slice(i * 2, (i + 1) * 2));
+      }
+      
+        // await Promise.all(deleteMediReminderQuery.map((query, index) => {
+        //     if (query==null)
+        //       return;
+        //     else return connection.query(query, user_id);
+        //     }));
+        //   await Promise.all(insertMediReminderQuery.map((query, index) => {
+        //     if (query==null)
+        //       return;
+        //     else return connection.query(query, mediReminderParams.slice(index * 2, (index + 1) * 2));
+            // }));
      }catch(err){
         console.log(err);
         throw err;
