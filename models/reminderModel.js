@@ -54,7 +54,13 @@ async function insertMediReminder(pool, user_id, medi_reminder_time) {
     
       //return insertMediReminderRow;
 }
-
+async function deleteMedi(pool, user_id) {
+  const deleteMediQuery = `
+  DELETE FROM medication_reminder WHERE user_id = ?; 
+  `;
+  const [mediRows] = await pool.promise().query(deleteMediQuery, user_id);
+  return mediRows;
+}
 // 복용약 알림 get
 async function selectMedi(pool, user_id) {
     const selectMediQuery = `
@@ -99,6 +105,7 @@ async function selectHospital(pool, user_id) {
 module.exports = {
     insertMediReminder,
     selectMedi,
+    deleteMedi,
     selectretrievePhoneNum,
     selectSMSInfo
     // selectHospital

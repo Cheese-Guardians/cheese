@@ -17,6 +17,20 @@ exports.createMediReminder = async function (
     }
 }
 
+exports.deleteMediReminder = async function (
+    user_id
+) {
+    try {
+        const mediReminderResult = await reminderModel.deleteMedi(pool, user_id);
+        //console.log(mediReminderResult[0].user_id)
+        return "성공";
+    } catch (err) {
+        console.log(err);
+
+        return err;
+    }
+}
+
 // 복용약 알림 get
 exports.retrieveMedi = async function (user_id) {
     try {

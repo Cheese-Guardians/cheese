@@ -41,9 +41,38 @@ exports.postMedi = async function (req, res) {
     else {
         return res.send('reminder req error(token)');
       }
+    
+};
 
-    
-    
+exports.deleteMedi = async function (req, res) {
+    const token = req.cookies.x_auth;
+    const decodedToken = jwt.verify(token, secret.jwtsecret); // 토큰 검증, 복호화 
+    const user_id = decodedToken.user_id; // user_id를 추출
+    if (token) {
+        const MediResponse = await reminderService.deleteMediReminder(
+            user_id
+        );
+        if (MediResponse == "성공") {
+            return res.status(200).send(`
+              <script>
+                if (confirm('알림 삭제에 성공했습니다.')) {
+                  window.location.href = "/reminder";
+                }
+              </script>
+            `);
+          } else {
+            return res.send(`
+              <script>
+                if (confirm('알림 삭제에 실패했습니다.')) {
+                  window.location.href = "/reminder";
+                }
+              </script>
+            `);
+          }
+    }
+    else {
+        return res.send('reminder req error(token)');
+      }  
 };
 
 // 복용약 알림 get

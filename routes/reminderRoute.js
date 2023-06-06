@@ -20,6 +20,9 @@ router.post('/send', (req, res) => {
 // 복용약 알림 추가
  router.post('/medication', reminderController.postMedi);
 
+ // 복용약 알림 추가
+ router.post('/medicationDelete', reminderController.deleteMedi);
+
 // 복용약 알림 get
 //  router.get('/medication', reminderController.getMedi);
 
