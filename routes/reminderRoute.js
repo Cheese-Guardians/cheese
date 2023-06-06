@@ -9,10 +9,7 @@ router.get("/", reminderController.getMedi, (req, res) => {
 
 // SMS 메시지 보내기를 처리하는 라우트 핸들러
 // 문자인증(SENS를 통한) 전송 API
-router.post('/send', (req, res) => {
-    console.log("POST request received on /send");
-    reminders.sendSMS(req, res);
-});
+
 
 // 복용약 알림 추가
  router.post('/medication', reminderController.postMedi);
