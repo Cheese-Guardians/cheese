@@ -38,7 +38,6 @@ exports.retrievePhoneNum = async function (user_id) {
 }
 // 문자 보내기
 exports.SMSInfo = async function () {
-    console.log("SMSInfo 시작")
     try {
         const phoneNumResult = await reminderModel.selectSMSInfo(pool);
         return phoneNumResult;

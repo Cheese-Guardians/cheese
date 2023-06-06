@@ -15,7 +15,6 @@ exports.postMedi = async function (req, res) {
         const {
             medi_reminder_time
         } = req.body;
-        console.log(medi_reminder_time);
         const MediResponse = await reminderService.createMediReminder(
             user_id,
             medi_reminder_time
@@ -75,9 +74,7 @@ exports.sendSMS = async function (req, res) {
     function sendSMS(phoneNumber) {
         const date = Date.now().toString();
         const uri = process.env.SENS_SERVICE_ID;
-        console.log(uri);
         const secretKey = process.env.SENS_SECRET_KEY;
-        console.log(secretKey);
         const accessKey = process.env.SENS_ACCESS_KEY;
         const method = 'POST';
         const space = " ";
@@ -114,10 +111,9 @@ exports.sendSMS = async function (req, res) {
                 contentType: 'COMM',
                 countryCode: '82',
                 from: '01063007753',
-                content: `
-                    <치매 가디언즈 알림>
-                    복용약 드실 시간입니다.
-                    `,
+                content: 
+`<치매 가디언즈 알림>
+복용약 드실 시간입니다.`,
                 messages: [
                     {
                         to: `${phoneNumber}`,
@@ -132,7 +128,6 @@ exports.sendSMS = async function (req, res) {
     }
         // 메일을 보낼 시간에 대한 처리
         mediSMSResult.forEach((row) => {
-          console.log(row);
           const time = row.medi_reminder_time; // medi_reminder_time 값
           const phoneNumber = row.gd_phone; // gd_phone 값
   
@@ -141,7 +136,7 @@ exports.sendSMS = async function (req, res) {
           const reminderTime = new Date(currentTime.toDateString() + ' ' + time);
           if (currentTime.getHours() === reminderTime.getHours() && currentTime.getMinutes() === reminderTime.getMinutes()) {
             sendSMS(phoneNumber);
-            console.log("sms전송 완료!><");
+            console.log("sms전송 완료");
           }
         });
 };
