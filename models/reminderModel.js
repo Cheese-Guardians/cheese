@@ -1,7 +1,9 @@
 async function insertMediReminder(pool, user_id, medi_reminder_time) {
     const connection = await pool.promise().getConnection();
-   
-    const deleteMediReminderQuery = medi_reminder_time.map((time) => {
+    if (Array.isArray(medi_reminder_time)) {
+      // deleteMediReminderQuery는 배열입니다
+      // 여기에서 필요한 작업을 수행하세요
+      const deleteMediReminderQuery = medi_reminder_time.map((time) => {
         if (time == undefined || time == '')
           return null
         return `
@@ -31,9 +33,6 @@ async function insertMediReminder(pool, user_id, medi_reminder_time) {
             time
           ];
         });
-  
-     
-      
      try{
         await Promise.all(deleteMediReminderQuery.map((query, index) => {
             if (query==null)
@@ -51,6 +50,40 @@ async function insertMediReminder(pool, user_id, medi_reminder_time) {
      }
         
       connection.release();
+    } else {
+      if (medi_reminder_time == undefined || medi_reminder_time == ''){
+
+      }
+      else{
+        const deleteMediReminderQuery  = `
+        DELETE FROM medication_reminder WHERE user_id = ?; 
+        `;
+        const insertMediReminderQuery  = `
+        insert into medication_reminder (user_id, medi_reminder_time)
+        values (?,?);`
+        const mediReminderParams = [
+          user_id,
+          medi_reminder_time
+        ];
+        try{
+        await pool.promise().query(deleteMediReminderQuery, user_id);
+        await pool.promise().query(insertMediReminderQuery, mediReminderParams);
+      }catch(err){
+        console.log(err);
+        throw err;
+     }
+        
+
+      }
+      // deleteMediReminderQuery는 배열이 아닙니다
+      // 다른 작업을 수행할 수 있습니다
+      
+    
+
+    }
+    
+   
+   
     
       //return insertMediReminderRow;
 }
