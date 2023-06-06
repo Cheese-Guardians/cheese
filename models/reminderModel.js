@@ -87,7 +87,6 @@ async function selectSMSInfo(pool) {
     INNER JOIN user ON medication_reminder.user_id = user.user_id;
     `;
     const [phoneSMSQueryRows] = await pool.promise().query(selectSMSQuery);
-    console.log(phoneSMSQueryRows);
     return phoneSMSQueryRows;
 }
 
