@@ -130,13 +130,31 @@ exports.postFile = async function (req, res) {
        const user_name = path.basename(req.file.originalname, path.extname(req.file.originalname));
        const extension = path.extname(req.file.filename);
        console.log(server_name + user_name + extension);
-       const attachFileResponse = await calendarService.createFileMem(
-       user_id,
-       date,        
-       server_name,
-       user_name,
-       extension
-    );
+
+      var attachFileResponse;
+
+      //const queryString = querystring.stringify(req.query);
+       
+      // 사진 확장자인 경우에만 처리
+    if (['.png', '.jpg', '.jpeg', '.tiff', '.tif','.gif', '.webp', '.heif', '.heic'].includes(extension.toLowerCase())) {
+      attachFileResponse = await calendarService.createFileMem(
+        user_id,
+        date,
+        server_name,
+        user_name,
+        extension
+      );
+    }
+    else{
+      return res.send(`
+        <script>
+          if (confirm('png, jpg, jpeg, tif, tiff, gif, webp, heif, heic의 사진 확장자인 파일만 업로드할 수 있습니다. \n 확인을 누르면 메인 페이지로 돌아갑니다.')) {
+            window.location.href = "/"; 
+          }
+        </script>
+      `); 
+    }
+
     
     const selectedYear = String(date).slice(0, 4); // 처음 4글자는 년도
     const selectedMonth =  String(date).slice(4, 6); // 다음 2글자는 월
