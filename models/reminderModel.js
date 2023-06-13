@@ -124,9 +124,11 @@ async function selectretrievePhoneNum(pool, user_id) {
 // 문자 보내기
 async function selectSMSInfo(pool) {
     const selectSMSQuery = `
-    SELECT medication_reminder.medi_reminder_time, user.gd_phone
+    SELECT medication_reminder.medi_reminder_time, user.gd_phone, patient.patient_name, patient.medicine
     FROM medication_reminder
-    INNER JOIN user ON medication_reminder.user_id = user.user_id;
+    INNER JOIN user ON medication_reminder.user_id = user.user_id
+	  INNER JOIN patient ON medication_reminder.user_id = patient.user_id
+    ;
     `;
     const [phoneSMSQueryRows] = await pool.promise().query(selectSMSQuery);
     return phoneSMSQueryRows;

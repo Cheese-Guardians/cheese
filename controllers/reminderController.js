@@ -102,7 +102,7 @@ exports.getMedi = async function (req,res) {
 // 문자 보내기
 exports.sendSMS = async function (req, res) {
     const mediSMSResult = await reminderService.SMSInfo();
-    function sendSMS(phoneNumber) {
+    function sendSMS(phoneNumber, name, medicine) {
         const date = Date.now().toString();
         const uri = process.env.SENS_SERVICE_ID;
         const secretKey = process.env.SENS_SECRET_KEY;
@@ -144,7 +144,7 @@ exports.sendSMS = async function (req, res) {
                 from: '01063007753',
                 content: 
 `<치매 가디언즈 알림>
-복용약 드실 시간입니다.`,
+보호자님, ${name} 환자께서 복용약(${medicine}) 복용할 시간입니다. `,
                 messages: [
                     {
                         to: `${phoneNumber}`,
@@ -161,12 +161,14 @@ exports.sendSMS = async function (req, res) {
         mediSMSResult.forEach((row) => {
           const time = row.medi_reminder_time; // medi_reminder_time 값
           const phoneNumber = row.gd_phone; // gd_phone 값
+          const name = row.patient_name;
+          const medicine = row.medicine;
   
           // 현재 시간과 medi_reminder_time 값을 비교하여 SMS를 보낼 시간이라면 sendSMS 함수 호출
           const currentTime = new Date();
           const reminderTime = new Date(currentTime.toDateString() + ' ' + time);
           if (currentTime.getHours() === reminderTime.getHours() && currentTime.getMinutes() === reminderTime.getMinutes()) {
-            sendSMS(phoneNumber);
+            sendSMS(phoneNumber, name, medicine);
             console.log("sms전송 완료");
           }
         });
