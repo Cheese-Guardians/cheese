@@ -1,0 +1,3 @@
+config/sens.env
+config/secret.js
+config/database.env
