@@ -41,7 +41,7 @@ exports.postUsers = async function (req,res) {
       else {
         return res.send(`
         <script>
-          if (confirm('회원가입에 실패했습니다.')) {
+          if (confirm('회원가입에 실패했습니다. 회원가입 정보를 다시 한 번 확인해주세요.')) {
             window.location.href = "/users/signup";
           }
         </script>
