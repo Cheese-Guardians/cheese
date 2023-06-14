@@ -1,5 +1,8 @@
 # 🧀치즈 (치매 가디언즈)🧀 (Cheese-Guardians)
 2023-1 성신여대 서버시스템구축실습 1팀  <b>가디언즈</b>
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/80445246/245830427-cdd7d976-233b-4f13-bf4c-a9599c9999d8.png" style="width:100px; height:00px">
+ </p>
 
 ## 📖목차
 1. [프로젝트 소개](#프로젝트-소개)
@@ -8,7 +11,7 @@
 
 
 
-###📚프로젝트 소개
+##📚프로젝트 소개
 - 서비스명 소개
   - <b><b></b><br><b></b><b>‘09’</b>
   - <b>
