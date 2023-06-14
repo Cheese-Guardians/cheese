@@ -42,7 +42,7 @@
 
       <!-- ======= symptom_check ======= -->
       <div class="col-lg-5 pt-lg-0 order-2 order-lg-1">
-        <form action="http://localhost:3000/calendar" method="post" id="calendarForm">
+        <form action="/calendar" method="post" id="calendarForm">
           <!-- post시 쿼리스트링 그대로 보내기 -->
           <script>
             // 현재 URL에서 쿼리 문자열 가져오기
@@ -443,7 +443,7 @@
                     <% } %>
                     <% for (let i = calendarDataResult.symptom_list.length; i < 4; i++) { %>
                       <div class="symptomTextBox ">
-                      <input class="inputbX" type="text"  name="symptom_text" placeholder="감정 조절 불가">
+                      <input class="inputbX" type="text"  name="symptom_text" placeholder="증상명">
                       <p><input type="time" name="symptom_time" class="symptom-time"></p>                     
                     </div>
                     <div class="box-body"> 
@@ -462,7 +462,7 @@
                     <% } %>
                   <% } else { %>
                     <div class="symptomTextBox 1">                    
-                      <input class="inputbX" type="text"  name="symptom_text" placeholder="기억력 저하" >
+                      <input class="inputbX" type="text"  name="symptom_text" placeholder="증상명" >
                       <p><input type="time" name="symptom_time" class="symptom-time"></p>             
                     </div>
                   
@@ -477,7 +477,7 @@
                     </div>
 
                     <div class="symptomTextBox 2">
-                      <input class="inputbX" type="text"  name="symptom_text" placeholder="감정 조절 불가">
+                      <input class="inputbX" type="text"  name="symptom_text" placeholder="증상명">
                       <p><input type="time" name="symptom_time" class="symptom-time"></p>                     
                     </div>
                     <div class="box-body"> 
@@ -490,7 +490,7 @@
                       </script>           
                     </div>
                     <div class="symptomTextBox 3">
-                      <input class="inputbX" type="text"  name="symptom_text" placeholder="폭력성">
+                      <input class="inputbX" type="text"  name="symptom_text" placeholder="증상명">
                       <p><input type="time" name="symptom_time" class="symptom-time"></p>                     
                     </div>
                     <div class="box-body"> 
@@ -503,7 +503,7 @@
                       </script>           
                     </div>
                     <div class="symptomTextBox 4">
-                      <input class="inputbX" type="text"  name="symptom_text" placeholder="배회 증상">
+                      <input class="inputbX" type="text"  name="symptom_text" placeholder="증상명">
                       <p><input type="time" name="symptom_time" class="symptom-time"></p>                     
                     </div>
                     <div class="box-body"> 
@@ -521,22 +521,20 @@
               </div>
 
               <div class="diary">
-                <div class="title"> <p> 관찰일기 </p> </div>
+                <div class="title">
+                  <p>관찰일기</p>
+                </div>
                 <div class="diaryTextBox">
                   <% if (typeof calendarDataResult !== 'undefined' && calendarDataResult && typeof calendarDataResult.calendar !== 'undefined' && calendarDataResult.calendar && typeof calendarDataResult.calendar.diary !== 'undefined') { %>
-
-                  
-
-                    <input id="inputBx" type="text" name="diary_text" value="<%= calendarDataResult.calendar.diary %>">
+                  <textarea id="inputBx" name="diary_text" rows="4" cols="50"><%= calendarDataResult.calendar.diary %></textarea>
                   <% } else { %>
-                    <input id="inputBx" type="text" name="diary_text" value="">
-                  <% } %>                    
+                  <textarea id="inputBx" name="diary_text" rows="4" cols="50"></textarea>
+                  <% } %>
                 </div>
                 <div class="symBtndiv">
                   <button type="submit" id="symB" class="symBtn" onclick="submitCheck()">저장</button>
                 </div>
               </div>
-                  
                 
             </div>
 
