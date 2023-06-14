@@ -1,4 +1,4 @@
-const calendarService = require('../services/calendar');
+const calendarService = require('../services/calendarService');
 const path = require('path');
 const calendarDate = require('../public/js/calendar.js');
 const jwt = require('jsonwebtoken');
