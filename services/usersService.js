@@ -47,16 +47,9 @@ exports.createUser = async function (
         gender,
         address
       ];
-      //await calendarModel.insertFileMem(pool, insertFileMemParams);//캘린더에 있는 데베.
+
       const userIdResult = await usersModel.insertUserInfo(pool, insertUserPhoneParams, insertUserInfoParams, insertPatientParams);
 
-      //const connection = await pool.getConnection(async (conn) => conn);// 유엠씨 데베 불러오기
-  
-    //   const userIdResult = await userDao.insertUserInfo(
-    //     connection,
-    //     insertUserInfoParams
-    //   );
-      //console.log(`추가된 회원 : ${userIdResult[0].insertId}`);
       return '성공';
     } catch (err) {
         return 'createUserError';

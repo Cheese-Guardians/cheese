@@ -1,6 +1,6 @@
 const { response } = require('express');
 const pool = require('../main');
-const calendarModel = require('../models/calendar');
+const calendarModel = require('../models/calendarModel');
 
 exports.retrieveCalendar = async function (userId, date) {
     const calendarResult = await calendarModel.selectCalendar(pool, userId, date);

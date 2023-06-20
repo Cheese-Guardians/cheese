@@ -164,8 +164,19 @@ async function insertCalInfo(pool, deleteCalendarParams, insertCalendarParams, g
       is_check[index]
       ]);
       console.log(insertCheck_listParams);
-      await Promise.all(deleteCheck_listQueries.map((query, index) => connection.query(query, deleteCheck_listParams.slice(index * 3, (index + 1) * 3))));
-      await Promise.all(insertCheck_listQueries.map((query, index) => connection.query(query, insertCheck_listParams.slice(index * 4, (index + 1) * 4))));
+    
+
+      for (let i = 0; i < deleteCheck_listQueries.length; i++) {
+        await connection.query(deleteCheck_listQueries[i], deleteCheck_listParams.slice(i * 3, (i + 1) * 3));
+      }
+      
+      for (let i = 0; i < insertCheck_listQueries.length; i++) {
+        await connection.query(insertCheck_listQueries[i], insertCheck_listParams.slice(i * 4, (i + 1) * 4));
+      }
+      
+      
+      //await Promise.all(deleteCheck_listQueries.map((query, index) => connection.query(query, deleteCheck_listParams.slice(index * 3, (index + 1) * 3))));
+      //await Promise.all(insertCheck_listQueries.map((query, index) => connection.query(query, insertCheck_listParams.slice(index * 4, (index + 1) * 4))));
 
       //가져온 calendar id로 params 동적으로 Symptoms 파라미터 만듦(delete)
       const deleteSymptomParams = symptom_text.flatMap((symptom_name, index) => [
@@ -194,17 +205,32 @@ async function insertCalInfo(pool, deleteCalendarParams, insertCalendarParams, g
     });
     console.log(deleteSymptomParams);
     console.log(insertSymptomParams);
-    await Promise.all(deleteSymptomQueries.map((query, index) => {
-      if (query==null)
-        return;
-      else return connection.query(query, deleteSymptomParams.slice(index * 3, (index + 1) * 3));
-      }));
+    for (let i = 0; i < deleteSymptomQueries.length; i++) {
+      const query = deleteSymptomQueries[i];
+      if (query !== null) {
+        await connection.query(query, deleteSymptomParams.slice(i * 3, (i + 1) * 3));
+      }
+    }
+    
+    // await Promise.all(deleteSymptomQueries.map((query, index) => {
+    //   if (query==null)
+    //     return;
+    //   else return connection.query(query, deleteSymptomParams.slice(index * 3, (index + 1) * 3));
+    //   }));
     console.log("delete완료");
-    await Promise.all(insertSymptomQueries.map((query, index) => {
-        if (query==null)
-          return;
-        else return connection.query(query, insertSymptomParams.slice(index * 5, (index + 1) * 5));
-        }));
+
+    for (let i = 0; i < insertSymptomQueries.length; i++) {
+      const query = insertSymptomQueries[i];
+      if (query !== null) {
+        await connection.query(query, insertSymptomParams.slice(i * 5, (i + 1) * 5));
+      }
+    }
+    
+    // await Promise.all(insertSymptomQueries.map((query, index) => {
+    //     if (query==null)
+    //       return;
+    //     else return connection.query(query, insertSymptomParams.slice(index * 5, (index + 1) * 5));
+    //     }));
       console.log("model");
 
     await connection.query('COMMIT');
@@ -247,7 +273,6 @@ async function insertFileMem(pool, insertFileMemParams) {
   const insertFileMemQuery = `INSERT INTO file_memories (user_id, calendar_id, server_name, user_name, extension)
       VALUES (?, ?, ?, ?, ?);
   `;
-  console.log("csss: ");
   
 
   var [calendarIDRow] =  await connection.query(getCalendarIdQuery);  

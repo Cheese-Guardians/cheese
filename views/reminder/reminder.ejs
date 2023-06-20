@@ -4,10 +4,11 @@
 </head>
 <div class="reminder_wrapper">
   <div class="reminder_container">
-    <form id="myForm" action="/reminder/medication" method="POST">
+   
       <div class="medicine_reminder">
         복용약 알림
         <button type="button" id="medicationAdd" class="addBtn1 AddBtn">+</button>
+        <form id="myForm" action="/reminder/medication" method="POST">
         <div id="medicationInputs">
           <% if (typeof mediResult !== 'undefined' && mediResult !== null && mediResult.length > 0) { %>
             <% for (let i = 0; i < mediResult.length; i++) { %>
@@ -17,14 +18,18 @@
             <input type="time" class="symtom-time" name="medi_reminder_time">
           <% } %>
         </div>
-        <div class="medi_submitBtn">
-          <input type="submit" value="저장" id="medi_submitBtn" class="btn btn-success btn-user btn-block">
+        
+    
+           <div class="medi_submitBtn">
+          <input type="submit"  value="저장" id="medi_submitBtn" class="btn btn-success btn-user btn-block">
         </div>
-        <div class="medi_deleteBtn">
-          <input type="submit" value="삭제" id="loginsubmit" class="btn btn-success btn-user btn-block">
-        </div>
+      </form>
+        <form id="myForm" action="/reminder/medicationDelete" method="POST">
+          <div class="medi_deleteBtn">
+            <input type="submit" value="초기화" id="loginsubmit" class="btn btn-success btn-user btn-block">
+          </div>
+          </form>
       </div>
-    </form>
   </div>
 </div>
 
