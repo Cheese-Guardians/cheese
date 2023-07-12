@@ -1,11 +1,20 @@
 .community-container {
-    width : 70%;
-    height : 80vh;
+    width: 1400px;
+    height: 550px;
+   
+    background-color: white;
+    border-color: #E0E0E0;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 1%;
+    font-size: 15px;
+    margin: 0 auto;
+    top: 20%;
+    margin-left: 20%;
     position: relative;
-    background-color: red;
-    left: 30%;
-    top: 15%;
+    align-items: center;
 }
+/*
 .counseling{
     width: 100px;
     height: 30px;
@@ -32,3 +41,4 @@
     border: 1px solid #E0E0E0;
     border-radius: 15px;
 }
+*/
