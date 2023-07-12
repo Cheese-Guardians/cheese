@@ -1,44 +1,65 @@
-.community-container {
-    width: 1400px;
-    height: 550px;
+.community_wrapper {    
+    /* height: 550px; */
+    height: 90vh;   
+}
+section{
+    position: absolute;
+    left: 50%;
+    margin-left: -200px;
+}
+
+button{
+    background-color: #d9ee97;
+    color: #000000;
+    border: none;
+    width: 170px;
+    height: 60px;
+    border-radius: 15px;
+  
+    font-family: 'Noto Sans';
+    font-style: normal;
+    font-weight: 800;
+    font-size: 15px;
+    line-height: 41px;
+    margin-top : 100px;
+    margin-left: 10px;
+  }
+
+.community_container {
+    width: 55%;
+    height:75%;
    
     background-color: white;
     border-color: #E0E0E0;
     border-style: solid;
     border-width: 2px;
-    border-radius: 1%;
+    border-radius: 3%;
     font-size: 15px;
     margin: 0 auto;
-    top: 20%;
-    margin-left: 20%;
     position: relative;
-    align-items: center;
 }
-/*
-.counseling{
-    width: 100px;
-    height: 30px;
-    text-align: center;
-    display: inline-block;
-    border-radius: 7px;
-    background-color: #DEF1A1;
+
+.top{
+    height: 70%;
 }
-.sharing{
-    width: 100px;
-    height: 30px;
-   display: inline-block;
-   text-align: center;
-    border-radius: 7px;
-    background-color: #DEF1A1;
+.bottom{
+    height: 30%;
 }
-.writing-container {
-    position: absolute;
-    top: 10%;
-    height: 400px;
-    width: 600px;
-    margin-left: 15%;
-    background: #FFFFFF;
-    border: 1px solid #E0E0E0;
-    border-radius: 15px;
-}
-*/
+
+.title{
+    background-color: #d9ee97;
+    color: black;
+    
+    border: none;
+    border-radius: 7px;  
+    font-family: 'Noto Sans';
+    font-style: normal;
+    font-weight: 800;
+    font-size: 15px;
+    text-align:center;
+
+    width: 140px;
+    height: 40px;
+    position: static;
+    padding: 1%;    
+  }
