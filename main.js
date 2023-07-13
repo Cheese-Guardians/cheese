@@ -18,7 +18,7 @@ const schedule = require('node-schedule');
 require('dotenv').config({path: "./config/sens.env"}); // sens.env 불러오기
 
 // 기본 설정
-const port = 80,
+const port = 3000,
     express = require("express"),
     cors = require("cors")
     app = express(),
