@@ -89,18 +89,6 @@ button{
     margin: 2% auto;
   }
   
-  .board_title {
-    margin-bottom: 30px;
-  }
-  
-  .board_title strong {
-    font-size: 3rem;
-  }
-  
-  .board_title p {
-    margin-top: 5px;
-    font-size: 1.4rem;
-  }
   
   .bt_wrap {
     margin-top: 30px;
@@ -165,7 +153,7 @@ button{
   .board_list .top .title {
     text-align: center;
   }
-  .board_list .writer {
+  .board_list .time {
     width: 10%;
   }
   .board_list .date {
@@ -217,7 +205,7 @@ button{
     border-left: 1px solid #ddd;
   }
   
-  .title p {
+  .red {
     color: red;
   }
   /* 🟡 따라서 쓰는 것은 코딩에서 도움이 되지 않아요. 절차를 보면서*/
@@ -237,4 +225,3 @@ button{
     line-height: 41px;
     margin-top : 100px;
     margin-left: 80%;
-  }
