@@ -28,7 +28,8 @@ button{
     line-height: 41px;
     margin-top : 100px;
     margin-left: 10px;
-  }
+}
+
 
 .community_container {
     width: 55%;
@@ -65,25 +66,37 @@ button{
     margin-left: 10%;  
   }
 
-  .write_wrapper{
-      height: 80%;
-  }
-  .note-toolbar {
-    height: 150px;
-}
-.note-toolbar .btn-group,
-.note-toolbar .btn,
-.note-toolbar .dropdown-toggle {
-    height: 30px;
-    width:50px;
-    line-height: 30px;
-    padding: 0 8px;
-    font-size: 12px;
-}
-.note-toolbar {
-    white-space: nowrap;
-}
+  .write_wrapper {
+    margin-left: 10%; 
+    margin-top: 5%;
+    width: 80%;
+    height: 90%;
+    }
+    
+    .note-toolbar {
+        height: 40px;
+        white-space: nowrap;
+        overflow-x: auto;
+      }
+      
+      .note-toolbar .btn-group,
+      .note-toolbar .btn,
+      .note-toolbar .dropdown-toggle {
+        height: 25px;
+        line-height: 25px;
+        padding: 0 5px;
+        font-size: 10px;
+        display: inline-block;
+        white-space: nowrap;
+        margin-right: 3px;
+        width: auto;
+      }
+      
+      .note-toolbar .note-btn-group:last-child {
+        margin-right: 0;
+      }
+      
 
-.note-toolbar .note-btn-group {
-    display: inline-block;
-}
+
+
+
