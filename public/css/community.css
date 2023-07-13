@@ -1,6 +1,6 @@
 .community_wrapper {    
     /* height: 550px; */
-    height: 170vh;   
+    height: 220vh;   
 }
 section{
     position: absolute;
@@ -40,10 +40,10 @@ button{
 }
 
 .top{
-    height: 70%;
+    height: 55%;
 }
 .bottom{
-    height: 30%;
+    height: 45%;
 }
 /*top*/
 .categoryTitle{
@@ -87,6 +87,7 @@ button{
   .board_wrap {
     width: 80%;
     margin: 2% auto;
+
   }
   
   
