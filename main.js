@@ -60,11 +60,15 @@ app.get(
 
 
 app.get(
-    "/community", (req,res) =>
-    {res.render("community/community.ejs");}
+    "/community1", (req,res) =>
+    {res.render("community/community1.ejs");}
 );
 app.get(
-    "/community1", (req,res) =>
+    "/community2", (req,res) =>
+    {res.render("community/community2.ejs");}
+);
+app.get(
+    "/commun1", (req,res) =>
     {res.render("community/commun_write.ejs");}
 );
 
