@@ -1,6 +1,6 @@
 .community_wrapper {    
     /* height: 550px; */
-    height: 170vh;   
+    height: 220vh;   
 }
 section{
     position: absolute;
@@ -45,10 +45,10 @@ button{
 }
 
 .top{
-    height: 70%;
+    height: 55%;
 }
 .bottom{
-    height: 30%;
+    height: 45%;
 }
 /*top*/
 .categoryTitle{
@@ -68,7 +68,7 @@ button{
     position: static;
     padding: 1%;  
     margin-top: 2%;
-    margin-left: 12%;  
+    margin-left: 10%;  
   }
   
   * {
@@ -92,6 +92,7 @@ button{
   .board_wrap {
     width: 80%;
     margin: 2% auto;
+
   }
   
   
@@ -148,12 +149,11 @@ button{
     font-weight: 600;
   }
   
-  .board_list .num {
+  /* .board_list .num {
     width: 10%;
-    /* ㄴ🟡번호칸이 10%의 영역을 가지게 된다. */
-  }
+  } */
   .board_list .title {
-    width: 60%;
+    width: 70%;
     text-align: left;
 
   }
