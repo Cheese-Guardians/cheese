@@ -1,19 +1,19 @@
 .community_wrapper {    
     /* height: 550px; */
-    height: 150vh;   
+    height: 170vh;   
 }
 section{
     position: absolute;
     left: 50%;
-    margin-left: -200px;
+    margin-left: 30%;
 }
 
 button{
     background-color: #d9ee97;
     color: #000000;
     border: none;
-    width: 170px;
-    height: 60px;
+    width: 150px;
+    height: 50px;
     border-radius: 15px;
   
     font-family: 'Noto Sans';
@@ -27,7 +27,7 @@ button{
 
 .community_container {
     width: 55%;
-    height:75%;
+    height:85%;
    
     background-color: white;
     border-color: #E0E0E0;
@@ -63,7 +63,7 @@ button{
     position: static;
     padding: 1%;  
     margin-top: 2%;
-    margin-left: 2%;  
+    margin-left: 12%;  
   }
   
   * {
@@ -150,18 +150,22 @@ button{
   .board_list .title {
     width: 60%;
     text-align: left;
+
   }
   .board_list .top .title {
     text-align: center;
   }
   .board_list .time {
     width: 10%;
+    margin-right: 20px;
   }
   .board_list .date {
     width: 10%;
+    margin-right: 20px;
   }
   .board list .count {
     width: 10%;
+    margin-right: 20px;
   }
   .board_page {
     margin-top: 30px;
