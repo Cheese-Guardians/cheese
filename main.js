@@ -63,6 +63,10 @@ app.get(
     "/community", (req,res) =>
     {res.render("community/community.ejs");}
 );
+app.get(
+    "/community1", (req,res) =>
+    {res.render("community/commun_write.ejs");}
+);
 
 app.listen(port,() => {
   const dir = "./uploads";
