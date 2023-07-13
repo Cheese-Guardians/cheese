@@ -68,7 +68,7 @@ button{
     position: static;
     padding: 1%;  
     margin-top: 2%;
-    margin-left: 12%;  
+    margin-left: 10%;  
   }
   
   * {
@@ -149,12 +149,11 @@ button{
     font-weight: 600;
   }
   
-  .board_list .num {
+  /* .board_list .num {
     width: 10%;
-    /* ㄴ🟡번호칸이 10%의 영역을 가지게 된다. */
-  }
+  } */
   .board_list .title {
-    width: 60%;
+    width: 70%;
     text-align: left;
 
   }
