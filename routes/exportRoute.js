@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const diagnosisController = require('../controllers/diagnosisController');
+const diagnosisController = require('../controllers/exportController');
 
 router.get(
     "/", (req,res) =>
