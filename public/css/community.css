@@ -47,7 +47,7 @@ button{
 }
 
 .categoryTitle{
-    background-color: #d9ee97;
+    background-color: #B3CC62;
     color: black;
     
     border: none;
@@ -113,18 +113,19 @@ button{
   }
   .board_list {
     width: 100%;
-    border-top: 2px solid #000;
+    /* border-top: 2px solid #000; */
   }
   .board_list > div {
-    border-bottom: 1px solid #ddd;
+    /* border-bottom: 1px solid #000; */
     font-size: 0;
   }
   .board_list > div.top {
-    border-bottom: 1px solid #999;
+    /* border-bottom: 1px solid #000; */
+    background-color: #DEF1A1;
   }
-  .board_list > div:last-child {
-    border-bottom: 1px solid #000;
-  }
+  /* .board_list > div:last-child {
+    border-bottom: 1px solid #81c147;
+  } */
   .board_list > div > div {
     display: inline-block;
     /* ㄴ 🟡가로배치!!! */
@@ -193,9 +194,9 @@ button{
   }
   
   .board_page a.num.on {
-    border-color: #000;
-    background: #000;
-    color: #fff;
+    border-color: #B3CC62;
+    background: #B3CC62;
+    color: #000;
   }
   
   .board_page a:first-child {
