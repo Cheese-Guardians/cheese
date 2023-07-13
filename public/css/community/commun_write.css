@@ -1,6 +1,7 @@
 .community_wrapper {    
     /* height: 550px; */
-    height: 180vh;   
+    margin-top: 120px;
+    height: 150vh;   
 }
 section{
     position: absolute;
@@ -10,7 +11,6 @@ section{
 
 .select1{
     margin-left: 22%;
-   
 }
 
 button{
@@ -29,11 +29,24 @@ button{
     margin-top : 100px;
     margin-left: 10px;
 }
+.buttons{
+    margin-bottom: 2%;
+    margin-left: 68%;
+}
+
+.cancel{
+    width: 100px;
+    height: 40px;
+}
+.submit{
+    width: 100px;
+    height: 40px;
+}
 
 
 .community_container {
     width: 55%;
-    height:85%;
+ 
    
     background-color: white;
     border-color: #E0E0E0;
@@ -68,7 +81,7 @@ button{
 
   .write_wrapper {
     margin-left: 10%; 
-    margin-top: 5%;
+    margin-top: 2%;
     width: 80%;
     height: 90%;
     }
@@ -76,19 +89,18 @@ button{
     .note-toolbar {
         height: 40px;
         white-space: nowrap;
-        overflow-x: auto;
       }
       
       .note-toolbar .btn-group,
       .note-toolbar .btn,
       .note-toolbar .dropdown-toggle {
-        height: 25px;
+        height: 30px;
         line-height: 25px;
         padding: 0 5px;
         font-size: 10px;
         display: inline-block;
         white-space: nowrap;
-        margin-right: 3px;
+        margin-right: 2px;
         width: auto;
       }
       

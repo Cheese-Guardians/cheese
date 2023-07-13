@@ -10,16 +10,35 @@
 
 <div class="community_wrapper">
   <div class="selection">
-      <button class="select1" type="button" value="1">
-          <label>
-              <span>고민상담소</span>
-          </label>
+    <button class="select select1" type="button" value="1">
+        <label>
+          <span>고민상담소</span>
+        </label>
       </button>
-      <button class="select2" type="button" value="2">
-          <label>
-              <span>정보 공유</span>
-          </label>
+      <button class="select select2" type="button" value="2">
+        <label>
+          <span>정보 공유</span>
+        </label>
       </button>
+      <script>
+        // 이벤트 핸들러 함수
+        function handleButtonClick(event) {
+          const buttons = document.getElementsByClassName('select');
+          for (let i = 0; i < buttons.length; i++) {
+            buttons[i].classList.remove('active');
+          }
+          event.currentTarget.classList.add('active');
+          const sleepingTimeInput = document.getElementById('sleeping_time');
+          sleepingTimeInput.value = event.currentTarget.value;
+        }
+      
+        // 버튼들에 클릭 이벤트 핸들러 등록
+        const buttons = document.getElementsByClassName('select');
+        for (let i = 0; i < buttons.length; i++) {
+          buttons[i].addEventListener('click', handleButtonClick);
+        }
+      </script>
+                    
   </div>
 
   <div class="community_container">
@@ -44,18 +63,19 @@
                   });
               });
           </script>
+           <div class="buttons">
+            <button class="cancel" type="button" value="1">
+                <label>
+                    <span>최소</span>
+                </label>
+            </button>
+            <button class="submit" type="button" value="2">
+                <label>
+                    <span>글 등록</span>
+                </label>
+            </button>
+        </div>
       </div>
-      <div class="buttons">
-          <button class="cancel" type="button" value="1">
-              <label>
-                  <span>최소</span>
-              </label>
-          </button>
-          <button class="submit" type="button" value="2">
-              <label>
-                  <span>글 등록</span>
-              </label>
-          </button>
-      </div>
+     
   </div>
 </div>
