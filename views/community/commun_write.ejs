@@ -10,33 +10,25 @@
 
 <div class="community_wrapper">
   <div class="selection">
-    <button class="select select1" type="button" value="1">
+    <button class="select select1" type="button" value="1" onclick="changeColor(this)">
         <label>
           <span>고민상담소</span>
         </label>
       </button>
-      <button class="select select2" type="button" value="2">
+      <button class="select select2" type="button" value="2" onclick="changeColor(this)">
         <label>
           <span>정보 공유</span>
         </label>
       </button>
-      <script>
-        // 이벤트 핸들러 함수
-        function handleButtonClick(event) {
-          const buttons = document.getElementsByClassName('select');
-          for (let i = 0; i < buttons.length; i++) {
-            buttons[i].classList.remove('active');
-          }
-          event.currentTarget.classList.add('active');
-          const sleepingTimeInput = document.getElementById('sleeping_time');
-          sleepingTimeInput.value = event.currentTarget.value;
-        }
       
-        // 버튼들에 클릭 이벤트 핸들러 등록
+      <script>
+      function changeColor(button) {
         const buttons = document.getElementsByClassName('select');
         for (let i = 0; i < buttons.length; i++) {
-          buttons[i].addEventListener('click', handleButtonClick);
+          buttons[i].classList.remove('write_active');
         }
+        button.classList.add('write_active');
+      }
       </script>
                     
   </div>

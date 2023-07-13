@@ -43,10 +43,13 @@ button{
     height: 40px;
 }
 
+.write_active{
+    background-color: #DFE1D7;
+}
+
 
 .community_container {
     width: 55%;
- 
    
     background-color: white;
     border-color: #E0E0E0;
