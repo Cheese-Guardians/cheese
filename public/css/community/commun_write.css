@@ -68,3 +68,22 @@ button{
   .write_wrapper{
       height: 80%;
   }
+  .note-toolbar {
+    height: 150px;
+}
+.note-toolbar .btn-group,
+.note-toolbar .btn,
+.note-toolbar .dropdown-toggle {
+    height: 30px;
+    width:50px;
+    line-height: 30px;
+    padding: 0 8px;
+    font-size: 12px;
+}
+.note-toolbar {
+    white-space: nowrap;
+}
+
+.note-toolbar .note-btn-group {
+    display: inline-block;
+}

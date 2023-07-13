@@ -1,50 +1,61 @@
 <head>
-    <link href="/css/community/commun_write.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  </head>
-  
-  
-  <!-- MAIN SECTION -->
-  <div class="community_wrapper">  
-  
-    <div class="selection">
-      <button class="select1" type="button" value="1">   
-        <label>
-          <span>고민상담소</span>
-        </label> 
-      </button>
-  
-      <button class="select2" type="button" value="2">   
-        <label>
-          <span>정보 공유</span>
-        </label> 
-      </button>      
-    </div>   
-    
-  
-    <div class="community_container">
-        <div class="categoryTitle"> <p> 작성 글 </p> </div>
-      
-        <div class="write_wrapper">
-        
-        </div>
+  <link href="/css/community/commun_write.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+  <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
+  <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
+</head>
 
-        <div class="buttons"> 
-            <button class="cancel" type="button" value="1">   
-                <label>
-                  <span>최소</span>
-                </label> 
-            </button>
-            <button class="submit" type="button" value="2">   
-                <label>
-                  <span>글 등록</span>
-                </label> 
-            </button>
-        </div>
-        
-      
-        
-    </div>
-  
-        
+<div class="community_wrapper">
+  <div class="selection">
+      <button class="select1" type="button" value="1">
+          <label>
+              <span>고민상담소</span>
+          </label>
+      </button>
+      <button class="select2" type="button" value="2">
+          <label>
+              <span>정보 공유</span>
+          </label>
+      </button>
   </div>
+
+  <div class="community_container">
+      <div class="categoryTitle">
+          <p> 작성 글 </p>
+      </div>
+      <div class="write_wrapper">
+          <div id="summernote"></div>
+          <script>
+              $(document).ready(function () {
+                  $('#summernote').summernote({
+                      placeholder: '내용을 작성하세요',
+                      height: 400,
+                      maxHeight: 400,
+                      toolbar: [
+                          ['style', ['bold', 'italic', 'underline', 'clear']],
+                          ['font', ['strikethrough', 'superscript', 'subscript']],
+                          ['color', ['color']],
+                          ['para', ['ul', 'ol', 'paragraph']],
+                          ['height', ['height']]
+                      ]
+                  });
+              });
+          </script>
+      </div>
+      <div class="buttons">
+          <button class="cancel" type="button" value="1">
+              <label>
+                  <span>최소</span>
+              </label>
+          </button>
+          <button class="submit" type="button" value="2">
+              <label>
+                  <span>글 등록</span>
+              </label>
+          </button>
+      </div>
+  </div>
+</div>
