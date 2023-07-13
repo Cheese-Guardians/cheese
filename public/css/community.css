@@ -1,6 +1,6 @@
 .community_wrapper {    
     /* height: 550px; */
-    height: 90vh;   
+    height: 150vh;   
 }
 section{
     position: absolute;
@@ -46,7 +46,7 @@ button{
     height: 30%;
 }
 
-.title{
+.categoryTitle{
     background-color: #d9ee97;
     color: black;
     
@@ -63,3 +63,158 @@ button{
     position: static;
     padding: 1%;    
   }
+  * {
+    margin: 0;
+    padding: 0;
+  }
+  html {
+    font-size: 10px;
+  }
+  
+  ul,
+  li {
+    list-style: none;
+  }
+  
+  a {
+    text-decoration: none;
+    color: inherit;
+    /* ㄴ🟡 컬러 상속받아라 */
+  }
+  .board_wrap {
+    width: 1000px;
+    margin: 100px auto;
+  }
+  
+  .board_title {
+    margin-bottom: 30px;
+  }
+  
+  .board_title strong {
+    font-size: 3rem;
+  }
+  
+  .board_title p {
+    margin-top: 5px;
+    font-size: 1.4rem;
+  }
+  
+  .bt_wrap {
+    margin-top: 30px;
+    text-align: center;
+    font-size: 0;
+    text-align: center;
+  }
+  
+  .bt_wrap a {
+    display: inline-block;
+    min-width: 80px;
+    margin-left: 10px;
+    padding: 10px;
+    border: 1px solid #000;
+    border-radius: 2px;
+    font-size: 1.4rem;
+  }
+  .bt_wrap a:first-child {
+    margin-left: 0;
+  }
+  
+  .bt_wrap a.on {
+    background: #000;
+    color: #fff;
+  }
+  .board_list {
+    width: 100%;
+    border-top: 2px solid #000;
+  }
+  .board_list > div {
+    border-bottom: 1px solid #ddd;
+    font-size: 0;
+  }
+  .board_list > div.top {
+    border-bottom: 1px solid #999;
+  }
+  .board_list > div:last-child {
+    border-bottom: 1px solid #000;
+  }
+  .board_list > div > div {
+    display: inline-block;
+    /* ㄴ 🟡가로배치!!! */
+    padding: 15px 0;
+    /* ㄴ 🟡모든 픽셀 여백 15px 0 */
+    text-align: center;
+    font-size: 1.4rem;
+    /* ㄴ 🟡부모에다가는 font-size : 0을 줌. */
+  }
+  
+  .board_list > div.top > div {
+    font-weight: 600;
+  }
+  
+  .board_list .num {
+    width: 10%;
+    /* ㄴ🟡번호칸이 10%의 영역을 가지게 된다. */
+  }
+  .board_list .title {
+    width: 60%;
+    text-align: left;
+  }
+  .board_list .top .title {
+    text-align: center;
+  }
+  .board_list .writer {
+    width: 10%;
+  }
+  .board_list .date {
+    width: 10%;
+  }
+  .board list .count {
+    width: 10%;
+  }
+  .board_page {
+    margin-top: 30px;
+    /* ㄴ🟡 위로 여백 */
+    text-align: center;
+    /* ㄴ🟡 가운데정렬로 */
+    font-size: 0;
+    /* ㄴ🟡 페이지 순서 박스 사이의 여백 없애기 */
+  }
+  
+  .board_page a {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    box-sizing: border-box;
+    /* ㄴ🟡 board_page a.bt과 num 에 패딩값을 넣게 되면서 상자가 길어지게 되는데, 이를 방지 하기 위해서 이 패딩값을 넘지 말아라~ 하는 코딩부분(전체높이 32px를 넘지 않게)*/
+    vertical-align: middle;
+    /* ㄴ🟡박스 높낮이 같게 */
+    border: 1px solid #ddd;
+    border-left: 0;
+    line-height: 100%;
+  }
+  
+  .board_page a.bt {
+    padding-top: 10px;
+    font-size: 1.2rem;
+    letter-spacing: -1px;
+  }
+  
+  .board_page a.num {
+    padding-top: 9px;
+    font-size: 1.4rem;
+  }
+  
+  .board_page a.num.on {
+    border-color: #000;
+    background: #000;
+    color: #fff;
+  }
+  
+  .board_page a:first-child {
+    border-left: 1px solid #ddd;
+  }
+  
+  .title p {
+    color: red;
+  }
+  /* 🟡 따라서 쓰는 것은 코딩에서 도움이 되지 않아요. 절차를 보면서, 
