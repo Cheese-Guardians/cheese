@@ -8,6 +8,10 @@ section{
     margin-left: 30%;
 }
 
+.select1{
+    margin-left: 22%;
+}
+
 button{
     background-color: #d9ee97;
     color: #000000;
@@ -37,6 +41,7 @@ button{
     font-size: 15px;
     margin: 0 auto;
     position: relative;
+    margin-top: 10px;
 }
 
 .top{
