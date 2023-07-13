@@ -45,7 +45,7 @@ button{
 .bottom{
     height: 30%;
 }
-
+/*top*/
 .categoryTitle{
     background-color: #d9ee97;
     color: black;
@@ -61,8 +61,11 @@ button{
     width: 140px;
     height: 40px;
     position: static;
-    padding: 1%;    
+    padding: 1%;  
+    margin-top: 2%;
+    margin-left: 2%;  
   }
+  
   * {
     margin: 0;
     padding: 0;
@@ -82,8 +85,8 @@ button{
     /* ㄴ🟡 컬러 상속받아라 */
   }
   .board_wrap {
-    width: 1000px;
-    margin: 100px auto;
+    width: 80%;
+    margin: 2% auto;
   }
   
   .board_title {
@@ -217,4 +220,21 @@ button{
   .title p {
     color: red;
   }
-  /* 🟡 따라서 쓰는 것은 코딩에서 도움이 되지 않아요. 절차를 보면서, 
+  /* 🟡 따라서 쓰는 것은 코딩에서 도움이 되지 않아요. 절차를 보면서*/
+
+  .write{
+    background-color: #d9ee97;
+    color: #000000;
+    border: none;
+    width: 100px;
+    height: 40px;
+    border-radius: 15px;
+     
+    font-family: 'Noto Sans';
+    font-style: normal;
+    font-weight: 800;
+    font-size: 13px;
+    line-height: 41px;
+    margin-top : 100px;
+    margin-left: 80%;
+  }
