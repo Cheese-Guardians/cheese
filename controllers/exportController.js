@@ -11,6 +11,7 @@ exports.postSummary = async function (req, res) {
             date2
         } = req.body;
         const diaryResponse = await exportService.retrieveSelectedDiary(user_id, date1, date2);
+        console.log("hihihih", diaryResponse,"hihihihi")
         console.log(summarizeDiary(diaryResponse));
         
     } catch (error) {

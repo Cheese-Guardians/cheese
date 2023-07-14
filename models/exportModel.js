@@ -1,26 +1,25 @@
 
 async function getSelectedDiary(pool, selectedDiaryParams) {
     const getDiaryQuery = `
-      SELECT diary
+    SELECT diary
+    FROM calendar
+    WHERE user_id = ?
+    AND calendar_id = any(
+      SELECT calendar_id
       FROM calendar
-      WHERE user_id = ?
-      AND calendar_id = (
-        SELECT calendar_id
-        FROM calendar
-        WHERE user_id = ? 
-        AND date BETWEEN '?' AND '?'
-      );
+      WHERE user_id = ? 
+      AND date BETWEEN ? AND ?
+    );
     `;
     const [DiarycalendarRows] = await pool.promise().query(getDiaryQuery, selectedDiaryParams);
-    const calendar =  {
-      diary: ""
+    const calendar = {
+      diary: []
     };
-    
-    if (calendarRows.length > 0) {
-      calendar.diary = DiarycalendarRows[0].diary;
+  
+    if (DiarycalendarRows.length > 0) {
+      calendar.diary = DiarycalendarRows.map(row => row.diary);
     }
-      
-    return {calendar};
+    return { calendar };
   }
   
   
