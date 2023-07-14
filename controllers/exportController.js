@@ -7,7 +7,9 @@ exports.postSummary = async function (req, res) {
     try {
       const { user_id, date1, date2 } = req.body;
       const diaryResponse = await exportService.retrieveSelectedDiary(user_id, date1, date2);
-      const diaryText = diaryResponse.calendar.diary.join(' ');
+      const diaryText = diaryResponse.calendar.diary.filter(entry => entry !== null).join(' ');
+
+      // gpt 함수 호출
       const summary = await summarizeDiary(diaryText);
       res.json({ summary });
     } catch (error) {
@@ -22,7 +24,7 @@ exports.postSummary = async function (req, res) {
       const response = await axios.post('https://api.openai.com/v1/chat/completions', {
         model: 'gpt-3.5-turbo',
         messages: [
-          { role: 'system', content: 'You are a diary summarizer.' },
+          { role: 'system', content: 'You are a diary summarizer. In Korean, please summarize it in 150 letters.' },
           { role: 'user', content: diaryResponse },
         ],
       }, {
