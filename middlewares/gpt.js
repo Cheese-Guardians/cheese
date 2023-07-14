@@ -1,5 +1,3 @@
-require('dotenv').config();
-
 import { Configuration, OpenAIApi } from "openai";
 const configuration = new Configuration({
     organization: "org-9eK5ps4TUckwvyKZOubms7M6",

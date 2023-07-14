@@ -17,6 +17,8 @@ module.exports = pool;  //모듈로 내보내기
 const schedule = require('node-schedule');
 require('dotenv').config({path: "./config/sens.env"}); // sens.env 불러오기
 
+require('dotenv').config({path: "./config/gpt.env"}); // sens.env 불러오기
+
 // 기본 설정
 const port = 3000,
     express = require("express"),
