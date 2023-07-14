@@ -1,4 +1,4 @@
-//캘린더 조회
+
 async function getSelectedDiary(pool, selectedDiaryParams) {
     const getDiaryQuery = `
       SELECT diary
@@ -8,10 +8,9 @@ async function getSelectedDiary(pool, selectedDiaryParams) {
         SELECT calendar_id
         FROM calendar
         WHERE user_id = ? 
-        AND date = '2023-06-03'
+        AND date BETWEEN '?' AND '?'
       );
     `;
-  //관찰 일기
     const [DiarycalendarRows] = await pool.promise().query(getDiaryQuery, selectedDiaryParams);
     const calendar =  {
       diary: ""
