@@ -1,0 +1,64 @@
+<head>
+    <link href="/css/community/commun_view.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
+  </head>
+  
+  <div class="community_wrapper">
+    <div class="selection">
+      <button class="select select1" type="button" value="1" onclick="changeColor(this)">
+          <label>
+            <span>고민상담소</span>
+          </label>
+        </button>
+        <button class="select select2" type="button" value="2" onclick="changeColor(this)">
+          <label>
+            <span>정보 공유</span>
+          </label>
+        </button>
+        
+        <script>
+        function changeColor(button) {
+          const buttons = document.getElementsByClassName('select');
+          for (let i = 0; i < buttons.length; i++) {
+            buttons[i].classList.remove('write_active');
+          }
+          button.classList.add('write_active');
+        }
+        </script>
+                      
+    </div>
+    <%-include ('./community-side.ejs') %>
+    <div class="community_container">
+        <div class="title"><h2>신약 개발 후 저희 아버지가 달라지셨습니다!</h2></div>
+        
+        <div class="view_wrapper">
+            <p>언제부턴가 아버지는 건강이 좋지 않아 어려움을 겪곤 했습니다. 그러던 중, 그에게 새로운 약물이 처방되었습니다. 처음에는 별다른 변화가 없었지만, 시간이 지날수록 아버지의 기운이 돌아오기 시작했습니다. 체력이 회복됨에 따라 아버지는 자신감을 되찾았고, 다시 한 번 삶을 즐기기 시작했습니다.
+                아직은 어떤 부작용이 있을지 모르지만, 이 새로운 약물 개발은 많은 사람들에게 희망을 줄 수 있습니다. 이것은 과학 기술의 발전으로 이뤄진 업적입니다. 그리고 이러한 발전으로 우리는 세상을 더 나은 곳으로 만들어 나갈 수 있습니다.</p>
+                
+        
+    </div>
+    <button class="select select3" type="button" value="2">
+    <label>
+        <div>댓글</div>
+      </label>
+    </button>
+    <div class="comment_wrapper">
+        <div class = "comment_input">
+            <input type="text" placeholder="댓글을 입력하세요" style="border: none;">
+        </div>
+        <button class="select select4" type="button" value="4" onclick="changeColor(this)">
+            <label>
+                <div>댓글</div>
+              </label>
+        </button>
+    </div>
+    
+    
+  </div>
+  
+  

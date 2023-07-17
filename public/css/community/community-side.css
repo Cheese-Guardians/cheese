@@ -4,15 +4,17 @@ body {
 
 #community-side {
     position: relative;
-    top: 130px;
-    left: 10%;
-    height: 80vh;
-    width: 254px;
+    /* top: 130px; */
+    left: 80%;
+    bottom: 35%;
+    height: 60vh;
+    width: 300px;
     margin-bottom: 10%;
-
+    display: inline-block;
     background: #FFFFFF;
     border: 1px solid #E0E0E0;
     border-radius: 15px;
+    
 }
 
 .list-tile {

@@ -71,7 +71,11 @@ app.get(
     "/commun1", (req,res) =>
     {res.render("community/commun_write.ejs");}
 );
-
+app.get(
+    "/commun/view", (req, res) => {
+        res.render("community/commun_view.ejs");
+    }
+)
 app.listen(port,() => {
   const dir = "./uploads";
   if (!fs.existsSync(dir)) {
