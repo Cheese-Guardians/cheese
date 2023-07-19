@@ -2,9 +2,16 @@ const express = require('express');
 const router = express.Router();
 const exportController = require('../controllers/exportController');
 
+// 간호 다이어리 통계 내보내기
 router.get(
     "/", (req,res) =>
     {res.render("export/exportPdf.ejs");}
+);
+
+// 간호 다이어리 통계 PDF
+router.get(
+    "/pdf", (req,res) =>
+    {res.render("export/pdf.ejs");}
 );
 
 // gpt post
