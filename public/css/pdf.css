@@ -1,0 +1,23 @@
+/*--------------------------------------------------------------
+# Header
+--------------------------------------------------------------*/
+#header {background: #FBFFED;
+    transition: all 0.5s;
+    z-index: 997;
+    padding: 20px 0;
+  }
+
+#header .logo {
+    font-size: 32px;
+    margin: 0;
+    padding: 0;
+    line-height: 1;
+    font-weight: 700;
+    letter-spacing: 0.5px; color: #B3CC62;
+    max-height: 40px;
+  }
+
+body {
+    height: 100vh;
+    background-color: white;
+}
