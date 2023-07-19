@@ -4,7 +4,7 @@ const exportController = require('../controllers/exportController');
 
 router.get(
     "/", (req,res) =>
-    {res.render("export/pdf.ejs");}
+    {res.render("export/exportPdf.ejs");}
 );
 
 // gpt post
