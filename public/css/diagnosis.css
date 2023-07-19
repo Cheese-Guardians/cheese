@@ -1,13 +1,11 @@
 .diagnosis_wrapper {
-    
     /* height: 550px; */
     height: 90vh;
-   
-}
-.diagnosis_container {
-    width:50%;
+  }
+
+  .diagnosis_container {
+    width: 50%;
     height: 70%;
-   
     background-color: white;
     border-color: #E0E0E0;
     border-style: solid;
@@ -17,34 +15,132 @@
     margin: 0 auto;
     top: 20%;
     position: relative;
-}
+    display: flex; /* Flexbox로 변경 */
+    flex-direction: column; /* 세로 방향으로 배치 */
+  }
 
-.title{
+  .title {
     font-size: 20px;
-    font-weight: 400;
-    margin-top: 10%;
-    margin-left: 35%;
-    margin-right: 30%;
-}
+    font-weight: 1000;
+    margin: 70px;
+    
+  }
+
+  .content-container {
+    display: flex; /* Flexbox로 변경 */
+    flex-direction: row; /* 가로 방향으로 배치 */
+    flex: 1; /* 세로 방향으로 컨테이너를 채우도록 설정 */
+  }
+
+  .left, .center, .right {
+    flex: 1; /* 각 열이 동일한 크기로 나눠짐 */
+    padding: 10px; /* 각 열의 여백 */
+    display: flex; /* 열 내부 컨텐츠 정렬에 Flexbox 사용 */
+    align-items: center; /* 세로 방향으로 가운데 정렬 */
+    justify-content: center; /* 가로 방향으로 가운데 정렬 */
+  }
+
+  .box {
+    width: 80%;
+    height: 40%;
+    border: 2px solid #B3CC62;
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .boxText {
+    text-align: center;
+  }
+
+  .PDFpageBtn {
+    margin-top: 20px;
+    border-radius: 20px;
+    font-weight: bold;
+    text-align: center;
+    border: 2px solid #B3CC62;
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-right: 10px;
+    background-color: white;
+  }
+
+
+
+
+  .left, .center, .right {
+    flex: 1; /* 각 열이 동일한 크기로 나눠짐 */
+    padding: 10px; /* 각 열의 여백 */
+    padding-top:3%;
+    display: flex; /* 열 내부 컨텐츠 정렬에 Flexbox 사용 */
+    align-items: center; /* 세로 방향으로 가운데 정렬 */
+    justify-content: center; /* 가로 방향으로 가운데 정렬 */
+  }
 
 .left{
     display: inline-block;
-    width: 50%;
+    width: 25%;
     height: 100%;
-    margin-left: 5%;
+    padding-top:5%;
 
 }
-
+.center{
+    width: 30%;
+    display: inline-block;
+    height: 100%;
+}
 .right{
+    width: 30%;
     display: inline-block;
     height: 100%;
 
 }
-.titleDiagnosis{
 
-    font-style:bold;
-    width: 100%;
+.box {
+    width: 90%;
+    height: 40%;
+    border: 2px solid #B3CC62;
+    padding: 5px;
+    margin-top: 10px;
+    display: flex; /* Flexbox 사용 */
+    justify-content: center; /* 수평 정렬: 가운데 */
+    align-items: center; /* 수직 정렬: 가운데 */
+  }
+
+  .boxtitle{
+    font-weight: 1000;
+  }
+  .boxText {
+    text-align: center;
+  }
+
+  .button-container {
+    display: flex;
+    justify-content: flex-end; /* 오른쪽 정렬 */
+    margin-top:20px;
+  }
+
+  .PDFpageBtn {
+    margin-top: 20px;
+    border-radius: 20px;
+    font-weight: bold;
+    text-align: center;
+    border: 2px solid #B3CC62;
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-right:5%;
+    background-color: white;
+  }
+.titleDiagnosis{
     font-size:20px;
+    font-weight: 1000;
+}
+.subtitleDiagnosis{
+    font-size:10px;
+    margin-top: 10px;
 }
 .doctor{
     width:40%;
@@ -85,11 +181,27 @@
     width:100%;
 }
 .doctorChoose{
-    margin: 10%;
+    font-style:bold;
+    width: 100%;
+    text-align: center;
 }
-.choose{
-    margin: 5%;
-}
+.choose {
+    border-radius: 10px;
+    padding: 5px;
+    display: flex;
+    justify-content: center; 
+    align-items: center; /* 세로 중앙 정렬 */
+    height: 10vh; 
+  }
+
+  #date-input {
+    border-radius: 20px;
+    font-weight: bold;
+    padding: 5px;
+    text-align: center;
+
+   
+  }
 
 .send{
     float:right;
