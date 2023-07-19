@@ -5,12 +5,24 @@ const axios = require('axios');
 
 exports.postSummary = async function (req, res) {
     try {
-      const { user_id, date1, date2 } = req.body;
+      const { user_id, date1 } = req.body;
+
+      // date1 + 27일
+      var date = new Date(date1);  // 문자열을 Date 객체로 변환
+      date.setDate(date.getDate() + 27);  // 해당 날짜에 28일을 더함
+
+      var year = date.getFullYear();
+      var month = String(date.getMonth() + 1).padStart(2, "0");  // 월은 0부터 시작하므로 +1을 해줌
+      var day = String(date.getDate()).padStart(2, "0");
+
+      var date2 = `${year}-${month}-${day}`;
+
+      // service 함수 호출
       const diaryResponse = await exportService.retrieveSelectedDiary(user_id, date1, date2);
       const diaryText = diaryResponse.calendar.diary.filter(entry => entry !== null).join(' ');
 
       // gpt 함수 호출
-      const summary = await summarizeDiary(diaryText);
+      // const summary = await summarizeDiary(diaryText);
       res.json({ summary });
     } catch (error) {
       console.error('Error:', error);
