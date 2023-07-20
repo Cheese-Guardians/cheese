@@ -1,10 +1,17 @@
 const communityService = require('../services/communityService');
-const path = require('path');
 const jwt = require('jsonwebtoken');
 const secret = require('../config/secret');
+const baseResponse = require("../config/baseResponseStatus");
+const path = require('path');
 const querystring = require('querystring');
 
-const baseResponse = require('../config/baseResponseStatus');
+//게시글 세부 조회
+exports.getCommunity = async function (req, res) {
+    const boardId = req.params.board_id;
+    const communityResult = await communityService.retrieveCommunity(boardId);
+    console.log(communityResult);
+    return res.render('community/commun_view.ejs', { communityResult: communityResult});
+}
 
 exports.getList = async function (req, res) {
     const token = req.cookies.x_auth;
