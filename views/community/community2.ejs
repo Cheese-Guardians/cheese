@@ -35,12 +35,18 @@
               <div class="time">작성시간</div>
               <div class="count">조회</div>
             </div> -->
-            <div>
-              <div class="title"><a href="#">글 제목이 들어갑니다. <span class="red">[3]</span></a></div>
-              <div class="date">2022.12.16</div>
-              <div class="time">12:00:45</div>
-              <div class="count">33</div>
-            </div>
+            <% if (typeof communityDataResult !== 'undefined' && communityDataResult && typeof communityDataResult.list !== 'undefined' && communityDataResult.list && communityDataResult.list.length !== 0) { %>
+              <% for (let i = 0; i < communityDataResult.list.length; i++) { %>
+                <div>
+                  <div class="title"><a href="#"> <%= communityDataResult.list[i].title %> <span class="red">[3]</span></a></div>
+                  <div class="date"><%= communityDataResult.list[i].updated_at %></div>
+                  <div class="time">12:00:45</div>
+                  <div class="count"> <%= communityDataResult.list[i].views %> </div>
+                </div>
+              <% } %>
+            <% } %>
+            
+
             <div>
               <div class="title"><a href="#">글 제목이 들어갑니다. <span class="red">[4]</span></a></div>
               <div class="date">2022.12.16</div>
