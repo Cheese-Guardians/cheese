@@ -26,14 +26,19 @@ exports.getList = async function (req, res) {
             if (user_id <= 0) {
                 return res.send(baseResponse.USER_USERIDX_LENGTH);
             }
-
-            const { title, updated_at, views } = req.body;
+            if (!req.query.page){
+              const existingQueryString = req.query;
+      
+              if (Object.keys(existingQueryString).length === 0) {
+                const newURL = `${req.protocol}://${req.get('host')}${req.originalUrl}?page=1`;
+                return res.redirect(newURL);
+              }
+            }
+            let page = req.query.page;
 
             const communityDataResult = await communityService.retrieveSelectedCommunity(
                 user_id,
-                title,
-                updated_at,
-                views
+                page
             );
             console.log(communityDataResult);
 
