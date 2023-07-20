@@ -35,13 +35,13 @@
               <div class="time">작성시간</div>
               <div class="count">조회</div>
             </div> -->
-            <% if (typeof communityDataResult !== 'undefined' && communityDataResult && typeof communityDataResult.list !== 'undefined' && communityDataResult.list && communityDataResult.list.length !== 0) { %>
-              <% for (let i = 0; i < communityDataResult.list.length; i++) { %>
+            <% if (typeof communityDataResult !== 'undefined' && communityDataResult) { %>
+              <% for (let i = 0; i < communityDataResult.length; i++) { %>
                 <div>
-                  <div class="title"><a href="#"> <%= communityDataResult.list[i].title %> <span class="red">[3]</span></a></div>
-                  <div class="date"><%= communityDataResult.list[i].updated_at %></div>
+                  <div class="title"><a href="#"> <%= communityDataResult[i].title %> <span class="red">[3]</span></a></div>
+                  <div class="date"><%= communityDataResult[i].updated_at  %></div>
                   <div class="time">12:00:45</div>
-                  <div class="count"> <%= communityDataResult.list[i].views %> </div>
+                  <div class="count"> <%= communityDataResult[i].views %> </div>
                 </div>
               <% } %>
             <% } %>

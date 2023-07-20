@@ -10,6 +10,7 @@ exports.retrieveSelectedCommunity = async function (user_id) {
 
         return communityDataResult;
     } catch (err) {
+        console.log(err);
         return 'retrieveSelectedCommunityError';
     }
 }

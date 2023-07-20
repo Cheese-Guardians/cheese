@@ -32,5 +32,6 @@ async function insertBoardInfo(pool, insertBoardParams){
     }
   }
   module.exports = {
-    insertBoardInfo
+    insertBoardInfo,
+    getCommunityList
   }

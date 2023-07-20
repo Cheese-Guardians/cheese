@@ -28,8 +28,9 @@ exports.getList = async function (req, res) {
                 updated_at,
                 views
             );
+            console.log(communityDataResult);
 
-            return res.render('community/infoList', { communResult: communityDataResult });
+            return res.render('community/community2.ejs', { communityDataResult: communityDataResult });
         } catch (err) {
             return res.send('Error occurred during token verification or community retrieval.');
         }
