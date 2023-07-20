@@ -8,8 +8,10 @@ const querystring = require('querystring');
 //게시글 세부 조회
 exports.getCommunity = async function (req, res) {
     const boardId = req.params.board_id;
-    const communityResult = await communityService.retrieveCommunity(boardId);
+    const title = req.params.title;
+    const communityResult = await communityService.retrieveCommunity(boardId, title);
     console.log(communityResult);
+    //console.log(communityResult.title);
     return res.render('community/commun_view.ejs', { communityResult: communityResult});
 }
 

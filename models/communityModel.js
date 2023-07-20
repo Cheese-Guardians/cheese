@@ -1,14 +1,12 @@
-async function selectCommunity(pool, boardId) {
+async function selectCommunity(pool, boardId, title) {
     const selectBoardQuery = `
         SELECT *
         FROM board
         WHERE board_id = ?`;
-    const [boardRows] = await pool.promise().query(selectBoardQuery, boardId);
+    const [boardRows] = await pool.promise().query(selectBoardQuery, boardId, title);
     return boardRows;
 }
-module.exports = {
-    selectCommunity
-}
+
 // get 리스트
 async function getCommunityList(pool, user_id) {
     const getListQuery = `
@@ -43,5 +41,6 @@ async function insertBoardInfo(pool, insertBoardParams){
     }
   }
   module.exports = {
+    selectCommunity,
     insertBoardInfo
   }

@@ -34,11 +34,16 @@
     </div>
     <%-include ('./community-side.ejs') %>
     <div class="community_container">
-        <div class="title"><h2>신약 개발 후 저희 아버지가 달라지셨습니다!</h2></div>
-        
+        <div class="title"><h2> <%= communityResult[0].title %></h2></div>
+        <div class="subinfo">
+          <img class = "profile" src="/img/profile.png" alt="">
+          <p class = "user"><%= communityResult[0].user_id %></p>
+          <p class="time"> <%= communityResult[0].updated_at %></p>
+        </div>
+       
         <div class="view_wrapper">
-            <p>언제부턴가 아버지는 건강이 좋지 않아 어려움을 겪곤 했습니다. 그러던 중, 그에게 새로운 약물이 처방되었습니다. 처음에는 별다른 변화가 없었지만, 시간이 지날수록 아버지의 기운이 돌아오기 시작했습니다. 체력이 회복됨에 따라 아버지는 자신감을 되찾았고, 다시 한 번 삶을 즐기기 시작했습니다.
-                아직은 어떤 부작용이 있을지 모르지만, 이 새로운 약물 개발은 많은 사람들에게 희망을 줄 수 있습니다. 이것은 과학 기술의 발전으로 이뤄진 업적입니다. 그리고 이러한 발전으로 우리는 세상을 더 나은 곳으로 만들어 나갈 수 있습니다.</p>
+            <p > <%= communityResult[0].content %></p>
+            
                 
         
     </div>

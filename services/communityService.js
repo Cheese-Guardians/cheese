@@ -3,8 +3,10 @@ const { response } = require('express');
 const pool = require('../main');
 const communityModel = require('../models/communityModel');
 
-exports.retrieveCommunity = async function(boardId) {
-    const communityResult = await communityModel.selectCommunity(pool, boardId);
+exports.retrieveCommunity = async function(boardId, title) {
+    const communityParams = [boardId, title];
+    const communityResult = await communityModel.selectCommunity(pool,communityParams);
+    console.log(communityResult.title);
     return communityResult;
 }
 exports.retrieveSelectedCommunity = async function (user_id) {
