@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const calendarController = require('../controllers/communityController');
+const communityController = require('../controllers/communityController');
 //const { upload } = require('../middlewares/multerMiddleware');
 
 router.get(
@@ -20,4 +20,6 @@ router.get(
         res.render("community/commun_view.ejs");
     }
 )
+// board post
+router.post('/write', communityController.postBoard);
 module.exports = router;

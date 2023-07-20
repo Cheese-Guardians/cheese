@@ -14,3 +14,28 @@ exports.retrieveSelectedCommunity = async function (user_id) {
     }
 }
 
+exports.createBoard = async function (
+    category_name,
+    user_id,
+    title,
+    content,
+    updated_at
+) {
+  try {
+   
+    const insertBoardParams = [
+        category_name,
+        user_id,
+        title,
+        content,
+        updated_at,
+        0
+    ];
+    
+    await communityModel.insertBoardInfo(pool, insertBoardParams);
+    
+    return '성공';
+  } catch (err) {
+      return err;
+  }
+};
