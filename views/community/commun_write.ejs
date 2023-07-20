@@ -9,18 +9,19 @@
 </head>
 
 <div class="community_wrapper">
+  <form action="/community/write" method="post" id="communityForm">
   <div class="selection">
-    <button class="select select1" type="button" value="1" onclick="changeColor(this)">
+    <button class="select select1" type="button" value="자유게시판" onclick="changeColor(this)">
         <label>
           <span>고민상담소</span>
         </label>
       </button>
-      <button class="select select2" type="button" value="2" onclick="changeColor(this)">
+      <button class="select select2" type="button" value="정보게시판" onclick="changeColor(this)">
         <label>
           <span>정보 공유</span>
         </label>
       </button>
-      
+      <input type="hidden" id="category_name" name="category_name" value="">
       <script>
       function changeColor(button) {
         const buttons = document.getElementsByClassName('select');
@@ -28,6 +29,8 @@
           buttons[i].classList.remove('write_active');
         }
         button.classList.add('write_active');
+        const categoryInput = document.getElementById('category_name');
+        categoryInput.value = event.currentTarget.value;
       }
       </script>
                     
@@ -37,9 +40,10 @@
 
       <div class="write_wrapper">
         <div class="title">
-          <input type="text" placeholder="제목" style="border: none;">
+          <input type="text"  id="title" name="title" placeholder="제목" style="border: none;">
       </div>
-          <div id="summernote"></div>
+          <textarea id="content" name="content" style="display: none;"></textarea>
+          <div id="summernote"  name="content" ></div>
           <script>
               $(document).ready(function () {
                   $('#summernote').summernote({
@@ -56,19 +60,52 @@
                   });
               });
           </script>
+          
            <div class="buttons">
-            <button class="cancel" type="button" value="1">
-                <label>
-                    <span>취소</span>
-                </label>
-            </button>
-            <button class="submit" type="button" value="2">
+            <script>
+              document.getElementById("cancelBtn").addEventListener("click", function() {
+                  window.location.href = "/community/InfoList";
+              });
+              </script>
+            <button id="cancelBtn" class="cancel" type="button" value="1">
+              <label>
+                  <span>취소</span>
+              </label>
+          </button>
+          
+            <button class="submit"  type="button" onclick="checkCategory()" value="2">
                 <label>
                     <span>글 등록</span>
                 </label>
             </button>
+            <script>
+              function checkCategory() {
+                  var categoryInput = document.getElementById("category_name");
+                  var categoryValue = categoryInput.value.trim();
+                  var titleInput = document.getElementById("title");
+                  var titleValue = titleInput.value.trim();
+                  $('textarea[name="content"]').val($('#summernote').summernote('code'));
+                  var textarea = document.getElementById('content');
+                  
+                  if (categoryValue === "") {
+                      alert("게시판을 선택해주세요!");
+                  } 
+                  else if (titleValue === ""){
+                      alert("제목을 입력해주세요!");
+                  } 
+                  else if (textarea.value === "" || textarea.value == "<p><br></p>" ){
+                      alert("글 내용을 입력해주세요!");
+                  } 
+                  else {
+                      // form 제출
+                      var communityForm = document.getElementById("communityForm");
+                      communityForm.submit();
+                  }
+              }
+          </script>
         </div>
       </div>
       
   </div>
+</form>
 </div>

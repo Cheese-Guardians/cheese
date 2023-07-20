@@ -29,6 +29,10 @@ button{
     margin-top : 100px;
     margin-left: 10px;
 }
+.select{
+    background-color: #DFE1D7;
+    color: #000000;
+}
 .buttons{
     margin-bottom: 2%;
     margin-left: 68%;
@@ -45,7 +49,7 @@ button{
 }
 
 .write_active{
-    background-color: #DFE1D7;
+    background-color: #d9ee97;
 }
 
 

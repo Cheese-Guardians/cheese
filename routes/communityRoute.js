@@ -22,4 +22,11 @@ router.get(
 // )
 router.get("/write/:board_id", communityController.getCommunity);
 
+router.get(
+    "/write/view", (req, res) => {
+        res.render("community/commun_view.ejs");
+    }
+)
+// board post
+router.post('/write', communityController.postBoard);
 module.exports = router;
