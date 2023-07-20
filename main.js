@@ -29,7 +29,8 @@ const port = 3000,
     calendarRouter = require('./routes/calendarRoute'),
     usersRouter = require('./routes/usersRoute'),
     reminderRouter = require('./routes/reminderRoute'),
-    exportRouter = require('./routes/exportRoute');
+    exportRouter = require('./routes/exportRoute')
+    pdf = require("html-pdf");
 
 const cookieParser = require('cookie-parser');
 
