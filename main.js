@@ -27,6 +27,7 @@ const port =3000,
     calendarRouter = require('./routes/calendarRoute'),
     usersRouter = require('./routes/usersRoute'),
     reminderRouter = require('./routes/reminderRoute'),
+    communityRouter = require('./routes/communityRoute'),
     diagnosisRouter = require('./routes/diagnosisRoute');
 
 const cookieParser = require('cookie-parser');
@@ -45,6 +46,7 @@ app.use('/calendar', calendarRouter);
 app.use('/users', usersRouter);
 app.use('/reminder', reminderRouter);
 app.use('/diagnosis', diagnosisRouter);
+app.use('/community', communityRouter)
 reminderController = require('./controllers/reminderController');
 
 //주기적인 작업 스케줄링
@@ -59,23 +61,7 @@ app.get(
 );
 
 
-app.get(
-    "/community1", (req,res) =>
-    {res.render("community/community1.ejs");}
-);
-app.get(
-    "/community2", (req,res) =>
-    {res.render("community/community2.ejs");}
-);
-app.get(
-    "/commun1", (req,res) =>
-    {res.render("community/commun_write.ejs");}
-);
-app.get(
-    "/commun/view", (req, res) => {
-        res.render("community/commun_view.ejs");
-    }
-)
+
 app.listen(port,() => {
   const dir = "./uploads";
   if (!fs.existsSync(dir)) {
