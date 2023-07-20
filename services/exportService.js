@@ -6,9 +6,9 @@ exports.retrieveSelectedDiary = async function (user_id, date1, date2) {
     try {
         const selectedDiaryParams = [user_id, user_id, date1, date2];
         const DiaryDataResult = await exportModel.getSelectedDiary(pool, selectedDiaryParams);
-
-
-        console.log(DiaryDataResult)
+     
+          
+              
         return DiaryDataResult;
     } catch (err) {
         return 'retrieveSelectedDiaryError';

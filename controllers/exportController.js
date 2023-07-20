@@ -20,10 +20,11 @@ exports.postSummary = async function (req, res) {
       // service 함수 호출
       const diaryResponse = await exportService.retrieveSelectedDiary(user_id, date1, date2);
       const diaryText = diaryResponse.calendar.diary.filter(entry => entry !== null).join(' ');
-
+      console.log(diaryText)
       // gpt 함수 호출
       // const summary = await summarizeDiary(diaryText);
-      res.json({ summary });
+      //res.json({ summary });
+      res.json({ diaryResponse });
     } catch (error) {
       console.error('Error:', error);
       throw new Error('Failed to summarize diary.');
