@@ -7,10 +7,7 @@ router.get(
     "/worryList", (req,res) =>
     {res.render("community/community1.ejs");}
 );
-router.get(
-    "/infoList", (req,res) =>
-    {res.render("community/community2.ejs");}
-);
+router.get("/infoList", communityController.getList);
 router.get(
     "/write", (req,res) =>
     {res.render("community/commun_write.ejs");}

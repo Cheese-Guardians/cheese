@@ -9,13 +9,15 @@ exports.retrieveCommunity = async function(boardId, title) {
     console.log(communityResult.title);
     return communityResult;
 }
-exports.retrieveSelectedCommunity = async function (user_id) {
+exports.retrieveSelectedCommunity = async function (user_id, page) {
     try {
         const selectedCommunityParams = [user_id];
-        const communityDataResult = await communityModel.getCommunityList(pool, selectedCommunityParams);
+        const communityDataResult = await communityModel.getCommunityList(pool, selectedCommunityParams, page);
+        console.log(communityDataResult);
 
         return communityDataResult;
     } catch (err) {
+        console.log(err);
         return 'retrieveSelectedCommunityError';
     }
 }
