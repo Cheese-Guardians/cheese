@@ -26,11 +26,11 @@ const port = 3000,
     app = express(),
     fs = require("fs"),
     layouts = require("express-ejs-layouts"),
+    
     calendarRouter = require('./routes/calendarRoute'),
     usersRouter = require('./routes/usersRoute'),
     reminderRouter = require('./routes/reminderRoute'),
-    exportRouter = require('./routes/exportRoute')
-    pdf = require("html-pdf");
+    exportRouter = require('./routes/exportRoute');
 
 const cookieParser = require('cookie-parser');
 
