@@ -20,7 +20,12 @@
             <div class="subtitleDiagnosis doctorChoose">날짜로부터 28일 전까지의 기록이 요약됩니다</div>
           </div>
           <div class="choose">
-            <input type="date" id="date-input">
+            <form id="pdf-date-form" action="/export" method="POST">
+              <input type="date" id="date-input" name="date1">
+              <div class="button-container">
+                <input type="submit"  value="PDF로 추출하기" id="medi_submitBtn" class="PDFpageBtn">
+              </div>
+            </form>
             <p></p>
             <!-- <button onclick="getDate()">Get Date</button> -->
           </div>
@@ -45,7 +50,7 @@
         <div class="box">
           <div class="boxText"> PDF로 추출하기 후에 조회 가능합니다 </div>
         </div>
-        <div class="button-container"><button class="PDFpageBtn">PDF로 추출하기</button></div>
+        <!-- <div class="button-container"><button class="PDFpageBtn">PDF로 추출하기</button></div> -->
       </div>
     </div>
   </div>

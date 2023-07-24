@@ -15,7 +15,6 @@ async function getSelectedDiary(pool, selectedDiaryParams) {
   `;
   
     const [DiarycalendarRows] = await pool.promise().query(getDiaryQuery, selectedDiaryParams);
-    console.log(DiarycalendarRows);
     function formatDate(dateString) {
       const date = new Date(dateString);
       const year = date.getFullYear();

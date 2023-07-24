@@ -4,8 +4,11 @@ const secret = require('../config/secret');
 const axios = require('axios');
 
 exports.postSummary = async function (req, res) {
-    try {
-      const { user_id, date1 } = req.body;
+    const token = req.cookies.x_auth;
+    if (token) {
+      const decodedToken = jwt.verify(token, secret.jwtsecret); // 토큰 검증, 복호화
+      const user_id = decodedToken.user_id; // user_id를 추출
+      const { date1 } = req.body;
 
       // date1 + 27일
       //var date = new Date(date1);  // 문자열을 Date 객체로 변환
@@ -33,37 +36,31 @@ exports.postSummary = async function (req, res) {
         month = String(dateB.getMonth() + 1).padStart(2, "0");  // 월은 0부터 시작하므로 +1을 해줌
         day = String(dateB.getDate()).padStart(2, "0");
         dateBB = `${year}-${month}-${day}`;
-      
 
-    // validation
-    if(!user_id) {
-      return res.send(baseResponse.USER_USERIDX_EMPTY);
-    } 
-    if (user_id <= 0) {
-      return res.send(baseResponse.USER_USERIDX_LENGTH);
-    }
-    const diaryResponse = await exportService.retrieveSelectedDiary(user_id, dateAA, dateBB);
-    const diaryText = diaryResponse.calendar.diary.filter(entry => entry !== null).join(' ');
-    //summary = await summarizeDiary(diaryText);
-    //diaryBox.push(summary);
-    diaryBox.push(diaryText);
+        // gpt 함수 호출
+        const diaryResponse = await exportService.retrieveSelectedDiary(user_id, dateAA, dateBB);
+        const diaryText = diaryResponse.calendar.diary.filter(entry => entry !== null).join(' ');
+        summary = await summarizeDiary(diaryText);
+        diaryBox.push(summary);
+        // diaryBox.push(diaryText);
 
-  }
-    res.json({ diaryBox });
-  
-    // const calendarDataResult = await calendarService.retrieveSelectedCalendar(user_id, date);
-    
-    // if (summary.length > 0) {
-      
-    //   return res.render('export/pdf.ejs', { summary: summary});
-    // } else {
-    //   console.log(summary);
-    //   return res.render('export/pdf.ejs', {summary: null });
-    // }
+      }
+      // res.json({ diaryBox });
 
-    } catch (error) {
-      console.error('Error:', error);
-      throw new Error('Failed to summarize diary.');
+      if (diaryBox.length > 0) {
+        return res.render('export/pdf.ejs', { summary: diaryBox});
+      } else {
+        return res.send(`
+          <script>
+            if (confirm('일기 요약에 실패했습니다.')) {
+              window.location.href = "/export";
+            }
+          </script>
+        `);
+      }
+      res.json({ diaryResponse });
+    } else {
+      return res.send('postSummary req error(token)');
     }
   }
   
@@ -92,4 +89,3 @@ exports.postSummary = async function (req, res) {
       throw new Error('Failed to summarize diary.');
     }
   }
-  
