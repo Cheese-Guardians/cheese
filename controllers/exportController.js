@@ -48,7 +48,7 @@ exports.postSummary = async function (req, res) {
       // res.json({ diaryBox });
 
       if (diaryBox.length > 0) {
-        return res.render('export/pdf.ejs', { summary: diaryBox});
+        return res.render('export/pdf.ejs', { diaryBox: diaryBox});
       } else {
         return res.send(`
           <script>

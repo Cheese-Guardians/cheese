@@ -86,9 +86,9 @@
                         <div class="row-name">관찰 일기 요약</div>
                         <div class="cell_container">
                             <% if (diaryBox && diaryBox.length > 0) { %>
-                                <h1>diaryBox:</h1>
                                 <% for (let i = 0; i < diaryBox.length; i++) { %>
-                                  <p><%= diaryBox[i] %></p>
+                                    <p><%= i %>주차</p>  
+                                    <p><%= diaryBox[i] %></p>
                                 <% } %>
                               <% } else { %>
                                 <h1>No diaryBox Available</h1>
