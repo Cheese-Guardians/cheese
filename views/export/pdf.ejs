@@ -85,7 +85,12 @@
                     <div class="cell-wide">
                         <div class="row-name">관찰 일기 요약</div>
                         <div class="cell_container">
-
+                            <% if (summary && summary.length > 0) { %>
+                                <h1>Summary:</h1>
+                                <p><%= summary %></p>
+                              <% } else { %>
+                                <h1>No Summary Available</h1>
+                              <% } %>
                         </div>
                     </div>
                 </div>
