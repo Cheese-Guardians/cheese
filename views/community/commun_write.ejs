@@ -9,7 +9,7 @@
 </head>
 
 <div class="community_wrapper">
-  <form action="/community/write" method="post" id="communityForm"></form>
+  <form action="/community/write" method="post" id="communityForm">
   <div class="selection">
     <button class="select select1" type="button" value="자유게시판" onclick="changeColor(this)">
         <label>
@@ -50,13 +50,22 @@
                       placeholder: '내용을 작성하세요',
                       height: 400,
                       maxHeight: 400,
-                      toolbar: [
-                          ['style', ['bold', 'italic', 'underline', 'clear']],
-                          ['font', ['strikethrough', 'superscript', 'subscript']],
-                          ['color', ['color']],
-                          ['para', ['ul', 'ol', 'paragraph']],
-                          ['height', ['height']]
-                      ]
+                      toolbar : [
+		    // 글꼴 설정
+		    ['fontname', ['fontname']],
+		    // 글자 크기 설정
+		    ['fontsize', ['fontsize']],
+		    // 굵기, 기울임꼴, 밑줄,취소 선, 서식지우기
+		    ['style', ['bold', 'italic', 'underline','strikethrough', 'clear']],
+		    // 글자색
+		    ['color', ['forecolor','color']],
+		    // 글머리 기호, 번호매기기, 문단정렬
+		    ['para', ['ul', 'ol', 'paragraph']],
+		    // 줄간격
+		    ['height', ['height']],
+		    // 코드보기, 확대해서보기, 도움말
+		    ['view', ['codeview','fullscreen', 'help']]
+		  ]
                   });
               });
           </script>
@@ -72,37 +81,37 @@
                   <span>취소</span>
               </label>
           </button>
-          
+          <script>
+            function checkCategory() {
+                var categoryInput = document.getElementById("category_name");
+                var categoryValue = categoryInput.value.trim();
+                var titleInput = document.getElementById("title");
+                var titleValue = titleInput.value.trim();
+                $('textarea[name="content"]').val($('#summernote').summernote('code'));
+                var textarea = document.getElementById('content');
+                
+                if (categoryValue === "") {
+                    alert("게시판을 선택해주세요!");
+                } 
+                else if (titleValue === ""){
+                    alert("제목을 입력해주세요!");
+                } 
+                else if (textarea.value === "" || textarea.value == "<p><br></p>" ){
+                    alert("글 내용을 입력해주세요!");
+                } 
+                else {
+                    // form 제출
+                    var communityForm = document.getElementById("communityForm");
+                    communityForm.submit();
+                }
+            }
+        </script>
             <button class="submit"  type="button" onclick="checkCategory()" value="2">
                 <label>
                     <span>글 등록</span>
                 </label>
             </button>
-            <script>
-              function checkCategory() {
-                  var categoryInput = document.getElementById("category_name");
-                  var categoryValue = categoryInput.value.trim();
-                  var titleInput = document.getElementById("title");
-                  var titleValue = titleInput.value.trim();
-                  $('textarea[name="content"]').val($('#summernote').summernote('code'));
-                  var textarea = document.getElementById('content');
-                  
-                  if (categoryValue === "") {
-                      alert("게시판을 선택해주세요!");
-                  } 
-                  else if (titleValue === ""){
-                      alert("제목을 입력해주세요!");
-                  } 
-                  else if (textarea.value === "" || textarea.value == "<p><br></p>" ){
-                      alert("글 내용을 입력해주세요!");
-                  } 
-                  else {
-                      // form 제출
-                      var communityForm = document.getElementById("communityForm");
-                      communityForm.submit();
-                  }
-              }
-          </script>
+            
         </div>
       </div>
       
