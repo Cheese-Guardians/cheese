@@ -6,9 +6,13 @@
   <div class="list-tile look1">다른 게시물 보기</div>
   <ul class="list1">
     <% if (otherPostResult && otherPostResult.length > 0) { %>
-      <% otherPostResult.forEach((post) => { %>
-        <li><%= post.title %></li>
-      <% }) %>
+      <% for (let i = 0; i < otherPostResult.length; i++) { %>
+        <div class="look">
+          <a href="/community/write/<%= otherPostResult[i].board_id %>">
+          <li><%= otherPostResult[i].title %></li>
+          </a>
+        </div>
+      <% } %>    
     <% } else { %>
       <li>No posts found</li>
     <% } %> 
@@ -17,9 +21,13 @@
   <div class="list-tile look2">나의 작성글 보기</div>
   <ul class="list1">
     <% if (myPostResult && myPostResult.length > 0) { %>
-      <% myPostResult.forEach((post) => { %>
-        <li><%= post.title %></li>
-      <% }) %>
+      <% for (let i = 0; i < myPostResult.length; i++) { %>
+        <div class="look">
+          <a href="/community/write/<%= myPostResult[i].board_id %>">
+          <li><%=myPostResult[i].title %></li> 
+          </a>
+        </div>        
+      <% } %> 
     <% } else { %>
       <li>No posts found</li>
     <% } %>

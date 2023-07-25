@@ -20,21 +20,29 @@ async function selectCommunity(pool, boardId, title) {
 }
 async function selectMyPost(pool, user_id) {
   const selectMyPostQuery = `
-    SELECT title
+    SELECT title, board_id
     FROM board
     WHERE user_id = ?
   `
   const [userPostingRow] = await pool.promise().query(selectMyPostQuery, user_id);
-  return userPostingRow;
+  const list = userPostingRow.length > 0 ? userPostingRow.map(row => ({
+    board_id : row.board_id,
+    title : row.title
+     })) : [];
+  return list;
 }
 async function selectOtherPost(pool, user_id, boardId, title) {
   const selectCommunityQuery = `
-    SELECT title
+    SELECT title, board_id
     FROM board
     WHERE user_id != ?
   `;
   const [communityPosts] = await pool.promise().query(selectCommunityQuery,user_id, boardId, title);
-  return communityPosts;
+  const list = communityPosts.length > 0 ? communityPosts.map(row => ({
+    board_id : row.board_id,
+    title : row.title
+     })) : [];
+  return list;
 }
 
 async function selectComment(pool, boardId, title) {

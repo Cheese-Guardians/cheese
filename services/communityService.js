@@ -3,8 +3,8 @@ const pool = require('../main');
 const communityModel = require('../models/communityModel');
 
 // 게시글 조회
-exports.retrieveCommunity = async function (boardId, title) {
-    const communityParams = [boardId, title];
+exports.retrieveCommunity = async function (board_id, title) {
+    const communityParams = [board_id, title];
     const communityResult = await communityModel.selectCommunity(pool, communityParams);
     if (communityResult.length > 0) {
       console.log(communityResult[0].title); // Access the title property of the first element
@@ -23,9 +23,9 @@ exports.retriveMyPost = async function(user_id){
 };
 
 //다른 사람이 쓴 글 전체 조회
-exports.retrieveOtherPost = async function (user_id, boardId, title) {
+exports.retrieveOtherPost = async function (user_id, board_id, title) {
     try {
-    const communityPosts = await communityModel.selectOtherPost(pool, user_id, boardId, title);
+    const communityPosts = await communityModel.selectOtherPost(pool, user_id, board_id, title);
     return communityPosts;
     } catch(error) {
         console.error("Error retrieving community posts: ", error);
@@ -34,17 +34,17 @@ exports.retrieveOtherPost = async function (user_id, boardId, title) {
 }
 
 // 조회수 업데이트
-exports.updateViewsCount = async function (boardId) {
+exports.updateViewsCount = async function (board_id) {
     try {
         // Call the model function to update the views count
-        await communityModel.incrementViewsCount(pool, boardId);
+        await communityModel.incrementViewsCount(pool, board_id);
     } catch (err) {
         console.error('Error updating views count:', err);
     }
 }
 // 댓글
-exports.retrieveComment = async function(boardId, title) {
-    const commentParams = [boardId, title];
+exports.retrieveComment = async function(board_id, title) {
+    const commentParams = [board_id, title];
     const commentResult = await communityModel.selectComment(pool,commentParams);
     console.log(commentResult.title);
     return commentResult;

@@ -20,15 +20,15 @@ exports.getCommunity = async function (req, res) {
       if (user_id <= 0) {
           return res.send(errResponse(baseResponse.USER_USERIDX_LENGTH));
       }
-      const boardId = req.params.board_id;
+      const board_id = req.params.board_id;
       const title = req.params.title;
-      const communityResult = await communityService.retrieveCommunity(boardId, title);
+      const communityResult = await communityService.retrieveCommunity(board_id, title);
       
-      const commentResult = await communityService.retrieveComment(boardId, title);
+      const commentResult = await communityService.retrieveComment(board_id, title);
       const myPostResult = await communityService.retriveMyPost(user_id);
        //자신의 게시물 개수 제한 7개
        const limitedPosts = myPostResult.slice(0, 7);
-       const otherPostResult = await communityService.retrieveOtherPost(user_id, boardId, title);
+       const otherPostResult = await communityService.retrieveOtherPost(user_id, board_id, title);
        //다른 사람의 게시물 개수 제한 13개
        const limitedOtherPosts = otherPostResult.slice(0, 13);
       console.log(communityResult);
@@ -39,7 +39,7 @@ exports.getCommunity = async function (req, res) {
         myPostResult: limitedPosts,
         otherPostResult: limitedOtherPosts,
     };
-    await communityService.updateViewsCount(boardId);
+    await communityService.updateViewsCount(board_id);
     console.log("combindedData",combinedData);
       //console.log(communityResult.title);
       return res.render('community/commun_view.ejs', combinedData);
@@ -55,7 +55,7 @@ exports.getWrite = async function (req, res) {
     if(token) {
       const decodedToken = jwt.verify(token, secret.jwtsecret); // 토큰 검증, 복호화 
       const user_id = decodedToken.user_id; // user_id를 추출
-      const boardId = req.params.board_id;
+      const board_id = req.params.board_id;
       const title = req.params.title;
       // validation
       if(!user_id) {
@@ -68,7 +68,7 @@ exports.getWrite = async function (req, res) {
      const myPostResult = await communityService.retriveMyPost(user_id); 
      const limitedPosts = myPostResult.slice(0, 7);
      //다른 사람 게시물
-    const otherPostResult = await communityService.retrieveOtherPost(user_id, boardId, title);
+    const otherPostResult = await communityService.retrieveOtherPost(user_id, board_id, title);
     const limitedOtherPosts = otherPostResult.slice(0, 13);
     const combinedData = {
       myPostResult: limitedPosts,
@@ -134,9 +134,9 @@ exports.getList = async function (req, res) {
 
 //side 게시글 조회 (다른 게시글 보기)
 exports.getComment = async function (req, res) {
-  const boardId = req.params.board_id;
+  const board_id = req.params.board_id;
   const title = req.params.title;
-  const commentResult = await communityService.retrieveSide(boardId, title);
+  const commentResult = await communityService.retrieveSide(board_id, title);
   console.log(commentResult);
   //console.log(communityResult.title);
   return res.render('community/side.ejs', { commentResult: commentResult});
