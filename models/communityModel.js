@@ -80,7 +80,7 @@ async function incrementViewsCount(pool, boardId) {
 
 // get 리스트
 async function getCommunityList(pool, user_id, page) {
-    const ITEMS_PER_PAGE = 10; // 한 페이지에 보여줄 게시글 수
+    const ITEMS_PER_PAGE = 9; // 한 페이지에 보여줄 게시글 수
 
     // 클라이언트에서 요청한 페이지 번호를 받아옵니다.
     const pageNumber = page;
@@ -110,7 +110,7 @@ async function getCommunityList(pool, user_id, page) {
 
 // get my 리스트
 async function getMyCommunityList(pool, user_id, page) {
-  const ITEMS_PER_PAGE = 10; // 한 페이지에 보여줄 게시글 수
+  const ITEMS_PER_PAGE = 7; // 한 페이지에 보여줄 게시글 수
 
   // 클라이언트에서 요청한 페이지 번호를 받아옵니다.
   const pageNumber = page;

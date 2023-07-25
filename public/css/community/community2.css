@@ -1,6 +1,6 @@
 .community_wrapper {    
     /* height: 550px; */
-    height: 220vh;   
+    height: 190vh;   
 }
 section{
     position: absolute;
@@ -46,10 +46,10 @@ button{
 }
 
 .top{
-    height: 55%;
+    height: 45%;
 }
 .bottom{
-    height: 45%;
+    height: 55%;
 }
 /*top*/
 .categoryTitle{
@@ -68,7 +68,7 @@ button{
     height: 40px;
     position: static;
     padding: 1%;  
-    margin-top: 2%;
+    margin-top: 5%;
     margin-left: 10%;  
   }
   
@@ -102,6 +102,7 @@ button{
     text-align: center;
     font-size: 0;
     text-align: center;
+    margin-bottom: -20%;
   }
   
   .bt_wrap a {
@@ -233,6 +234,6 @@ button{
     font-weight: 800;
     font-size: 13px;
     line-height: 41px;
-    margin-top : 100px;
+    margin-top : 35px;
     margin-left: 80%;
   }
