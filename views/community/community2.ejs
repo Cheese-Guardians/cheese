@@ -126,9 +126,13 @@
                 // 현재 경로와 쿼리스트링을 가져옵니다.
                 const currentPath = window.location.pathname;
                 const currentQueryString = window.location.search;
+                const params = new URLSearchParams(currentQueryString);
+                let currentPage1 = params.get('page1');
+                
+
             
                 // 페이지 번호를 쿼리스트링으로 추가하여 새로운 URL을 만듭니다.
-                const newURL = `${currentPath}${currentQueryString}&page=${pageNumber}`;
+                const newURL = `${currentPath}?page=${pageNumber}&page1=${currentPage1}`;
             
                 // 새로운 URL로 페이지를 리다이렉트합니다.
                 window.location.href = newURL;
@@ -152,6 +156,10 @@
                 const pageNumber = $(this).data('page'); // data-page 속성 값 가져오기
             
                 // 기존 URL을 가져옵니다.
+                const currentPath = window.location.pathname;
+                const currentQueryString = window.location.search;
+                const currentparams = new URLSearchParams(currentQueryString);
+                let currentPage1 = params.get('page1');
                 const existingUrl = window.location.href;
             
                 // 기존 쿼리스트링을 제거한 URL을 만듭니다.
@@ -161,7 +169,7 @@
                 const params = new URLSearchParams({ page: pageNumber });
             
                 // 새로운 URL을 만듭니다.
-                const newURL = `${urlWithoutQueryString}?${params}`;
+                const newURL = `${urlWithoutQueryString}?${params}&page1=${currentPage1}`;
             
                 // 새로운 URL로 페이지를 리다이렉트합니다.
                 window.location.href = newURL;
@@ -182,9 +190,14 @@
         function goToPage(page) {
           // 현재 경로와 쿼리스트링을 가져옵니다.
           const currentPath = window.location.pathname;
+          const currentQueryString = window.location.search;
+          const params = new URLSearchParams(currentQueryString);
+          let currentPage1 = params.get('page1');
+                
+          
 
           // 페이지 번호를 쿼리스트링으로 추가하여 새로운 URL을 만듭니다.
-          const newURL = `${currentPath}?page=${page}`;
+          const newURL = `${currentPath}?page=${page}&page1=${currentPage1}`;
 
           // 새로운 URL로 페이지를 리다이렉트합니다.
           window.location.href = newURL;
@@ -234,19 +247,21 @@
             </div>
           </div>
           <div class="board_page">
-            <a href="#" class="bt first"><<</a>
-            <a href="#" class="bt prev"><</a>
-            <a href="#" class="num on">1</a>
-            <a href="#" class="num">2</a>
-            <a href="#" class="num">3</a>
-            <a href="#" class="num">4</a>
-            <a href="#" class="num">5</a>
-            <a href="#" class="bt next">></a>
-            <a href="#" class="bt last">>></a>
+            <a href="#" class="bt first1"><<</a>
+            <a href="#" class="bt prev1"><</a>
+            <!-- 페이지 버튼 -->
+            <a href="#" class="num1" data-page="1">1</a>
+            <a href="#" class="num1" data-page="2">2</a>
+            <a href="#" class="num1" data-page="3">3</a>
+            <a href="#" class="num1" data-page="4">4</a>
+            <a href="#" class="num1" data-page="5">5</a>
+
+            <a href="#" class="bt next1">></a>
+            <a href="#" class="bt last1">>></a>
           </div>
           <script>
             $(document).ready(function() {
-              $('.num').on('click', function(event) {
+              $('.num1').on('click', function(event) {
                 event.preventDefault(); // 기본 동작 방지 (페이지 이동 X)
             
                 const pageNumber = $(this).data('page'); // data-page 속성 값 가져오기
@@ -254,9 +269,13 @@
                 // 현재 경로와 쿼리스트링을 가져옵니다.
                 const currentPath = window.location.pathname;
                 const currentQueryString = window.location.search;
+                const params = new URLSearchParams(currentQueryString);
+                let currentPage = params.get('page');
+                
+
             
                 // 페이지 번호를 쿼리스트링으로 추가하여 새로운 URL을 만듭니다.
-                const newURL = `${currentPath}${currentQueryString}&page=${pageNumber}`;
+                const newURL = `${currentPath}?page=${currentPage}&page1=${pageNumber}`;
             
                 // 새로운 URL로 페이지를 리다이렉트합니다.
                 window.location.href = newURL;
@@ -265,8 +284,8 @@
               // 페이지 로드 시 실행하여 현재 페이지 번호와 일치하는 버튼에 'on' 클래스 추가
               const currentQueryString = window.location.search;
               const params = new URLSearchParams(currentQueryString);
-              const currentPage = params.get('page');
-              $('.num').each(function() {
+              const currentPage = params.get('page1');
+              $('.num1').each(function() {
                 const buttonPage = $(this).data('page');
                 if (buttonPage == currentPage) {
                   $(this).addClass('on');
@@ -274,22 +293,26 @@
               });
             });
             $(document).ready(function() {
-              $('.num').on('click', function(event) {
+              $('.num1').on('click', function(event) {
                 event.preventDefault(); // 기본 동작 방지 (페이지 이동 X)
             
                 const pageNumber = $(this).data('page'); // data-page 속성 값 가져오기
             
                 // 기존 URL을 가져옵니다.
+                const currentPath = window.location.pathname;
+                const currentQueryString = window.location.search;
+                const currentparams = new URLSearchParams(currentQueryString);
+                let currentPage = params.get('page');
                 const existingUrl = window.location.href;
             
                 // 기존 쿼리스트링을 제거한 URL을 만듭니다.
                 const urlWithoutQueryString = existingUrl.split('?')[0];
             
                 // URLSearchParams를 사용하여 새로운 쿼리스트링을 만듭니다.
-                const params = new URLSearchParams({ page: pageNumber });
+                const params = new URLSearchParams({ page1: pageNumber });
             
                 // 새로운 URL을 만듭니다.
-                const newURL = `${urlWithoutQueryString}?${params}`;
+                const newURL = `${urlWithoutQueryString}?page=${currentPage}&${params}`;
             
                 // 새로운 URL로 페이지를 리다이렉트합니다.
                 window.location.href = newURL;
@@ -301,35 +324,40 @@
         // 페이지 로드 시 실행하여 현재 페이지 번호와 일치하는 버튼에 'on' 클래스 추가
         const currentQueryString = window.location.search;
         const params = new URLSearchParams(currentQueryString);
-        let currentPage = params.get('page');
-        if (!currentPage) {
-          currentPage = 1;
+        let currentPage1 = params.get('page1');
+        if (!currentPage1) {
+          currentPage1 = 1;
         }
 
         // 페이지 이동 함수
-        function goToPage(page) {
+        function goToPage1(page) {
           // 현재 경로와 쿼리스트링을 가져옵니다.
           const currentPath = window.location.pathname;
+          const currentQueryString = window.location.search;
+          const params = new URLSearchParams(currentQueryString);
+          let currentPage = params.get('page');
+                
+          
 
           // 페이지 번호를 쿼리스트링으로 추가하여 새로운 URL을 만듭니다.
-          const newURL = `${currentPath}?page=${page}`;
+          const newURL = `${currentPath}?page=${currentPage}&page1=${page}`;
 
           // 새로운 URL로 페이지를 리다이렉트합니다.
           window.location.href = newURL;
         }
 
         // 이전 페이지(전페이지)로 이동 버튼 클릭 이벤트
-        $('.prev').on('click', function(event) {
+        $('.prev1').on('click', function(event) {
           event.preventDefault(); // 기본 동작 방지 (페이지 이동 X)
-          if (currentPage > 1) {
-            goToPage(Number(currentPage) - 1);
+          if (currentPage1 > 1) {
+            goToPage1(Number(currentPage1) - 1);
           }
         });
 
         // 다음 페이지(다음페이지)로 이동 버튼 클릭 이벤트
-        $('.next').on('click', function(event) {
+        $('.next1').on('click', function(event) {
           event.preventDefault(); // 기본 동작 방지 (페이지 이동 X)
-          goToPage(Number(currentPage) + 1);
+          goToPage1(Number(currentPage1) + 1);
         });
       });
       </script>

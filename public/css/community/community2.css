@@ -201,12 +201,12 @@ button{
     letter-spacing: -1px;
   }
   
-  .board_page a.num {
+  .board_page a.num,.board_page a.num1 {
     padding-top: 9px;
     font-size: 1.4rem;
   }
   
-  .board_page a.num.on {
+  .board_page a.num.on,.board_page a.num1.on{
     border-color: #D9EE97;
     background: #D9EE97;
     color: #000;
