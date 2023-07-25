@@ -11,8 +11,7 @@ router.get("/infoList", communityController.getList);
 
 //내가 쓴 글 조회
 router.get(
-    "/write", (req,res) =>
-    {res.render("community/commun_write.ejs");}
+    "/write", communityController.getWrite
 );
 router.get("/write/:board_id", communityController.getCommunity);
 // router.get(
