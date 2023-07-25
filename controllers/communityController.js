@@ -110,13 +110,13 @@ exports.postBoard = async function (req, res) {
         if (user_id <= 0) {
           return res.send(errResponse(baseResponse.USER_USERIDX_LENGTH));
         }
-    
+        
         const {
           category_name,
           title,
           content
       } = req.body;
-  
+      console.log(req.body.content);
       const createCommunResponse = await communityService.createBoard(
         category_name,
         user_id,
