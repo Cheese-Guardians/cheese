@@ -34,16 +34,16 @@
     </div>
     <%-include ('./community-side.ejs'), { myPostResult: myPostResult} %>
     <div class="community_container">
-        <div class="title"><h2> <%= communityResult[0].title %></h2></div>
+        <div class="title"><h2> <%= communityResult.title %></h2></div>
         <div class="subinfo">
           <img class = "profile" src="/img/profile.png" alt="">
-          <p class = "user"><%= communityResult[0].user_id %></p>
-          <p class="time"> <%= communityResult[0].updated_at %></p>
+          <p class = "user"><%= communityResult.user_id %></p>
+          <p class="time"> <%= communityResult.updated_at %></p>
         </div>
        
           
           <div class="view_wrapper">
-            <%- communityResult[0].content %>
+            <%- communityResult.content %>
             
             
                 
@@ -79,8 +79,8 @@
         <div class = "comment_input">
             <input id="commentInput" name="content" type="text" placeholder="댓글을 입력하세요" style="border: none;">
         </div>
-        <input type="hidden" id="category_name" name="category_name" value="<%= communityResult[0].category_name %>">
-        <input type="hidden" id="board_id" name="board_id" value="<%= communityResult[0].board_id %>">
+        <input type="hidden" id="category_name" name="category_name" value="<%= communityResult.category_name %>">
+        <input type="hidden" id="board_id" name="board_id" value="<%= communityResult.board_id %>">
         <button class="submit select select4" type="button" value="4" onclick="submitComment()">
             <label>
                 <div>댓글 등록</div>

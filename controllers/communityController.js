@@ -24,14 +24,16 @@ exports.getCommunity = async function (req, res) {
       const title = req.params.title;
       const communityResult = await communityService.retrieveCommunity(boardId, title);
       const commentResult = await communityService.retrieveComment(boardId, title);
-
+      const myPostResult = await communityService.retriveMyPost(user_id);
       console.log(communityResult);
       // Combine communityResult and commentResult as needed before rendering the view
       const combinedData = {
         communityResult: communityResult,
         commentResult: commentResult,
+        myPostResult: myPostResult
     };
     await communityService.updateViewsCount(boardId);
+    console.log("combindedData",combinedData);
       //console.log(communityResult.title);
       return res.render('community/commun_view.ejs', combinedData);
     }
@@ -40,29 +42,26 @@ exports.getCommunity = async function (req, res) {
    }
 }
 //내가 쓴 글 조회
-exports.getMyPost = async function (req, res) {
-  const token = req.cookies.x_auth;
+// exports.getMyPost = async function (req, res) {
+//   const token = req.cookies.x_auth;
     
-    if(token) {
-      const decodedToken = jwt.verify(token, secret.jwtsecret); // 토큰 검증, 복호화 
-      const user_id = decodedToken.user_id; // user_id를 추출
+//     if(token) {
+//       const decodedToken = jwt.verify(token, secret.jwtsecret); // 토큰 검증, 복호화 
+//       const user_id = decodedToken.user_id; // user_id를 추출
 
-      // validation
-      if(!user_id) {
-        return res.send(errResponse(baseResponse.USER_USERIDX_EMPTY));
-      } 
-      if (user_id <= 0) {
-          return res.send(errResponse(baseResponse.USER_USERIDX_LENGTH));
-      }
-     const myPostResult = await communityService.retriveMyPost(user_id); 
-      console.log(myPostResult);
-      //console.log(communityResult.title);
-      return res.render('community/community-side.ejs', { myPostResult: myPostResult});
-    }
-   else {
-    return res.redirect('/');
-   }
-  }
+//       // validation
+//       if(!user_id) {
+//         return res.send(errResponse(baseResponse.USER_USERIDX_EMPTY));
+//       } 
+//       if (user_id <= 0) {
+//           return res.send(errResponse(baseResponse.USER_USERIDX_LENGTH));
+//       }
+//      const myPostResult = await communityService.retriveMyPost(user_id); 
+//       console.log(myPostResult);
+//       return myPostResult;
+//     }
+   
+//   }
 //게시글 리스트 조회
 exports.getList = async function (req, res) {
     const token = req.cookies.x_auth;
