@@ -10,6 +10,7 @@ exports.getCommunity = async function (req, res) {
     const boardId = req.params.board_id;
     const title = req.params.title;
     const communityResult = await communityService.retrieveCommunity(boardId, title);
+    await communityService.updateViewsCount(boardId);
     console.log(communityResult);
     //console.log(communityResult.title);
     return res.render('community/commun_view.ejs', { communityResult: communityResult});

@@ -3,9 +3,36 @@ async function selectCommunity(pool, boardId, title) {
         SELECT *
         FROM board
         WHERE board_id = ?`;
+        
     const [boardRows] = await pool.promise().query(selectBoardQuery, boardId, title);
-    return boardRows;
+    const list = boardRows.length > 0 ? boardRows.map(row => ({
+      category_name : row.category_name, 
+      user_id : row.user_id,
+      board_id : row.board_id,
+      title : row.title,
+      content : sanitizeHtml(row.content),
+      updated_at : row.updated_at,
+      views : row.views
+       })) : [];
+
+   return list;
 }
+
+//조회수 update
+async function incrementViewsCount(pool, boardId) {
+  const updateViewsCountQuery = `
+      UPDATE board
+      SET views = views + 1
+      WHERE board_id = ?`;
+
+      const [viewRows] = await pool.promise().query(updateViewsCountQuery, boardId);
+      return viewRows;
+}
+
+module.exports = {
+  selectCommunity,
+  incrementViewsCount // Add the new function to the exports
+};
 
 // get 리스트
 async function getCommunityList(pool, user_id, page) {
@@ -75,6 +102,7 @@ async function insertBoardInfo(pool, insertBoardParams){
   }
   module.exports = {
     insertBoardInfo,
+    incrementViewsCount,
     getCommunityList,
     selectCommunity
   }

@@ -9,6 +9,16 @@ exports.retrieveCommunity = async function(boardId, title) {
     console.log(communityResult.title);
     return communityResult;
 }
+
+exports.updateViewsCount = async function (boardId) {
+    try {
+        // Call the model function to update the views count
+        await communityModel.incrementViewsCount(pool, boardId);
+    } catch (err) {
+        console.error('Error updating views count:', err);
+    }
+}
+
 exports.retrieveSelectedCommunity = async function (user_id, page) {
     try {
         const selectedCommunityParams = [user_id];
