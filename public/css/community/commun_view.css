@@ -83,26 +83,7 @@ button{
     /* margin-top: 15px; */
     margin-left: 10%;
 }
-.comment_input {
-    width: 65%;
-    /* height 추가함 */
-    height: 50px;
-    display:inline-block;
-    background-color: white;
-    border-color: #E0E0E0;
-    border-style: solid;
-    border-width: 2px;
-    border-radius: 3%;
-    font-size: 15px;
-    margin: 0 auto;
-    position: relative;
-    margin-top: 15px;
-    margin-left: 10%;
-}
-.comment_input>input {
-    width: 65%;
-    margin-top: 10px;
-}
+
 .categoryTitle{
     background-color: #DEF1A1;
     color: black;
@@ -194,11 +175,63 @@ button{
 .time {
     display: inline-block;
 }
+/* 댓글 */
+.comment_input {
+    width: 65%;
+    /* height 추가함 */
+    height: 50px;
+    display:inline-block;
+    background-color: white;
+    border-color: #E0E0E0;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 3%;
+    font-size: 15px;
+    margin: 0 auto;
+    position: relative;
+    margin-top: 15px;
+    margin-left: 10%;
+}
+.comment_input>input {
+    width: 65%;
+    margin-top: 10px;
+}
 .comment_wrapper {
     /* width: 80%; */
     margin: 0 auto;
-   
 }
+
+.comment {
+    background-color: #f7ffd6; 
+    border-radius: 3px;
+    height: 40px;
+    align-items: center;
+  
+    margin-top: 5px;
+    margin-left: 10%;  
+    margin-right: 9%;
+    position: relative; /* 추가 */
+  }
+  
+  .comment .comment_content {
+    display: inline-block;
+    text-align: center; /* 추가: 가운데 정렬 */
+    margin-right: 10px; /* 수정: 원하는 간격으로 조정 */
+  }
+  
+  .comment .writer_id {
+    display: inline-block;
+    position: absolute; /* 추가 */
+    right: 50px; /* 수정: 오른쪽 여백 조정 */
+  }
+  
+  /* 아래는 모든 .comment_content와 .writer_id에 대한 스타일을 일괄 적용할 수 있습니다. */
+  .comment .comment_content,
+  .comment .writer_id {
+    line-height: 40px; /* 추가: 세로 가운데 정렬을 위해 높이와 동일한 line-height 설정 */
+  }
+  
+
 .subinfo {
     width: 80%;
     height: 50px;
@@ -211,3 +244,5 @@ button{
     width: 45px;
     height: 45px;
 }
+
+
