@@ -23,7 +23,6 @@ exports.getCommunity = async function (req, res) {
       const boardId = req.params.board_id;
       const title = req.params.title;
       const communityResult = await communityService.retrieveCommunity(boardId, title);
-      await communityService.updateViewsCount(boardId);
       const commentResult = await communityService.retrieveComment(boardId, title);
 
       console.log(communityResult);
@@ -32,6 +31,7 @@ exports.getCommunity = async function (req, res) {
         communityResult: communityResult,
         commentResult: commentResult,
     };
+    await communityService.updateViewsCount(boardId);
       //console.log(communityResult.title);
       return res.render('community/commun_view.ejs', combinedData);
     }
