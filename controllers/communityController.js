@@ -29,7 +29,7 @@ exports.getCommunity = async function (req, res) {
        //자신의 게시물 개수 제한 7개
        const limitedPosts = myPostResult.slice(0, 7);
        const otherPostResult = await communityService.retrieveOtherPost(user_id, boardId, title);
-       //다른 사람의 게시물 개수 제한 12개
+       //다른 사람의 게시물 개수 제한 13개
        const limitedOtherPosts = otherPostResult.slice(0, 13);
       console.log(communityResult);
       // Combine communityResult and commentResult as needed before rendering the view
@@ -48,14 +48,15 @@ exports.getCommunity = async function (req, res) {
     return res.redirect('/');
    }
 }
-//내가 쓴 글 조회
+
 exports.getWrite = async function (req, res) {
   const token = req.cookies.x_auth;
     
     if(token) {
       const decodedToken = jwt.verify(token, secret.jwtsecret); // 토큰 검증, 복호화 
       const user_id = decodedToken.user_id; // user_id를 추출
-
+      const boardId = req.params.board_id;
+      const title = req.params.title;
       // validation
       if(!user_id) {
         return res.send(errResponse(baseResponse.USER_USERIDX_EMPTY));
@@ -63,11 +64,17 @@ exports.getWrite = async function (req, res) {
       if (user_id <= 0) {
           return res.send(errResponse(baseResponse.USER_USERIDX_LENGTH));
       }
+      //나의 게시물
      const myPostResult = await communityService.retriveMyPost(user_id); 
-     const combinedData = {
-      myPostResult: myPostResult
+     const limitedPosts = myPostResult.slice(0, 7);
+     //다른 사람 게시물
+    const otherPostResult = await communityService.retrieveOtherPost(user_id, boardId, title);
+    const limitedOtherPosts = otherPostResult.slice(0, 13);
+    const combinedData = {
+      myPostResult: limitedPosts,
+      otherPostResult: limitedOtherPosts
   };
-  console.log("combindedData",combinedData);
+  //console.log("combindedData",combinedData);
   //console.log(communityResult.title);
   return res.render('community/commun_write.ejs', combinedData);
   }
