@@ -7,6 +7,22 @@ async function selectCommunity(pool, boardId, title) {
     return boardRows;
 }
 
+//조회수 update
+async function incrementViewsCount(pool, boardId) {
+  const updateViewsCountQuery = `
+      UPDATE board
+      SET views = views + 1
+      WHERE board_id = ?`;
+
+      const [viewRows] = await pool.promise().query(updateViewsCountQuery, boardId);
+      return viewRows;
+}
+
+module.exports = {
+  selectCommunity,
+  incrementViewsCount // Add the new function to the exports
+};
+
 // get 리스트
 async function getCommunityList(pool, user_id, page) {
     const ITEMS_PER_PAGE = 10; // 한 페이지에 보여줄 게시글 수
@@ -75,6 +91,7 @@ async function insertBoardInfo(pool, insertBoardParams){
   }
   module.exports = {
     insertBoardInfo,
+    incrementViewsCount,
     getCommunityList,
     selectCommunity
   }
