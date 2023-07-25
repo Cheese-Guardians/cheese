@@ -5,16 +5,17 @@ async function selectCommunity(pool, boardId, title) {
         WHERE board_id = ?`;
         
     const [boardRows] = await pool.promise().query(selectBoardQuery, boardId, title);
+    
     const list = boardRows.length > 0 ? boardRows.map(row => ({
       category_name : row.category_name, 
       user_id : row.user_id,
       board_id : row.board_id,
       title : row.title,
-      content : sanitizeHtml(row.content),
+      content : row.content,
       updated_at : row.updated_at,
       views : row.views
        })) : [];
-
+    console.log("list:",list);
    return list;
 }
 
