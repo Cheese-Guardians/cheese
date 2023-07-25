@@ -18,7 +18,7 @@ exports.getCommunity = async function (req, res) {
       communityResult: communityResult,
       commentResult: commentResult,
   };
-
+  await communityService.updateViewsCount(boardId);
   return res.render('community/commun_view.ejs', combinedData);
 }
 
