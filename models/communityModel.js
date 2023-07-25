@@ -27,6 +27,15 @@ async function selectMyPost(pool, user_id) {
   const [userPostingRow] = await pool.promise().query(selectMyPostQuery, user_id);
   return userPostingRow;
 }
+async function selectOtherPost(pool, user_id, boardId, title) {
+  const selectCommunityQuery = `
+    SELECT title
+    FROM board
+    WHERE user_id != ?
+  `;
+  const [communityPosts] = await pool.promise().query(selectCommunityQuery,user_id, boardId, title);
+  return communityPosts;
+}
 
 async function selectComment(pool, boardId, title) {
   const selectCommentQuery = `
@@ -188,5 +197,6 @@ const connection = await pool.promise().getConnection();
     getCommunityList,
     getMyCommunityList,
     selectCommunity,
-    selectMyPost
+    selectMyPost,
+    selectOtherPost
   }

@@ -5,17 +5,23 @@
 <span id="community-side">
   <div class="list-tile look1">다른 게시물 보기</div>
   <ul class="list1">
-    <li></li>
-    <% if (typeof communityDataResult !== 'undefined' && communityDataResult) { %>
-      <% for (let i = 0; i < communityDataResult.length; i++) { %>
-        <li> <%= communityResult[0].updated_at %></li>
-      <% } %>
-    <% } %>    
+    <% if (otherPostResult && otherPostResult.length > 0) { %>
+      <% otherPostResult.forEach((post) => { %>
+        <li><%= post.title %></li>
+      <% }) %>
+    <% } else { %>
+      <li>No posts found</li>
+    <% } %> 
   </ul>
   
   <div class="list-tile look2">나의 작성글 보기</div>
   <ul class="list1">
-    <li><%= myPostResult[0].title %></li>
-
+    <% if (myPostResult && myPostResult.length > 0) { %>
+      <% myPostResult.forEach((post) => { %>
+        <li><%= post.title %></li>
+      <% }) %>
+    <% } else { %>
+      <li>No posts found</li>
+    <% } %>
   </ul>
 </span>
