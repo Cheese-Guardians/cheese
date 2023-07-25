@@ -8,10 +8,13 @@ router.get(
     {res.render("community/community1.ejs");}
 );
 router.get("/infoList", communityController.getList);
+
+//내가 쓴 글 조회
 router.get(
     "/write", (req,res) =>
     {res.render("community/commun_write.ejs");}
 );
+router.get("/write/:user_id", communityController.getMyPost);
 // router.get(
 //     "/write/:title/:board_id", (req, res) => {
 //         res.render("community/commun_view.ejs");

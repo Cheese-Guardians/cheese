@@ -7,13 +7,54 @@ const querystring = require('querystring');
 
 //게시글 세부 조회
 exports.getCommunity = async function (req, res) {
-    const boardId = req.params.board_id;
-    const title = req.params.title;
-    const communityResult = await communityService.retrieveCommunity(boardId, title);
-    await communityService.updateViewsCount(boardId);
-    console.log(communityResult);
-    //console.log(communityResult.title);
-    return res.render('community/commun_view.ejs', { communityResult: communityResult});
+    const token = req.cookies.x_auth;
+    
+    if(token) {
+      const decodedToken = jwt.verify(token, secret.jwtsecret); // 토큰 검증, 복호화 
+      const user_id = decodedToken.user_id; // user_id를 추출
+
+      // validation
+      if(!user_id) {
+        return res.send(errResponse(baseResponse.USER_USERIDX_EMPTY));
+      } 
+      if (user_id <= 0) {
+          return res.send(errResponse(baseResponse.USER_USERIDX_LENGTH));
+      }
+      const boardId = req.params.board_id;
+      const title = req.params.title;
+      const communityResult = await communityService.retrieveCommunity(boardId, title);
+      await communityService.updateViewsCount(boardId);
+      console.log(communityResult);
+      //console.log(communityResult.title);
+      return res.render('community/commun_view.ejs', { communityResult: communityResult});
+    }
+   else {
+    return res.redirect('/');
+   }
+}
+//내가 쓴 글 조회
+exports.getMyPost = async function (req, res) {
+  const token = req.cookies.x_auth;
+    
+    if(token) {
+      const decodedToken = jwt.verify(token, secret.jwtsecret); // 토큰 검증, 복호화 
+      const user_id = decodedToken.user_id; // user_id를 추출
+
+      // validation
+      if(!user_id) {
+        return res.send(errResponse(baseResponse.USER_USERIDX_EMPTY));
+      } 
+      if (user_id <= 0) {
+          return res.send(errResponse(baseResponse.USER_USERIDX_LENGTH));
+      }
+     const myPostResult = await communityService.retriveMyPost(user_id); 
+      console.log(myPostResult);
+      //console.log(communityResult.title);
+      return res.render('community/commun_view.ejs', { myPostResult: myPostResult});
+    }
+   else {
+    return res.redirect('/');
+   }
 }
 
 exports.getList = async function (req, res) {

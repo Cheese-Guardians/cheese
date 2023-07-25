@@ -17,7 +17,15 @@ async function selectCommunity(pool, boardId, title) {
 
    return list;
 }
-
+async function selectMyPost(pool, user_id) {
+  const selectMyPostQuery = `
+    SELECT title
+    FROM board
+    WHERE user_id = ?
+  `
+  const [userPostingRow] = await pool.promise().query(selectMyPostQuery, user_id);
+  return userPostingRow;
+}
 //조회수 update
 async function incrementViewsCount(pool, boardId) {
   const updateViewsCountQuery = `
@@ -104,5 +112,6 @@ async function insertBoardInfo(pool, insertBoardParams){
     insertBoardInfo,
     incrementViewsCount,
     getCommunityList,
-    selectCommunity
+    selectCommunity,
+    selectMyPost
   }

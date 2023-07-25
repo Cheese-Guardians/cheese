@@ -9,7 +9,12 @@ exports.retrieveCommunity = async function(boardId, title) {
     console.log(communityResult.title);
     return communityResult;
 }
-
+//내가 쓴 글 전체 조회
+exports.retriveMyPost = async function(user_id){
+    const myPostResult = await communityModel.selectMyPost(pool,user_id);
+    console.log(myPostResult);
+    return myPostResult;
+}
 exports.updateViewsCount = async function (boardId) {
     try {
         // Call the model function to update the views count
