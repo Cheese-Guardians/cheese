@@ -19,6 +19,27 @@ async function selectCommunity(pool, boardId, title) {
    return list;
 }
 
+async function selectComment(pool, boardId, title) {
+  const selectCommentQuery = `
+  SELECT *
+  FROM reply
+  WHERE board_id = ?`;
+      
+  const [commentRows] = await pool.promise().query(selectCommentQuery, boardId, title);
+  
+  const list = commentRows.length > 0 ? commentRows.map(row => ({
+    category_name : row.category_name, 
+    board_id : row.board_id,
+    reply_id : row.reply_id,
+    content : row.content,
+    parent_id : row.parent_id,
+    user_id : row.user_id,
+     })) : [];
+  console.log("comment:",list);
+ return list;
+}
+
+
 //조회수 update
 async function incrementViewsCount(pool, boardId) {
   const updateViewsCountQuery = `
@@ -81,8 +102,6 @@ function formatTime(dateTimeString) {
     return `${hours}:${minutes}`;
 }
   
-
-
 async function insertBoardInfo(pool, insertBoardParams){
    
       const insertBoardQuery = `
@@ -101,8 +120,10 @@ async function insertBoardInfo(pool, insertBoardParams){
         connection.release();
     }
   }
+  
   module.exports = {
     insertBoardInfo,
+    selectComment,
     incrementViewsCount,
     getCommunityList,
     selectCommunity

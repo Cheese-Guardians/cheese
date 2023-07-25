@@ -64,6 +64,14 @@
               </label>
         </button>
         <div class="comment"> 
+          <% for (let i = 0; i < commentResult.length; i++) { %>
+            <div class="comment">
+                <div>                    
+                    <div class="comment_content"><%= commentResult[i].content %></div>
+                    <div class="writer_id"><%= commentResult[i].user_id %></div>
+                </div>
+            </div>
+        <% } %>  
           <div>
             <div class="comment_content">댓글 내용이 들어갑니다</div>
             <div class="writer_id"> 작성자 ID </div>            

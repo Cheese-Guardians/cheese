@@ -1,15 +1,15 @@
-// communityService.js
 const { response } = require('express');
 const pool = require('../main');
 const communityModel = require('../models/communityModel');
 
+// 게시글 조회
 exports.retrieveCommunity = async function(boardId, title) {
     const communityParams = [boardId, title];
     const communityResult = await communityModel.selectCommunity(pool,communityParams);
     console.log(communityResult.title);
     return communityResult;
 }
-
+// 조회수 업데이트
 exports.updateViewsCount = async function (boardId) {
     try {
         // Call the model function to update the views count
@@ -18,7 +18,14 @@ exports.updateViewsCount = async function (boardId) {
         console.error('Error updating views count:', err);
     }
 }
-
+// 댓글
+exports.retrieveComment = async function(boardId, title) {
+    const commentParams = [boardId, title];
+    const commentResult = await communityModel.selectComment(pool,commentParams);
+    console.log(commentResult.title);
+    return commentResult;
+}
+// 게시물 리스트
 exports.retrieveSelectedCommunity = async function (user_id, page) {
     try {
         const selectedCommunityParams = [user_id];
@@ -32,6 +39,7 @@ exports.retrieveSelectedCommunity = async function (user_id, page) {
     }
 }
 
+//게시글 작성 
 exports.createBoard = async function (
     category_name,
     user_id,

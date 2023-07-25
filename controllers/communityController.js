@@ -5,17 +5,24 @@ const baseResponse = require("../config/baseResponseStatus");
 const path = require('path');
 const querystring = require('querystring');
 
-//게시글 세부 조회
+//게시글 세부 조회 + 댓글 조회
 exports.getCommunity = async function (req, res) {
-    const boardId = req.params.board_id;
-    const title = req.params.title;
-    const communityResult = await communityService.retrieveCommunity(boardId, title);
-    await communityService.updateViewsCount(boardId);
-    console.log(communityResult);
-    //console.log(communityResult.title);
-    return res.render('community/commun_view.ejs', { communityResult: communityResult});
+  const boardId = req.params.board_id;
+  const title = req.params.title;
+
+  const communityResult = await communityService.retrieveCommunity(boardId, title);
+  const commentResult = await communityService.retrieveComment(boardId, title);
+
+  // Combine communityResult and commentResult as needed before rendering the view
+  const combinedData = {
+      communityResult: communityResult,
+      commentResult: commentResult,
+  };
+
+  return res.render('community/commun_view.ejs', combinedData);
 }
 
+//게시글 리스트 조회
 exports.getList = async function (req, res) {
     const token = req.cookies.x_auth;
     if (token) {
@@ -54,6 +61,17 @@ exports.getList = async function (req, res) {
     }
 };
 
+//side 게시글 조회 (다른 게시글 보기)
+exports.getComment = async function (req, res) {
+  const boardId = req.params.board_id;
+  const title = req.params.title;
+  const commentResult = await communityService.retrieveSide(boardId, title);
+  console.log(commentResult);
+  //console.log(communityResult.title);
+  return res.render('community/side.ejs', { commentResult: commentResult});
+};
+
+//게시글 작성
 exports.postBoard = async function (req, res) {
     const token = req.cookies.x_auth;
     if (token) {
@@ -116,4 +134,6 @@ exports.postBoard = async function (req, res) {
       return res.send('community req error(token)');
     }
   };
+
+
 
