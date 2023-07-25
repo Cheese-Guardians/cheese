@@ -54,15 +54,39 @@
         <div>댓글</div>
       </label>
     </button>
+    <script>
+      var currentURL = window.location.href;
+
+      // 가져온 현재 URL을 form의 action 속성에 할당
+      document.getElementById("commentForm").action = currentURL;
+      function submitComment() {
+        // 댓글 입력 내용 가져오기
+        var commentInput = document.getElementById("commentInput");
+        var commentValue = commentInput.value.trim();
+    
+        // 댓글 내용이 비어있는지 확인
+        if (commentValue === "") {
+          alert("댓글 내용을 입력해주세요!");
+        } else {
+          // 댓글 폼 제출
+          var commentForm = document.getElementById("commentForm");
+          commentForm.submit();
+        }
+      }
+    </script>
     <div class="comment_wrapper">
+      <form action="" method="post" id="commentForm">
         <div class = "comment_input">
-            <input type="text" placeholder="댓글을 입력하세요" style="border: none;">
+            <input id="commentInput" name="content" type="text" placeholder="댓글을 입력하세요" style="border: none;">
         </div>
-        <button class="select select4" type="button" value="4" onclick="changeColor(this)">
+        <input type="hidden" id="category_name" name="category_name" value="<%= communityResult[0].category_name %>">
+        <input type="hidden" id="board_id" name="board_id" value="<%= communityResult[0].board_id %>">
+        <button class="submit select select4" type="button" value="4" onclick="submitComment()">
             <label>
-                <div>댓글</div>
+                <div>댓글 등록</div>
               </label>
         </button>
+        </form>
     </div>
     
     

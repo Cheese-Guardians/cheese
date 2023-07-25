@@ -26,4 +26,5 @@ router.get(
 )
 // board post
 router.post('/write', communityController.postBoard);
+router.post("/write/:board_id", communityController.postComment);
 module.exports = router;
