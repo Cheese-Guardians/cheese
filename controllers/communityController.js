@@ -23,14 +23,21 @@ exports.getCommunity = async function (req, res) {
       const boardId = req.params.board_id;
       const title = req.params.title;
       const communityResult = await communityService.retrieveCommunity(boardId, title);
+      
       const commentResult = await communityService.retrieveComment(boardId, title);
       const myPostResult = await communityService.retriveMyPost(user_id);
+       //자신의 게시물 개수 제한 7개
+       const limitedPosts = myPostResult.slice(0, 7);
+       const otherPostResult = await communityService.retrieveOtherPost(user_id, boardId, title);
+       //다른 사람의 게시물 개수 제한 12개
+       const limitedOtherPosts = otherPostResult.slice(0, 13);
       console.log(communityResult);
       // Combine communityResult and commentResult as needed before rendering the view
       const combinedData = {
         communityResult: communityResult,
         commentResult: commentResult,
-        myPostResult: myPostResult
+        myPostResult: limitedPosts,
+        otherPostResult: limitedOtherPosts,
     };
     await communityService.updateViewsCount(boardId);
     console.log("combindedData",combinedData);

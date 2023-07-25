@@ -20,7 +20,19 @@ exports.retriveMyPost = async function(user_id){
     const myPostResult = await communityModel.selectMyPost(pool,user_id);
     console.log(myPostResult);
     return myPostResult;
+};
+
+//다른 사람이 쓴 글 전체 조회
+exports.retrieveOtherPost = async function (user_id, boardId, title) {
+    try {
+    const communityPosts = await communityModel.selectOtherPost(pool, user_id, boardId, title);
+    return communityPosts;
+    } catch(error) {
+        console.error("Error retrieving community posts: ", error);
+        throw error; 
+    }
 }
+
 // 조회수 업데이트
 exports.updateViewsCount = async function (boardId) {
     try {
