@@ -4,7 +4,8 @@ body {
 
 #community-side {
     position: relative;
-    top: -400px;
+    /* top: -700px; */
+    top: 100px;
     left: 80%;
     bottom: 35%;
     height: 60vh;

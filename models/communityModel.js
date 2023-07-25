@@ -27,6 +27,28 @@ async function selectMyPost(pool, user_id) {
   const [userPostingRow] = await pool.promise().query(selectMyPostQuery, user_id);
   return userPostingRow;
 }
+
+async function selectComment(pool, boardId, title) {
+  const selectCommentQuery = `
+  SELECT *
+  FROM reply
+  WHERE board_id = ?`;
+      
+  const [commentRows] = await pool.promise().query(selectCommentQuery, boardId, title);
+  
+  const list = commentRows.length > 0 ? commentRows.map(row => ({
+    category_name : row.category_name, 
+    board_id : row.board_id,
+    reply_id : row.reply_id,
+    content : row.content,
+    parent_id : row.parent_id,
+    user_id : row.user_id,
+     })) : [];
+  console.log("comment:",list);
+ return list;
+}
+
+
 //조회수 update
 async function incrementViewsCount(pool, boardId) {
   const updateViewsCountQuery = `
@@ -38,10 +60,6 @@ async function incrementViewsCount(pool, boardId) {
       return viewRows;
 }
 
-module.exports = {
-  selectCommunity,
-  incrementViewsCount // Add the new function to the exports
-};
 
 // get 리스트
 async function getCommunityList(pool, user_id, page) {
@@ -89,8 +107,6 @@ function formatTime(dateTimeString) {
     return `${hours}:${minutes}`;
 }
   
-
-
 async function insertBoardInfo(pool, insertBoardParams){
    
       const insertBoardQuery = `
@@ -108,9 +124,35 @@ async function insertBoardInfo(pool, insertBoardParams){
     } finally {
         connection.release();
     }
+}  
+async function insertCommentInfo(pool, insertCommentParams){
+
+ 
+   
+  const insertCommentQuery = `
+    INSERT INTO reply (user_id, category_name, board_id, content, parent_id) VALUES (?, ?, ?, ?, NULL);
+  `;
+  
+  
+const connection = await pool.promise().getConnection();
+
+  try {
+  //await connection.query(baseCommentQuery, baseCommentParams);
+  await connection.query(insertCommentQuery, insertCommentParams);
+  } 
+  catch (error) {
+      console.log(error);
+      throw error;
+  } finally {
+      connection.release();
   }
+    
+}
+
   module.exports = {
     insertBoardInfo,
+    selectComment,
+    insertCommentInfo,
     incrementViewsCount,
     getCommunityList,
     selectCommunity,

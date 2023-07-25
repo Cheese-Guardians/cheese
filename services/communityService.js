@@ -1,20 +1,27 @@
-// communityService.js
 const { response } = require('express');
 const pool = require('../main');
 const communityModel = require('../models/communityModel');
 
-exports.retrieveCommunity = async function(boardId, title) {
+// 게시글 조회
+exports.retrieveCommunity = async function (boardId, title) {
     const communityParams = [boardId, title];
-    const communityResult = await communityModel.selectCommunity(pool,communityParams);
-    console.log(communityResult.title);
-    return communityResult;
-}
+    const communityResult = await communityModel.selectCommunity(pool, communityParams);
+    if (communityResult.length > 0) {
+      console.log(communityResult[0].title); // Access the title property of the first element
+      return communityResult[0];
+    } else {
+      // Handle the case when no communityResult is found (e.g., return an empty object or null)
+      return null;
+    }
+  };
+  
 //내가 쓴 글 전체 조회
 exports.retriveMyPost = async function(user_id){
     const myPostResult = await communityModel.selectMyPost(pool,user_id);
     console.log(myPostResult);
     return myPostResult;
 }
+// 조회수 업데이트
 exports.updateViewsCount = async function (boardId) {
     try {
         // Call the model function to update the views count
@@ -23,7 +30,14 @@ exports.updateViewsCount = async function (boardId) {
         console.error('Error updating views count:', err);
     }
 }
-
+// 댓글
+exports.retrieveComment = async function(boardId, title) {
+    const commentParams = [boardId, title];
+    const commentResult = await communityModel.selectComment(pool,commentParams);
+    console.log(commentResult.title);
+    return commentResult;
+}
+// 게시물 리스트
 exports.retrieveSelectedCommunity = async function (user_id, page) {
     try {
         const selectedCommunityParams = [user_id];
@@ -37,6 +51,7 @@ exports.retrieveSelectedCommunity = async function (user_id, page) {
     }
 }
 
+//게시글 작성 
 exports.createBoard = async function (
     category_name,
     user_id,
@@ -56,6 +71,38 @@ exports.createBoard = async function (
     ];
     
     await communityModel.insertBoardInfo(pool, insertBoardParams);
+    
+    return '성공';
+  } catch (err) {
+      return err;
+  }
+};
+
+exports.createComment = async function (
+        user_id,
+        category_name,
+        board_id,
+        content,
+        parent_id
+) {
+  try {
+    const baseCommentParams = [
+        user_id,
+        category_name,
+        board_id,
+        content,
+        board_id
+    ];
+    const insertCommentParams = [
+
+        user_id,
+        category_name,
+        board_id,
+        content,
+        parent_id
+    ];
+    
+    await communityModel.insertCommentInfo(pool, baseCommentParams, insertCommentParams);
     
     return '성공';
   } catch (err) {

@@ -6,8 +6,13 @@
   <div class="list-tile look1">다른 게시물 보기</div>
   <ul class="list1">
     <li></li>
-    <li>저의 취미 공유해요</li>
+    <% if (typeof communityDataResult !== 'undefined' && communityDataResult) { %>
+      <% for (let i = 0; i < communityDataResult.length; i++) { %>
+        <li> <%= communityResult[0].updated_at %></li>
+      <% } %>
+    <% } %>    
   </ul>
+  
   <div class="list-tile look2">나의 작성글 보기</div>
   <ul class="list1">
     <li><%= myPostResult[0].title %></li>
