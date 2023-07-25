@@ -51,10 +51,6 @@ async function incrementViewsCount(pool, boardId) {
       return viewRows;
 }
 
-module.exports = {
-  selectCommunity,
-  incrementViewsCount // Add the new function to the exports
-};
 
 // get 리스트
 async function getCommunityList(pool, user_id, page) {
@@ -119,11 +115,35 @@ async function insertBoardInfo(pool, insertBoardParams){
     } finally {
         connection.release();
     }
-  }
+}  
+async function insertCommentInfo(pool, insertCommentParams){
+
+ 
+   
+  const insertCommentQuery = `
+    INSERT INTO reply (user_id, category_name, board_id, content, parent_id) VALUES (?, ?, ?, ?, NULL);
+  `;
   
+  
+const connection = await pool.promise().getConnection();
+
+  try {
+  //await connection.query(baseCommentQuery, baseCommentParams);
+  await connection.query(insertCommentQuery, insertCommentParams);
+  } 
+  catch (error) {
+      console.log(error);
+      throw error;
+  } finally {
+      connection.release();
+  }
+    
+}
+
   module.exports = {
     insertBoardInfo,
     selectComment,
+    insertCommentInfo,
     incrementViewsCount,
     getCommunityList,
     selectCommunity

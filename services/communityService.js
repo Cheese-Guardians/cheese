@@ -65,3 +65,35 @@ exports.createBoard = async function (
       return err;
   }
 };
+
+exports.createComment = async function (
+        user_id,
+        category_name,
+        board_id,
+        content,
+        parent_id
+) {
+  try {
+    const baseCommentParams = [
+        user_id,
+        category_name,
+        board_id,
+        content,
+        board_id
+    ];
+    const insertCommentParams = [
+
+        user_id,
+        category_name,
+        board_id,
+        content,
+        parent_id
+    ];
+    
+    await communityModel.insertCommentInfo(pool, baseCommentParams, insertCommentParams);
+    
+    return '성공';
+  } catch (err) {
+      return err;
+  }
+};

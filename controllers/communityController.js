@@ -93,7 +93,7 @@ exports.postBoard = async function (req, res) {
           title,
           content
       } = req.body;
-      console.log(req.body.content);
+      // console.log(req.body.content);
       const createCommunResponse = await communityService.createBoard(
         category_name,
         user_id,
@@ -132,6 +132,65 @@ exports.postBoard = async function (req, res) {
     }
     else {
       return res.send('community req error(token)');
+    }
+  };
+  exports.postComment = async function (req, res) {
+    const token = req.cookies.x_auth;
+    if (token) {
+        const decodedToken = jwt.verify(token, secret.jwtsecret); // 토큰 검증, 복호화
+        const user_id = decodedToken.user_id; // user_id를 추출
+        // console.log(req.body);
+        // var updated_at = new Date(); 
+        // console.log(updated_at);
+        //validation
+        if(!user_id) {
+          return res.send(errResponse(baseResponse.USER_USERIDX_EMPTY));
+        } 
+        if (user_id <= 0) {
+          return res.send(errResponse(baseResponse.USER_USERIDX_LENGTH));
+        }
+        
+        const {
+          category_name,
+          board_id,
+          content
+      } = req.body;
+      // console.log(req.body.content);
+      const createCommentResponse = await communityService.createComment(
+        user_id,
+        category_name,
+        board_id,
+        content,
+        0
+      );
+      if (createCommentResponse == "성공") {
+       
+        return res.status(200).send(`
+        <script>
+            if (confirm('게시글 등록에 성공했습니다.')) {
+                const board_id = ${req.body.board_id}; 
+                window.location.href = "/community/write/" + board_id;
+            }
+        </script>
+    `);
+    
+        
+        
+      } else
+      {
+        return res.send(`
+        <script>
+          if (confirm('게시글 등록에 실패했습니다.')) {
+            const board_id = ${req.body.board_id}; 
+            window.location.href = "/community/write/" + board_id;
+          }
+        </script>
+      `);
+      }
+        
+    }
+    else {
+      return res.send('Comment req error(token)');
     }
   };
 
