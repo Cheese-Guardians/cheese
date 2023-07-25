@@ -103,13 +103,13 @@ async function getMyCommunityList(pool, user_id, page) {
   const getListQuery = `
   SELECT board_id, title, updated_at, views
   FROM board
-  WHERE (category_name = '정보게시판' and user_id = 'haeun161')
+  WHERE (category_name = '정보게시판' and user_id = ?)
   ORDER BY board_id DESC
   LIMIT ${ITEMS_PER_PAGE} OFFSET ${offset};`
   
   ;
 
-  const [listRows] = await pool.promise().query(getListQuery);
+  const [listRows] = await pool.promise().query(getListQuery, user_id);
 
   const list = listRows.length > 0 ? listRows.map(row => ({
      board_id : row.board_id,
