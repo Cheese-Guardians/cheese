@@ -205,11 +205,12 @@ button{
     background-color: #f7ffd6; 
     border-radius: 3px;
     height: 40px;
+    width: 80%;
     align-items: center;
   
     margin-top: 5px;
     margin-left: 10%;  
-    margin-right: 9%;
+    margin-right: 20%;
     position: relative; /* 추가 */
   }
   
