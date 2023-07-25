@@ -148,9 +148,13 @@ function formatDate(dateTimeString) {
   return `${year}-${month}-${day}`;
 }
 function formatTime(dateTimeString) {
-    const originalDate = new Date(dateTimeString);
-    const hours = originalDate.getUTCHours(); // UTC 기준 시간
-    const minutes = originalDate.getUTCMinutes(); // UTC 기준 분
+  const originalDate = new Date(dateTimeString).toLocaleString('en-US', {
+    timeZone: 'Asia/Seoul',
+  });
+  
+  const hours = new Date(originalDate).getHours(); // Local time in Seoul (hours)
+  const minutes = new Date(originalDate).getMinutes(); // Local time in Seoul (minutes)
+  
   
     return `${hours}:${minutes}`;
 }
