@@ -49,26 +49,33 @@ exports.getCommunity = async function (req, res) {
    }
 }
 //내가 쓴 글 조회
-// exports.getMyPost = async function (req, res) {
-//   const token = req.cookies.x_auth;
+exports.getWrite = async function (req, res) {
+  const token = req.cookies.x_auth;
     
-//     if(token) {
-//       const decodedToken = jwt.verify(token, secret.jwtsecret); // 토큰 검증, 복호화 
-//       const user_id = decodedToken.user_id; // user_id를 추출
+    if(token) {
+      const decodedToken = jwt.verify(token, secret.jwtsecret); // 토큰 검증, 복호화 
+      const user_id = decodedToken.user_id; // user_id를 추출
 
-//       // validation
-//       if(!user_id) {
-//         return res.send(errResponse(baseResponse.USER_USERIDX_EMPTY));
-//       } 
-//       if (user_id <= 0) {
-//           return res.send(errResponse(baseResponse.USER_USERIDX_LENGTH));
-//       }
-//      const myPostResult = await communityService.retriveMyPost(user_id); 
-//       console.log(myPostResult);
-//       return myPostResult;
-//     }
+      // validation
+      if(!user_id) {
+        return res.send(errResponse(baseResponse.USER_USERIDX_EMPTY));
+      } 
+      if (user_id <= 0) {
+          return res.send(errResponse(baseResponse.USER_USERIDX_LENGTH));
+      }
+     const myPostResult = await communityService.retriveMyPost(user_id); 
+     const combinedData = {
+      myPostResult: myPostResult
+  };
+  console.log("combindedData",combinedData);
+  //console.log(communityResult.title);
+  return res.render('community/commun_write.ejs', combinedData);
+  }
+  else {
+  return res.redirect('/');
+  }
    
-//   }
+  }
 //게시글 리스트 조회
 exports.getList = async function (req, res) {
     const token = req.cookies.x_auth;
@@ -98,8 +105,18 @@ exports.getList = async function (req, res) {
                 page
             );
             console.log(communityDataResult);
+            const communityMyDataResult = await communityService.retrieveMyCommunity(
+              user_id,
+              page
+          );
+          console.log(communityMyDataResult);
 
-            return res.render('community/community2.ejs', { communityDataResult: communityDataResult });
+          const combinedData = {
+            communityDataResult: communityDataResult,
+            communityMyDataResult: communityMyDataResult
+        };
+
+            return res.render('community/community2.ejs', combinedData);
         } catch (err) {
             return res.send('Error occurred during token verification or community retrieval.');
         }

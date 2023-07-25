@@ -47,10 +47,6 @@ button{
     height: 40px;
 }
 
-.write_active{
-    background-color: #DFE1D7;
-}
-
 
 .community_container {
     width: 55%;
@@ -247,3 +243,7 @@ button{
 }
 
 
+
+.write_active{
+    background-color: #DFE1D7;
+}

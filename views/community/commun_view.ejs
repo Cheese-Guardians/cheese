@@ -10,28 +10,27 @@
   
   <div class="community_wrapper">
     <div class="selection">
-      <button class="select select1" type="button" value="1" onclick="changeColor(this)">
-          <label>
-            <span>고민상담소</span>
-          </label>
-        </button>
-        <button class="select select2" type="button" value="2" onclick="changeColor(this)">
-          <label>
-            <span>정보 공유</span>
-          </label>
-        </button>
-        
-        <script>
-        function changeColor(button) {
-          const buttons = document.getElementsByClassName('select');
-          for (let i = 0; i < buttons.length; i++) {
-            buttons[i].classList.remove('write_active');
-          }
-          button.classList.add('write_active');
-        }
-        </script>
-                      
+     
+      <button class="select select1" type="button" value="1" onclick="">
+        <label>
+          <span>고민상담소</span>
+        </label>
+      </button>
+      <button class="select select2" type="button" value="2" onclick="">
+        <label>
+          <span>정보 공유</span>
+        </label>
+      </button>
     </div>
+    <% if (communityResult.category_name != null && communityResult.category_name != undefined ) { %>
+      <% if (communityResult.category_name == "정보게시판" ) { %>
+        <script>
+          // getElementsByClassName로 가져온 것은 요소들의 컬렉션이므로, 첫 번째 요소에 write_active 클래스를 추가해야 합니다.
+          const button = document.getElementsByClassName('select1')[0];
+          button.classList.add('write_active');
+        </script>
+      <% } %>
+    <% } %>
     <%-include ('./community-side.ejs'), { myPostResult: myPostResult} %>
     <div class="community_container">
         <div class="title"><h2> <%= communityResult.title %></h2></div>
