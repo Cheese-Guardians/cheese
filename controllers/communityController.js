@@ -101,12 +101,12 @@ exports.getList = async function (req, res) {
               const existingQueryString = req.query;
       
               if (Object.keys(existingQueryString).length === 0) {
-                const newURL = `${req.protocol}://${req.get('host')}${req.originalUrl}?page=1`;
+                const newURL = `${req.protocol}://${req.get('host')}${req.originalUrl}?page=1&page1=1`;
                 return res.redirect(newURL);
               }
             }
             let page = req.query.page;
-
+            let page1 = req.query.page1;
             const communityDataResult = await communityService.retrieveSelectedCommunity(
                 user_id,
                 page
@@ -114,7 +114,7 @@ exports.getList = async function (req, res) {
             console.log(communityDataResult);
             const communityMyDataResult = await communityService.retrieveMyCommunity(
               user_id,
-              page
+              page1
           );
           console.log(communityMyDataResult);
 
