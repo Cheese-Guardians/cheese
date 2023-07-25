@@ -244,6 +244,95 @@
             <a href="#" class="bt next">></a>
             <a href="#" class="bt last">>></a>
           </div>
+          <script>
+            $(document).ready(function() {
+              $('.num').on('click', function(event) {
+                event.preventDefault(); // 기본 동작 방지 (페이지 이동 X)
+            
+                const pageNumber = $(this).data('page'); // data-page 속성 값 가져오기
+            
+                // 현재 경로와 쿼리스트링을 가져옵니다.
+                const currentPath = window.location.pathname;
+                const currentQueryString = window.location.search;
+            
+                // 페이지 번호를 쿼리스트링으로 추가하여 새로운 URL을 만듭니다.
+                const newURL = `${currentPath}${currentQueryString}&page=${pageNumber}`;
+            
+                // 새로운 URL로 페이지를 리다이렉트합니다.
+                window.location.href = newURL;
+              });
+            
+              // 페이지 로드 시 실행하여 현재 페이지 번호와 일치하는 버튼에 'on' 클래스 추가
+              const currentQueryString = window.location.search;
+              const params = new URLSearchParams(currentQueryString);
+              const currentPage = params.get('page');
+              $('.num').each(function() {
+                const buttonPage = $(this).data('page');
+                if (buttonPage == currentPage) {
+                  $(this).addClass('on');
+                }
+              });
+            });
+            $(document).ready(function() {
+              $('.num').on('click', function(event) {
+                event.preventDefault(); // 기본 동작 방지 (페이지 이동 X)
+            
+                const pageNumber = $(this).data('page'); // data-page 속성 값 가져오기
+            
+                // 기존 URL을 가져옵니다.
+                const existingUrl = window.location.href;
+            
+                // 기존 쿼리스트링을 제거한 URL을 만듭니다.
+                const urlWithoutQueryString = existingUrl.split('?')[0];
+            
+                // URLSearchParams를 사용하여 새로운 쿼리스트링을 만듭니다.
+                const params = new URLSearchParams({ page: pageNumber });
+            
+                // 새로운 URL을 만듭니다.
+                const newURL = `${urlWithoutQueryString}?${params}`;
+            
+                // 새로운 URL로 페이지를 리다이렉트합니다.
+                window.location.href = newURL;
+              });
+            });
+            
+            
+      $(document).ready(function() {
+        // 페이지 로드 시 실행하여 현재 페이지 번호와 일치하는 버튼에 'on' 클래스 추가
+        const currentQueryString = window.location.search;
+        const params = new URLSearchParams(currentQueryString);
+        let currentPage = params.get('page');
+        if (!currentPage) {
+          currentPage = 1;
+        }
+
+        // 페이지 이동 함수
+        function goToPage(page) {
+          // 현재 경로와 쿼리스트링을 가져옵니다.
+          const currentPath = window.location.pathname;
+
+          // 페이지 번호를 쿼리스트링으로 추가하여 새로운 URL을 만듭니다.
+          const newURL = `${currentPath}?page=${page}`;
+
+          // 새로운 URL로 페이지를 리다이렉트합니다.
+          window.location.href = newURL;
+        }
+
+        // 이전 페이지(전페이지)로 이동 버튼 클릭 이벤트
+        $('.prev').on('click', function(event) {
+          event.preventDefault(); // 기본 동작 방지 (페이지 이동 X)
+          if (currentPage > 1) {
+            goToPage(Number(currentPage) - 1);
+          }
+        });
+
+        // 다음 페이지(다음페이지)로 이동 버튼 클릭 이벤트
+        $('.next').on('click', function(event) {
+          event.preventDefault(); // 기본 동작 방지 (페이지 이동 X)
+          goToPage(Number(currentPage) + 1);
+        });
+      });
+      </script>
         
         </div>
       </div>
