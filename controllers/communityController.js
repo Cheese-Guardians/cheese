@@ -98,8 +98,18 @@ exports.getList = async function (req, res) {
                 page
             );
             console.log(communityDataResult);
+            const communityMyDataResult = await communityService.retrieveMyCommunity(
+              user_id,
+              page
+          );
+          console.log(communityMyDataResult);
 
-            return res.render('community/community2.ejs', { communityDataResult: communityDataResult });
+          const combinedData = {
+            communityDataResult: communityDataResult,
+            communityMyDataResult: communityMyDataResult
+        };
+
+            return res.render('community/community2.ejs', combinedData);
         } catch (err) {
             return res.send('Error occurred during token verification or community retrieval.');
         }

@@ -91,6 +91,37 @@ async function getCommunityList(pool, user_id, page) {
     return list;
 }
 
+// get my 리스트
+async function getMyCommunityList(pool, user_id, page) {
+  const ITEMS_PER_PAGE = 10; // 한 페이지에 보여줄 게시글 수
+
+  // 클라이언트에서 요청한 페이지 번호를 받아옵니다.
+  const pageNumber = page;
+
+  // MySQL 쿼리에서 LIMIT 절을 사용하여 해당 페이지의 데이터만 가져오도록 합니다.
+  const offset = (pageNumber - 1) * ITEMS_PER_PAGE;
+  const getListQuery = `
+  SELECT board_id, title, updated_at, views
+  FROM board
+  WHERE (category_name = '정보게시판' and user_id = 'haeun161')
+  ORDER BY board_id DESC
+  LIMIT ${ITEMS_PER_PAGE} OFFSET ${offset};`
+  
+  ;
+
+  const [listRows] = await pool.promise().query(getListQuery);
+
+  const list = listRows.length > 0 ? listRows.map(row => ({
+     board_id : row.board_id,
+     title: row.title,
+     updated_date: formatDate(row.updated_at), // Convert the date format here
+     updated_time: formatTime(row.updated_at),
+     views: row.views
+      })) : [];
+
+  return list;
+}
+
 // Function to format the date as "YYYY-MM-DD HH:MM"
 function formatDate(dateTimeString) {
   const originalDate = new Date(dateTimeString);
@@ -155,6 +186,7 @@ const connection = await pool.promise().getConnection();
     insertCommentInfo,
     incrementViewsCount,
     getCommunityList,
+    getMyCommunityList,
     selectCommunity,
     selectMyPost
   }

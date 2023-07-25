@@ -215,35 +215,21 @@
       <div class="board_wrap">
         <div class="board_list_wrap">
           <div class="board_list">
+            <% if (typeof communityMyDataResult !== 'undefined' && communityMyDataResult) { %>
+              <% for (let i = 0; i < communityMyDataResult.length; i++) { %>
+                <div>
+                  <div class="title"><a href="/community/write/<%= communityMyDataResult[i].board_id %>"><%= communityMyDataResult[i].title %> <span class="red">[3]</span></a></div>
+                  <div class="date"><%= communityMyDataResult[i].updated_date  %></div>
+                  <div class="time">12:00:45</div>
+                  <div class="count"> <%= communityMyDataResult[i].views %> </div>
+                </div>
+              <% } %>
+            <% } %>
            
             <div>
               <div class="title"><a href="#">글 제목이 들어갑니다. <span class="red">[3]</span></a></div>
               <div class="date">2022.12.16</div>
               <div class="time">12:00:45</div>
-              <div class="count">33</div>
-            </div>
-            <div>
-              <div class="title"><a href="#">글 제목이 들어갑니다. <span class="red">[4]</span></a></div>
-              <div class="date">2022.12.16</div>
-              <div class="time">12:00:21</div>
-              <div class="count">33</div>
-            </div>
-            <div>
-              <div class="title"><a href="#">글 제목이 들어갑니다. <span class="red">[5]</span></a></div>
-              <div class="date">2022.12.16</div>
-              <div class="time">12:00:32</div>
-              <div class="count">33</div>
-            </div>
-            <div>
-              <div class="title"><a href="#">글 제목이 들어갑니다. <span class="red">[1]</span></a></div>
-              <div class="date">2022.12.16</div>
-              <div class="time">12:00:12</div>
-              <div class="count">33</div>
-            </div>
-            <div>
-              <div class="title"><a href="#">글 제목이 들어갑니다.</a></div>
-              <div class="date">2022.12.16</div>
-              <div class="time">12:00:12</div>
               <div class="count">33</div>
             </div>
           </div>

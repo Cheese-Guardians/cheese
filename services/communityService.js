@@ -51,6 +51,20 @@ exports.retrieveSelectedCommunity = async function (user_id, page) {
     }
 }
 
+// 나의 게시물 리스트
+exports.retrieveMyCommunity = async function (user_id, page) {
+    try {
+        const selectedCommunityParams = [user_id];
+        const communityMyDataResult = await communityModel.getMyCommunityList(pool, selectedCommunityParams, page);
+        console.log(communityMyDataResult);
+
+        return communityMyDataResult;
+    } catch (err) {
+        console.log(err);
+        return 'retrieveSelectedCommunityError';
+    }
+}
+
 //게시글 작성 
 exports.createBoard = async function (
     category_name,
