@@ -29,6 +29,7 @@ const port =3000,
     reminderRouter = require('./routes/reminderRoute'),
     communityRouter = require('./routes/communityRoute'),
     diagnosisRouter = require('./routes/diagnosisRoute');
+    sanitizeHtml = require('sanitize-html');
 
 const cookieParser = require('cookie-parser');
 
