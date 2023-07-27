@@ -1,4 +1,4 @@
-
+// 간호 다이어리 통계 날짜 선택 post
 async function getSelectedDiary(pool, selectedDiaryParams) {
     const getDiaryQuery = `
     SELECT diary, DATE_FORMAT(date, '%Y-%m-%d')
