@@ -17,9 +17,6 @@ router.get(
 // 간호 다이어리 통계 날짜 선택 post
 router.post('/', exportController.postSummary);
 
-// 간호 다이어리 통계 PDF 추출
-router.get("/pdf", exportController.getPdf);
-
 // 비밀번호 체크
 // router.post("/check/password", exportController.checkPassword);
 

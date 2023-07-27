@@ -46,13 +46,47 @@ exports.postSummary = async function (req, res) {
         await sleep(1000);
       }
       diaryBox.push(summary);
-      // diaryBox.push(diaryText);
-
     }
-    // res.json({ diaryBox });
 
     if (diaryBox.length > 0) {
-      return res.render('export/pdf.ejs', { diaryBox: diaryBox});
+      ejs.renderFile(path.join('./views', "export/pdf.ejs"), {diaryBox} ,(err, data) => {
+        if (err) {
+              res.send(err);
+              console.log(err);
+              console.log("에러1======")
+        } else {                     
+            console.log("여기까지굿")
+            let options = {
+                "height": "11.25in",
+                "width": "8.5in",
+                "header": {
+                    "height": "20mm"
+                },
+                "footer": {
+                    "height": "20mm",
+                },
+            };
+            console.log("여기까지굿======")
+            pdf.create(data, options).toFile("report.pdf", function (err, data) {
+                console.log( "오오======")
+                if (err) {
+                    res.send(err);
+                } else {
+                    res.download('report.pdf', 'report.pdf', (err) => {
+                        if (err) {
+                            console.error('PDF Download Error:', err);
+                        }
+                        //파일 삭제
+                        fs.unlink('report.pdf', (err) => {
+                            if (err) {
+                                console.error('PDF File Deletion Error:', err);
+                            }
+                        });
+                    });
+                }
+            });
+        }
+    });
     } else {
       return res.send(`
         <script>
@@ -91,45 +125,4 @@ async function summarizeDiary(diaryResponse) {
     console.error('Error:', error);
     throw new Error('Failed to summarize diary.');
   }
-}
-
-// 간호 다이어리 통계 PDF 추출
-exports.getPdf = async function (req, res) {
-  ejs.renderFile(path.join('./views/', "export/pdf.ejs"), (err, data) => {
-      if (err) {
-            res.send(err);
-            console.log("에러1======")
-      } else {                     
-          console.log("여기까지굿")
-          let options = {
-              "height": "11.25in",
-              "width": "8.5in",
-              "header": {
-                  "height": "20mm"
-              },
-              "footer": {
-                  "height": "20mm",
-              },
-          };
-          console.log("여기까지굿======")
-          pdf.create(data, options).toFile("report.pdf", function (err, data) {
-              console.log( "오오======")
-              if (err) {
-                  res.send(err);
-              } else {
-                  res.download('report.pdf', 'report.pdf', (err) => {
-                      if (err) {
-                          console.error('PDF Download Error:', err);
-                      }
-                      //파일 삭제
-                      fs.unlink('report.pdf', (err) => {
-                          if (err) {
-                              console.error('PDF File Deletion Error:', err);
-                          }
-                      });
-                  });
-              }
-          });
-      }
-  });
 }
