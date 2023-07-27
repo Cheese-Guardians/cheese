@@ -18,7 +18,9 @@
     display: flex; /* Flexbox로 변경 */
     flex-direction: column; /* 세로 방향으로 배치 */
   }
-
+  #date-input{
+    margin-top:100px;
+  }
   .title {
     font-size: 20px;
     font-weight: 1000;
@@ -119,7 +121,8 @@
   .button-container {
     display: flex;
     justify-content: flex-end; /* 오른쪽 정렬 */
-    margin-top:20px;
+     margin-top:90px;
+    margin-right:-80vh; 
   }
 
   .PDFpageBtn {
