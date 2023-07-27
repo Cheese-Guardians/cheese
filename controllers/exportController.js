@@ -2,7 +2,9 @@ const exportService = require('../services/exportService');
 const jwt = require('jsonwebtoken');
 const secret = require('../config/secret');
 const axios = require('axios');
-
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
 exports.postSummary = async function (req, res) {
     const token = req.cookies.x_auth;
     if (token) {
@@ -36,11 +38,15 @@ exports.postSummary = async function (req, res) {
         month = String(dateB.getMonth() + 1).padStart(2, "0");  // 월은 0부터 시작하므로 +1을 해줌
         day = String(dateB.getDate()).padStart(2, "0");
         dateBB = `${year}-${month}-${day}`;
-
+        console.log(dateAA,dateBB)
         // gpt 함수 호출
         const diaryResponse = await exportService.retrieveSelectedDiary(user_id, dateAA, dateBB);
         const diaryText = diaryResponse.calendar.diary.filter(entry => entry !== null).join(' ');
-        summary = await summarizeDiary(diaryText);
+       // summary = await summarizeDiary(diaryText);
+      summary=diaryText;
+        if (i!=3){
+          await sleep(1000);
+        }
         diaryBox.push(summary);
         // diaryBox.push(diaryText);
 
@@ -70,7 +76,7 @@ exports.postSummary = async function (req, res) {
       const response = await axios.post('https://api.openai.com/v1/chat/completions', {
         model: 'gpt-3.5-turbo',
         messages: [
-          { role: 'system', content: 'You are a diary summarizer. Be sure to mark the date information except for the year. In Korean, please summarize it in 150 letters.' },
+          { role: 'system', content: 'You are a diary summarizer. Be sure to mark the date information except for the year. In Korean, please summarize it in 150 letters. If there is no diary content, print "no content".' },
           { role: 'user', content: diaryResponse },
         ],
       }, {

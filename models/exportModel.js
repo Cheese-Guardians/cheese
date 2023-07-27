@@ -33,7 +33,6 @@ async function getSelectedDiary(pool, selectedDiaryParams) {
         const todayString = '오늘';
         const tomorrowString = '내일';
         const yesterdayString='어제';
-      
         const formattedDate = (date) => {
           return formatDate(date.toISOString().slice(0, 10));
         };
@@ -42,7 +41,6 @@ async function getSelectedDiary(pool, selectedDiaryParams) {
           .replace(new RegExp(todayString, 'g'), formattedDate(todayDate))
           .replace(new RegExp(tomorrowString, 'g'), formattedDate(tomorrowDate))
           .replace(new RegExp(yesterdayString, 'g'), formattedDate(yesterdayDate));
-       
         return replacedDiary;
       }
       

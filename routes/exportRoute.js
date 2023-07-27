@@ -15,10 +15,13 @@ router.get(
 // 간호 다이어리 통계 PDF
 router.get(
     "/pdf", (req,res) => {
+        
         ejs.renderFile(path.join('./views/', "export/pdf.ejs"), (err, data) => {
             if (err) {
                   res.send(err);
-            } else {
+                  console.log("에러1======")
+            } else {                     
+                console.log("여기까지굿")
                 let options = {
                     "height": "11.25in",
                     "width": "8.5in",
@@ -29,7 +32,9 @@ router.get(
                         "height": "20mm",
                     },
                 };
+                console.log("여기까지굿======")
                 pdf.create(data, options).toFile("report.pdf", function (err, data) {
+                    console.log( "오오======")
                     if (err) {
                         res.send(err);
                     } else {
@@ -47,10 +52,10 @@ router.get(
                     }
                 });
             }
-        });
+       }
+        );
     }
 );
-
 
 // gpt post
 router.post('/', exportController.postSummary);
