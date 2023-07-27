@@ -53,9 +53,7 @@ exports.postSummary = async function (req, res) {
         if (err) {
               res.send(err);
               console.log(err);
-              console.log("에러1======")
         } else {                     
-            console.log("여기까지굿")
             let options = {
                 "height": "11.25in",
                 "width": "8.5in",
@@ -66,9 +64,7 @@ exports.postSummary = async function (req, res) {
                     "height": "20mm",
                 },
             };
-            console.log("여기까지굿======")
             pdf.create(data, options).toFile("report.pdf", function (err, data) {
-                console.log( "오오======")
                 if (err) {
                     res.send(err);
                 } else {
