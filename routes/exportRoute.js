@@ -9,7 +9,13 @@ const path = require('path');
 // 간호 다이어리 통계 내보내기
 router.get(
     "/", (req,res) =>
-    {res.render("export/exportPdf.ejs");}
+    {
+        const token = req.cookies.x_auth;
+        if (token) 
+            res.render("export/exportPdf.ejs");
+        else
+            return res.redirect('/');
+    }
 );
 
 // 간호 다이어리 통계 PDF

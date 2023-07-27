@@ -2,9 +2,11 @@ const exportService = require('../services/exportService');
 const jwt = require('jsonwebtoken');
 const secret = require('../config/secret');
 const axios = require('axios');
+
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
+
 exports.postSummary = async function (req, res) {
     const token = req.cookies.x_auth;
     if (token) {
@@ -12,15 +14,6 @@ exports.postSummary = async function (req, res) {
       const user_id = decodedToken.user_id; // user_id를 추출
       const { date1 } = req.body;
 
-      // date1 + 27일
-      //var date = new Date(date1);  // 문자열을 Date 객체로 변환
-      // date.setDate(date.getDate() + 27);  // 해당 날짜에 28일을 더함
-
-      // var year = date.getFullYear();
-      // var month = String(date.getMonth() + 1).padStart(2, "0");  // 월은 0부터 시작하므로 +1을 해줌
-      // var day = String(date.getDate()).padStart(2, "0");
-
-      // var date2 = `${year}-${month}-${day}`;
       const diaryBox = [];
       for (let i=0; i<=3;i++){
         var dateA = new Date(date1);  // 문자열을 Date 객체로 변환
@@ -43,7 +36,7 @@ exports.postSummary = async function (req, res) {
         const diaryResponse = await exportService.retrieveSelectedDiary(user_id, dateAA, dateBB);
         const diaryText = diaryResponse.calendar.diary.filter(entry => entry !== null).join(' ');
        // summary = await summarizeDiary(diaryText);
-      summary=diaryText;
+        summary=diaryText;
         if (i!=3){
           await sleep(1000);
         }
@@ -64,7 +57,6 @@ exports.postSummary = async function (req, res) {
           </script>
         `);
       }
-      res.json({ diaryResponse });
     } else {
       return res.send('postSummary req error(token)');
     }
