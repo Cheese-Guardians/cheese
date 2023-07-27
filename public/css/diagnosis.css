@@ -121,8 +121,8 @@
   .button-container {
     display: flex;
     justify-content: flex-end; /* 오른쪽 정렬 */
-     margin-top:90px;
-    margin-right:-80vh; 
+     margin-top:50px;
+
   }
 
   .PDFpageBtn {
