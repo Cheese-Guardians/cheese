@@ -17,7 +17,7 @@ module.exports = pool;  //모듈로 내보내기
 const schedule = require('node-schedule');
 require('dotenv').config({path: "./config/sens.env"}); // sens.env 불러오기
 
-require('dotenv').config({path: "./config/gpt.env"}); // sens.env 불러오기
+require('dotenv').config({path: "./config/gpt.env"}); // gpt.env 불러오기
 
 // 기본 설정
 const port = 3000,
@@ -26,9 +26,12 @@ const port = 3000,
     app = express(),
     fs = require("fs"),
     layouts = require("express-ejs-layouts"),
+      
     calendarRouter = require('./routes/calendarRoute'),
     usersRouter = require('./routes/usersRoute'),
     reminderRouter = require('./routes/reminderRoute'),
+    communityRouter = require('./routes/communityRoute'),
+    sanitizeHtml = require('sanitize-html'),
     exportRouter = require('./routes/exportRoute');
 
 const cookieParser = require('cookie-parser');
@@ -46,7 +49,9 @@ app.use(cookieParser());
 app.use('/calendar', calendarRouter);
 app.use('/users', usersRouter);
 app.use('/reminder', reminderRouter);
+app.use('/community', communityRouter)
 app.use('/export', exportRouter);
+
 reminderController = require('./controllers/reminderController');
 
 //주기적인 작업 스케줄링
@@ -59,6 +64,8 @@ app.get(
     "/", (req,res) =>
     {res.render("users/login.ejs");}
 );
+
+
 
 app.listen(port,() => {
   const dir = "./uploads";

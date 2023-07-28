@@ -1,0 +1,105 @@
+<head>
+    <link href="/css/community/commun_view.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
+  </head>
+  
+  <div class="community_wrapper">
+    <div class="selection">
+     
+      <button class="select select1" type="button" value="1" onclick="">
+        <label>
+          <span>고민상담소</span>
+        </label>
+      </button>
+      <button class="select select2" type="button" value="2" onclick="">
+        <label>
+          <span>정보 공유</span>
+        </label>
+      </button>
+    </div>
+    <% if (communityResult.category_name != null && communityResult.category_name != undefined ) { %>
+      <% if (communityResult.category_name == "정보게시판" ) { %>
+        <script>
+          // getElementsByClassName로 가져온 것은 요소들의 컬렉션이므로, 첫 번째 요소에 write_active 클래스를 추가해야 합니다.
+          const button = document.getElementsByClassName('select1')[0];
+          button.classList.add('write_active');
+        </script>
+      <% } %>
+    <% } %>
+    <%-include ('./community-side.ejs'), { myPostResult: myPostResult} %>
+    <div class="community_container">
+        <div class="title"><h2> <%= communityResult.title %></h2></div>
+        <div class="subinfo">
+          <img class = "profile" src="/img/profile.png" alt="">
+          <p class = "user"><%= communityResult.user_id %></p>
+          <p class="time"> <%= communityResult.updated_at %></p>
+        </div>
+       
+          
+          <div class="view_wrapper">
+            <%- communityResult.content %>
+            
+            
+                
+        
+    </div>
+    <button class="select select3" type="button" value="2">
+    <label>
+        <div>댓글</div>
+      </label>
+    </button>
+    <script>
+      var currentURL = window.location.href;
+
+      // 가져온 현재 URL을 form의 action 속성에 할당
+      document.getElementById("commentForm").action = currentURL;
+      function submitComment() {
+        // 댓글 입력 내용 가져오기
+        var commentInput = document.getElementById("commentInput");
+        var commentValue = commentInput.value.trim();
+    
+        // 댓글 내용이 비어있는지 확인
+        if (commentValue === "") {
+          alert("댓글 내용을 입력해주세요!");
+        } else {
+          // 댓글 폼 제출
+          var commentForm = document.getElementById("commentForm");
+          commentForm.submit();
+        }
+      }
+    </script>
+    <div class="comment_wrapper">
+      <form action="" method="post" id="commentForm">
+        <div class = "comment_input">
+            <input id="commentInput" name="content" type="text" placeholder="댓글을 입력하세요" style="border: none;">
+        </div>
+        <input type="hidden" id="category_name" name="category_name" value="<%= communityResult.category_name %>">
+        <input type="hidden" id="board_id" name="board_id" value="<%= communityResult.board_id %>">
+        <button class="submit select select4" type="button" value="4" onclick="submitComment()">
+            <label>
+                <div>댓글 등록</div>
+              </label>
+        </button>
+        <div class="comment"> 
+          <div>
+            <div class="comment_content">댓글 내용</div>
+            <div class="writer_id"> 작성자 ID </div>            
+          </div>
+          <% for (let i = 0; i < commentResult.length; i++) { %>
+            <div>                    
+              <div class="comment_content"><%= commentResult[i].content %></div>
+              <div class="writer_id"><%= commentResult[i].user_id %></div>
+          </div>
+          <% } %>            
+        </div>
+    </div>
+    
+    
+  </div>
+  
+  

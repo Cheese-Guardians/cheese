@@ -1,0 +1,41 @@
+body {
+    background: rgba(255, 251, 224, 0.3);
+}
+
+#community-side {
+    position: relative;
+    top: -200px;
+    /* top: 100px; */
+    left: 80%;
+    bottom: 35%;
+    height: 60vh;
+    width: 300px;
+    margin-bottom: 10%;
+    display: inline-block;
+    background: #FFFFFF;
+    border: 1px solid #E0E0E0;
+    border-radius: 15px;
+    
+}
+
+.list-tile {
+    width: 142px;
+    height: 34px;
+
+    background: #DEF1A1;
+    border-radius: 7px;
+    
+    margin-top: 8%;
+    margin-left: 5%;
+    margin-bottom: 5%;
+
+    font-style: normal;
+    font-weight: 700;
+    font-size: 15px;
+    text-align: center;
+
+}
+
+.look{
+    margin-left: 5%;
+}
