@@ -49,40 +49,7 @@ exports.postSummary = async function (req, res) {
     }
 
     if (diaryBox.length > 0) {
-      ejs.renderFile(path.join('./views', "export/pdf.ejs"), {diaryBox} ,(err, data) => {
-        if (err) {
-              res.send(err);
-              console.log(err);
-        } else {                     
-            let options = {
-                "height": "11.25in",
-                "width": "8.5in",
-                "header": {
-                    "height": "20mm"
-                },
-                "footer": {
-                    "height": "20mm",
-                },
-            };
-            pdf.create(data, options).toFile("report.pdf", function (err, data) {
-                if (err) {
-                    res.send(err);
-                } else {
-                    res.download('report.pdf', 'report.pdf', (err) => {
-                        if (err) {
-                            console.error('PDF Download Error:', err);
-                        }
-                        //파일 삭제
-                        fs.unlink('report.pdf', (err) => {
-                            if (err) {
-                                console.error('PDF File Deletion Error:', err);
-                            }
-                        });
-                    });
-                }
-            });
-        }
-    });
+
     } else {
       return res.send(`
         <script>
