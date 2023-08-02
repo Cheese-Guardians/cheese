@@ -8,7 +8,8 @@ const pool = mysql.createPool({
     port: process.env.DB_PORT,
     database: process.env.DB_NAME,
     waitForConnections: true,
-    insecureAuth: true
+    insecureAuth: true,
+    charset: 'utf8mb4'
 });
 
 module.exports = pool;  //모듈로 내보내기

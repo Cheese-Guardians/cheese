@@ -19,15 +19,11 @@ exports.retrieveSelectedSymptom = async function (user_id, date1, date2) {
         const symptomCsvParams = [user_id, date1, date2];
         const results = await exportModel.getSymptomCsv(pool, symptomCsvParams);
         console.log(results);
-        const csvData = results[0].map(result => `${result.symptom_name},${result.degree}`).join('\n');
-        console.log(csvData);
-        fs.writeFileSync('csv/symptom.csv', csvData, 'utf-8');
-        console.log('Data saved to symptom.csv');
+        return results;
       
     } catch (err) {
         console.log(err);
         return 'retrieveSelectedSymptomError';
     }
-    return '성공';
 }
  
