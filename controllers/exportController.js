@@ -37,6 +37,11 @@ exports.postSummary = async function (req, res) {
       day = String(dateB.getDate()).padStart(2, "0");
       dateBB = `${year}-${month}-${day}`;
       console.log(dateAA,dateBB)
+      //그래프 함수 호출
+      const symptomResponse = await exportService.retrieveSelectedSymptom(user_id, dateAA, dateBB);
+      if (symptomResponse == 'retrieveSelectedSymptomError'){
+        return res.send(symptomResponse);
+      }
       // gpt 함수 호출
       const diaryResponse = await exportService.retrieveSelectedDiary(user_id, dateAA, dateBB);
       const diaryText = diaryResponse.calendar.diary.filter(entry => entry !== null).join(' ');
