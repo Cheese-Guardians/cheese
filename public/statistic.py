@@ -33,6 +33,6 @@ plt.legend(loc='lower right')
 plt.xticks(rotation=45)  # x축의 날짜 라벨을 45도 회전하여 표시 (길어지는 경우)
 plt.tight_layout()  # 그래프 간격 조절
 # 그래프를 이미지로 저장
-plt.savefig('public/output/graph.png')
+plt.savefig('output/graph.png')
 
 plt.close()  # 그래프 출력을 종료

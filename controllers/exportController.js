@@ -66,46 +66,63 @@ exports.postSummary = async function (req, res) {
       // summary = await summarizeDiary(diaryText);
       summary=diaryText;
       if (i!=3){
-        await sleep(1000);
+        await sleep(10000);
       }
       diaryBox.push(summary);
     }
 
     if (diaryBox.length > 0) {
-      ejs.renderFile(path.join('./views', "export/pdf.ejs"), {diaryBox} ,(err, data) => {
+      ejs.renderFile(path.join('./views', "export/pdf.ejs"), { diaryBox }, async (err, data) => {
         if (err) {
-              res.send(err);
-              console.log(err);
-        } else {                     
-            let options = {
-                "height": "11.25in",
-                "width": "8.5in",
-                "header": {
-                    "height": "20mm"
-                },
-                "footer": {
-                    "height": "20mm",
-                },
-            };
-            pdf.create(data, options).toFile("report.pdf", function (err, data) {
-                if (err) {
-                    res.send(err);
-                } else {
-                    res.download('report.pdf', 'report.pdf', (err) => {
-                        if (err) {
-                            console.error('PDF Download Error:', err);
-                        }
-                        //파일 삭제
-                        fs.unlink('report.pdf', (err) => {
-                            if (err) {
-                                console.error('PDF File Deletion Error:', err);
-                            }
-                        });
-                    });
-                }
+          res.send(err);
+          console.log(err);
+        } else {
+          try {
+            // Puppeteer를 시작합니다.
+            const browser = await puppeteer.launch({ headless: "new" });
+
+
+            // Puppeteer 페이지를 만듭니다.
+            const page = await browser.newPage();
+
+            // 페이지에 접속 (예를 들어, 구글 홈페이지로 접속)
+            await page.goto('http://localhost:3000/');
+
+            // 스크린샷 캡처
+            await page.screenshot({ path: 'example.png' });
+
+            // 페이지에 HTML 내용을 설정합니다.
+            await page.setContent(data);
+
+            await page.waitForSelector('img');
+
+            // PDF 파일 생성
+            await page.pdf({
+              path: "report.pdf",
+              format: "A4",
+              printBackground: true, // 배경 이미지 출력
             });
+
+            // Puppeteer 브라우저를 닫습니다.
+            await browser.close();
+
+            res.download('report.pdf', 'report.pdf', (err) => {
+              if (err) {
+                console.error('PDF Download Error:', err);
+              }
+              // 파일 삭제
+              fs.unlink('report.pdf', (err) => {
+                if (err) {
+                  console.error('PDF File Deletion Error:', err);
+                }
+              });
+            });
+          } catch (error) {
+            console.error('Puppeteer Error:', error);
+            res.send('Failed to generate PDF.');
+          }
         }
-    });
+      });
     } else {
       return res.send(`
         <script>
