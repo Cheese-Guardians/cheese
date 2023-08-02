@@ -1,5 +1,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
+import mpld3
+import json
 
 # 한글 폰트 설정
 plt.rcParams['font.family'] = 'Malgun Gothic'
@@ -30,4 +32,7 @@ plt.title('요일별 증상 척도')
 plt.legend(loc='lower right')
 plt.xticks(rotation=45)  # x축의 날짜 라벨을 45도 회전하여 표시 (길어지는 경우)
 plt.tight_layout()  # 그래프 간격 조절
-plt.show()
+# 그래프를 이미지로 저장
+plt.savefig('public/output/graph.png')
+
+plt.close()  # 그래프 출력을 종료

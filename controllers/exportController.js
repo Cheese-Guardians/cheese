@@ -46,17 +46,20 @@ exports.postSummary = async function (req, res) {
 
         fs.writeFileSync(`csv/symptom_${i}.csv`, content, 'utf-8');
         console.log('Data saved to symptom.csv');
-        // const spawn = require('child_process').spawn;
+        const spawn = require('child_process').spawn;
 
-        // const result = spawn('python', ['graph.py'));
+        const result = spawn('python', ['public/statistic.py']);
 
-        // result.stdout.on('data', function(data) {
-        //     console.log(data.toString());
-        // });
+        // 3. stdout의 'data'이벤트리스너로 실행결과를 받는다.
+        result.stdout.on('data', function(data) {
+          console.log(data.toString());
+        });
 
-        // result.stderr.on('data', function(data) {
-        //     console.log(data.toString());
-        // });
+        // 4. 에러 발생 시, stderr의 'data'이벤트리스너로 실행결과를 받는다.
+        result.stderr.on('data', function(data) {
+          console.log(data.toString());
+        });
+
       // gpt 함수 호출
       const diaryResponse = await exportService.retrieveSelectedDiary(user_id, dateAA, dateBB);
       const diaryText = diaryResponse.calendar.diary.filter(entry => entry !== null).join(' ');
