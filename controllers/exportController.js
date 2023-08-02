@@ -39,9 +39,9 @@ exports.postSummary = async function (req, res) {
       console.log(dateAA,dateBB)
       //그래프 함수 호출
       const symptomResponse = await exportService.retrieveSelectedSymptom(user_id, dateAA, dateBB);
-      const csvData = symptomResponse[0].map(result => `${result.symptom_name},${result.degree}`).join('\n');
+      const csvData = symptomResponse[0].map(result => `${result.symptom_name},${result.degree},${result.date}`).join('\n');
         console.log(csvData); 
-        const column = ['symptom_name', 'degree'];
+        const column = ['symptom_name', 'degree', 'date'];
         const content = `${column.join(',')}\n${csvData}`; // 헤더와 데이터를 합친 내용
 
         fs.writeFileSync(`csv/symptom_${i}.csv`, content, 'utf-8');

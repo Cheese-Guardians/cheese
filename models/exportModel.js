@@ -64,16 +64,17 @@ async function getSelectedDiary(pool, selectedDiaryParams) {
   // 증상데이터를 csv로 export
 async function getSymptomCsv(pool, symptomCsvParams) {
   const getSymptomCsvQuery = `
-  SELECT s.symptom_name, s.degree
-  FROM symptom s
-  INNER JOIN calendar c ON s.calendar_id = c.calendar_id
-  WHERE s.calendar_id = ANY (
-      SELECT calendar_id
-      FROM calendar
-      WHERE user_id = ?
-      AND date BETWEEN ? AND ?
-  )
-  ORDER BY c.date ASC ;
+  SELECT s.symptom_name, s.degree, DATE_FORMAT(c.date, '%Y-%m-%d') AS date
+FROM symptom s
+INNER JOIN calendar c ON s.calendar_id = c.calendar_id
+WHERE s.calendar_id = ANY (
+    SELECT calendar_id
+    FROM calendar
+    WHERE user_id = ?
+    AND date BETWEEN ? AND ?
+)
+ORDER BY c.date ASC;
+
   `;
 
   const getSymptomCsvResponse = await pool.promise().query(getSymptomCsvQuery, symptomCsvParams);
