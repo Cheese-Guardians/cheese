@@ -49,6 +49,20 @@ exports.postSummary = async function (req, res) {
         const spawn = require('child_process').spawn;
 
         const result = spawn('python', ['public/statistic.py']);
+        
+          // Python 프로세스가 종료될 때까지 기다립니다.
+          await new Promise((resolve, reject) => {
+            result.on('exit', (code) => {
+              if (code === 0) {
+                // Python script completed successfully
+                resolve();
+              } else {
+                // Python script encountered an error
+                console.log('Python script exited with code:', code);
+                reject(new Error('Python script encountered an error.'));
+              }
+            });
+          });
 
         // 3. stdout의 'data'이벤트리스너로 실행결과를 받는다.
         result.stdout.on('data', function(data) {
