@@ -4,7 +4,7 @@ import mpld3
 import json
 
 # 한글 폰트 설정
-plt.rcParams['font.family'] = 'sans-serif'
+plt.rcParams['font.family'] = 'Malgun Gothic'
 plt.rcParams['axes.unicode_minus'] = False  # 마이너스 기호 표시 설정 (한글 폰트 설정 시 필요)
 
 # CSV 파일을 상대 경로로 지정 (만약 같은 디렉토리에 있다면 './csv/symptomcl.csv'로 지정)
