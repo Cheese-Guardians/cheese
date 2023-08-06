@@ -144,9 +144,8 @@ button{
 .view_wrapper>p {
     font-size: larger;
     width: 80%;
-    height: 300px;
     margin: 0 auto;
-    margin-top: 10%;
+   margin-top: 10px;
 }
 .select3 {
     margin-top: 50px;
