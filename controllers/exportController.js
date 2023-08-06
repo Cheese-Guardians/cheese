@@ -6,6 +6,7 @@ const ejs = require('ejs');
 const pdf = require("html-pdf");
 const fs = require('fs');
 const path = require('path');
+const baseResponse = require("../config/baseResponseStatus");
 
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
@@ -18,6 +19,10 @@ exports.postSummary = async function (req, res) {
     const decodedToken = jwt.verify(token, secret.jwtsecret); // 토큰 검증, 복호화
     const user_id = decodedToken.user_id; // user_id를 추출
     const { date1 } = req.body;
+
+    if (!date1) {
+      return res.send(baseResponse.PDF_DATE_EMPTY);
+    }
 
     const diaryBox = [];
     for (let i=0; i<=3;i++){
@@ -80,13 +85,13 @@ exports.postSummary = async function (req, res) {
       // summary = await summarizeDiary(diaryText);
       summary=diaryText;
       if (i!=3){
-        await sleep(10000);
+        await sleep(1000);
       }
       diaryBox.push(summary);
     }
 
     if (diaryBox.length > 0) {
-      ejs.renderFile(path.join('./views', "export/pdf.ejs"), { diaryBox }, async (err, data) => {
+      ejs.renderFile(path.join("./views/export/pdf.ejs"), { diaryBox }, async (err, data) => {
         if (err) {
           res.send(err);
           console.log(err);
