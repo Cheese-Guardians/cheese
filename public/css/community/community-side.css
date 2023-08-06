@@ -4,11 +4,11 @@ body {
 
 #community-side {
     position: relative;
-    top: -200px;
+    top: -150px;
     /* top: 100px; */
     left: 80%;
     bottom: 35%;
-    height: 60vh;
+    height: 75vh;
     width: 300px;
     margin-bottom: 10%;
     display: inline-block;
@@ -28,6 +28,7 @@ body {
     margin-top: 8%;
     margin-left: 5%;
     margin-bottom: 5%;
+    padding: 3%;
 
     font-style: normal;
     font-weight: 700;
