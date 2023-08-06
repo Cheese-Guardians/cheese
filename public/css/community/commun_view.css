@@ -51,7 +51,7 @@ button{
 .community_container {
     width: 55%;
     /* height 추가함 */
-    height: 800px;
+    height: 80vh;
     display:inline-block;
     background-color: white;
     border-color: #E0E0E0;
@@ -194,6 +194,8 @@ button{
 .comment_wrapper {
     /* width: 80%; */
     margin: 0 auto;
+    overflow: auto;
+    height:20vh;
 }
 
 .comment {
