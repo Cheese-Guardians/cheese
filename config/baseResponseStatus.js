@@ -53,6 +53,4 @@ module.exports = {
     SMS_SEND_FAILURE : { "isSuccess": false, "code": 5001, "message": "SMS 전송 실패"},
     SMS_VERIFY_SUCCESS : { "isSuccess": true, "code": 5002, "message": "SMS 검증 인증 성공"},
     FAILURE_SMS_AUTHENTICATION : { "isSuccess": false, "code": 5003, "message": "SMS 검증 인증 실패"},
-
-    PDF_DATE_EMPTY : { "isSuccess": false, "code": 5004, "message": "날짜를 선택해주세요." },
 }

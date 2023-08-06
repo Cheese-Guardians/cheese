@@ -6,7 +6,6 @@ const ejs = require('ejs');
 const pdf = require("html-pdf");
 const fs = require('fs');
 const path = require('path');
-const baseResponse = require("../config/baseResponseStatus");
 
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
@@ -21,7 +20,13 @@ exports.postSummary = async function (req, res) {
     const { date1 } = req.body;
 
     if (!date1) {
-      return res.send(baseResponse.PDF_DATE_EMPTY);
+      return res.send(`
+        <script>
+          if (confirm('날짜를 선택해주세요.')) {
+            window.location.href = "/export";
+          }
+        </script>
+      `);
     }
 
     const diaryBox = [];
