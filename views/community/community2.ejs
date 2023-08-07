@@ -4,6 +4,20 @@
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
+<script>
+  // DOM 요소 가져오기
+  const otherLinks = document.getElementsByClassName("nav-link");
+  const communityLinks = document.getElementsByClassName("communityactive");
+
+  // 커뮤니티 링크에 active 클래스 추가, 다른 링크에서 active 클래스 제거
+  for (const link of otherLinks) {
+    link.classList.remove("active");
+  }
+
+  for (const link of communityLinks) {
+    link.classList.add("active");
+  }
+</script>
 
 <!-- MAIN SECTION -->
 <div class="community_wrapper">  
