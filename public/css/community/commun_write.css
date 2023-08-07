@@ -1,21 +1,16 @@
-body {
-    height: 100vh;
+h1 {
+    right: 30px;
 }
 .community_wrapper {    
     /* height: 550px; */
-    margin-top: 100px;
-    height: 140vh;  
-    width: 100%;
-}
-.selection {
-    position: relative;
-    margin-top: 10%;
+    /* margin-top: 120px; */
+    margin-top: 180px;
+    height: 120vh;   
 }
 section{
     position: absolute;
     left: 50%;
     margin-left: 30%;
-    
 }
 
 .select1{
@@ -46,6 +41,7 @@ button{
 .buttons{
     margin-bottom: 2%;
     margin-left: 68%;
+    margin-top: 50px;
 }
 
 .cancel{
@@ -66,7 +62,7 @@ button{
 .community_container {
     width: 55%;
     /* height 추가함 */
-    height: 600px;
+    height: 80vh;
     display:inline-block;
     background-color: white;
     border-color: #E0E0E0;
@@ -102,6 +98,7 @@ button{
   .write_wrapper {
     margin-left: 5%; 
     width: 90%;
+    height: 80vh;
 
     margin-top: 2%;
     /* width: 80%;
