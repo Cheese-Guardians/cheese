@@ -8,7 +8,8 @@ const pool = mysql.createPool({
     port: process.env.DB_PORT,
     database: process.env.DB_NAME,
     waitForConnections: true,
-    insecureAuth: true
+    insecureAuth: true,
+    charset: 'utf8mb4'
 });
 
 module.exports = pool;  //모듈로 내보내기
@@ -26,13 +27,13 @@ const port = 3000,
     app = express(),
     fs = require("fs"),
     layouts = require("express-ejs-layouts"),
-      
     calendarRouter = require('./routes/calendarRoute'),
     usersRouter = require('./routes/usersRoute'),
     reminderRouter = require('./routes/reminderRoute'),
     communityRouter = require('./routes/communityRoute'),
     sanitizeHtml = require('sanitize-html'),
-    exportRouter = require('./routes/exportRoute');
+    exportRouter = require('./routes/exportRoute'),
+    puppeteer = require('puppeteer');
 
 const cookieParser = require('cookie-parser');
 
@@ -75,3 +76,16 @@ app.listen(port,() => {
   console.log("서버 실행 중");
   }
 );
+
+
+// const spawn = require('child_process').spawn;
+
+// const result = spawn('python', ['graph.py'));
+
+// result.stdout.on('data', function(data) {
+//     console.log(data.toString());
+// });
+
+// result.stderr.on('data', function(data) {
+//     console.log(data.toString());
+// });

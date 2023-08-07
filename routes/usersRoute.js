@@ -17,7 +17,13 @@ router.post('/login', users.login);
 // 3. 로그아웃
 router.post("/logout", jwtMiddleware, (req, res) => {
     // 쿠키를 지웁니다.
-    return res.cookie("x_auth", "").render('users/login.ejs', {logoutState : '성공'});
+    const token = req.cookies.x_auth;
+    if (token) {
+      return res.cookie("x_auth", "").render('users/login.ejs', {logoutState : '성공'});
+    }
+    else {
+      return res.redirect('/');
+    }
   });
 
 module.exports = router;

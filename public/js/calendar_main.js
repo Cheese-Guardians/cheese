@@ -73,6 +73,7 @@ window.addEventListener('DOMContentLoaded', function() {
   // 링크 요소들
   var calendarLink = document.querySelector('.calendaractive');
   var alarmLink = document.querySelector('.alarmactive');
+  var exportLink = document.querySelector('.exportactive');
   var checkLink = document.querySelector('.checkactive');
   var mypageLink = document.querySelector('.mypageactive');
 
@@ -80,23 +81,33 @@ window.addEventListener('DOMContentLoaded', function() {
   if (currentURL === '/calendar') {
     calendarLink.classList.add('active');
     alarmLink.classList.remove('active');
+    exportLink.classList.remove('active');
     checkLink.classList.remove('active');
     mypageLink.classList.remove('active');
   } else if (currentURL === '/reminder') {
     calendarLink.classList.remove('active');
     alarmLink.classList.add('active');
+    exportLink.classList.remove('active');
     checkLink.classList.remove('active');
     mypageLink.classList.remove('active');
   } else if (currentURL === '/diagnosis/check/password') {
     calendarLink.classList.remove('active');
     alarmLink.classList.remove('active');
+    exportLink.classList.remove('active');
     checkLink.classList.add('active');
     mypageLink.classList.remove('active');
   } else if (currentURL === '/mypage') {
     calendarLink.classList.remove('active');
     alarmLink.classList.remove('active');
+    exportLink.classList.remove('active');
     checkLink.classList.remove('active');
     mypageLink.classList.add('active');
+  } else if (currentURL === '/export') {
+    exportLink.classList.add('active');
+    calendarLink.classList.remove('active');
+    alarmLink.classList.remove('active');
+    mypageLink.classList.remove('active');
+    checkLink.classList.remove('active');
   }
 });
 

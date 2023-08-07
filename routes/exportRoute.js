@@ -2,12 +2,19 @@ const express = require('express');
 const router = express.Router();
 const exportController = require('../controllers/exportController');
 
+// 간호 다이어리 통계 내보내기
 router.get(
     "/", (req,res) =>
-    {res.render("export/pdf.ejs");}
+    {
+        const token = req.cookies.x_auth;
+        if (token) 
+            res.render("export/exportPdf.ejs");
+        else
+            return res.redirect('/');
+    }
 );
 
-// gpt post
+// 간호 다이어리 통계 날짜 선택 post
 router.post('/', exportController.postSummary);
 
 // 비밀번호 체크
