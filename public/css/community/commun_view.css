@@ -1,0 +1,252 @@
+h1 {
+    right: 30px;
+}
+.community_wrapper {    
+    /* height: 550px; */
+    margin-top: 120px;
+    height: 120vh;   
+}
+section{
+    position: absolute;
+    left: 50%;
+    margin-left: 30%;
+}
+
+.select1{
+    margin-left: 15%;
+}
+
+button{
+    background-color: #d9ee97;
+    color: #000000;
+    border: none;
+    width: 150px;
+    height: 50px;
+    border-radius: 15px;
+  
+    font-family: 'Noto Sans';
+    font-style: normal;
+    font-weight: 800;
+    font-size: 15px;
+    line-height: 41px;
+    margin-top : 100px;
+    margin-left: 10px;
+}
+.buttons{
+    margin-bottom: 2%;
+    margin-left: 68%;
+}
+
+.cancel{
+    width: 100px;
+    height: 40px;
+}
+.submit{
+    width: 100px;
+    height: 40px;
+}
+
+
+.community_container {
+    width: 55%;
+    /* height 추가함 */
+    height: 90vh;
+    display:inline-block;
+    background-color: white;
+    border-color: #E0E0E0;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 3%;
+    font-size: 15px;
+    margin: 0 auto;
+    position: relative;
+    margin-top: 15px;
+}
+.view_wrapper {
+    width: 80%;
+    /* height 추가함 */
+    height: 350px;
+    display:inline-block;
+    background-color: white;
+    border-color: #E0E0E0;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 3%;
+    font-size: 15px;
+    margin: 0 auto;
+    position: relative;
+    /* margin-top: 15px; */
+    margin-left: 10%;
+}
+
+.categoryTitle{
+    background-color: #DEF1A1;
+    color: black;
+    
+    border: none;
+    border-radius: 7px;  
+    font-family: 'Noto Sans';
+    font-style: normal;
+    font-weight: 800;
+    font-size: 15px;
+    text-align:center;
+
+    width: 140px;
+    height: 40px;
+    position: static;
+    padding: 1%;  
+    margin-top: 2%;
+    margin-left: 10%;  
+  }
+
+  .write_wrapper {
+    margin-left: 10%; 
+    margin-top: 2%;
+    /* width: 80%;
+    height: 90%; */
+    }
+    
+    .note-toolbar {
+        height: 40px;
+        white-space: nowrap;
+      }
+      
+      .note-toolbar .btn-group,
+      .note-toolbar .btn,
+      .note-toolbar .dropdown-toggle {
+        height: 30px;
+        line-height: 25px;
+        padding: 0 5px;
+        font-size: 10px;
+        display: inline-block;
+        white-space: nowrap;
+        margin-right: 2px;
+        width: auto;
+      }
+      
+      .note-toolbar .note-btn-group:last-child {
+        margin-right: 0;
+      }
+
+      .write_wrapper .title input {
+        width: 100%;
+        height: 32px;
+        font-size: 15px;
+        border: 0;
+        border-radius: 15px;
+        outline: none;
+        padding-left: 10px;
+        margin-bottom: 20px;
+        background-color: rgb(233, 233, 233);;
+      }
+
+.view_wrapper>p {
+    font-size: larger;
+    width: 80%;
+    margin: 0 auto;
+   margin-top: 10px;
+}
+.select3 {
+    margin-top: 50px;
+    margin-left:10%;
+    display: block;
+}
+
+.title {
+    width: 100%;
+    height: 10%;
+    margin-left: 10%;
+   
+}
+.title>h2 {
+    line-height: 90px;
+}
+.user {
+    display: inline-block;
+    font-weight:800;
+    font-size: larger;
+}
+.time {
+    display: inline-block;
+}
+/* 댓글 */
+.comment_input {
+    width: 65%;
+    /* height 추가함 */
+    height: 50px;
+    display:inline-block;
+    background-color: white;
+    border-color: #E0E0E0;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 3%;
+    font-size: 15px;
+    margin: 0 auto;
+    position: relative;
+    margin-top: 15px;
+    margin-left: 10%;
+}
+.comment_input>input {
+    width: 65%;
+    margin-top: 10px;
+}
+.comment_wrapper {
+    /* width: 80%; */
+    margin: 0 auto;
+    overflow: auto;
+    height:20vh;
+}
+
+#commentForm{
+    margin-top: -70px;
+}
+.comment {
+    background-color: #f7ffd6; 
+    border-radius: 3px;
+    height: 40px;
+    width: 80%;
+    align-items: center;
+  
+    margin-top: 5px;
+    margin-left: 10%;  
+    margin-right: 20%;
+    position: relative; /* 추가 */
+  }
+  
+  .comment .comment_content {
+    display: inline-block;
+    text-align: center; /* 추가: 가운데 정렬 */
+    margin-right: 10px; /* 수정: 원하는 간격으로 조정 */
+  }
+  
+  .comment .writer_id {
+    display: inline-block;
+    position: absolute; /* 추가 */
+    right: 50px; /* 수정: 오른쪽 여백 조정 */
+  }
+  
+  /* 아래는 모든 .comment_content와 .writer_id에 대한 스타일을 일괄 적용할 수 있습니다. */
+  .comment .comment_content,
+  .comment .writer_id {
+    line-height: 40px; /* 추가: 세로 가운데 정렬을 위해 높이와 동일한 line-height 설정 */
+  }
+  
+
+.subinfo {
+    width: 80%;
+    height: 50px;
+    margin: 0 auto;
+    
+    line-height: 30px;
+    font-size: medium;
+}
+.profile {
+    width: 45px;
+    height: 45px;
+}
+
+
+
+.write_active{
+    background-color: #DFE1D7;
+}

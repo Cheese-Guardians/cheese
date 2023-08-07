@@ -1,0 +1,127 @@
+<head>
+  <link href="/css/community/commun_write.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+  <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
+  <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
+
+ 
+
+  <!-- Template Main CSS File -->
+  <link href="/css/header.css" rel="stylesheet">
+  <link href="/css/footer.css" rel="stylesheet">
+  <link href="/css/style.css" rel="stylesheet">
+</head>
+
+<div class="community_wrapper">
+  <form action="/community/write" method="post" id="communityForm">
+  <div class="selection">
+    <button class="select select1" type="button" value="자유게시판" onclick="changeColor(this)">
+        <label>
+          <span>고민상담소</span>
+        </label>
+      </button>
+      <button class="select select2" type="button" value="정보게시판" onclick="changeColor(this)">
+        <label>
+          <span>정보 공유</span>
+        </label>
+      </button>
+      <input type="hidden" id="category_name" name="category_name" value="">
+      <script>
+      function changeColor(button) {
+        const buttons = document.getElementsByClassName('select');
+        for (let i = 0; i < buttons.length; i++) {
+          buttons[i].classList.remove('write_active');
+        }
+        button.classList.add('write_active');
+        const categoryInput = document.getElementById('category_name');
+        categoryInput.value = event.currentTarget.value;
+      }
+      </script>
+                    
+  </div>
+  <%-include ('./community-side.ejs'), { myPostResult: myPostResult} %>
+  <div class="community_container">
+
+      <div class="write_wrapper">
+        <div class="title">
+          <input type="text"  id="title" name="title" placeholder="제목" style="border: none;">
+      </div>
+          <textarea id="content" name="content" style="display: none;"></textarea>
+          <div id="summernote"  name="content" ></div>
+          <script>
+              $(document).ready(function () {
+                  $('#summernote').summernote({
+                      placeholder: '내용을 작성하세요',
+                      height: 400,
+                      maxHeight: 400,
+                      toolbar : [
+		    // 글꼴 설정
+		    ['fontname', ['fontname']],
+		    // 글자 크기 설정
+		    ['fontsize', ['fontsize']],
+		    // 굵기, 기울임꼴, 밑줄,취소 선, 서식지우기
+		    ['style', ['bold', 'italic', 'underline','strikethrough', 'clear']],
+		    // 글자색
+		    ['color', ['forecolor','color']],
+		    // 글머리 기호, 번호매기기, 문단정렬
+		    ['para', ['ul', 'ol', 'paragraph']],
+		    // 줄간격
+		    ['height', ['height']],
+		    // 코드보기, 확대해서보기, 도움말
+		    ['view', ['codeview','fullscreen', 'help']]
+		  ]
+                  });
+              });
+          </script>
+          
+           <div class="buttons">
+            <script>
+              document.getElementById("cancelBtn").addEventListener("click", function() {
+                  window.location.href = "/community/InfoList";
+              });
+              </script>
+            <button id="cancelBtn" class="cancel" type="button" value="1">
+              <label>
+                  <span>취소</span>
+              </label>
+          </button>
+          <script>
+            function checkCategory() {
+                var categoryInput = document.getElementById("category_name");
+                var categoryValue = categoryInput.value.trim();
+                var titleInput = document.getElementById("title");
+                var titleValue = titleInput.value.trim();
+                $('textarea[name="content"]').val($('#summernote').summernote('code'));
+                var textarea = document.getElementById('content');
+                
+                if (categoryValue === "") {
+                    alert("게시판을 선택해주세요!");
+                } 
+                else if (titleValue === ""){
+                    alert("제목을 입력해주세요!");
+                } 
+                else if (textarea.value === "" || textarea.value == "<p><br></p>" ){
+                    alert("글 내용을 입력해주세요!");
+                } 
+                else {
+                    // form 제출
+                    var communityForm = document.getElementById("communityForm");
+                    communityForm.submit();
+                }
+            }
+        </script>
+            <button class="submit"  type="button" onclick="checkCategory()" value="2">
+                <label>
+                    <span>글 등록</span>
+                </label>
+            </button>
+            
+        </div>
+      </div>
+      
+  </div>
+</form>
+</div>

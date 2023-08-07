@@ -1,15 +1,35 @@
 <head>
-  <link href="/css/community-side.css" rel="stylesheet">
+  <link href="/css//community/community-side.css" rel="stylesheet">
 </head>
 
-<div id="community-side">
+<span id="community-side">
   <div class="list-tile look1">다른 게시물 보기</div>
   <ul class="list1">
-    <li></li>
-    <li>저의 취미 공유해요</li>
+    <% if (otherPostResult && otherPostResult.length > 0) { %>
+      <% for (let i = 0; i < otherPostResult.length; i++) { %>
+        <div class="look">
+          <a href="/community/write/<%= otherPostResult[i].board_id %>">
+          <li><%= otherPostResult[i].title %></li>
+          </a>
+        </div>
+      <% } %>    
+    <% } else { %>
+      <li>No posts found</li>
+    <% } %> 
   </ul>
+  
   <div class="list-tile look2">나의 작성글 보기</div>
   <ul class="list1">
-
+    <% if (myPostResult && myPostResult.length > 0) { %>
+      <% for (let i = 0; i < myPostResult.length; i++) { %>
+        <div class="look">
+          <a href="/community/write/<%= myPostResult[i].board_id %>">
+          <li><%=myPostResult[i].title %></li> 
+          </a>
+        </div>        
+      <% } %> 
+    <% } else { %>
+      <li>No posts found</li>
+    <% } %>
   </ul>
-</div>
+</span>

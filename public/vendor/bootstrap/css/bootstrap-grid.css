@@ -1306,10 +1306,6 @@
   align-items: flex-end !important;
 }
 
-.align-items-center {
-  align-items: center !important;
-}
-
 .align-items-baseline {
   align-items: baseline !important;
 }
