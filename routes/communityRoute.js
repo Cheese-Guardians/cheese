@@ -3,11 +3,9 @@ const router = express.Router();
 const communityController = require('../controllers/communityController');
 //const { upload } = require('../middlewares/multerMiddleware');
 
-router.get(
-    "/worryList", (req,res) =>
-    {res.render("community/community1.ejs");}
-);
-router.get("/infoList", communityController.getList);
+//커뮤니티 게시판 리스트 조회
+router.get("/worryList", communityController.getWorryList);
+router.get("/infoList", communityController.getInfoList);
 
 //내가 쓴 글 조회
 router.get(

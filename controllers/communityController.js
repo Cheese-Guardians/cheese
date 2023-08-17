@@ -83,8 +83,58 @@ exports.getWrite = async function (req, res) {
   }
    
   }
-//게시글 리스트 조회
-exports.getList = async function (req, res) {
+
+//게시글 고민상담소 리스트 조회
+exports.getWorryList = async function (req, res) {
+  const token = req.cookies.x_auth;
+  if (token) {
+      try {
+          const decodedToken = jwt.verify(token, secret.jwtsecret);
+          const user_id = decodedToken.user_id;
+
+          if (!user_id) {
+              return res.send(baseResponse.USER_USERIDX_EMPTY);
+          }
+          if (user_id <= 0) {
+              return res.send(baseResponse.USER_USERIDX_LENGTH);
+          }
+          if (!req.query.page){
+            const existingQueryString = req.query;
+    
+            if (Object.keys(existingQueryString).length === 0) {
+              const newURL = `${req.protocol}://${req.get('host')}${req.originalUrl}?page=1&page1=1`;
+              return res.redirect(newURL);
+            }
+          }
+          let page = req.query.page;
+          let page1 = req.query.page1;
+          const communityDataResult = await communityService.retrieveWorryCommunity(
+              user_id,
+              page
+          );
+          console.log(communityDataResult);
+          const communityMyDataResult = await communityService.retrieveMyWorryCommunity(
+            user_id,
+            page1
+        );
+        console.log(communityMyDataResult);
+
+        const combinedData = {
+          communityDataResult: communityDataResult,
+          communityMyDataResult: communityMyDataResult
+      };
+
+          return res.render('community/community1.ejs', combinedData);
+      } catch (err) {
+          return res.send('Error occurred during token verification or community retrieval.');
+      }
+  } else {
+      return res.redirect('/');
+  }
+};
+
+//게시글 정보공유 리스트 조회
+exports.getInfoList = async function (req, res) {
     const token = req.cookies.x_auth;
     if (token) {
         try {
@@ -107,12 +157,12 @@ exports.getList = async function (req, res) {
             }
             let page = req.query.page;
             let page1 = req.query.page1;
-            const communityDataResult = await communityService.retrieveSelectedCommunity(
+            const communityDataResult = await communityService.retrieveInfoCommunity(
                 user_id,
                 page
             );
             console.log(communityDataResult);
-            const communityMyDataResult = await communityService.retrieveMyCommunity(
+            const communityMyDataResult = await communityService.retrieveMyInfoCommunity(
               user_id,
               page1
           );
