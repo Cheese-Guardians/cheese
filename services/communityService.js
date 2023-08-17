@@ -49,11 +49,12 @@ exports.retrieveComment = async function(board_id, title) {
     console.log(commentResult.title);
     return commentResult;
 }
-// 게시물 리스트
-exports.retrieveSelectedCommunity = async function (user_id, page) {
+
+// 고민상담소 게시판 리스트
+exports.retrieveWorryCommunity = async function (user_id, page) {
     try {
         const selectedCommunityParams = [user_id];
-        const communityDataResult = await communityModel.getCommunityList(pool, selectedCommunityParams, page);
+        const communityDataResult = await communityModel.getWorryList(pool, selectedCommunityParams, page);
         console.log(communityDataResult);
 
         return communityDataResult;
@@ -63,11 +64,25 @@ exports.retrieveSelectedCommunity = async function (user_id, page) {
     }
 }
 
-// 나의 게시물 리스트
-exports.retrieveMyCommunity = async function (user_id, page) {
+// 정보 공유 게시판 리스트
+exports.retrieveInfoCommunity = async function (user_id, page) {
     try {
         const selectedCommunityParams = [user_id];
-        const communityMyDataResult = await communityModel.getMyCommunityList(pool, selectedCommunityParams, page);
+        const communityDataResult = await communityModel.getInfoList(pool, selectedCommunityParams, page);
+        console.log(communityDataResult);
+
+        return communityDataResult;
+    } catch (err) {
+        console.log(err);
+        return 'retrieveSelectedCommunityError';
+    }
+}
+
+// 나의 고민상담소 게시판 리스트
+exports.retrieveMyWorryCommunity = async function (user_id, page) {
+    try {
+        const selectedCommunityParams = [user_id];
+        const communityMyDataResult = await communityModel.getMyWorryList(pool, selectedCommunityParams, page);
         console.log(communityMyDataResult);
 
         return communityMyDataResult;
@@ -76,6 +91,21 @@ exports.retrieveMyCommunity = async function (user_id, page) {
         return 'retrieveSelectedCommunityError';
     }
 }
+
+// 나의 정보게시판 리스트
+exports.retrieveMyInfoCommunity = async function (user_id, page) {
+    try {
+        const selectedCommunityParams = [user_id];
+        const communityMyDataResult = await communityModel.getMyInfoList(pool, selectedCommunityParams, page);
+        console.log(communityMyDataResult);
+
+        return communityMyDataResult;
+    } catch (err) {
+        console.log(err);
+        return 'retrieveSelectedCommunityError';
+    }
+}
+
 
 //게시글 작성 
 exports.createBoard = async function (
