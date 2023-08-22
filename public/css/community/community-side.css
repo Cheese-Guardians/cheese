@@ -3,22 +3,56 @@ body {
 }
 
 #community-side {
-    position: relative;
-    top: -110px;
-    /* top: 100px; */
-    left: 80%;
-    bottom: 35%;
-    height: 75vh;
-    width: 300px;
-    margin-bottom: 10%;
     display: inline-block;
     background: #FFFFFF;
     border: 1px solid #E0E0E0;
     border-radius: 15px;
-    
+}
+/* 작은 화면 (모바일) */
+@media (max-width: 767px) {
+    #community-side {
+        height: 40%;
+        width: 90%;
+        position: relative;
+        bottom: 35%;
+  
+        margin-top: 35%;        
+    }
+    .list-tile {
+      width: 142px;
+      height: 34px;
+  
+      background: #DEF1A1;
+      border-radius: 7px;
+      
+      margin-top: 8%;
+      margin-left: 5%;
+      margin-bottom: 5%;
+      padding: 3%;
+  
+      font-style: normal;
+      font-weight: 700;
+      font-size: 15px;
+      text-align: center;
+      }
+  
+      .look{
+          margin-left: 5%;
+      }
+
 }
 
-.list-tile {
+/* 중간 화면 (타블렛) */
+@media (min-width: 768px) and (max-width: 991px) {
+  #community-side {
+      height: 40%;
+      width: 90%;
+      position: relative;
+      bottom: 35%;
+
+      margin-bottom: 10%;      
+  }
+  .list-tile {
     width: 142px;
     height: 34px;
 
@@ -34,9 +68,46 @@ body {
     font-weight: 700;
     font-size: 15px;
     text-align: center;
+    }
 
+    .look{
+        margin-left: 5%;
+    }
 }
 
-.look{
-    margin-left: 5%;
+/* 큰 화면 (데스크톱) */
+@media (min-width: 992px) {
+  #community-side {
+      position: relative;
+      top: -110px;
+      /* top: 100px; */
+      left: 80%;
+      bottom: 35%;
+      height: 75vh;
+      width: 300px;
+      margin-bottom: 10%;      
+  }
+
+  .list-tile {
+      width: 142px;
+      height: 34px;
+
+      background: #DEF1A1;
+      border-radius: 7px;
+      
+      margin-top: 8%;
+      margin-left: 5%;
+      margin-bottom: 5%;
+      padding: 3%;
+
+      font-style: normal;
+      font-weight: 700;
+      font-size: 15px;
+      text-align: center;
+
+  }
+
+  .look{
+      margin-left: 5%;
+  }
 }
