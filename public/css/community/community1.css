@@ -85,16 +85,16 @@ button{
   margin-top: 8%;
   margin-left: 10%;  
 }
-
 /* 작은 화면 (모바일) */
 @media (max-width: 767px) {
   .community_container {
     width: 90%;
+    font-size: 12px;
   }
   button {
     width: 28%;
-    font-weight: 700;
-    font-size: 15px;
+    font-weight: 600;
+    font-size: 14px;
     line-height: 41px;
     margin-top : 100px;
     margin-right: 10px;
@@ -104,6 +104,21 @@ button{
   }
   .categoryTitle{
     padding: 2.5%;
+    font-size: 13px;
+  }
+  .board_list > div {
+    font-size: 0;
+  }
+
+  .board_list > div > div {
+    display: inline-block;     /* 가로배치 */
+    padding: 15px 0;   /*모든 픽셀 여백 15px 0 */
+    text-align: center;
+    font-size: 13px;  /* 부모에다가는 font-size : 0을 줌. */
+  }
+  .board_list .title {
+    width: 60%;
+    text-align: left;
   }
 }
 
@@ -111,13 +126,14 @@ button{
 @media (min-width: 768px) and (max-width: 991px) {
   .community_container {
     width: 75%;
+    font-size: 15px;
   }
   button {
     width: 20%;
     height: 2.2%;
 
     font-weight: 800;
-    font-size: 15px;
+    font-size: 10px;
     line-height: 41px;
     margin-top : 100px;   
     margin-right: 10px; 
@@ -128,12 +144,30 @@ button{
   .categoryTitle{
     padding: 1%;
   }
+  .board_list {
+    width: 100%;
+  }
+  .board_list > div {
+    font-size: 0;
+  }
+
+  .board_list > div > div {
+    display: inline-block;     /* 가로배치 */
+    padding: 15px 0;   /*모든 픽셀 여백 15px 0 */
+    text-align: center;
+    font-size: 1.4rem;
+  }
+  .board_list .title {
+    width: 70%;
+    text-align: left;
+  }
 }
 
 /* 큰 화면 (데스크톱) */
 @media (min-width: 992px) {
   .community_container {
     width: 55%;
+    font-size: 15px;
   }
   button {
     width: 7%;
@@ -151,19 +185,36 @@ button{
   .categoryTitle{
     padding: 1%;  
   }
+  .board_list {
+    width: 100%;
+  }
+  .board_list > div {
+    font-size: 0;
+  }
+
+  .board_list > div > div {
+    display: inline-block;     /* 가로배치 */
+    padding: 15px 0;   /*모든 픽셀 여백 15px 0 */
+    text-align: center;
+    font-size: 1.4rem;
+  }
+  .board_list .title {
+    width: 70%;
+    text-align: left;
+  }
 }
-  
+
   .board_wrap {
     width: 80%;
     margin: 2% auto;
   }
-  
   
   .bt_wrap {
     margin-top: 30px;
     text-align: center;
     font-size: 0;
     text-align: center;
+    margin-bottom: -20%;
   }
   
   .bt_wrap a {
@@ -183,44 +234,25 @@ button{
     background: #000;
     color: #fff;
   }
-  .board_list {
-    width: 100%;
-  }
-  .board_list > div {
-    font-size: 0;
-  }
-  .board_list > div > div {
-    display: inline-block;
-    /* ㄴ 🟡가로배치!!! */
-    padding: 15px 0;
-    /* ㄴ 🟡모든 픽셀 여백 15px 0 */
-    text-align: center;
-    font-size: 1.4rem;
-    /* ㄴ 🟡부모에다가는 font-size : 0을 줌. */
-  }
   
   .board_list > div.top > div {
     font-weight: 600;
   }
   
-  .board_list .title {
-    width: 70%;
-    text-align: left;
-  }
   .board_list .top .title {
     text-align: center;
   }
   .board_list .time {
     width: 10%;
-    margin-right: 20px;
+    margin-right: 17px;
   }
   .board_list .date {
     width: 10%;
-    margin-right: 20px;
+    margin-right: 17px;
   }
   .board list .count {
     width: 10%;
-    margin-right: 20px;
+    margin-right: 17px;
   }
   .board_page {
     margin-top: 30px;
@@ -250,12 +282,12 @@ button{
     letter-spacing: -1px;
   }
   
-  .board_page a.num {
+  .board_page a.num,.board_page a.num1 {
     padding-top: 9px;
     font-size: 1.4rem;
   }
   
-  .board_page a.num.on {
+  .board_page a.num.on,.board_page a.num1.on{
     border-color: #D9EE97;
     background: #D9EE97;
     color: #000;
@@ -282,6 +314,6 @@ button{
     font-weight: 800;
     font-size: 13px;
     line-height: 41px;
-    margin-top : 100px;
+    margin-top : 35px;
     margin-left: 80%;
   }
