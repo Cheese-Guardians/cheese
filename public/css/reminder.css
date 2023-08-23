@@ -98,6 +98,35 @@ input {
         font-size: 18px;
     }
 }
+
+/* 중간 화면 (타블렛) */
+@media (min-width: 768px) and (max-width: 991px) {
+    .reminder_wrapper {
+        height: 90vh;
+    }
+
+    .reminder_container {
+        width: 700px;
+        height: 550px;
+        font-size: 15px;
+        margin: 0 auto;
+        top: 20%;
+        position: relative;
+        padding-top: 20px;
+        text-align: center;
+    }
+
+    .medicine_reminder {
+        font-size: 20px;
+        width: 50%;
+        margin: 0 auto;
+        top: 20%;   
+    }
+
+    input {
+        margin-left: 10%;
+    }
+}
   
 /* 큰 화면 (데스크톱) */
 @media (min-width: 992px) {
