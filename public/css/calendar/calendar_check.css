@@ -289,21 +289,11 @@ padding-left:8px;
       color: black !important;
     }
 
-
-    /* This will declare how a selected input will look giving generic properties */
-    /* .btn input:checked + span {        
-        color: black;
-        text-shadow: 0 0  10px rgba(0, 0, 0, 0.8);
-        background-color: #DEF1A1;
-
-    } */
     .btn.active {
       color: black;
       text-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
       background-color: #DEF1A1;
     }
-
-
   
    /*우측*/
   .symptom_check_right{
@@ -389,16 +379,13 @@ padding-left:8px;
   
 /* 작은 화면 (모바일) */
 @media (max-width: 767px) {
-  /* .order-2 {
-    width: 100%;
-    padding: 0;
-    margin: 0 auto;
-  } */
   .symptom_check{
-    width: 85%;
+    width: 95%;
     height: 100%;
     padding: 10px;
-    margin: 10 auto;
+    margin-left: 3%;
+    margin-top: 10;
+    margin-bottom: -15%;
   }
 
   /*좌측*/
@@ -411,6 +398,36 @@ padding-left:8px;
   .symptom_check_right{
     width: 100%;
     height: 100%;
+  }
+}
+
+/* 중간 화면 (타블렛) */
+@media (min-width: 768px) and (max-width: 991px) {
+  .community_container {
+    width: 55%;
+    /* 다른 스타일 변경 */
+  }
+  .symptom_check{
+    width: 95%;
+    height: 100%;
+    padding: 10px;
+    margin: 10 auto;
+  }
+
+  /*좌측*/
+  .symptom_check_left{
+    float: left;
+    width: 50%;
+    height: 100%;
+    padding-right:10px;
+  }  
+  
+  /*우측*/
+  .symptom_check_right{
+    width: 50%;
+    height: 100%;
+    border-left: 1px solid #E0E0E0;
+    padding-left: 10px;
   }
 }
 
