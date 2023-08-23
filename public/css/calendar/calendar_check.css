@@ -31,12 +31,6 @@
   }
 
    /*좌측*/
-  .symptom_check_left{
-    float: left;
-    width: 50%;
-    height: 100%;
-padding-right:10px;
-  }
     /*날짜*/
     .date{
       width:100%;
@@ -311,13 +305,9 @@ padding-left:8px;
 
 
   
-   /*좌측*/
+   /*우측*/
   .symptom_check_right{
     display: inline-block;
-    width: 50%;
-    height: 100%;
-    border-left: 1px solid #E0E0E0;
-    padding-left: 10px;
   }
   /*증상*/
   .symptom{
@@ -397,3 +387,53 @@ padding-left:8px;
   align-items: center; 
 }
   
+/* 작은 화면 (모바일) */
+@media (max-width: 767px) {
+  /* .order-2 {
+    width: 100%;
+    padding: 0;
+    margin: 0 auto;
+  } */
+  .symptom_check{
+    width: 85%;
+    height: 100%;
+    padding: 10px;
+    margin: 10 auto;
+  }
+
+  /*좌측*/
+  .symptom_check_left{
+    width: 100%;
+    height: 100%;
+  }
+
+  /*우측*/
+  .symptom_check_right{
+    width: 100%;
+    height: 100%;
+  }
+}
+
+/* 큰 화면 (데스크톱) */
+@media (min-width: 992px) {
+  .community_container {
+    width: 55%;
+    /* 다른 스타일 변경 */
+  }
+
+  /*좌측*/
+  .symptom_check_left{
+    float: left;
+    width: 50%;
+    height: 100%;
+    padding-right:10px;
+  }  
+  
+  /*우측*/
+  .symptom_check_right{
+    width: 50%;
+    height: 100%;
+    border-left: 1px solid #E0E0E0;
+    padding-left: 10px;
+  }
+}

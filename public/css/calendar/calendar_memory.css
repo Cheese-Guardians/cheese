@@ -179,3 +179,47 @@ main {
     text-align: center;
     vertical-align: middle;
   }
+
+  /* 작은 화면 (모바일) */
+@media (max-width: 767px) {
+  /* main {
+    height: 100vh;
+    position: relative;
+  } */
+  
+  main .wrapper {
+    justify-content: center;
+    display: inline-block;  
+    width: 100%;
+    /* margin-left: 15%; */
+    
+  }
+  .ininin{
+    display: inline-block;  
+    width: 50%;
+    margin-left: 35%;
+    margin-top: 10%;
+  }
+}
+
+/* 큰 화면 (데스크톱) */
+@media (min-width: 992px) {
+  main {
+    height: 100vh;
+    position: relative;
+  }
+  
+  main .wrapper {
+    justify-content: center;
+    display: inline-block;  
+    width: 100%; 
+    margin-left: 15%;
+    
+  }
+  .ininin{
+    display: inline-block;  
+    width: 50%;
+    margin-left: 35%;
+    margin-top: 10%;
+  }
+}
