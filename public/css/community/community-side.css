@@ -11,58 +11,65 @@ body {
 /* 작은 화면 (모바일) */
 @media (max-width: 767px) {
     #community-side {
-        height: 40%;
+        height: 46%;
         width: 90%;
         position: relative;
-        bottom: 35%;
   
-        margin-top: 35%;        
+        margin-top: 10%; 
+        margin-left: 5%;       
     }
     .list-tile {
-      width: 142px;
-      height: 34px;
+      width: 120px;
+      height: 27px;
+      text-align: center;
   
       background: #DEF1A1;
       border-radius: 7px;
       
-      margin-top: 8%;
+      margin-top: 3%;
       margin-left: 5%;
-      margin-bottom: 5%;
-      padding: 3%;
+      margin-bottom: 2%;
+      padding: 1%;
   
       font-style: normal;
       font-weight: 700;
-      font-size: 15px;
+      font-size: 12px;
       text-align: center;
       }
   
-      .look{
-          margin-left: 5%;
-      }
+    .look{
+        margin-left: 5%;
+        margin-top: 0%;
+    }
+    li{
+        font-size: 12px;
+    }
 
 }
 
 /* 중간 화면 (타블렛) */
 @media (min-width: 768px) and (max-width: 991px) {
   #community-side {
-      height: 40%;
-      width: 90%;
-      position: relative;
-      bottom: 35%;
-
-      margin-bottom: 10%;      
+    height: 40%;
+    width: 90%;
+    position: relative;
+    
+    margin-bottom: 10%;
+    margin-top: 5%;
+    margin-left: 10%;     
   }
   .list-tile {
-    width: 142px;
+    width: 160px;
     height: 34px;
+    text-align: center;
 
     background: #DEF1A1;
     border-radius: 7px;
     
     margin-top: 8%;
     margin-left: 5%;
-    margin-bottom: 5%;
-    padding: 3%;
+    margin-bottom: 2%;
+    padding: 1%;
 
     font-style: normal;
     font-weight: 700;
@@ -72,6 +79,7 @@ body {
 
     .look{
         margin-left: 5%;
+        margin-top: 0%;
     }
 }
 
@@ -91,6 +99,7 @@ body {
   .list-tile {
       width: 142px;
       height: 34px;
+      text-align: center;
 
       background: #DEF1A1;
       border-radius: 7px;
