@@ -15,7 +15,6 @@ section{
 
 .select1{
     margin-left: 15%;
-   
 }
 
 button{
@@ -58,23 +57,6 @@ button{
     background-color: #d9ee97;
 }
 
-
-.community_container {
-    width: 55%;
-    /* height 추가함 */
-    height: 80vh;
-    display:inline-block;
-    background-color: white;
-    border-color: #E0E0E0;
-    border-style: solid;
-    border-width: 2px;
-    border-radius: 3%;
-    font-size: 15px;
-    margin: 0 auto;
-    position: relative;
-    margin-top: 15px;
-}
-
 .categoryTitle{
     background-color: #DEF1A1;
     color: black;
@@ -93,6 +75,55 @@ button{
     padding: 1%;  
     margin-top: 2%;
     margin-left: 10%;  
+  }
+
+.community_container {
+    display:inline-block;
+    background-color: white;
+    border-color: #E0E0E0;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 3%;
+    font-size: 15px;
+    margin: 0 auto;
+    position: relative;
+    margin-top: 15px;
+}
+
+/* 작은 화면 (모바일) */
+@media (max-width: 767px) {
+    .community_container {
+      width: 90%;
+    }
+    .community_wrapper {
+        margin-top: 15%;
+    }
+    button{
+        font-size: 13px;
+    }
+
+  }
+  
+  /* 중간 화면 (타블렛) */
+  @media (min-width: 768px) and (max-width: 991px) {
+    .community_container {
+      width: 70%;
+      height: 50vh;
+    }
+    .community_wrapper {
+        margin-top: 10%;
+    }
+  }
+  
+  /* 큰 화면 (데스크톱) */
+  @media (min-width: 992px) {
+    .community_container {
+        width: 55%;
+        height: 80vh;
+    }
+    .community_wrapper {
+        margin-top: 15%;
+    }
   }
 
   .write_wrapper {
