@@ -68,20 +68,28 @@ exports.getWrite = async function (req, res) {
      const myPostResult = await communityService.retriveMyPost(user_id); 
      const limitedPosts = myPostResult.slice(0, 7);
      //다른 사람 게시물
-    const otherPostResult = await communityService.retrieveOtherPost(user_id, board_id, title);
-    const limitedOtherPosts = otherPostResult.slice(0, 13);
-    const combinedData = {
+      const otherPostResult = await communityService.retrieveOtherPost(user_id, board_id, title);
+      const limitedOtherPosts = otherPostResult.slice(0, 13);
+      const combinedData = {
       myPostResult: limitedPosts,
       otherPostResult: limitedOtherPosts
-  };
-  //console.log("combindedData",combinedData);
-  //console.log(communityResult.title);
-  return res.render('community/commun_write.ejs', combinedData);
-  }
-  else {
-  return res.redirect('/');
-  }
-   
+      };
+      //console.log("combindedData",combinedData);
+      //console.log(communityResult.title);
+      // 화면 크기에 따라 적절한 템플릿 파일 렌더링
+      const userAgent = req.headers['user-agent'];
+
+      if (userAgent.includes('Mobile')) {
+        // 모바일 화면일 경우 mobile.ejs 렌더링
+        return res.render('community/mobile_commun_write.ejs', combinedData);
+      } else {
+        // 데스크탑 화면일 경우 desktop.ejs 렌더링
+        return res.render('community/commun_write.ejs', combinedData);
+      }
+    }
+    else {
+      return res.redirect('/');
+    }
   }
 
 //게시글 고민상담소 리스트 조회

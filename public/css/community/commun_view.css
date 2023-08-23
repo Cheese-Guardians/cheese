@@ -20,14 +20,11 @@ button{
     background-color: #d9ee97;
     color: #000000;
     border: none;
-    width: 150px;
-    height: 50px;
     border-radius: 15px;
   
     font-family: 'Noto Sans';
     font-style: normal;
     font-weight: 800;
-    font-size: 15px;
     line-height: 41px;
     margin-top : 100px;
     margin-left: 10px;
@@ -37,19 +34,7 @@ button{
     margin-left: 68%;
 }
 
-.cancel{
-    width: 100px;
-    height: 40px;
-}
-.submit{
-    width: 100px;
-    height: 40px;
-}
-
-
 .community_container {
-    width: 55%;
-    /* height 추가함 */
     height: 90vh;
     display:inline-block;
     background-color: white;
@@ -57,11 +42,16 @@ button{
     border-style: solid;
     border-width: 2px;
     border-radius: 3%;
-    font-size: 15px;
     margin: 0 auto;
     position: relative;
     margin-top: 15px;
 }
+
+.cancel{
+    width: 100px;
+    height: 40px;
+}
+
 .view_wrapper {
     width: 80%;
     /* height 추가함 */
@@ -72,7 +62,6 @@ button{
     border-style: solid;
     border-width: 2px;
     border-radius: 3%;
-    font-size: 15px;
     margin: 0 auto;
     position: relative;
     /* margin-top: 15px; */
@@ -98,48 +87,46 @@ button{
     padding: 1%;  
     margin-top: 2%;
     margin-left: 10%;  
-  }
+}
 
-  .write_wrapper {
+.write_wrapper {
     margin-left: 10%; 
     margin-top: 2%;
-    /* width: 80%;
-    height: 90%; */
-    }
+}
     
-    .note-toolbar {
-        height: 40px;
-        white-space: nowrap;
-      }
+.note-toolbar {
+    height: 40px;
+    white-space: nowrap;
+}
       
-      .note-toolbar .btn-group,
-      .note-toolbar .btn,
-      .note-toolbar .dropdown-toggle {
-        height: 30px;
-        line-height: 25px;
-        padding: 0 5px;
-        font-size: 10px;
-        display: inline-block;
-        white-space: nowrap;
-        margin-right: 2px;
-        width: auto;
-      }
+.note-toolbar .btn-group,
+.note-toolbar .btn,
+.note-toolbar .dropdown-toggle {
+    height: 30px;
+    line-height: 25px;
+    padding: 0 5px;
+    font-size: 10px;
+    display: inline-block;
+    white-space: nowrap;
+    margin-right: 2px;
+    width: auto;
+}
       
-      .note-toolbar .note-btn-group:last-child {
-        margin-right: 0;
-      }
+.note-toolbar .note-btn-group:last-child {
+    margin-right: 0;
+}
 
-      .write_wrapper .title input {
-        width: 100%;
-        height: 32px;
-        font-size: 15px;
-        border: 0;
-        border-radius: 15px;
-        outline: none;
-        padding-left: 10px;
-        margin-bottom: 20px;
-        background-color: rgb(233, 233, 233);;
-      }
+.write_wrapper .title input {
+    width: 100%;
+    height: 32px;
+    font-size: 15px;
+    border: 0;
+    border-radius: 15px;
+    outline: none;
+    padding-left: 10px;
+    margin-bottom: 20px;
+    background-color: rgb(233, 233, 233);;
+}
 
 .view_wrapper>p {
     font-size: larger;
@@ -148,7 +135,6 @@ button{
    margin-top: 10px;
 }
 .select3 {
-    margin-top: 50px;
     margin-left:10%;
     display: block;
 }
@@ -157,8 +143,8 @@ button{
     width: 100%;
     height: 10%;
     margin-left: 10%;
-   
 }
+
 .title>h2 {
     line-height: 90px;
 }
@@ -170,29 +156,8 @@ button{
 .time {
     display: inline-block;
 }
-/* 댓글 */
-.comment_input {
-    width: 65%;
-    /* height 추가함 */
-    height: 50px;
-    display:inline-block;
-    background-color: white;
-    border-color: #E0E0E0;
-    border-style: solid;
-    border-width: 2px;
-    border-radius: 3%;
-    font-size: 15px;
-    margin: 0 auto;
-    position: relative;
-    margin-top: 15px;
-    margin-left: 10%;
-}
-.comment_input>input {
-    width: 65%;
-    margin-top: 10px;
-}
+
 .comment_wrapper {
-    /* width: 80%; */
     margin: 0 auto;
     overflow: auto;
     height:40vh;
@@ -231,7 +196,6 @@ button{
   .comment .writer_id {
     line-height: 40px; /* 추가: 세로 가운데 정렬을 위해 높이와 동일한 line-height 설정 */
   }
-  
 
 .subinfo {
     width: 80%;
@@ -246,8 +210,143 @@ button{
     height: 45px;
 }
 
-
-
 .write_active{
     background-color: #DFE1D7;
 }
+
+.comment_input>input {
+    width: 90%;
+}
+
+/* 댓글 */
+.comment_input {
+    display:inline-block;
+    background-color: white;
+    border-color: #E0E0E0;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 3%;
+    margin: 0 auto;
+    position: relative;
+    margin-left: 10%;
+}
+
+/* 작은 화면 (모바일) */
+@media (max-width: 767px) {
+    .community_container {
+        width: 90%;
+        height: auto;
+        margin-left: 5%;
+        font-size: 10px;
+    }
+    .community_wrapper {
+        margin-top: 15%;
+    }
+    button{
+        font-size: 10px;
+        width: 100px;
+        height: 25px;
+        text-align: center;
+        padding-bottom: 10%;
+    }
+    .categoryTitle{
+        font-size: 13px;
+    }
+    .view_wrapper {
+        font-size: 13px;
+    }
+    .title{
+        font-size: 14px;
+        margin-bottom: 1%;
+    }
+    /* 댓글 */
+    .select3 { 
+        margin-top: 20px;
+        margin-bottom: -8%;
+    }
+    .comment_input {
+        width: 60%;
+        height: 30px;
+        font-size: 12px;
+    }
+    .submit{
+        width: 75px;
+        height: 27px;
+        text-align: center;
+        padding-bottom: 10%;
+    }
+
+  }
+  
+  /* 중간 화면 (타블렛) */
+  @media (min-width: 768px) and (max-width: 991px) {
+    .community_container {
+      width: 90%;
+      height: 80vh;
+      margin-left: 10%;
+      font-size: 15px;
+      
+    }
+    .community_wrapper {
+        margin-top: 10%;
+    }
+    button{
+        width: 150px;
+        height: 50px;
+    }
+    .view_wrapper {
+        font-size: 15px;
+    }
+    /* 댓글 */
+    .select3 { 
+        margin-top: 50px;
+    }
+    .comment_input {
+        width: 65%;
+        height: 50px;
+        font-size: 15px;
+    }
+    .comment_input>input {
+        margin-top: 10px;
+    }
+    .submit{
+        width: 100px;
+        height: 40px;
+    }
+  }
+  
+  /* 큰 화면 (데스크톱) */
+  @media (min-width: 992px) {
+    .community_container {
+        width: 55%;
+        height: 80vh;
+        font-size: 15px;
+        height: auto;
+    }
+    .community_wrapper {
+        margin-top: 15%;
+    }
+    button{
+        width: 150px;
+        height: 50px;
+    }
+    .view_wrapper {
+        font-size: 15px;
+    }
+    /* 댓글 */
+    .select3 { 
+        margin-top: 50px;
+    }
+    .comment_input {
+        width: 65%;
+        height: 50px;
+        font-size: 15px;
+    }
+    .comment_input>input {
+        margin-top: 10px;
+    }
+    .submit{
+        width: 100px;
+        height: 40px;
+    }
+  }

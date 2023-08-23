@@ -2,14 +2,30 @@
     /* height: 550px; */
     height: 190vh;   
 }
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 10px;
+}
+
+ul, li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  /* ㄴ🟡 컬러 상속받아라 */
+}
+
 section{
     position: absolute;
     left: 50%;
     margin-left: 30%;
-}
-
-.select1{
-    margin-left: 22%;
 }
 
 .button1{
@@ -20,21 +36,13 @@ button{
     background-color: #d9ee97;
     color: #000000;
     border: none;
-    width: 150px;
-    height: 50px;
     border-radius: 15px;
   
     font-family: 'Noto Sans';
     font-style: normal;
-    font-weight: 800;
-    font-size: 15px;
-    line-height: 41px;
-    margin-top : 100px;
-    margin-left: 10px;
   }
 
 .community_container {
-    width: 55%;
     height:85%;
    
     background-color: white;
@@ -42,63 +50,44 @@ button{
     border-style: solid;
     border-width: 2px;
     border-radius: 3%;
-    font-size: 15px;
+
     margin: 0 auto;
     position: relative;
     margin-top: 10px;
 }
 
 .top{
-    height: 45%;
+  height: 45%;
 }
 .bottom{
-    height: 55%;
+  height: 55%;
 }
+
 /*top*/
 .categoryTitle{
-    background-color: #DEF1A1;
-    color: black;
-    
-    border: none;
-    border-radius: 7px;  
-    font-family: 'Noto Sans';
-    font-style: normal;
-    font-weight: 800;
-    font-size: 15px;
-    text-align:center;
+  background-color: #DEF1A1;
+  color: black;
+  
+  border: none;
+  border-radius: 7px;  
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 800;
+  font-size: 15px;
+  text-align:center;
 
-    width: 140px;
-    height: 40px;
-    position: static;
-    padding: 1%;  
-    margin-top: 5%;
-    margin-left: 10%;  
-  }
-  
-  * {
-    margin: 0;
-    padding: 0;
-  }
-  html {
-    font-size: 10px;
-  }
-  
-  ul,
-  li {
-    list-style: none;
-  }
-  
-  a {
-    text-decoration: none;
-    color: inherit;
-    /* ㄴ🟡 컬러 상속받아라 */
-  }
+  position: static;
+  width: 140px;
+  height: 40px;
+  margin-top: 8%;
+  margin-left: 10%;  
+}
+
+
   .board_wrap {
     width: 80%;
     margin: 2% auto;
-
   }
-  
   
   .bt_wrap {
     margin-top: 30px;
@@ -125,57 +114,25 @@ button{
     background: #000;
     color: #fff;
   }
-  .board_list {
-    width: 100%;
-    /* border-top: 2px solid #000; */
-  }
-  .board_list > div {
-    /* border-bottom: 1px solid #000; */
-    font-size: 0;
-  }
-  /* .board_list > div.top {
-    border-bottom: 1px solid #000;
-    background-color: #DEF1A1;
-  } */
-  /* .board_list > div:last-child {
-    border-bottom: 1px solid #81c147;
-  } */
-  .board_list > div > div {
-    display: inline-block;
-    /* ㄴ 🟡가로배치!!! */
-    padding: 15px 0;
-    /* ㄴ 🟡모든 픽셀 여백 15px 0 */
-    text-align: center;
-    font-size: 1.4rem;
-    /* ㄴ 🟡부모에다가는 font-size : 0을 줌. */
-  }
   
   .board_list > div.top > div {
     font-weight: 600;
   }
   
-  /* .board_list .num {
-    width: 10%;
-  } */
-  .board_list .title {
-    width: 70%;
-    text-align: left;
-
-  }
   .board_list .top .title {
     text-align: center;
   }
   .board_list .time {
     width: 10%;
-    margin-right: 20px;
+    margin-right: 17px;
   }
   .board_list .date {
     width: 10%;
-    margin-right: 20px;
+    margin-right: 17px;
   }
   .board list .count {
     width: 10%;
-    margin-right: 20px;
+    margin-right: 17px;
   }
   .board_page {
     margin-top: 30px;
@@ -224,6 +181,99 @@ button{
     color: red;
   }
 
+  
+/* 작은 화면 (모바일) */
+@media (max-width: 767px) {
+  .community_container {
+    width: 90%;
+    font-size: 12px;
+  }
+  button {
+    width: 28%;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 41px;
+    margin-top : 100px;
+    margin-right: 10px;
+  }
+  .select1{
+    margin-left: 20%;
+  }
+  .categoryTitle{
+    padding: 2.5%;
+    font-size: 13px;
+  }
+  .board_list > div {
+    font-size: 0;
+  }
+
+  .board_list > div > div {
+    display: inline-block;     /* 가로배치 */
+    padding: 15px 0;   /*모든 픽셀 여백 15px 0 */
+    text-align: center;
+    font-size: 13px;  /* 부모에다가는 font-size : 0을 줌. */
+  }
+  .board_list .title {
+    width: 60%;
+    text-align: left;
+  }
+  .write{
+    background-color: #d9ee97;
+    color: #000000;
+    border: none;
+    width: 100px;
+    height: 40px;
+    border-radius: 15px;
+     
+    font-family: 'Noto Sans';
+    font-style: normal;
+    font-weight: 800;
+    font-size: 13px;
+    line-height: 41px;
+    margin-top : 35px;
+    margin-left: 60%;
+  }
+}
+
+/* 중간 화면 (타블렛) */
+@media (min-width: 768px) and (max-width: 991px) {
+  .community_container {
+    width: 80%;
+    font-size: 15px;
+  }
+  button {
+    width: 20%;
+    height: 2.2%;
+
+    font-weight: 800;
+    font-size: 10px;
+    line-height: 41px;
+    margin-top : 100px;   
+    margin-right: 10px; 
+  }
+  .select1{
+    margin-left: 13%;
+  }
+  .categoryTitle{
+    padding: 1%;
+  }
+  .board_list {
+    width: 100%;
+  }
+  .board_list > div {
+    font-size: 0;
+  }
+
+  .board_list > div > div {
+    display: inline-block;     /* 가로배치 */
+    padding: 15px 0;   /*모든 픽셀 여백 15px 0 */
+    text-align: center;
+    font-size: 1.4rem;
+  }
+  .board_list .title {
+    width: 70%;
+    text-align: left;
+  }
   .write{
     background-color: #d9ee97;
     color: #000000;
@@ -240,3 +290,61 @@ button{
     margin-top : 35px;
     margin-left: 80%;
   }
+}
+
+/* 큰 화면 (데스크톱) */
+@media (min-width: 992px) {
+  .community_container {
+    width: 55%;
+    font-size: 15px;
+  }
+  button {
+    width: 7%;
+    height: 2.5%;
+
+    font-weight: 800;
+    font-size: 15px;
+    line-height: 41px;
+    margin-top : 100px;
+    margin-left: 10px;
+  }
+  .select1{
+    margin-left: 22%;
+  }
+  .categoryTitle{
+    padding: 1%;  
+  }
+  .board_list {
+    width: 100%;
+  }
+  .board_list > div {
+    font-size: 0;
+  }
+
+  .board_list > div > div {
+    display: inline-block;     /* 가로배치 */
+    padding: 15px 0;   /*모든 픽셀 여백 15px 0 */
+    text-align: center;
+    font-size: 1.4rem;
+  }
+  .board_list .title {
+    width: 70%;
+    text-align: left;
+  }
+  .write{
+    background-color: #d9ee97;
+    color: #000000;
+    border: none;
+    width: 100px;
+    height: 40px;
+    border-radius: 15px;
+     
+    font-family: 'Noto Sans';
+    font-style: normal;
+    font-weight: 800;
+    font-size: 13px;
+    line-height: 41px;
+    margin-top : 35px;
+    margin-left: 80%;
+  }
+}
