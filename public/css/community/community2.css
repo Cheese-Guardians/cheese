@@ -126,10 +126,6 @@ button{
     width: 10%;
     margin-right: 17px;
   }
-  .board_list .date {
-    width: 10%;
-    margin-right: 17px;
-  }
   .board list .count {
     width: 10%;
     margin-right: 17px;
@@ -188,6 +184,9 @@ button{
     width: 90%;
     font-size: 12px;
   }
+  .bottom {
+    display: none; /* 해당 요소 숨김 */
+  }
   button {
     width: 28%;
     font-weight: 600;
@@ -214,8 +213,20 @@ button{
     font-size: 13px;  /* 부모에다가는 font-size : 0을 줌. */
   }
   .board_list .title {
-    width: 60%;
+    width: 50%;
     text-align: left;
+  }
+  .title{
+    margin-right: 3%;
+  }
+  .board_list .date {
+    display: inline; /* 요소를 한 줄에 나란히 표시 */
+    width: 8%;
+    margin-right: 4px;
+  }
+  .board_list .time {
+    display: inline; /* 요소를 한 줄에 나란히 표시 */
+    margin-right: 2%;
   }
   .write{
     background-color: #d9ee97;
@@ -232,6 +243,9 @@ button{
     line-height: 41px;
     margin-top : 35px;
     margin-left: 60%;
+  }
+  .board_page{
+    margin-left: -7.7%;    
   }
 }
 
@@ -271,8 +285,14 @@ button{
     font-size: 1.4rem;
   }
   .board_list .title {
-    width: 70%;
+    width: 60%;
     text-align: left;
+    margin-right: 2%;
+  }
+  .board_list .date {
+    margin-right: 17px;
+    display: inline; /* 요소를 한 줄에 나란히 표시 */
+    width: 8%;
   }
   .write{
     background-color: #d9ee97;
@@ -330,6 +350,10 @@ button{
   .board_list .title {
     width: 70%;
     text-align: left;
+  }
+  .board_list .date {
+    width: 10%;
+    margin-right: 17px;
   }
   .write{
     background-color: #d9ee97;
