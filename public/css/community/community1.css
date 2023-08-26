@@ -58,11 +58,12 @@ button{
   margin: 0 auto;
   position: relative;
   margin-top: 10px;
-}.top{
-  height: 45%;
+}
+.top{
+  height: 55%;
 }
 .bottom{
-  height: 55%;
+  height: 45%;
 }
 
 /*top*/
@@ -182,6 +183,15 @@ button{
   .red {
     color: red;
   }
+  .write{
+    background-color: #d9ee97;
+    color: #000000;
+    border: none;
+    border-radius: 15px;
+     
+    font-family: 'Noto Sans';
+    font-style: normal;
+  }
 
   
 /* 작은 화면 (모바일) */
@@ -235,15 +245,10 @@ button{
     margin-right: 2%;
   }
   .write{
-    background-color: #d9ee97;
-    color: #000000;
-    border: none;
     width: 100px;
     height: 40px;
     border-radius: 15px;
      
-    font-family: 'Noto Sans';
-    font-style: normal;
     font-weight: 800;
     font-size: 13px;
     line-height: 41px;
@@ -292,7 +297,7 @@ button{
   }
   .board_list .title {
     width: 60%;
-    text-align: left;    
+    text-align: left;
     margin-right: 2%;
   }
   .board_list .date {
@@ -301,20 +306,15 @@ button{
     width: 8%;
   }
   .write{
-    background-color: #d9ee97;
-    color: #000000;
-    border: none;
     width: 100px;
     height: 40px;
     border-radius: 15px;
      
-    font-family: 'Noto Sans';
-    font-style: normal;
     font-weight: 800;
     font-size: 13px;
     line-height: 41px;
     margin-top : 35px;
-    margin-left: 80%;
+    margin-left: 70%;
   }
 }
 
@@ -362,19 +362,16 @@ button{
     margin-right: 17px;
   }
   .write{
-    background-color: #d9ee97;
-    color: #000000;
-    border: none;
     width: 100px;
     height: 40px;
     border-radius: 15px;
      
-    font-family: 'Noto Sans';
-    font-style: normal;
     font-weight: 800;
     font-size: 13px;
     line-height: 41px;
+
+    margin-left: 75%;
     margin-top : 35px;
-    margin-left: 80%;
+    margin-bottom: -15%;
   }
 }
