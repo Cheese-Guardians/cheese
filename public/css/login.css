@@ -6,7 +6,9 @@
     background: #fff;
     padding-top: 82px;
   }
-  
+  #username, #password {
+    width: 87%
+  }
   #logincontainer {
    margin: 50%;
   }
@@ -23,7 +25,11 @@
   display:flex;
   justify-content: center;
   align-items: center;
-  margin-top:-10px;
+  /* margin-top:-10px; */
+  margin: 0 auto;
+  position: relative;
+  right: 50%;
+  width: 172%;
   }
   #hero h1 {
     margin: 0;
@@ -184,15 +190,19 @@
   }
 
   #loginsubmit {
-    margin-top: 20%;
+    /* margin-top: 20%; */
     position: relative;
     right: 0;
     font-size: 13px;
+    right: 40%;
   }
 
   #signup {
-    margin-top: 10%;
+    /* margin-top: 10%; */
     font-size: 13px;
+    left: 80%;
+    position: relative;
+    color:#000
   }
 }
 
@@ -208,7 +218,7 @@
   }
 
   #loginsubmit {
-    margin-top: 20%;
+    /* margin-top: 20%; */
     position: relative;
     font-size: 14px;
   }
@@ -216,6 +226,9 @@
   #signup {
     margin-top: 10%;
     font-size: 14px;
+    color: #000;
+    left: 80%;
+    position: relative;
   }
 }
   
@@ -227,5 +240,17 @@
 
   #logintext{
     margin-top: 400px;
+  }
+  #loginsubmit {
+    position: relative;
+    margin-top: 10px;
+    /* left: 100%; */
+  }
+  #signup {
+    top: 20px;
+    font-size: 16px;
+    left: 100%;
+    position: relative;
+    color: #000;
   }
 }
