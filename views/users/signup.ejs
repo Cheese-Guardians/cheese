@@ -62,40 +62,27 @@
                       * 환자와의 관계
                   </div>
                   <div class="dropdown">
-                      <button class="btn btn-secondary dropdown-toggle" type="button" id="relationshipDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          선택하세요
-                      </button>
-                      <div class="dropdown-menu" aria-labelledby="relationshipDropdown">
-                          <a class="dropdown-item" href="#" data-value="자녀">자녀</a>
-                          <a class="dropdown-item" href="#" data-value="손주">손주</a>
-                          <a class="dropdown-item" href="#" data-value="며느리">며느리</a>
-                          <a class="dropdown-item" href="#" data-value="사위">사위</a>
-                          <a class="dropdown-item" href="#" data-value="배우자">배우자</a>
-                          <a class="dropdown-item" href="#" data-value="형제자매">형제자매</a>
-                          <a class="dropdown-item" href="#" data-value="전문가">전문가</a>
-                          <a class="dropdown-item" href="#" data-value="부모">부모</a>
-                          <a class="dropdown-item" href="#" data-value="친구">친구</a>
-                          <a class="dropdown-item" href="#" data-value="이웃">이웃</a>
-                          <a class="dropdown-item" href="#" data-value="기타">기타</a>
-                      </div>
-                  </div>
-                  <input type="text" class="form-control form-control-user" id="relationshipInput" name="relationship" placeholder="기타 관계 입력" style="display: none;">
-              </div>
+                      <select class="box" name="relationship" id="domain-list">
+                        <option value="자녀">자녀</option>
+                        <option value="손주">손주</option>
+                        <option value="며느리">며느리</option>
+                        <option value="사위">사위</option>
+                        <option value="배우자">배우자</option>
+                        <option value="형제자매">형제자매</option>
+                        <option value="전문가">전문가</option>
+                        <option value="부모">부모</option>
+                        <option value="친구">친구</option>
+                        <option value="이웃">이웃</option>
+                        <option value="기타">기타</option>
+                      </select> </div>
               
               <script>
-                  $(document).ready(function () {
-                      $('.dropdown-item').click(function () {
-                          var selectedValue = $(this).data('value');
-                          $('#relationshipDropdown').text(selectedValue);
-                          if (selectedValue === '기타') {
-                              $('#relationshipInput').show();
-                              $('#relationshipInput').attr('required', true);
-                          } else {
-                              $('#relationshipInput').hide();
-                              $('#relationshipInput').attr('required', false);
-                          }
-                      });
-                  });
+                $(document).ready(function () {
+                    $('#domain-list').change(function () {
+                        var selectedValue = $('#domain-list').val();
+                        $('#relationship').val(selectedValue);
+                    });
+                });
               </script>
               
               <div class="form-group">
