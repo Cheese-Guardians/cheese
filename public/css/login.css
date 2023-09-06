@@ -175,3 +175,15 @@
     margin-left: 5%;
     font-size: 16px;
   }
+
+  /* 작은 화면 (모바일) */
+@media (max-width: 767px) {
+}
+
+/* 중간 화면 (타블렛) */
+@media (min-width: 768px) and (max-width: 991px) {
+}
+  
+/* 큰 화면 (데스크톱) */
+@media (min-width: 992px) {
+}
