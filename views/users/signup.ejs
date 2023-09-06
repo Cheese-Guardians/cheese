@@ -55,47 +55,34 @@
                         * 보호자 전화번호
                     </div>
                     <input type="text" class="form-control form-control-user"
-                        id="password" name="gd_phone" placeholder="01012345678" required>
+                        id="password" name="gd_phone" placeholder="010-1234-5678" required>
                 </div>
                 <div class="form-group">
                   <div class="logininfo">
                       * 환자와의 관계
                   </div>
                   <div class="dropdown">
-                      <button class="btn btn-secondary dropdown-toggle" type="button" id="relationshipDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          선택하세요
-                      </button>
-                      <div class="dropdown-menu" aria-labelledby="relationshipDropdown">
-                          <a class="dropdown-item" href="#" data-value="자녀">자녀</a>
-                          <a class="dropdown-item" href="#" data-value="손주">손주</a>
-                          <a class="dropdown-item" href="#" data-value="며느리">며느리</a>
-                          <a class="dropdown-item" href="#" data-value="사위">사위</a>
-                          <a class="dropdown-item" href="#" data-value="배우자">배우자</a>
-                          <a class="dropdown-item" href="#" data-value="형제자매">형제자매</a>
-                          <a class="dropdown-item" href="#" data-value="전문가">전문가</a>
-                          <a class="dropdown-item" href="#" data-value="부모">부모</a>
-                          <a class="dropdown-item" href="#" data-value="친구">친구</a>
-                          <a class="dropdown-item" href="#" data-value="이웃">이웃</a>
-                          <a class="dropdown-item" href="#" data-value="기타">기타</a>
-                      </div>
-                  </div>
-                  <input type="text" class="form-control form-control-user" id="relationshipInput" name="relationship" placeholder="기타 관계 입력" style="display: none;">
-              </div>
+                      <select class="box" name="relationship" id="domain-list">
+                        <option value="자녀">자녀</option>
+                        <option value="손주">손주</option>
+                        <option value="며느리">며느리</option>
+                        <option value="사위">사위</option>
+                        <option value="배우자">배우자</option>
+                        <option value="형제자매">형제자매</option>
+                        <option value="전문가">전문가</option>
+                        <option value="부모">부모</option>
+                        <option value="친구">친구</option>
+                        <option value="이웃">이웃</option>
+                        <option value="기타">기타</option>
+                      </select> </div>
               
               <script>
-                  $(document).ready(function () {
-                      $('.dropdown-item').click(function () {
-                          var selectedValue = $(this).data('value');
-                          $('#relationshipDropdown').text(selectedValue);
-                          if (selectedValue === '기타') {
-                              $('#relationshipInput').show();
-                              $('#relationshipInput').attr('required', true);
-                          } else {
-                              $('#relationshipInput').hide();
-                              $('#relationshipInput').attr('required', false);
-                          }
-                      });
-                  });
+                $(document).ready(function () {
+                    $('#domain-list').change(function () {
+                        var selectedValue = $('#domain-list').val();
+                        $('#relationship').val(selectedValue);
+                    });
+                });
               </script>
               
               <div class="form-group">
@@ -132,22 +119,15 @@
           환자 치매 등급
         </div>
         <input type="text" class="form-control form-control-user"
-            id="password" name="dementia_grade" placeholder="3등급" required>
+            id="password" name="dementia_grade" placeholder="3등급">
       </div>
-    <!-- <div class="form-group">
-      <div class="logininfo">
-          * 환자 복용약
+      <div class="form-group">
+        <div class="logininfo">
+          환자 전화번호
+        </div>
+        <input type="text" class="form-control form-control-user"
+            id="password" name="patient_phone" placeholder="010-1234-5678">
       </div>
-      <input type="text" class="form-control form-control-user"
-          id="password" name="medicine" placeholder="아리셉트정" required>
-  </div> -->
-  <!-- <div class="form-group">
-    <div class="logininfo">
-        * 환자 주소
-    </div>
-    <input type="text" class="form-control form-control-user"
-        id="password" name="address" placeholder="주소" required>
-</div> -->
 <div class="term_of_service">
     ⦿ 이용약관
   </div>
@@ -331,6 +311,22 @@
 <div class="submit_btn">
     <input type="submit" value="가입 완료" id="loginsubmit" class="btn btn-success btn-user btn-block">
   </div>
+
+          <!-- <div class="form-group">
+            <div class="logininfo">
+                * 환자 복용약
+            </div>
+            <input type="text" class="form-control form-control-user"
+                id="password" name="medicine" placeholder="아리셉트정" required>
+        </div> -->
+          <!-- <div class="form-group">
+            <div class="logininfo">
+                * 환자 주소
+            </div>
+            <input type="text" class="form-control form-control-user"
+                id="password" name="address" placeholder="주소" required>
+        </div> -->
+
 </div></div>
                     
                     <!-- <div class="submit_btn">
@@ -338,8 +334,6 @@
                     </div> -->
             <!-- </form> -->
         </form>
-
-                                    
                                         
         </div>
       </div>
