@@ -3,10 +3,8 @@
   --------------------------------------------------------------*/
   #hero {
     width: 100%;
-    height: 80vh;
     background: #fff;
     padding-top: 82px;
-    overflow: scroll;
   }
   
   #logincontainer {
@@ -20,7 +18,6 @@
     line-height: 27px;
     margin: 0 auto;
     margin-bottom:40px;
-    margin-top: 400px;
   }
   #loginsubmit{
   display:flex;
@@ -178,12 +175,57 @@
 
   /* 작은 화면 (모바일) */
 @media (max-width: 767px) {
+  #hero {
+    height: 75vh;
+  }
+
+  #logintext{
+    margin-top: 200px;
+  }
+
+  #loginsubmit {
+    margin-top: 20%;
+    position: relative;
+    right: 0;
+    font-size: 13px;
+  }
+
+  #signup {
+    margin-top: 10%;
+    font-size: 13px;
+  }
 }
 
 /* 중간 화면 (타블렛) */
 @media (min-width: 768px) and (max-width: 991px) {
+  #hero {
+    height: 85vh;
+    padding-top: 0;
+  }
+
+  #logintext{
+    margin-top: 200px;
+  }
+
+  #loginsubmit {
+    margin-top: 20%;
+    position: relative;
+    font-size: 14px;
+  }
+
+  #signup {
+    margin-top: 10%;
+    font-size: 14px;
+  }
 }
   
 /* 큰 화면 (데스크톱) */
 @media (min-width: 992px) {
+  #hero {
+    height: 80vh;
+  }
+
+  #logintext{
+    margin-top: 400px;
+  }
 }
