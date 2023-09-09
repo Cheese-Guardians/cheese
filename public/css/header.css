@@ -1067,7 +1067,7 @@
  #side__menu {
   height: 100vh; /* 화면 높이를 100%로 설정하여 헤더 영역을 벗어납니다. */
   width: 150px; /* 원하는 너비 설정 */
-  background: #B3CC62;
+  background: #bbd957;
   position: absolute; /* 고정 위치로 설정 */
   top: 0;
   left: -150px; /* 초기에 화면 왼쪽으로 숨김 */
@@ -1094,11 +1094,60 @@ header #hamburger__icon {
   display: block;
   cursor: pointer;
 }
-
 nav ul.menu li {
+  text-align: center;
   font-size: 15px;
   padding: 20px;
-  padding-left: 0px;
-  margin-left: 0px;
+  margin-left: -23%;
   border-bottom: 1px solid #fff;
+}
+
+.menu li a {
+     color: white; /* 글꼴 색상을 하얀색(#FFFFFF)으로 설정 */
+    }
+/* #side__menu ul.menu li {
+  font-size: 15px;
+  padding: 20px 0; 
+  border-bottom: 1px solid #fff; 
+  margin-left: 0; 
+  padding-left: 0;
+} */
+#side__menu ul.menu li .activeM {
+  color:#274e13;
+  font-weight: bolder; /* 글자 굵게 표시 */
+}
+
+ 
+
+
+/* 데스크톱 화면에서 숨김 */
+@media (min-width: 1024px) {
+  #side__menu {
+    display: none;
+  }
+  .material-symbols-outlined {
+    display: none;
+  }
+}
+/* 작은 화면 (모바일) */
+@media (max-width: 767px) {
+  #side__menu {
+    display: block;
+  }
+  .material-symbols-outlined {
+    display: block;
+    margin-left: 80%;
+    margin-top: 10px;
+  }
+}
+/* 중간 화면 (타블렛) */
+@media (min-width: 768px) and (max-width: 991px) {
+  #side__menu {
+    display: block;
+  }
+  .material-symbols-outlined {
+    display: block;
+    margin-left: 500px;
+    margin-top: 10px;
+  }
 }
