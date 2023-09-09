@@ -1070,7 +1070,7 @@
   background: #B3CC62;
   position: absolute; /* 고정 위치로 설정 */
   top: 0;
-  left: 0px; /* 초기에 화면 왼쪽으로 숨김 */
+  left: -150px; /* 초기에 화면 왼쪽으로 숨김 */
   padding: 4rem 0;
   color: #fff;
   z-index: 1;
@@ -1088,10 +1088,17 @@
 
 #side__menu ul.menu {
   width: 100%;
+  list-style-type: none; 
 }
 header #hamburger__icon {
   display: block;
   cursor: pointer;
 }
 
-
+nav ul.menu li {
+  font-size: 15px;
+  padding: 20px;
+  padding-left: 0px;
+  margin-left: 0px;
+  border-bottom: 1px solid #fff;
+}
