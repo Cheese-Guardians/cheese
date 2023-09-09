@@ -1,24 +1,11 @@
 /* 추가 */
 /* HERO SECTION */
 
-main {
+  main {
     height: 100vh;
     position: relative;
   }
-  
-  main .wrapper {
-    justify-content: center;
-    display: inline-block;  
-    width: 100%; 
-    margin-left: 15%;
-    
-  }
-  .ininin{
-    display: inline-block;  
-    width: 50%;
-    margin-left: 35%;
-    margin-top: 10%;
-  }
+
   input{
     border: 2px solid #B3CC62;
     border-radius: 15px;
@@ -40,30 +27,8 @@ main {
     margin-bottom: 2%;
     display: inline-block;
   }
-
-  form{
-    margin-left: -50%;
-    width: 500px;
-    float :right;
-    /* margin-right: 200px;
-    margin-top:242px; */
-    margin: 0 auto;
-  }
-
-  .slide__content{
-    width: 600px;
-  }
-
-  
-  
   
   /* MAIN SLIDER */
-  #about{
-    width: 100%;
-    margin: auto;
-    display:flex;
-  }
-  
   
   main .wrapper #slider {
     width: 100%;
@@ -115,7 +80,6 @@ main {
   }
   
   /* SLIDER ARROW */
-  
   main .wrapper #slider .material-icons {
     justify-content: center;
     position: absolute;
@@ -133,23 +97,9 @@ main {
     height: 0;
   }
   
-  main .wrapper #slider .arrow--left {
-    left: 9%;
-    margin-bottom: 10%;
-  }
-  
-  main .wrapper #slider .arrow--right {
-    right: 55%;
-    margin-bottom: 10%;
-  }
-  
   /* SLIDER DOTS */
-  
   main .wrapper #slider .dots {
     position: absolute;
-    bottom: 40%;
-    left: 0;
-    right: 50%;
     margin: 0 auto;
     padding: 10px;
     display: flex;
@@ -179,3 +129,133 @@ main {
     text-align: center;
     vertical-align: middle;
   }
+
+  /* 작은 화면 (모바일) */
+@media (max-width: 767px) {
+  main .wrapper {
+    justify-content: center;
+    display: inline-block;  
+    width: 100%;
+  }
+  form{
+    margin: 0 auto;
+  }
+
+  /* MAIN SLIDER */
+  #about{
+    width: 100%;
+    margin: 10%;
+    padding: 3%;
+  }
+  /* SLIDER DOTS */
+  main .wrapper #slider .dots {
+    bottom: 40%;
+    right: 30%;
+  }
+  /* SLIDER ARROW */
+  main .wrapper #slider .arrow--left {
+    left: 9%;
+    margin-bottom: 10%;
+  }
+  
+  main .wrapper #slider .arrow--right {
+    right: 9%;
+    margin-bottom: 10%;
+  }
+
+  .ininin{
+    display: inline-block;  
+    width: 100%;
+    height: 5%;
+    margin-top: 10%;
+  }
+}
+
+/* 중간 화면 (타블렛) */
+@media (min-width: 768px) and (max-width: 991px) { 
+  main .wrapper {
+    justify-content: center;
+    display: inline-block;  
+    width: 100%;
+  }
+  form{
+    margin: 0 auto;
+  }
+
+  /* MAIN SLIDER */
+  #about{
+    width: 100%;
+    margin: 10%;
+  }
+  /* SLIDER DOTS */
+  main .wrapper #slider .dots {
+    bottom: 45%;
+    right: 40%;
+  }
+  /* SLIDER ARROW */
+  main .wrapper #slider .arrow--left {
+    left: 5%;
+    margin-bottom: 10%;
+  }    
+  main .wrapper #slider .arrow--right {
+    right: 5%;
+    margin-bottom: 10%;
+  }
+
+  .ininin{
+    display: inline-block;  
+    width: 100%;
+    height: 5%;
+    margin-top: 10%;
+  }
+}
+
+
+/* 큰 화면 (데스크톱) */
+@media (min-width: 992px) {
+  main .wrapper {
+    justify-content: center;
+    display: inline-block;  
+    width: 100%; 
+    margin-left: 15%;    
+  }
+  
+  form{
+    margin-left: -50%;
+    width: 500px;
+    float :right;
+    margin: 0 auto;
+  }
+
+  /* MAIN SLIDER */
+  #about{
+    width: 100%;
+    margin-top: 3%;
+    margin-left: 8%;
+    padding: 3%;
+    display:flex;
+  }
+  /* SLIDER DOTS */
+  main .wrapper #slider .dots {
+    bottom: 40%;
+    left: 0;
+    right: 42%;
+  }
+  /* SLIDER ARROW */
+    main .wrapper #slider .arrow--left {
+    left: 9%;
+    margin-bottom: 10%;
+  }
+  
+  main .wrapper #slider .arrow--right {
+    right: 52%;
+    margin-bottom: 10%;
+  }
+
+  .ininin{
+    display: inline-block;  
+    width: 60%;
+    margin-left: 35%;
+    margin-top: 20%;
+  }
+}
