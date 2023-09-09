@@ -15,7 +15,7 @@
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
-  
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
   <!-- Vendor CSS Files -->
   <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="/vendor/bootstrap-icons/botstrap-icons.css" rel="stylesheet">
@@ -46,7 +46,48 @@
       <!-- Uncomment below if you prefer to use an image logo -->
       <a href="/calendar" class="logo"><img src="/img/mainlogo.png" alt="" class="img-fluid"></a>
       <!-- <h1 class="logo"><a href="index.html">치즈 : 치매 가디언즈</a></h1> -->
+          <!-- 햄버거 메뉴 -->
+            <div id="hamburger__icon">
+              <span class="material-symbols-outlined">
+                menu
+                </span>
+          </div>
+          
 
+        <nav id="side__menu">
+          <div class="inner">
+              <!-- 메뉴 -->
+              <ul class="menu">
+                <li><a class="nav-link scrollto calendaractive active" href="/calendar">캘린더</a></li>
+                <li><a class="nav-link scrollto alarmactive" href="/reminder">알림설정</a></li>
+                <li><a class="nav-link scrollto communityactive" href="/community/infoList">커뮤니티</a></li>
+                <li><a class="nav-link scrollto exportactive" href="/export">내보내기</a></li>
+              </ul>
+              
+          </div>
+        </nav>
+
+        <script>
+
+          const hamburgerEl = document.getElementById("hamburger__icon");
+          const navEl = document.getElementById("side__menu");
+          const menuEl = document.querySelector("#side__menu ul.menu");
+    
+          hamburgerEl.addEventListener("click", function () {
+            
+            navEl.style.transform =
+            console.log("클릭 이벤트 발생"); // 디버깅 메시지
+            navEl.style.transform =
+              navEl.style.transform === "translateX(-100%)"
+                ? "translateX(0%)"
+                : "translateX(-100%)";
+                
+            
+            console.log("transform 값 변경:", navEl.style.transform); // 디버깅 메시지
+          });
+    
+        </script>
+        
       <nav id="navbar" class="navbar">
         <ul>
           <li><a class="nav-link scrollto calendaractive active" href="/calendar">캘린더</a></li>
@@ -115,5 +156,5 @@
       
     
     </body>
-    
+  
     </html>

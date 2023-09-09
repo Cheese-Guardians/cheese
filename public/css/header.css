@@ -1061,3 +1061,37 @@
   .logout:hover {
     background-color: #16df7e;
   }
+
+ /* 햄버거 바 */
+ 
+ #side__menu {
+  height: 100vh; /* 화면 높이를 100%로 설정하여 헤더 영역을 벗어납니다. */
+  width: 150px; /* 원하는 너비 설정 */
+  background: #B3CC62;
+  position: absolute; /* 고정 위치로 설정 */
+  top: 0;
+  left: 0px; /* 초기에 화면 왼쪽으로 숨김 */
+  padding: 4rem 0;
+  color: #fff;
+  z-index: 1;
+  transition: .4s ease;
+}
+
+/* 이하 CSS는 동일하게 유지 */
+
+#side__menu .inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+}
+
+#side__menu ul.menu {
+  width: 100%;
+}
+header #hamburger__icon {
+  display: block;
+  cursor: pointer;
+}
+
+
