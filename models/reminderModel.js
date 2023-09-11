@@ -124,7 +124,7 @@ async function selectretrievePhoneNum(pool, user_id) {
 // 문자 보내기
 async function selectSMSInfo(pool) {
     const selectSMSQuery = `
-    SELECT medication_reminder.medi_reminder_time, user.gd_phone, patient.patient_name, patient.medicine
+    SELECT medication_reminder.medi_reminder_time, user.gd_phone, patient.patient_name
     FROM medication_reminder
     INNER JOIN user ON medication_reminder.user_id = user.user_id
 	  INNER JOIN patient ON medication_reminder.user_id = patient.user_id
