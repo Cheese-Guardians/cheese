@@ -6,9 +6,7 @@
     background: #fff;
     padding-top: 82px;
   }
-  #username, #password {
-    width: 87%
-  }
+  
   #logincontainer {
    margin: 50%;
   }
@@ -25,11 +23,7 @@
   display:flex;
   justify-content: center;
   align-items: center;
-  /* margin-top:-10px; */
-  margin: 0 auto;
-  position: relative;
-  right: 50%;
-  width: 172%;
+  margin-top:-10px;
   }
   #hero h1 {
     margin: 0;
@@ -149,7 +143,7 @@
   }
   .user{
     margin: 15%;
-    padding-top: 25%;
+    padding-top: 5%;
     
   }
 .user1 {
@@ -182,43 +176,59 @@
   /* 작은 화면 (모바일) */
 @media (max-width: 767px) {
   #hero {
-    height: 75vh;
+    height: 100%;
   }
-
+  .info_service {
+    width: 110%;
+    height:200px;
+    margin-left: -5%;
+    margin-top:5px;
+    font-size: 16px;
+  }
+  .join-agreement {
+    margin-left: 5%;
+    font-size: 16px;
+  }
   #logintext{
-    margin-top: 200px;
+    margin-top: 10px;
   }
 
   #loginsubmit {
-    /* margin-top: 20%; */
+    margin-top: 20%;
     position: relative;
     right: 0;
     font-size: 13px;
-    right: 40%;
   }
 
   #signup {
-    /* margin-top: 10%; */
+    margin-top: 10%;
     font-size: 13px;
-    left: 80%;
-    position: relative;
-    color:#000
   }
 }
 
 /* 중간 화면 (타블렛) */
 @media (min-width: 768px) and (max-width: 991px) {
   #hero {
-    height: 85vh;
+    height: 100%;
     padding-top: 0;
   }
-
+  .info_service {
+    width: 110%;
+    height:200px;
+    margin-left: -5%;
+    margin-top:5px;
+    font-size: 16px;
+  }
+  .join-agreement {
+    margin-left: 5%;
+    font-size: 16px;
+  }
   #logintext{
-    margin-top: 200px;
+    margin-top: 50px;
   }
 
   #loginsubmit {
-    /* margin-top: 20%; */
+    margin-top: 20%;
     position: relative;
     font-size: 14px;
   }
@@ -226,31 +236,16 @@
   #signup {
     margin-top: 10%;
     font-size: 14px;
-    color: #000;
-    left: 80%;
-    position: relative;
   }
 }
   
 /* 큰 화면 (데스크톱) */
 @media (min-width: 992px) {
   #hero {
-    height: 80vh;
+    height: 100%;
   }
 
   #logintext{
-    margin-top: 400px;
-  }
-  #loginsubmit {
-    position: relative;
-    margin-top: 10px;
-    /* left: 100%; */
-  }
-  #signup {
-    top: 20px;
-    font-size: 16px;
-    left: 100%;
-    position: relative;
-    color: #000;
+    margin-top: -150px;
   }
 }
