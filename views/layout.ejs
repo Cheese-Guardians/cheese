@@ -58,11 +58,20 @@
             <div class="inner">
               <!-- 메뉴 -->
               <ul class="menu">
-                  
-          <li><a class="nav-linkM scrollto calendaractiveM activeM" href="/calendar">캘린더</a></li>
-          <li><a class="nav-linkM scrollto alarmactiveM" href="/reminder">알림설정</a></li>
-          <li><a class="nav-linkM scrollto communityactiveM" href="/community/infoList">커뮤니티</a></li>
-          <li><a class="nav-linkM scrollto exportactiveM" href="/export">내보내기</a></li>
+                <form class = "logout_container" action="/users/logout" method="POST">
+                <li><button type="submit" class="logout">로그아웃</button></li>
+              </form>
+              <% if (typeof(logoutState) !== 'undefined' && logoutState !== null && logoutState == '성공') { %>
+                <script>
+                  if (confirm('로그아웃에 성공했습니다.')) {
+                    window.location.href = "/";
+                  }
+                </script>
+              <% } %>
+                <li><a class="nav-linkM scrollto calendaractiveM activeM" href="/calendar">캘린더</a></li>
+                <li><a class="nav-linkM scrollto alarmactiveM" href="/reminder">알림설정</a></li>
+                <li><a class="nav-linkM scrollto communityactiveM" href="/community/infoList">커뮤니티</a></li>
+                <li><a class="nav-linkM scrollto exportactiveM" href="/export">내보내기</a></li>
               </ul>
   
             </div>
@@ -73,6 +82,7 @@
           const hamburgerEl = document.getElementById("hamburger__icon");
           const navEl = document.getElementById("side__menu");
           const menuEl = document.querySelector("#side__menu ul.menu");
+          const login = document.querySelector("#side__menu ul.menu li .logout");
     
           hamburgerEl.addEventListener("click", function () {
             

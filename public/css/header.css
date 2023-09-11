@@ -1067,12 +1067,13 @@
  #side__menu {
   height: 100vh; /* 화면 높이를 100%로 설정하여 헤더 영역을 벗어납니다. */
   width: 150px; /* 원하는 너비 설정 */
-  background: #bbd957;
+  background: #FBFFED;;
+  opacity: 100%;
   position: absolute; /* 고정 위치로 설정 */
   top: 0;
   left: -150px; /* 초기에 화면 왼쪽으로 숨김 */
   padding: 4rem 0;
-  color: #fff;
+  color: #6a7489;
   z-index: 1;
   transition: .4s ease;
 }
@@ -1099,11 +1100,11 @@ nav ul.menu li {
   font-size: 15px;
   padding: 20px;
   margin-left: -23%;
-  border-bottom: 1px solid #fff;
+  border-bottom: 1px solid #dcdee2;
 }
 
 .menu li a {
-     color: white; /* 글꼴 색상을 하얀색(#FFFFFF)으로 설정 */
+     color: #6a7489; /* 글꼴 색상을 하얀색(#FFFFFF)으로 설정 */
     }
 /* #side__menu ul.menu li {
   font-size: 15px;
@@ -1113,8 +1114,12 @@ nav ul.menu li {
   padding-left: 0;
 } */
 #side__menu ul.menu li .activeM {
-  color:#274e13;
+  color:#16df7e;
   font-weight: bolder; /* 글자 굵게 표시 */
+}
+#side__menu ul.menu li .logout {
+  width:100px;
+  margin-left:-80px;
 }
 
  
@@ -1128,6 +1133,10 @@ nav ul.menu li {
   .material-symbols-outlined {
     display: none;
   }
+  #side__menu ul.menu li .logout{
+    display: none;
+  }
+
 }
 /* 작은 화면 (모바일) */
 @media (max-width: 767px) {
@@ -1139,6 +1148,9 @@ nav ul.menu li {
     margin-left: 80%;
     margin-top: 10px;
   }
+  #side__menu ul.menu li .logout{
+    display: block;
+  }
 }
 /* 중간 화면 (타블렛) */
 @media (min-width: 768px) and (max-width: 991px) {
@@ -1149,6 +1161,9 @@ nav ul.menu li {
     display: block;
     margin-left: 500px;
     margin-top: 10px;
+  }
+  #side__menu ul.menu li .logout{
+    display: block;
   }
 }
 
