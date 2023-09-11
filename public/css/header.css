@@ -1117,9 +1117,18 @@ nav ul.menu li {
   color:#16df7e;
   font-weight: bolder; /* 글자 굵게 표시 */
 }
-#side__menu ul.menu li .logout {
+/* #side__menu ul.menu li .logoutM {
   width:100px;
   margin-left:-80px;
+} */
+/* 스타일링할 요소에 클래스 또는 ID를 부여해야 합니다. */
+.logoutM {
+  background: none;
+  border: none;
+  color: black(1, 248, 42); /* 클릭할 때 링크처럼 파란색으로 변경할 수 있습니다. */
+  font-weight: bold;
+  cursor: pointer; /* 마우스 포인터 모양을 손가락 포인터로 변경 */
+  padding: 0; /* 내부 여백 제거 */
 }
 
  
