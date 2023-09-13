@@ -462,8 +462,9 @@
                     <% } %>
                   <% } else { %>
                     <div class="symptomTextBox 1">                    
-                      <input class="inputbX" type="text"  name="symptom_text" placeholder="증상명" >
-                      <p><input type="time" name="symptom_time" class="symptom-time"></p>             
+                      <!-- <input class="inputbX" type="text"  name="symptom_text" placeholder="증상명" > -->
+                      <p class="memory_disable"> 기억장애 </p>
+                      <!-- <p><input type="time" name="symptom_time" class="symptom-time"></p>              -->
                     </div>
                   
                     <div class="box-body"> 
@@ -477,8 +478,9 @@
                     </div>
 
                     <div class="symptomTextBox 2">
-                      <input class="inputbX" type="text"  name="symptom_text" placeholder="증상명">
-                      <p><input type="time" name="symptom_time" class="symptom-time"></p>                     
+                      <!-- <input class="inputbX" type="text"  name="symptom_text" placeholder="증상명"> -->
+                      <p class="memory_disable"> 언어장애 </p>
+                      <!-- <p><input type="time" name="symptom_time" class="symptom-time"></p>                      -->
                     </div>
                     <div class="box-body"> 
                       <input type="range" name="symptom_range" min="1" max="10" id="ex-in2" class="range-in">   
@@ -490,8 +492,9 @@
                       </script>           
                     </div>
                     <div class="symptomTextBox 3">
-                      <input class="inputbX" type="text"  name="symptom_text" placeholder="증상명">
-                      <p><input type="time" name="symptom_time" class="symptom-time"></p>                     
+                      <!-- <input class="inputbX" type="text"  name="symptom_text" placeholder="증상명"> -->
+                      <p class="memory_disable"> 배회 </p>
+                      <!-- <p><input type="time" name="symptom_time" class="symptom-time"></p>                      -->
                     </div>
                     <div class="box-body"> 
                       <input type="range" name="symptom_range" min="1" max="10" id="ex-in3" class="range-in">   
@@ -503,8 +506,37 @@
                       </script>           
                     </div>
                     <div class="symptomTextBox 4">
-                      <input class="inputbX" type="text"  name="symptom_text" placeholder="증상명">
-                      <p><input type="time" name="symptom_time" class="symptom-time"></p>                     
+                      <!-- <input class="inputbX" type="text"  name="symptom_text" placeholder="증상명"> -->
+                      <p class="memory_disable"> 계산능력 저하 </p>
+                      <!-- <p><input type="time" name="symptom_time" class="symptom-time"></p>                      -->
+                    </div>
+                    <div class="box-body"> 
+                      <input type="range" name="symptom_range" min="1" max="10" id="ex-in4" class="range-in">   
+                      <div id="ex-out4" class="range-out"></div>
+                      <script>
+                        document.querySelector('#ex-in4').addEventListener('input',e=>{
+                        document.querySelector('#ex-out4').innerHTML= e.target.value;
+                        });
+                      </script>           
+                    </div>
+                    <div class="symptomTextBox 5">
+                      <!-- <input class="inputbX" type="text"  name="symptom_text" placeholder="증상명"> -->
+                      <p class="memory_disable"> 성격 및 감정의 변화 </p>
+                      <!-- <p><input type="time" name="symptom_time" class="symptom-time"></p>                      -->
+                    </div>
+                    <div class="box-body"> 
+                      <input type="range" name="symptom_range" min="1" max="10" id="ex-in4" class="range-in">   
+                      <div id="ex-out4" class="range-out"></div>
+                      <script>
+                        document.querySelector('#ex-in4').addEventListener('input',e=>{
+                        document.querySelector('#ex-out4').innerHTML= e.target.value;
+                        });
+                      </script>           
+                    </div>
+                    <div class="symptomTextBox 6">
+                      <!-- <input class="inputbX" type="text"  name="symptom_text" placeholder="증상명"> -->
+                      <p class="memory_disable"> 배회 </p>
+                      <!-- <p><input type="time" name="symptom_time" class="symptom-time"></p>                      -->
                     </div>
                     <div class="box-body"> 
                       <input type="range" name="symptom_range" min="1" max="10" id="ex-in4" class="range-in">   
