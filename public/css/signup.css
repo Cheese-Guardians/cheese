@@ -204,6 +204,13 @@
     margin-top: 10%;
     font-size: 13px;
   }
+
+  #side__menu {
+    display: none;
+  }
+  .material-symbols-outlined{
+    display: none;
+  }
 }
 
 /* 중간 화면 (타블렛) */
@@ -237,6 +244,13 @@
     margin-top: 10%;
     font-size: 14px;
   }
+
+  #side__menu {
+    display: none;
+  }
+  .material-symbols-outlined{
+    display: none;
+  }
 }
   
 /* 큰 화면 (데스크톱) */
@@ -247,5 +261,12 @@
 
   #logintext{
     margin-top: -150px;
+  }
+
+  #side__menu {
+    display: none;
+  }
+  .material-symbols-outlined{
+    display: none;
   }
 }

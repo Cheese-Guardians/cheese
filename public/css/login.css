@@ -204,6 +204,12 @@
     position: relative;
     color:#000
   }
+  #side__menu {
+    display: none;
+  }
+  .material-symbols-outlined{
+    display: none;
+  }
 }
 
 /* 중간 화면 (타블렛) */
@@ -230,6 +236,12 @@
     left: 80%;
     position: relative;
   }
+  #side__menu {
+    display: none;
+  }
+  .material-symbols-outlined{
+    display: none;
+  }
 }
   
 /* 큰 화면 (데스크톱) */
@@ -252,5 +264,11 @@
     left: 100%;
     position: relative;
     color: #000;
+  }
+  #side__menu {
+    display: none;
+  }
+  .material-symbols-outlined{
+    display: none;
   }
 }
