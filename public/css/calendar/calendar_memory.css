@@ -264,6 +264,8 @@
 #userDiaryForm {
   border-collapse: collapse;
     width: 60%;
+    margin-top: 20%;
+    margin-left: 30%;
  }
  #userDiaryForm th, td {
     padding: 8px;
