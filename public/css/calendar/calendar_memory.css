@@ -260,3 +260,29 @@
     margin-top: 5%;
   }
 }
+
+#userDiaryForm {
+  border-collapse: collapse;
+    width: 60%;
+ }
+ #userDiaryForm th, td {
+    padding: 8px;
+   text-align: left;
+   border-bottom: 1px solid #ddd;
+ }
+ 
+ #userDiaryForm input[type="text"] {
+   width: 100%;
+    padding: 6px 10px;
+   border: 1px solid #ccc;
+   border-radius: 4px;
+   box-sizing: border-box;
+  }
+
+  #userDiaryForm textarea {
+    width: 100%;
+     padding: 6px 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+   }
