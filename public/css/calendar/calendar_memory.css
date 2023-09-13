@@ -261,12 +261,17 @@
   }
 }
 #userDiaryBox,#userDailyDiaryBox{
-  width:60%;
+    width:60%;
     border:  2px solid #b3cc62;
     border-radius: 20px;
- }
+    margin-top: 5%;
+    margin-left: 20%;
+}
+
 #userDiaryForm,#userDailyDiaryForm{
+  border-collapse: collapse;
     width: 100%;
+    
  }
  #userDiaryForm th, td,#userDailyDiaryForm th, td {
     padding: 8px;
