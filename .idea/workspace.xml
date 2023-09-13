@@ -4,13 +4,7 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="472d2bc9-327e-44f9-8702-6725505952a3" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/controllers/communityController.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/communityController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/communityModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/communityModel.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/communityRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/communityRoute.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/communityService.js" beforeDir="false" afterPath="$PROJECT_DIR$/services/communityService.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/community/commun_view.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/community/commun_view.ejs" afterDir="false" />
-    </list>
+    <list default="true" id="472d2bc9-327e-44f9-8702-6725505952a3" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
