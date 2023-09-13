@@ -66,7 +66,7 @@
                   </script> -->
               </div>
 
-              <div class="hospital">
+              <!-- <div class="hospital">
                 <div class="title"><p>병원 일정</p></div>
                 <div class="hospitalContent">
                   <% if (typeof calendarDataResult !== 'undefined' && calendarDataResult && typeof calendarDataResult.hospital_schedule !== 'undefined' && calendarDataResult.hospital_schedule && typeof calendarDataResult.hospital_schedule.hospital_name !== 'undefined') { %>
@@ -115,7 +115,7 @@
                     </div>
                   </div>
                 </div>
-              </div>
+              </div> -->
 
 
              
@@ -411,13 +411,25 @@
 
                 
               </div>
-
+              <div class="diary">
+                <div class="title">
+                  <p>관찰일기</p>
+                </div>
+                <div class="diaryTextBox">
+                  <% if (typeof calendarDataResult !== 'undefined' && calendarDataResult && typeof calendarDataResult.calendar !== 'undefined' && calendarDataResult.calendar && typeof calendarDataResult.calendar.diary !== 'undefined') { %>
+                  <textarea id="inputBx" name="diary_text" rows="4" cols="50"><%= calendarDataResult.calendar.diary %></textarea>
+                  <% } else { %>
+                  <textarea id="inputBx" name="diary_text" rows="4" cols="50"></textarea>
+                  <% } %>
+                </div>
+              </div>
             </div>
 
 
             <div class="symptom_check_right">
               <div class="symptom">
                 <div class="title"> <p> 증상 </p> </div>
+                
                 <div>
                   <% if (typeof calendarDataResult !== 'undefined' && calendarDataResult && typeof calendarDataResult.symptom_list !== 'undefined' && calendarDataResult.symptom_list && calendarDataResult.symptom_list.length !== 0) { %>
                     
@@ -444,7 +456,7 @@
                     <% for (let i = calendarDataResult.symptom_list.length; i < 4; i++) { %>
                       <div class="symptomTextBox ">
                       <input class="inputbX" type="text"  name="symptom_text" placeholder="증상명">
-                      <p><input type="time" name="symptom_time" class="symptom-time"></p>                     
+                                     
                     </div>
                     <div class="box-body"> 
                       <input type="range" name="symptom_range" min="1" max="10" id="ex-in-<%= i %>"  class="range-in">   
@@ -463,7 +475,10 @@
                   <% } else { %>
                     <div class="symptomTextBox 1">                    
                       <input class="inputbX" type="text"  name="symptom_text" placeholder="증상명" >
-                      <p><input type="time" name="symptom_time" class="symptom-time"></p>             
+                      <div class="tooltip" width="25" height="25">
+                        <img src="/img/question.png" alt="아이콘" width="25" height="25">
+                        <span class="tooltiptext">이것은 툴팁입니다.</span>
+                      </div>  
                     </div>
                   
                     <div class="box-body"> 
@@ -518,23 +533,12 @@
                   <% } %>
 
                 </div>
-              </div>
-
-              <div class="diary">
-                <div class="title">
-                  <p>관찰일기</p>
-                </div>
-                <div class="diaryTextBox">
-                  <% if (typeof calendarDataResult !== 'undefined' && calendarDataResult && typeof calendarDataResult.calendar !== 'undefined' && calendarDataResult.calendar && typeof calendarDataResult.calendar.diary !== 'undefined') { %>
-                  <textarea id="inputBx" name="diary_text" rows="4" cols="50"><%= calendarDataResult.calendar.diary %></textarea>
-                  <% } else { %>
-                  <textarea id="inputBx" name="diary_text" rows="4" cols="50"></textarea>
-                  <% } %>
-                </div>
                 <div class="symBtndiv">
                   <button type="submit" id="symB" class="symBtn" onclick="submitCheck()">저장</button>
                 </div>
               </div>
+
+
                 
             </div>
 
