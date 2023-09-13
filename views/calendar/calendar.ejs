@@ -66,7 +66,7 @@
                   </script> -->
               </div>
 
-              <div class="hospital">
+              <!-- <div class="hospital">
                 <div class="title"><p>병원 일정</p></div>
                 <div class="hospitalContent">
                   <% if (typeof calendarDataResult !== 'undefined' && calendarDataResult && typeof calendarDataResult.hospital_schedule !== 'undefined' && calendarDataResult.hospital_schedule && typeof calendarDataResult.hospital_schedule.hospital_name !== 'undefined') { %>
@@ -115,7 +115,7 @@
                     </div>
                   </div>
                 </div>
-              </div>
+              </div> -->
 
 
              
@@ -411,13 +411,25 @@
 
                 
               </div>
-
+              <div class="diary">
+                <div class="title">
+                  <p>관찰일기</p>
+                </div>
+                <div class="diaryTextBox">
+                  <% if (typeof calendarDataResult !== 'undefined' && calendarDataResult && typeof calendarDataResult.calendar !== 'undefined' && calendarDataResult.calendar && typeof calendarDataResult.calendar.diary !== 'undefined') { %>
+                  <textarea id="inputBx" name="diary_text" rows="4" cols="50"><%= calendarDataResult.calendar.diary %></textarea>
+                  <% } else { %>
+                  <textarea id="inputBx" name="diary_text" rows="4" cols="50"></textarea>
+                  <% } %>
+                </div>
+              </div>
             </div>
 
 
             <div class="symptom_check_right">
               <div class="symptom">
                 <div class="title"> <p> 증상 </p> </div>
+                
                 <div>
                   <% if (typeof calendarDataResult !== 'undefined' && calendarDataResult && typeof calendarDataResult.symptom_list !== 'undefined' && calendarDataResult.symptom_list && calendarDataResult.symptom_list.length !== 0) { %>
                     
@@ -441,10 +453,10 @@
                       </script>
                     </div>
                     <% } %>
-                    <% for (let i = calendarDataResult.symptom_list.length; i < 4; i++) { %>
+                    <% for (let i = calendarDataResult.symptom_list.length; i < 6; i++) { %>
                       <div class="symptomTextBox ">
                       <input class="inputbX" type="text"  name="symptom_text" placeholder="증상명">
-                      <p><input type="time" name="symptom_time" class="symptom-time"></p>                     
+                                     
                     </div>
                     <div class="box-body"> 
                       <input type="range" name="symptom_range" min="1" max="10" id="ex-in-<%= i %>"  class="range-in">   
@@ -462,8 +474,14 @@
                     <% } %>
                   <% } else { %>
                     <div class="symptomTextBox 1">                    
-                      <input class="inputbX" type="text"  name="symptom_text" placeholder="증상명" >
-                      <p><input type="time" name="symptom_time" class="symptom-time"></p>             
+                      <!-- <input class="inputbX" type="text"  name="symptom_text" placeholder="증상명" > -->
+                      <p class="memory_disable"> 기억장애 </p>
+                      <!-- <p><input type="time" name="symptom_time" class="symptom-time"></p>              -->
+                      <div class="tooltip" width="25" height="25">
+                        <img src="/img/question.png" alt="아이콘" width="25" height="25">
+                        <span class="tooltiptext">이것은 툴팁입니다.</span>
+                      </div> 
+
                     </div>
                   
                     <div class="box-body"> 
@@ -477,8 +495,9 @@
                     </div>
 
                     <div class="symptomTextBox 2">
-                      <input class="inputbX" type="text"  name="symptom_text" placeholder="증상명">
-                      <p><input type="time" name="symptom_time" class="symptom-time"></p>                     
+                      <!-- <input class="inputbX" type="text"  name="symptom_text" placeholder="증상명"> -->
+                      <p class="memory_disable"> 언어장애 </p>
+                      <!-- <p><input type="time" name="symptom_time" class="symptom-time"></p>                      -->
                     </div>
                     <div class="box-body"> 
                       <input type="range" name="symptom_range" min="1" max="10" id="ex-in2" class="range-in">   
@@ -490,8 +509,9 @@
                       </script>           
                     </div>
                     <div class="symptomTextBox 3">
-                      <input class="inputbX" type="text"  name="symptom_text" placeholder="증상명">
-                      <p><input type="time" name="symptom_time" class="symptom-time"></p>                     
+                      <!-- <input class="inputbX" type="text"  name="symptom_text" placeholder="증상명"> -->
+                      <p class="memory_disable"> 배회 </p>
+                      <!-- <p><input type="time" name="symptom_time" class="symptom-time"></p>                      -->
                     </div>
                     <div class="box-body"> 
                       <input type="range" name="symptom_range" min="1" max="10" id="ex-in3" class="range-in">   
@@ -503,8 +523,9 @@
                       </script>           
                     </div>
                     <div class="symptomTextBox 4">
-                      <input class="inputbX" type="text"  name="symptom_text" placeholder="증상명">
-                      <p><input type="time" name="symptom_time" class="symptom-time"></p>                     
+                      <!-- <input class="inputbX" type="text"  name="symptom_text" placeholder="증상명"> -->
+                      <p class="memory_disable"> 계산능력 저하 </p>
+                      <!-- <p><input type="time" name="symptom_time" class="symptom-time"></p>                      -->
                     </div>
                     <div class="box-body"> 
                       <input type="range" name="symptom_range" min="1" max="10" id="ex-in4" class="range-in">   
@@ -515,26 +536,43 @@
                         });
                       </script>           
                     </div>
+                    <div class="symptomTextBox 5">
+                      <!-- <input class="inputbX" type="text"  name="symptom_text" placeholder="증상명"> -->
+                      <p class="memory_disable"> 성격 및 감정의 변화 </p>
+                      <!-- <p><input type="time" name="symptom_time" class="symptom-time"></p>                      -->
+                    </div>
+                    <div class="box-body"> 
+                      <input type="range" name="symptom_range" min="1" max="10" id="ex-in4" class="range-in">   
+                      <div id="ex-out5" class="range-out"></div>
+                      <script>
+                        document.querySelector('#ex-in5').addEventListener('input',e=>{
+                        document.querySelector('#ex-out5').innerHTML= e.target.value;
+                        });
+                      </script>           
+                    </div>
+                    <div class="symptomTextBox 6">
+                      <!-- <input class="inputbX" type="text"  name="symptom_text" placeholder="증상명"> -->
+                      <p class="memory_disable"> 배회 </p>
+                      <!-- <p><input type="time" name="symptom_time" class="symptom-time"></p>                      -->
+                    </div>
+                    <div class="box-body"> 
+                      <input type="range" name="symptom_range" min="1" max="10" id="ex-in4" class="range-in">   
+                      <div id="ex-out6" class="range-out"></div>
+                      <script>
+                        document.querySelector('#ex-in6').addEventListener('input',e=>{
+                        document.querySelector('#ex-out6').innerHTML= e.target.value;
+                        });
+                      </script>           
+                    </div>
                   <% } %>
 
-                </div>
-              </div>
-
-              <div class="diary">
-                <div class="title">
-                  <p>관찰일기</p>
-                </div>
-                <div class="diaryTextBox">
-                  <% if (typeof calendarDataResult !== 'undefined' && calendarDataResult && typeof calendarDataResult.calendar !== 'undefined' && calendarDataResult.calendar && typeof calendarDataResult.calendar.diary !== 'undefined') { %>
-                  <textarea id="inputBx" name="diary_text" rows="4" cols="50"><%= calendarDataResult.calendar.diary %></textarea>
-                  <% } else { %>
-                  <textarea id="inputBx" name="diary_text" rows="4" cols="50"></textarea>
-                  <% } %>
                 </div>
                 <div class="symBtndiv">
                   <button type="submit" id="symB" class="symBtn" onclick="submitCheck()">저장</button>
                 </div>
               </div>
+
+
                 
             </div>
 
