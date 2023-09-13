@@ -260,15 +260,19 @@
     margin-top: 5%;
   }
 }
-
-#userDiaryForm {
-  border-collapse: collapse;
-    width: 60%;
+#userDiaryBox,#userDailyDiaryBox{
+  width:60%;
+    border:  2px solid #b3cc62;
+    border-radius: 20px;
  }
- #userDiaryForm th, td {
+#userDiaryForm,#userDailyDiaryForm{
+    width: 100%;
+ }
+ #userDiaryForm th, td,#userDailyDiaryForm th, td {
     padding: 8px;
    text-align: left;
-   border-bottom: 1px solid #ddd;
+   /* border-bottom: 1px solid #ddd; */
+   
  }
  
  #userDiaryForm input[type="text"] {
@@ -279,10 +283,13 @@
    box-sizing: border-box;
   }
 
-  #userDiaryForm textarea {
+  #userDiaryForm  textarea,#userDailyDiaryForm textarea {
     width: 100%;
      padding: 6px 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
+   }
+   #userDiaryBox {
+    margin-bottom: 100px;
    }
