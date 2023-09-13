@@ -1,10 +1,30 @@
 /* 추가 */
 /* HERO SECTION */
 
-  main {
-    height: 100vh;
-    position: relative;
+  /* 작은 화면 (모바일) */
+  @media (max-width: 767px) {
+    main {
+      height: 160vh;
+      position: relative;
+    }
   }
+  
+  /* 중간 화면 (타블렛) */
+  @media (min-width: 768px) and (max-width: 991px) {
+    main {
+      height: 160vh;
+      position: relative;
+    }
+  }
+    
+  /* 큰 화면 (데스크톱) */
+  @media (min-width: 992px) {
+    main {
+      height: 100vh;
+      position: relative;
+    }
+  }
+
 
   input{
     border: 2px solid #B3CC62;
@@ -169,6 +189,10 @@
     height: 5%;
     margin-top: 10%;
   }
+  #userDiaryBox,#userDailyDiaryBox{
+    width:100%;
+    margin-left: 0%;
+  }
 }
 
 /* 중간 화면 (타블렛) */
@@ -259,13 +283,15 @@
     margin-left: 5%;
     margin-top: 5%;
   }
+  #userDiaryBox,#userDailyDiaryBox{
+    width:80%;
+    margin-left: 20%;
+  }
 }
 #userDiaryBox,#userDailyDiaryBox{
-    width:60%;
     border:  2px solid #b3cc62;
     border-radius: 20px;
     margin-top: 5%;
-    margin-left: 20%;
 }
 
 #userDiaryForm,#userDailyDiaryForm{
