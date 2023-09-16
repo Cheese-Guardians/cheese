@@ -43,6 +43,7 @@
   /**
   * Desktop Navigation 
   */
+  
   .navbar {
     padding: 0;
   }
@@ -163,8 +164,13 @@
     left: 100%;
     visibility: visible;
   }
-  
+  @media (min-width: 992px) {
+    #hb {
+      display:none;
+    }
+  }
   @media (max-width: 1366px) {
+   
     .navbar .dropdown .dropdown ul {
       left: -90%;
     }

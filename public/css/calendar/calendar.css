@@ -72,3 +72,34 @@ h1{
 }
 
 input:focus {outline:none;}
+
+/* styles.css */
+
+/* styles.css */
+
+.material-symbols-outlined {
+  cursor: pointer;
+  position: relative;
+}
+
+.material-symbols-outlined::before {
+  content: ""; /* 내용을 빈 문자열로 초기화 */
+  position: absolute;
+  top: -30px;
+  left: 50%; /* 가운데 정렬을 위해 left 값을 50%로 설정 */
+  transform: translateX(-50%); /* left 값의 절반을 왼쪽으로 이동하여 가운데 정렬 */
+  background-color: #333;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 12px;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.material-symbols-outlined:hover::before,
+.material-symbols-outlined:focus::before {
+  content: attr(data-tooltip); /* 말풍선 내용 설정 */
+  white-space: pre;
+  opacity: 1;
+}
