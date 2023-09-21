@@ -50,6 +50,7 @@
     margin: 30px;
     margin-top:100px;
   }
+
   .title{
     width: 23%;
     display: inline-block;
@@ -494,6 +495,10 @@ padding-left:8px;
   .community_container {
     width: 55%;
     /* 다른 스타일 변경 */
+  }
+
+  .symptom_check{
+    margin-top: 10%;
   }
 
   /*좌측*/
