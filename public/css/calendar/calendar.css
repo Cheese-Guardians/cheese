@@ -26,7 +26,7 @@ p{
   border: 2px solid #B3CC62;
   border-radius: 15px;
   display: inline-block;
-  width: 40%;
+  width: 65%;
   text-align: center;
 }
 #inputbox{
@@ -72,14 +72,18 @@ h1{
 }
 
 input:focus {outline:none;}
-
-/* styles.css */
-
-/* styles.css */
+/* 모바일 버전 */
+@media (max-width: 767px) {
+  .memory_disable{
+    width: 65%;
+  }
+}
 
 .material-symbols-outlined {
   cursor: pointer;
   position: relative;
+  margin: 0;
+  left: 10px;
 }
 
 .material-symbols-outlined::before {
@@ -92,9 +96,16 @@ input:focus {outline:none;}
   color: #fff;
   padding: 5px 10px;
   border-radius: 5px;
-  font-size: 12px;
+  font-size: 15px;
   opacity: 0;
   transition: opacity 0.3s ease-in-out;
+  /* 수정 */
+  /* width: 120px;
+  bottom: 150%; */
+  /* left: 50%; */
+  margin-left: -60px;
+  /* padding: 10px; */
+  line-height: 20px;
 }
 
 .material-symbols-outlined:hover::before,
@@ -102,4 +113,7 @@ input:focus {outline:none;}
   content: attr(data-tooltip); /* 말풍선 내용 설정 */
   white-space: pre;
   opacity: 1;
+}
+.data-tooltip {
+  background-color: orange;
 }
