@@ -86,35 +86,57 @@
       </div>
     </div>
 
+
+
+    
     <div class="col-lg-6 pt-lg-0 order-2 order-lg-1" >
       <div id = "userDiaryBox">
+        <% if (typeof MindDiaryDataResult !== 'undefined' && MindDiaryDataResult && typeof MindDiaryDataResult.MindDiary_list !== 'undefined' && MindDiaryDataResult.MindDiary_list ) { %>
+  
       <table id = "userDiaryForm">
         <tr>
           <td> 제목 </td>
-          <td> <input type = "text" name = "subject"> </td>
+          <td><textarea id="inputBx" name="mind_keyword" rows="4" cols="50"><%= MindDiaryDataResult.MindDiary_list.keyword %></textarea></td>
         </tr>
         <tr>
           <td> 상황 </td>
-          <td>  <textarea></textarea></td>
+          <td><textarea id="inputBx" name="mind_matter" rows="4" cols="50"><%= MindDiaryDataResult.MindDiary_list.matter %></textarea></td>
         </tr>
         <tr>
           <td> 일어난 마음과 몸의 반응 </td>
-          <td>  <textarea></textarea></td>
+          <td><textarea id="inputBx" name="mind_change" rows="4" cols="50"><%= MindDiaryDataResult.MindDiary_list.change %></textarea></td>
         </tr>
         <tr>
           <td> 치리내용 </td>
-          <td>  <textarea></textarea></td>
+          <td><textarea id="inputBx" name="mind_solution" rows="4" cols="50"><%= MindDiaryDataResult.MindDiary_list.solution %></textarea></td>
         </tr>
-      </table></div>
-      <div id = "userDailyDiaryBox">
-      <table id = "userDailyDiaryForm">
         <tr>
-          <td> 나의 일상 일기 </td>
-          <td> <textarea></textarea></td>
+          <td> 치리내용 </td>
+          <td><textarea id="inputBx" name="mind_compliment" rows="4" cols="50"><%= MindDiaryDataResult.MindDiary_list.compliment %></textarea></td>
         </tr>
+      </table>
+      <% } else { %>
+        <table id = "userDiaryForm">
+          <tr>
+            <td> 제목 </td>
+            <td><textarea></textarea></td>
+          </tr>
+          <tr>
+            <td> 상황 </td>
+            <td>  <textarea></textarea></td>
+          </tr>
+          <tr>
+            <td> 일어난 마음과 몸의 반응 </td>
+            <td>  <textarea></textarea></td>
+          </tr>
+          <tr>
+            <td> 치리내용 </td>
+            <td>  <textarea></textarea></td>
+          </tr>
         </table>
-      
-    </div></div>
+        <% } %></div>
+    
+  </div>
     
     
   </main>
