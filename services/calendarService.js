@@ -106,3 +106,27 @@ exports.createFileMem = async function ( user_id, date, server_name, user_name, 
         return 'createFileMemError';
     }
 }
+
+exports.createMindDiary = async function (
+  user_id,
+  date,
+  keyword,
+  matter,
+  change,
+  solution,
+  compliment) {
+    try {
+      const mediReminderResult = await reminderModel.insertMindDiaryInfo(
+        pool,
+        user_id,
+        date,
+        keyword,
+        matter,
+        change,
+        solution,
+        compliment);
+      return "성공"
+    } catch (err) {
+        return err;
+    }  
+}
