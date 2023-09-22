@@ -302,7 +302,7 @@
     border-radius: 20px;
     margin-top: 5%;
     height: 70%;
-    width: 70%;
+    /* width: 70%; */
 }
 
 #userDiaryForm,#userDailyDiaryForm{
