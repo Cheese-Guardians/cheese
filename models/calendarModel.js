@@ -307,6 +307,7 @@ async function insertFileMem(pool, insertFileMemParams) {
   }
 }
 
+
 //mind diary 조회
 
 async function getSelectedMindDiary(pool, selectedMindDiaryParams) {
@@ -341,11 +342,41 @@ async function getSelectedMindDiary(pool, selectedMindDiaryParams) {
   return {MindDiary_list};
 }
 
+async function insertMindDiaryInfo(
+  pool,
+  user_id,
+  date,
+  keyword,
+  matter,
+  change,
+  solution,
+  compliment) {
+  const connection = await pool.promise().getConnection();
+  const insertMindDiaryQuery  = `
+        insert into mind_diary (\`user_id\`, \`date\`, \`keyword\`, \`matter\`, \`change\`, \`solution\`, \`compliment\`)
+        values (?,?,?,?,?,?,?);
+        `;
+  const mindDiaryParams = [
+      user_id,
+      date,
+      keyword,
+      matter,
+      change,
+      solution,
+      compliment
+  ];
+  try {
+    await connection.query(insertMindDiaryQuery, mindDiaryParams);
+  } catch (err) {
+    throw err;
+  }
+}
 
 module.exports = {
   selectCalendar,
   insertFileMem,
   getSelectedCalendar,
   insertCalInfo,
-  getSelectedMindDiary
+  getSelectedMindDiary,
+  insertMindDiaryInfo
 }
