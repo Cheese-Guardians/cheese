@@ -116,15 +116,17 @@ exports.createMindDiary = async function (
   solution,
   compliment) {
     try {
-      const mediReminderResult = await reminderModel.insertMindDiaryInfo(
-        pool,
+      insertMindDiaryParams = [
         user_id,
         date,
         keyword,
         matter,
         change,
         solution,
-        compliment);
+        compliment
+      ];
+      // console.log(insertMindDiaryParams)
+      const mindDiaryResult = await calendarModel.insertMindDiaryInfo(pool, insertMindDiaryParams);
       return "성공"
     } catch (err) {
         return err;

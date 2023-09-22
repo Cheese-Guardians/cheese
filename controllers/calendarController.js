@@ -199,7 +199,9 @@ exports.postMindDiary = async function (req, res) {
   if (token) {
       const decodedToken = jwt.verify(token, secret.jwtsecret); // 토큰 검증, 복호화
       const user_id = decodedToken.user_id; // user_id를 추출
-      const date = req.query.selectedYear + req.query.selectedMonth + req.query.selectedDate; //쿼리스트링에서 날짜 추출
+      // const date = req.query.selectedYear + req.query.selectedMonth + req.query.selectedDate; //쿼리스트링에서 날짜 추출
+      const date = '2023-09-20'
+      console.log(date);
       const {
         keyword,
         matter,
@@ -207,6 +209,7 @@ exports.postMindDiary = async function (req, res) {
         solution,
         compliment
       } = req.body;
+      console.log(req.body)
       const createMindDiaryResponse = await calendarService.createMindDiary(
         user_id,
         date,
@@ -220,7 +223,7 @@ exports.postMindDiary = async function (req, res) {
         const queryString = querystring.stringify(req.query);
         return res.status(200).send(`
           <script>
-            if (confirm('캘린더 등록에 성공했습니다.')) {
+            if (confirm('마음 일기 등록에 성공했습니다.')) {
               window.location.href = "/calendar?${queryString}";
             }
           </script>
@@ -229,7 +232,7 @@ exports.postMindDiary = async function (req, res) {
         const queryString = querystring.stringify(req.query);
         return res.send(`
           <script>
-            if (confirm('캘린더 등록에 실패했습니다.')) {
+            if (confirm('마음 일기 등록에 실패했습니다.')) {
               window.location.href = "/calendar?${queryString}";
             }
           </script>

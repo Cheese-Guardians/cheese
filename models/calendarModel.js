@@ -342,31 +342,15 @@ async function getSelectedMindDiary(pool, selectedMindDiaryParams) {
   return {MindDiary_list};
 }
 
-async function insertMindDiaryInfo(
-  pool,
-  user_id,
-  date,
-  keyword,
-  matter,
-  change,
-  solution,
-  compliment) {
-  const connection = await pool.promise().getConnection();
+async function insertMindDiaryInfo(pool, insertMindDiaryParams) {
+  console.log(insertMindDiaryParams)
   const insertMindDiaryQuery  = `
         insert into mind_diary (\`user_id\`, \`date\`, \`keyword\`, \`matter\`, \`change\`, \`solution\`, \`compliment\`)
         values (?,?,?,?,?,?,?);
         `;
-  const mindDiaryParams = [
-      user_id,
-      date,
-      keyword,
-      matter,
-      change,
-      solution,
-      compliment
-  ];
+
   try {
-    await connection.query(insertMindDiaryQuery, mindDiaryParams);
+    await pool.promise().query(insertMindDiaryQuery, insertMindDiaryParams);
   } catch (err) {
     throw err;
   }
