@@ -84,8 +84,6 @@ exports.postCalendar = async function (req, res) {
         hospital_schedule,
         check_content,
         sleep_time,
-        symptom_text,
-        symptom_time,
         symptom_range,
         diary_text,
         is_check
