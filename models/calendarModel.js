@@ -36,16 +36,15 @@ async function getSelectedCalendar(pool, selectedCalendarParams) {
     );
   `;
   const getSymptomQuery = `
-  SELECT degree
-  FROM symptom
-  WHERE user_id = ? 
+    SELECT symptom_name, degree
+    FROM symptom
+    WHERE user_id = ?
     AND calendar_id = (
       SELECT calendar_id
       FROM calendar
       WHERE user_id = ? 
-        AND date = ?
-    )
-    AND symptom_name IN ('기억장애', '언어장애', '배회', '계산능력 저하', '성격 및 감정의 변화', '이상행동');
+      AND date = ?
+    );
   `;
   /*
   //병원 이름
@@ -78,8 +77,8 @@ async function getSelectedCalendar(pool, selectedCalendarParams) {
 
   //증상
   const [symptomRows] = await pool.promise().query(getSymptomQuery, selectedCalendarParams);
-  const symptom_list = symptomRows.length > 0 ? symptomRows.map(row => ({ degree: row.degree})) : [];
-  console.log(symptom_list);
+  const symptom_list = symptomRows.length > 0 ? symptomRows.map(row => ({ symptom_name: row.symptom_name, degree: row.degree})) : [];
+  
   return {check_list, calendar, symptom_list}; //hospital_schedule 제외
 }
 
@@ -109,12 +108,11 @@ async function insertCalInfo(pool, deleteCalendarParams, insertCalendarParams, g
     const insertHospital_scheduleQuery = `
     INSERT INTO hospital_schedule (calendar_id, user_id, hospital_name, booking_time) VALUES (?, ?, ?, ?);
     `;
-    */
     //4. map 이용해 캘린더에서 checkContent 길이만큼 쿼리 생성(delete)
     const deleteCheck_listQueries = check_content.map(() => `
     DELETE FROM check_list WHERE calendar_id = ? AND user_id = ? AND check_content = ?;
     `);
-    
+    */
 
     //5. map 이용해 캘린더에서 checkContent 길이만큼 쿼리 생성(insert)
     const insertCheck_listQueries = check_content.map(() => `

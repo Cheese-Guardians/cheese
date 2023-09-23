@@ -432,7 +432,48 @@
                 <div class="title"> <p> 증상 </p> </div>
                 
                 <div>
-                  
+                  <% if (typeof calendarDataResult !== 'undefined' && calendarDataResult && typeof calendarDataResult.symptom_list !== 'undefined' && calendarDataResult.symptom_list && calendarDataResult.symptom_list.length !== 0) { %>
+                    
+                    <% for (let i = 0; i < calendarDataResult.symptom_list.length; i++) { %>
+                    <div class="symptomTextBox ">                    
+                      <input class="inputbX" type="text" id="<%= i %>" name="symptom_text" value="<%= calendarDataResult.symptom_list[i].symptom_name %>">
+                      <p><input type="time"  name="symptom_time" class="symptom-time" value="<%= calendarDataResult.symptom_list[i].onset_time%>" ></p>                      
+                      
+                    </div>
+
+                    <div class="box-body">
+                      <input type="range" name="symptom_range" min="1" max="10" id="ex-in-<%= i %>" class="range-in" value="<%= calendarDataResult.symptom_list[i].degree %>">
+                      <div id="ex-out-<%= i %>" class="range-out"> <%= calendarDataResult.symptom_list[i].degree %> </div>
+                      <script>
+                        const exIn<%= i %> = document.querySelector('#ex-in-<%= i %>');
+                        const exOut<%= i %> = document.querySelector('#ex-out-<%= i %>');
+                
+                        exIn<%= i %>.addEventListener('input', e => {
+                          exOut<%= i %>.innerHTML = e.target.value;
+                        });
+                      </script>
+                    </div>
+                    <% } %>
+                    <% for (let i = calendarDataResult.symptom_list.length; i < 6; i++) { %>
+                      <div class="symptomTextBox ">
+                      <input class="inputbX" type="text"  name="symptom_text" placeholder="증상명">
+                                     
+                    </div>
+                    <div class="box-body"> 
+                      <input type="range" name="symptom_range" min="1" max="10" id="ex-in-<%= i %>"  class="range-in">   
+                    <div id="ex-out-<%= i %>" class="range-out"></div>
+                    <script>
+                      const exIn<%= i %> = document.querySelector('#ex-in-<%= i %>');
+                      const exOut<%= i %> = document.querySelector('#ex-out-<%= i %>');
+              
+                      exIn<%= i %>.addEventListener('input', e => {
+                        exOut<%= i %>.innerHTML = e.target.value;
+                      });
+                    </script>          
+                  </div>
+
+                    <% } %>
+                  <% } else { %>
                     <div class="symptomTextBox 1">                    
                       <!-- <input class="inputbX" type="text"  name="symptom_text" placeholder="증상명" > -->
                       <p class="memory_disable"> 기억장애 </p>
@@ -445,12 +486,7 @@
                     </div>
                   
                     <div class="box-body"> 
-                      <% if (typeof calendarDataResult !== 'undefined' && calendarDataResult && typeof calendarDataResult.symptom_list !== 'undefined' && calendarDataResult.symptom_list && calendarDataResult.symptom_list.length !== 0) { %>
-                          <input type="range" name="symptom_range" min="0" max="4" id="ex-in1" class="range-in" value="<%= calendarDataResult.symptom_list[0].degree %>">
-                      <% } else { %>
-                        <input type="range" name="symptom_range" min="0" max="4" value="0" id="ex-in1" class="range-in">   
-                      <% } %>
-                      
+                        <input type="range" name="symptom_range"  min="0" max="4" value="0" id="ex-in1" class="range-in">   
                       <div id="ex-out1" class="range-out"></div>
                       <script>
                       document.querySelector('#ex-in1').addEventListener('input',e=>{
@@ -458,7 +494,6 @@
                       });
                       </script>           
                     </div>
-                    
 
                     <div class="symptomTextBox 2">
                       <!-- <input class="inputbX" type="text"  name="symptom_text" placeholder="증상명"> -->
@@ -468,11 +503,7 @@
                       <!-- <p><input type="time" name="symptom_time" class="symptom-time"></p>                      -->
                     </div>
                     <div class="box-body"> 
-                      <% if (typeof calendarDataResult !== 'undefined' && calendarDataResult && typeof calendarDataResult.symptom_list !== 'undefined' && calendarDataResult.symptom_list && calendarDataResult.symptom_list.length !== 0) { %>
-                        <input type="range" name="symptom_range" min="0" max="4" id="ex-in2" class="range-in" value="<%= calendarDataResult.symptom_list[1].degree %>">
-                    <% } else { %>
                       <input type="range" name="symptom_range" min="0" max="4" value="0" id="ex-in2" class="range-in">   
-                    <% } %>
                       <div id="ex-out2" class="range-out"></div>
                       <script>
                         document.querySelector('#ex-in2').addEventListener('input',e=>{
@@ -488,11 +519,7 @@
                       <!-- <p><input type="time" name="symptom_time" class="symptom-time"></p>                      -->
                     </div>
                     <div class="box-body"> 
-                      <% if (typeof calendarDataResult !== 'undefined' && calendarDataResult && typeof calendarDataResult.symptom_list !== 'undefined' && calendarDataResult.symptom_list && calendarDataResult.symptom_list.length !== 0) { %>
-                        <input type="range" name="symptom_range" min="0" max="4" id="ex-in3" class="range-in" value="<%= calendarDataResult.symptom_list[2].degree %>">
-                    <% } else { %>
                       <input type="range" name="symptom_range" min="0" max="4" value="0" id="ex-in3" class="range-in">   
-                    <% } %>   
                       <div id="ex-out3" class="range-out"></div>
                       <script>
                         document.querySelector('#ex-in3').addEventListener('input',e=>{
@@ -508,11 +535,7 @@
                       <!-- <p><input type="time" name="symptom_time" class="symptom-time"></p>                      -->
                     </div>
                     <div class="box-body"> 
-                      <% if (typeof calendarDataResult !== 'undefined' && calendarDataResult && typeof calendarDataResult.symptom_list !== 'undefined' && calendarDataResult.symptom_list && calendarDataResult.symptom_list.length !== 0) { %>
-                        <input type="range" name="symptom_range" min="0" max="4" id="ex-in4" class="range-in" value="<%= calendarDataResult.symptom_list[3].degree %>">
-                    <% } else { %>
-                      <input type="range" name="symptom_range" min="0" max="4" value="0" id="ex-in4" class="range-in">   
-                    <% } %>  
+                      <input type="range" name="symptom_range" min="0" max="4" value="0"  id="ex-in4" class="range-in">   
                       <div id="ex-out4" class="range-out"></div>
                       <script>
                         document.querySelector('#ex-in4').addEventListener('input',e=>{
@@ -528,11 +551,7 @@
                       <!-- <p><input type="time" name="symptom_time" class="symptom-time"></p>                      -->
                     </div>
                     <div class="box-body"> 
-                      <% if (typeof calendarDataResult !== 'undefined' && calendarDataResult && typeof calendarDataResult.symptom_list !== 'undefined' && calendarDataResult.symptom_list && calendarDataResult.symptom_list.length !== 0) { %>
-                        <input type="range" name="symptom_range" min="0" max="4" id="ex-in5" class="range-in" value="<%= calendarDataResult.symptom_list[4].degree %>">
-                    <% } else { %>
-                      <input type="range" name="symptom_range" min="0" max="4" value="0" id="ex-in5" class="range-in">   
-                    <% } %>
+                      <input type="range" name="symptom_range"  min="0" max="4" value="0"  id="ex-in5" class="range-in">   
                       <div id="ex-out5" class="range-out"></div>
                       <script>
                         document.querySelector('#ex-in5').addEventListener('input',e=>{
@@ -548,11 +567,7 @@
                       <!-- <p><input type="time" name="symptom_time" class="symptom-time"></p>                      -->
                     </div>
                     <div class="box-body"> 
-                      <% if (typeof calendarDataResult !== 'undefined' && calendarDataResult && typeof calendarDataResult.symptom_list !== 'undefined' && calendarDataResult.symptom_list && calendarDataResult.symptom_list.length !== 0) { %>
-                        <input type="range" name="symptom_range" min="0" max="4" id="ex-in6" class="range-in" value="<%= calendarDataResult.symptom_list[5].degree %>">
-                    <% } else { %>
-                      <input type="range" name="symptom_range" min="0" max="4" value="0" id="ex-in6" class="range-in">   
-                    <% } %>
+                      <input type="range" name="symptom_range"  min="0" max="4" value="0"  id="ex-in6" class="range-in">   
                       <div id="ex-out6" class="range-out"></div>
                       <script>
                         document.querySelector('#ex-in6').addEventListener('input',e=>{
@@ -560,6 +575,7 @@
                         });
                       </script>           
                     </div>
+                  <% } %>
 
                 </div>
                 <div class="symBtndiv">
