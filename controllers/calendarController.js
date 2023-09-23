@@ -199,9 +199,9 @@ exports.postMindDiary = async function (req, res) {
   if (token) {
       const decodedToken = jwt.verify(token, secret.jwtsecret); // 토큰 검증, 복호화
       const user_id = decodedToken.user_id; // user_id를 추출
-      // const date = req.query.selectedYear + req.query.selectedMonth + req.query.selectedDate; //쿼리스트링에서 날짜 추출
-      const date = '2023-09-20'
-      console.log(date);
+      const date = req.query.selectedYear + req.query.selectedMonth + req.query.selectedDate; //쿼리스트링에서 날짜 추출
+      //const date = '2023-09-20'
+      console.log(req.query);
       const {
         keyword,
         matter,

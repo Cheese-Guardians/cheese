@@ -89,14 +89,14 @@
       <div class="col-lg-6 pt-lg-0 order-2 order-lg-1" >
       <div id = "userDiaryBox">
         
-        <form class="diary" action="/calendar/minddiary" method="POST">
+        <form id="diaryForm" action="/calendar/minddiary" method="POST">
           <script>
             // 현재 URL에서 쿼리 문자열 가져오기
-            const queryString = window.location.search;
-    
+            const diaryQueryString = window.location.search;
+            console.log(diaryQueryString);
             // form의 action URL에 쿼리 문자열 추가
-            const form = document.getElementById('calendarForm');
-            form.action += queryString;
+            const diaryForm = document.getElementById('diaryForm');
+            diaryForm.action += diaryQueryString;
           </script>
           <table id = "userDiaryForm">
             <% if (typeof MindDiaryDataResult !== 'undefined' && MindDiaryDataResult && typeof MindDiaryDataResult.MindDiary_list !== 'undefined' && MindDiaryDataResult.MindDiary_list ) { %>
