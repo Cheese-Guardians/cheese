@@ -59,7 +59,7 @@ exports.createCalendar = async function (
         hospital_schedule,      
     ];
     */
-    await calendarModel.insertCalInfo(pool, deleteCalendarParams, insertCalendarParams, getCalendarIdParams, deleteHospital_scheduleParams, user_id, check_content, is_check,  symptom_range); //insertHospital_scheduleParams 제외
+    await calendarModel.insertCalInfo(pool, deleteCalendarParams, insertCalendarParams, getCalendarIdParams, user_id, check_content, is_check,  symptom_range); //insertHospital_scheduleParams 제외
     console.log("aervice");
     
     return '성공';
