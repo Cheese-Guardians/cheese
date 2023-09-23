@@ -20,8 +20,8 @@ exports.retrieveSelectedCalendar = async function (user_id, date) {
 exports.createCalendar = async function (
     user_id,
     date,
-    hospital_name,
-    hospital_schedule,
+    //hospital_name,
+    //hospital_schedule,
     check_content,
     sleep_time,
     symptom_range,
@@ -52,13 +52,14 @@ exports.createCalendar = async function (
     const deleteHospital_scheduleParams = [
         user_id
       ];
+    /*
     const insertHospital_scheduleParams = [
         user_id,
         hospital_name,
-        hospital_schedule,
-      
+        hospital_schedule,      
     ];
-    await calendarModel.insertCalInfo(pool, deleteCalendarParams, insertCalendarParams, getCalendarIdParams, deleteHospital_scheduleParams, insertHospital_scheduleParams, user_id, check_content, is_check,  symptom_range);
+    */
+    await calendarModel.insertCalInfo(pool, deleteCalendarParams, insertCalendarParams, getCalendarIdParams, deleteHospital_scheduleParams, user_id, check_content, is_check,  symptom_range); //insertHospital_scheduleParams 제외
     console.log("aervice");
     
     return '성공';
