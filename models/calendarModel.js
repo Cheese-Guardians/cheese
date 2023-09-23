@@ -1,5 +1,6 @@
 //캘린더 조회
 async function getSelectedCalendar(pool, selectedCalendarParams) {
+  /*
   const getHospital_scheduleQuery = `
     SELECT hospital_name, TIME(booking_time) AS booking_hour
     FROM hospital_schedule
@@ -11,6 +12,7 @@ async function getSelectedCalendar(pool, selectedCalendarParams) {
       AND date = ?
     );
   `;
+  */
   const getCheck_listQuery = `
     SELECT check_content, is_check
     FROM check_list
@@ -34,7 +36,7 @@ async function getSelectedCalendar(pool, selectedCalendarParams) {
     );
   `;
   const getSymptomQuery = `
-    SELECT symptom_name, onset_time, degree
+    SELECT symptom_name, degree
     FROM symptom
     WHERE user_id = ?
     AND calendar_id = (
@@ -44,10 +46,9 @@ async function getSelectedCalendar(pool, selectedCalendarParams) {
       AND date = ?
     );
   `;
-
+  /*
   //병원 이름
   const [hosRows] = await pool.promise().query(getHospital_scheduleQuery, selectedCalendarParams);
-  const hospital_schedule = {
     hospital_name: "",
     booking_hour: ""
   };
@@ -55,6 +56,7 @@ async function getSelectedCalendar(pool, selectedCalendarParams) {
     hospital_schedule.hospital_name = hosRows[0].hospital_name;
     hospital_schedule.booking_hour = hosRows[0].booking_hour;
   }
+  */
 
   //체크 사항
   const [checkRows] = await pool.promise().query(getCheck_listQuery, selectedCalendarParams);
@@ -75,13 +77,13 @@ async function getSelectedCalendar(pool, selectedCalendarParams) {
 
   //증상
   const [symptomRows] = await pool.promise().query(getSymptomQuery, selectedCalendarParams);
-  const symptom_list = symptomRows.length > 0 ? symptomRows.map(row => ({ symptom_name: row.symptom_name, degree: row.degree, onset_time: row.onset_time})) : [];
+  const symptom_list = symptomRows.length > 0 ? symptomRows.map(row => ({ symptom_name: row.symptom_name, degree: row.degree})) : [];
   
-  return {hospital_schedule, check_list, calendar, symptom_list};
+  return {check_list, calendar, symptom_list}; //hospital_schedule 제외
 }
 
 //캘린더 저장
-async function insertCalInfo(pool, deleteCalendarParams, insertCalendarParams, getCalendarIdParams, deleteHospital_scheduleParams, insertHospital_scheduleParams, user_id, check_content, is_check,  symptom_range){
+async function insertCalInfo(pool, deleteCalendarParams, insertCalendarParams, getCalendarIdParams, user_id, check_content, is_check,  symptom_range){
   const symptom_text = ["기억장애", "언어장애", "배회", "계산능력 저하", "성격 및 감정의 변화", "이상행동"];
   let calendar_id;
   // try{
@@ -98,6 +100,7 @@ async function insertCalInfo(pool, deleteCalendarParams, insertCalendarParams, g
     SELECT calendar_id FROM calendar WHERE  user_id = ? AND \`date\` = ?;
     `;
     console.log("model2");
+    /*
     //3. 병원일정 insert
     const deleteHospital_scheduleQuery = `
     DELETE FROM hospital_schedule WHERE calendar_id = ? AND user_id = ?; 
@@ -109,6 +112,7 @@ async function insertCalInfo(pool, deleteCalendarParams, insertCalendarParams, g
     const deleteCheck_listQueries = check_content.map(() => `
     DELETE FROM check_list WHERE calendar_id = ? AND user_id = ? AND check_content = ?;
     `);
+    */
 
     //5. map 이용해 캘린더에서 checkContent 길이만큼 쿼리 생성(insert)
     const insertCheck_listQueries = check_content.map(() => `
@@ -145,11 +149,14 @@ async function insertCalInfo(pool, deleteCalendarParams, insertCalendarParams, g
       calendar_id = calendarIDRow[0].calendar_id;
       console.log("calId: "+calendar_id);
       //가져온 calendar id로 params 수정
+      /*
       deleteHospital_scheduleParams.unshift(calendar_id);
       insertHospital_scheduleParams.unshift(calendar_id);
+      
 
       await connection.query(deleteHospital_scheduleQuery, deleteHospital_scheduleParams);
       await connection.query(insertHospital_scheduleQuery, insertHospital_scheduleParams);
+      */
       //가져온 calendar id로 params 동적으로 checkcontents 파라미터 만듦(delete)
       const deleteCheck_listParams = check_content.flatMap((checkContent, index) => [
       calendar_id,
@@ -173,7 +180,6 @@ async function insertCalInfo(pool, deleteCalendarParams, insertCalendarParams, g
       for (let i = 0; i < insertCheck_listQueries.length; i++) {
         await connection.query(insertCheck_listQueries[i], insertCheck_listParams.slice(i * 4, (i + 1) * 4));
       }
-      
       
       //await Promise.all(deleteCheck_listQueries.map((query, index) => connection.query(query, deleteCheck_listParams.slice(index * 3, (index + 1) * 3))));
       //await Promise.all(insertCheck_listQueries.map((query, index) => connection.query(query, insertCheck_listParams.slice(index * 4, (index + 1) * 4))));
