@@ -39,7 +39,7 @@
   }
   .symptom_check{
     width: 700px;
-    height: 800px;
+    height: 100%;
     background-color: white;
     border-color:#E0E0E0;
     border-style:solid;
@@ -444,7 +444,8 @@ padding-left:8px;
     padding: 10px;
     margin-left: 3%;
     margin-top: 10;
-    margin-bottom: -15%;
+    border-radius: 30px;
+    /* margin-bottom: -15%; */
   }
 
   /*좌측*/
@@ -497,9 +498,9 @@ padding-left:8px;
     /* 다른 스타일 변경 */
   }
 
-  .symptom_check{
+  /* .symptom_check{
     margin-top: 30%;
-  }
+  } */
 
   /*좌측*/
   .symptom_check_left{
