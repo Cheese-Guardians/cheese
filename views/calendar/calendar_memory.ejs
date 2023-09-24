@@ -77,7 +77,7 @@
         </div>
       </div>
       
-      <div class="ininin">
+      <div class="wrapper ininin">
         <form action="/calendar/upload" method="POST" enctype="multipart/form-data" id="fileForm">
           <input id="inputbox" style="padding: 23px 25px; display: flex; justify-content: center;" type="file" name="file">
           <input id="fileDate" type="hidden" name="fileDate" value="">
@@ -86,7 +86,7 @@
       </div>
     </div>
 
-      <div class="col-lg-6 pt-lg-0 order-2 order-lg-1" >
+      <div class="mindInputArea col-lg-6 pt-lg-0 order-2 order-lg-1" >
       <div id = "userDiaryBox">
         
         <form id="diaryForm" action="/calendar/minddiary" method="POST">
@@ -126,7 +126,7 @@
           </table>
           <div class="submitt_btn">
             <!-- <input type="submit" value="저장" id="mind_diary_submit"> -->
-            <button type="submit">저장</button>
+            <button class="mindBtn" type="submit">저장</button>
           </div>
         </form>
     </div>
@@ -158,6 +158,10 @@
           </tr>
           <td><textarea  name="compliment"></textarea></td>
         </table>
+        <div class="submitt_btn">
+          <!-- <input type="submit" value="저장" id="mind_diary_submit"> -->
+          <button class="mindBtn" type="submit">저장</button>
+        </div>
       <% } %>
       </div>
 

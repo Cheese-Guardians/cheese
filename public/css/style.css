@@ -73,7 +73,7 @@ h6 {
   --------------------------------------------------------------*/
   #hero {
     width: 100%;
-    height: 80vh;
+    height: auto;
     background: #fff;
     padding-top: 82px;
 
