@@ -235,7 +235,11 @@
 
 }
 
-
+@media (max-width: 767px) {
+  #userDiaryBox {
+    height: 100%;
+  }
+}
 /* 큰 화면 (데스크톱) */
 @media (min-width: 992px) {
   main {
@@ -301,7 +305,8 @@
     border:  2px solid #b3cc62;
     border-radius: 20px;
     margin-top: 5%;
-    height: 100%;
+    padding-bottom: 5%;
+    /* height: 100%; */
     /* width: 70%; */
 }
 
