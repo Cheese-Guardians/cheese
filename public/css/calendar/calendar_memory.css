@@ -127,7 +127,7 @@
   /* 작은 화면 (모바일) */
 @media (max-width: 767px) {
   main {
-    height: 140vh;
+    height: 270vh;
     position: relative;
   }
 
@@ -185,7 +185,7 @@
 /* 중간 화면 (타블렛) */
 @media (min-width: 768px) and (max-width: 991px) { 
   main {
-      height: 120vh;
+      height: 250vh;
       position: relative;
   }
     main .wrapper {

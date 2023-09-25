@@ -69,16 +69,9 @@ h1{
   line-height: 54px;
 
   color: #B3CC62;
-
 }
 
 input:focus {outline:none;}
-/* 모바일 버전 */
-@media (max-width: 767px) {
-  .memory_disable{
-    width: 65%;
-  }
-}
 
 .material-symbols-outlined {
   cursor: pointer;
@@ -117,6 +110,12 @@ input:focus {outline:none;}
 }
 .data-tooltip {
   background-color: orange;
+}
+/* 모바일 버전 */
+@media (max-width: 767px) {
+  .memory_disable{
+    width: 65%;
+  }
 }
 /* 테블릿 */
 @media (min-width: 768px) and (max-width: 991px) {
