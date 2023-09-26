@@ -88,7 +88,8 @@ input:focus {outline:none;}
   transform: translateX(-50%); /* left 값의 절반을 왼쪽으로 이동하여 가운데 정렬 */
   background-color: #333;
   color: #fff;
-  padding: 5px 10px;
+  /* padding: 5px 10px; */
+  padding-left: 50%;
   border-radius: 5px;
   font-size: 15px;
   opacity: 0;
@@ -107,6 +108,7 @@ input:focus {outline:none;}
   content: attr(data-tooltip); /* 말풍선 내용 설정 */
   white-space: pre;
   opacity: 1;
+  padding: 50%;
 }
 .data-tooltip {
   background-color: orange;
@@ -117,9 +119,17 @@ input:focus {outline:none;}
     width: 65%;
   }
 }
+.material-symbols-outlined:hover::before,
+.material-symbols-outlined:focus::before {
+    padding: 3px 6px; /* Adjust padding for smaller screens */
+    font-size: 12px; /* Adjust font size for smaller screens */
+  }
 /* 테블릿 */
 @media (min-width: 768px) and (max-width: 991px) {
   #cal_main {
     margin-top: 300px;
   }
+
+
+  
 }
