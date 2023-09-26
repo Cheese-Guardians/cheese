@@ -16,12 +16,15 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getQueryHandlerAndSelector = exports.getQueryHandlerByName = exports.BUILTIN_QUERY_HANDLERS = void 0;
-const AriaQueryHandler_js_1 = require("./AriaQueryHandler.js");
+const AriaQueryHandler_js_1 = require("../cdp/AriaQueryHandler.js");
 const CustomQueryHandler_js_1 = require("./CustomQueryHandler.js");
 const PierceQueryHandler_js_1 = require("./PierceQueryHandler.js");
 const PQueryHandler_js_1 = require("./PQueryHandler.js");
 const TextQueryHandler_js_1 = require("./TextQueryHandler.js");
 const XPathQueryHandler_js_1 = require("./XPathQueryHandler.js");
+/**
+ * @internal
+ */
 exports.BUILTIN_QUERY_HANDLERS = Object.freeze({
     aria: AriaQueryHandler_js_1.ARIAQueryHandler,
     pierce: PierceQueryHandler_js_1.PierceQueryHandler,

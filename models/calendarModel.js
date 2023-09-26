@@ -83,6 +83,10 @@ async function getSelectedCalendar(pool, selectedCalendarParams) {
   return {check_list, calendar, symptom_list}; //hospital_schedule 제외
 }
 
+
+
+
+
 //캘린더 저장
 async function insertCalInfo(pool, deleteCalendarParams, insertCalendarParams, getCalendarIdParams, user_id, check_content, is_check,  symptom_range){
   const symptom_text = ["기억장애", "언어장애", "배회", "계산능력 저하", "성격 및 감정의 변화", "이상행동"];
@@ -300,9 +304,60 @@ async function insertFileMem(pool, insertFileMemParams) {
   }
 }
 
+
+//mind diary 조회
+
+async function getSelectedMindDiary(pool, selectedMindDiaryParams) {
+  const getMindDiary_listQuery = `
+    SELECT keyword, matter, \`change\`, solution, compliment
+    FROM mind_diary
+    WHERE user_id = ?
+    AND mind_diary_id = (
+      SELECT mind_diary_id
+      FROM mind_diary
+      WHERE user_id = ?
+      AND \`date\` = ?
+    );
+  `;
+
+  const [mindDiaryRows] = await pool.promise().query(getMindDiary_listQuery, selectedMindDiaryParams);
+  const MindDiary_list = {
+    keyword: "",
+    matter: "",
+    change: "",
+    solution: "",
+    compliment: ""
+  };
+
+  if (mindDiaryRows.length > 0) {
+    MindDiary_list.keyword = mindDiaryRows[0].keyword;
+    MindDiary_list.matter = mindDiaryRows[0].matter;
+    MindDiary_list.change = mindDiaryRows[0].change;
+    MindDiary_list.solution = mindDiaryRows[0].solution;
+    MindDiary_list.compliment = mindDiaryRows[0].compliment;
+  }
+  return {MindDiary_list};
+}
+
+async function insertMindDiaryInfo(pool, insertMindDiaryParams) {
+  console.log(insertMindDiaryParams)
+  const insertMindDiaryQuery  = `
+        insert into mind_diary (\`user_id\`, \`date\`, \`keyword\`, \`matter\`, \`change\`, \`solution\`, \`compliment\`)
+        values (?,?,?,?,?,?,?);
+        `;
+
+  try {
+    await pool.promise().query(insertMindDiaryQuery, insertMindDiaryParams);
+  } catch (err) {
+    throw err;
+  }
+}
+
 module.exports = {
   selectCalendar,
   insertFileMem,
   getSelectedCalendar,
   insertCalInfo,
+  getSelectedMindDiary,
+  insertMindDiaryInfo
 }

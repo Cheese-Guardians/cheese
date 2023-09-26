@@ -14,7 +14,7 @@
     <div class="row">
 
 
-      <div class="col-lg-6 pt-5 pt-lg-0 order-2 order-lg-1 d-flex flex-column justify-content-center">
+      <div id="cal_main" class="col-lg-6 pt-5 pt-lg-0 order-2 order-lg-1 d-flex flex-column justify-content-center">
 
         <!-- ======= calendar ======= -->
         <table class="scriptCalendar">
@@ -436,14 +436,21 @@
                     <div class="symptomTextBox 1">                    
                       <!-- <input class="inputbX" type="text"  name="symptom_text" placeholder="증상명" > -->
                       <p class="memory_disable"> 기억장애 </p>
-                     
+                       
+                      
                         <span class="material-symbols-outlined" 
-                        data-tooltip="[기억장애] &#10;이름, 전화번호 등을 기억하기가 힘듭니다. &#10;어떤 일을 해놓고도 잊어버려 다시 합니다. &#10;가스불 위에 음식을 올려놓은 것을 잊어버려 태워버리는 경우가 종종 있습니다.">help</span>
+                        data-tooltip="[기억장애] &#10;이름, 전화번호 등을 기억하기가 힘듭니다.&#10;어떤 일을 해놓고도 잊어버려 다시 합니다.&#10;가스불 위에 음식을 올려놓은 것을 잊어버려 &#10;태워버리는 경우가 종종 있습니다.">help</span>
                         
                       </div> 
 
                     </div>
-                  
+                    <div class="severity-label">
+                      <p class="how-symptom no-symptom">증상 없음</p>
+                      <p class="how-symptom ">미약</p>
+                      <p class="how-symptom ">보통</p>
+                      <p class="how-symptom ">심함</p>
+                      <p class="how-symptom severe-symptom">아주 심함</p>
+                    </div>
                     <div class="box-body"> 
                       <% if (typeof calendarDataResult !== 'undefined' && calendarDataResult && typeof calendarDataResult.symptom_list !== 'undefined' && calendarDataResult.symptom_list && calendarDataResult.symptom_list.length !== 0) { %>
                           <input type="range" name="symptom_range" min="0" max="4" id="ex-in1" class="range-in" value="<%= calendarDataResult.symptom_list[0].degree %>">
@@ -464,8 +471,15 @@
                       <!-- <input class="inputbX" type="text"  name="symptom_text" placeholder="증상명"> -->
                       <p class="memory_disable"> 언어장애 </p>
                       <span class="material-symbols-outlined" 
-                      data-tooltip="[언어장애] &#10;하고 싶은 말이나 표현이 금방 떠오르지 않고 물건 이름이 잘 생각나지 않습니다. &#10;책을 읽을 때도 같은 문장을 여러번 반복해서 읽어야 이해가 됩니다. &#10;말귀를 잘 못알아 듣습니다. &#10;(청력저하에 의한 증상일 수도 있지만 치매의 초기증상일 수 있습니다.)">help</span>
+                      data-tooltip="[언어장애] &#10;하고 싶은 말이나 표현이 금방 떠오르지 않고&#10;물건 이름이 잘 생각나지 않습니다.&#10;책을 읽을 때도 같은 문장을 여러번 반복&#10;해서 읽어야 이해가 됩니다.&#10;(청력저하에 의한 증상일 수도 있지만&#10;치매의 초기증상일 수 있습니다.)">help</span>
                       <!-- <p><input type="time" name="symptom_time" class="symptom-time"></p>                      -->
+                    </div>
+                    <div class="severity-label">
+                      <p class="how-symptom no-symptom">증상 없음</p>
+                      <p class="how-symptom ">미약</p>
+                      <p class="how-symptom ">보통</p>
+                      <p class="how-symptom ">심함</p>
+                      <p class="how-symptom severe-symptom">아주 심함</p>
                     </div>
                     <div class="box-body"> 
                       <% if (typeof calendarDataResult !== 'undefined' && calendarDataResult && typeof calendarDataResult.symptom_list !== 'undefined' && calendarDataResult.symptom_list && calendarDataResult.symptom_list.length !== 0) { %>
@@ -487,6 +501,13 @@
                       data-tooltip="[배회] &#10;무작위로 보행 하던 중 길을 잃어버리는 상황에 처합니다.&#10;특정 목적지가 없이 오랫동안 지속되는 보행&#10;심한 경우, 쉽게 단념시키거나 다른 일로 전환시킬 수 없습니다.">help</span>
                       <!-- <p><input type="time" name="symptom_time" class="symptom-time"></p>                      -->
                     </div>
+                    <div class="severity-label">
+                      <p class="how-symptom no-symptom">증상 없음</p>
+                      <p class="how-symptom ">미약</p>
+                      <p class="how-symptom ">보통</p>
+                      <p class="how-symptom ">심함</p>
+                      <p class="how-symptom severe-symptom">아주 심함</p>
+                    </div>
                     <div class="box-body"> 
                       <% if (typeof calendarDataResult !== 'undefined' && calendarDataResult && typeof calendarDataResult.symptom_list !== 'undefined' && calendarDataResult.symptom_list && calendarDataResult.symptom_list.length !== 0) { %>
                         <input type="range" name="symptom_range" min="0" max="4" id="ex-in3" class="range-in" value="<%= calendarDataResult.symptom_list[2].degree %>">
@@ -506,6 +527,13 @@
                       <span class="material-symbols-outlined" 
                       data-tooltip="[계산능력 저하]&#10;계산능력이 떨어져서 이전에 잘하던 사람도 돈관리를 못하게 됩니다. &#10;시장에 가서 거스름돈을 받아오는데 실수가 생깁니다">help</span>
                       <!-- <p><input type="time" name="symptom_time" class="symptom-time"></p>                      -->
+                    </div>
+                    <div class="severity-label">
+                      <p class="how-symptom no-symptom">증상 없음</p>
+                      <p class="how-symptom ">미약</p>
+                      <p class="how-symptom ">보통</p>
+                      <p class="how-symptom ">심함</p>
+                      <p class="how-symptom severe-symptom">아주 심함</p>
                     </div>
                     <div class="box-body"> 
                       <% if (typeof calendarDataResult !== 'undefined' && calendarDataResult && typeof calendarDataResult.symptom_list !== 'undefined' && calendarDataResult.symptom_list && calendarDataResult.symptom_list.length !== 0) { %>
@@ -527,6 +555,13 @@
                       data-tooltip="[성격 및 감정의 변화] &#10;이전에는 사교적이었으나, 집 안에만 있으려고 합니다. &#10;평소에는 엄격하던 사람이 이상할 정도로 너그러워집니다. &#10;의욕적으로 하던 일조차도 귀찮아 합니다.">help</span>
                       <!-- <p><input type="time" name="symptom_time" class="symptom-time"></p>                      -->
                     </div>
+                    <div class="severity-label">
+                      <p class="how-symptom no-symptom">증상 없음</p>
+                      <p class="how-symptom ">미약</p>
+                      <p class="how-symptom ">보통</p>
+                      <p class="how-symptom ">심함</p>
+                      <p class="how-symptom severe-symptom">아주 심함</p>
+                    </div>
                     <div class="box-body"> 
                       <% if (typeof calendarDataResult !== 'undefined' && calendarDataResult && typeof calendarDataResult.symptom_list !== 'undefined' && calendarDataResult.symptom_list && calendarDataResult.symptom_list.length !== 0) { %>
                         <input type="range" name="symptom_range" min="0" max="4" id="ex-in5" class="range-in" value="<%= calendarDataResult.symptom_list[4].degree %>">
@@ -544,8 +579,15 @@
                       <!-- <input class="inputbX" type="text"  name="symptom_text" placeholder="증상명"> -->
                       <p class="memory_disable"> 이상행동 </p>
                       <span class="material-symbols-outlined" 
-                      data-tooltip="[이상행동] &#10;“누군가 자기 자신의 물건을 훔쳐갔다.”,“남이 나를 해치려 한다.” 등의 &#10;망상을 보이는 경우가 있습니다.때리거나 고함을 지르거나 욕설을 하는 등의 &#10;공격적인 행동을 보이기도 합니다. 집안을 왔다 갔다 하면서 &#10;옷을 입었다 벗었다 하는 반복적인 행동을 보이는 경우도 있습니다.">help</span>
+                      data-tooltip="[이상행동] &#10;“누군가 자기 자신의 물건을 훔쳐갔다.”,“남이 나를&#10;해치려 한다.” 등의 망상을 보이는 경우가 있습니다.&#10;때리거나 고함을 지르거나 욕설을 하는 등의 &#10;공격적인 행동을 보이기도 합니다. 집안을 왔다 갔다&#10;하면서 옷을 입었다 벗었다 하는 반복적인 행동을&#10;보이는 경우도 있습니다.">help</span>
                       <!-- <p><input type="time" name="symptom_time" class="symptom-time"></p>                      -->
+                    </div>
+                    <div class="severity-label">
+                      <p class="how-symptom no-symptom">증상 없음</p>
+                      <p class="how-symptom ">미약</p>
+                      <p class="how-symptom ">보통</p>
+                      <p class="how-symptom ">심함</p>
+                      <p class="how-symptom severe-symptom">아주 심함</p>
                     </div>
                     <div class="box-body"> 
                       <% if (typeof calendarDataResult !== 'undefined' && calendarDataResult && typeof calendarDataResult.symptom_list !== 'undefined' && calendarDataResult.symptom_list && calendarDataResult.symptom_list.length !== 0) { %>

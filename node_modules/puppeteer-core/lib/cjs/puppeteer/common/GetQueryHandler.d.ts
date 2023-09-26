@@ -13,11 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { ARIAQueryHandler } from './AriaQueryHandler.js';
+import { ARIAQueryHandler } from '../cdp/AriaQueryHandler.js';
 import { PierceQueryHandler } from './PierceQueryHandler.js';
 import type { QueryHandler } from './QueryHandler.js';
 import { TextQueryHandler } from './TextQueryHandler.js';
 import { XPathQueryHandler } from './XPathQueryHandler.js';
+/**
+ * @internal
+ */
 export declare const BUILTIN_QUERY_HANDLERS: Readonly<{
     aria: typeof ARIAQueryHandler;
     pierce: typeof PierceQueryHandler;
