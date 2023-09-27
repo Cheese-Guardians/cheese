@@ -66,19 +66,39 @@ exports.postSummary = async function (req, res) {
     }
 
     // 그래프 함수 호출
+    var standardDate = new Date(date1);
+ 
+    var date28DaysAfter = new Date(date1);
+
+
+    date28DaysAfter.setDate(standardDate.getDate() +28); // 28일 전 날짜 계산
+  
 
       const entireSymptomResponse = await exportService.retrieveEntireSymptom(date1, new Date(date1+7), user_id)
-      console.log(entireSymptomResponse)
+      const eachSymptomResponse= await exportService.retrieveSelectedSymptom(user_id, standardDate, date28DaysAfter)
+      console.log("ddddddddddddddddddddddddddd",date1, new Date(date1+28))
       const csvData = entireSymptomResponse[0].map(result => `${result.symptom_name},${result.total_degree},${result.start_date}`).join('\n');
-      
-      console.log(csvData);
-      const column = ['symptom_name', 'total_degree', 'start_date'];
-      const content = `${column.join(',')}\n${csvData}`; // 헤더와 데이터를 합친 내용
+      const csvEachData=eachSymptomResponse[0].map(result=>`${result.symptom_name},${result.degree},${result.date}`).join('\n');
+      console.log("fffffffffffffffffff",eachSymptomResponse);
+      console.log("ff2",entireSymptomResponse)
     
+
+
+      const column = ['symptom_name', 'degree', 'date'];
+      const content = `${column.join(',')}\n${csvData}`; // 헤더와 데이터를 합친 내용
+      const contentEach = `${column.join(',')}\n${csvEachData}`; // 헤더와 데이터를 합친 내용
+   
       fs.writeFileSync(`csv/entireSymptom.csv`, content, 'utf-8');
+      fs.writeFileSync(`csv/eachSymptom.csv`, contentEach, 'utf-8');
       console.log('Data saved to symptom.csv');
       const spawn = require('child_process').spawn;
     
+    //  console.log("hhhhhhhhhhhhhhhhhhhhhhhhh",groupedData)
+
+  
+
+
+
       const result = spawn('python', ['public/statistic.py']);
     
       // Python 프로세스가 종료될 때까지 기다립니다.
