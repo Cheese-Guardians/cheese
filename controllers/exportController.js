@@ -66,17 +66,34 @@ exports.postSummary = async function (req, res) {
     }
 
     // 그래프 함수 호출
-
-      const entireSymptomResponse = await exportService.retrieveEntireSymptom(date1, new Date(date1+7), user_id)
-      console.log(entireSymptomResponse)
-      const csvData = entireSymptomResponse[0].map(result => `${result.symptom_name},${result.total_degree},${result.start_date}`).join('\n');
+      var standardDate = new Date(date1);
+      var date7DaysLater = new Date(date1);
+      var date28DaysBefore = new Date(date1);
+      var date21DaysBefore = new Date(date1);
       
-      console.log(csvData);
-      const column = ['symptom_name', 'total_degree', 'start_date'];
-      const content = `${column.join(',')}\n${csvData}`; // 헤더와 데이터를 합친 내용
+      date7DaysLater.setDate(standardDate.getDate() + 7); // 7일 후 날짜 계산
+      date28DaysBefore.setDate(standardDate.getDate() - 28); // 28일 전 날짜 계산
+      date21DaysBefore.setDate(standardDate.getDate() - 21);
+      const entireSymptomResponse = await exportService.retrieveEntireSymptom(standardDate, date7DaysLater, user_id)
+      const entireCsvData = entireSymptomResponse[0].map(result => `${result.symptom_name},${result.total_degree},${result.start_date}`).join('\n');
     
-      fs.writeFileSync(`csv/entireSymptom.csv`, content, 'utf-8');
+      const entireColumn = ['symptom_name', 'total_degree', 'start_date'];
+      const entireContent = `${entireColumn.join(',')}\n${entireCsvData}`; // 헤더와 데이터를 합친 내용
+    
+      fs.writeFileSync(`csv/entireSymptom.csv`, entireContent, 'utf-8');
+
+      console.log("date",date28DaysBefore, date21DaysBefore)
+      const lastEntireSymptomResponse = await exportService.retrieveEntireSymptom(date28DaysBefore, date21DaysBefore, user_id)
+      const lastEntireCsvData = lastEntireSymptomResponse[0].map(result => `${result.symptom_name},${result.total_degree},${result.start_date}`).join('\n');
+
+      const lastEntireColumn = ['symptom_name', 'total_degree', 'start_date'];
+      const lastEntireContent = `${lastEntireColumn.join(',')}\n${lastEntireCsvData}`; // 헤더와 데이터를 합친 내용
+      console.log('lastEntireSymptomResponse:', lastEntireSymptomResponse);
+
+      fs.writeFileSync(`csv/lastEntireSymptom.csv`, lastEntireContent, 'utf-8');
+
       console.log('Data saved to symptom.csv');
+
       const spawn = require('child_process').spawn;
     
       const result = spawn('python', ['public/statistic.py']);
@@ -111,7 +128,7 @@ exports.postSummary = async function (req, res) {
     var startDate = new Date(date1);
 
     var endDate = new Date(startDate);
-    endDate.setDate(startDate.getDate() + 28);
+    endDate.setDate(startDate.getDate() + 27);
 
     function formatDate(date) {
       var year = date.getFullYear();

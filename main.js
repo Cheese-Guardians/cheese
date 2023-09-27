@@ -21,7 +21,7 @@ require('dotenv').config({path: "./config/sens.env"}); // sens.env 불러오기
 require('dotenv').config({path: "./config/gpt.env"}); // gpt.env 불러오기
 
 // 기본 설정
-const port = 3000,
+const port = 3001,
     express = require("express"),
     cors = require("cors")
     app = express(),
