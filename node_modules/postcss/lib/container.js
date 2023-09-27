@@ -64,6 +64,11 @@ class Container extends Node {
     return this.nodes.every(condition)
   }
 
+  get first() {
+    if (!this.proxyOf.nodes) return undefined
+    return this.proxyOf.nodes[0]
+  }
+
   getIterator() {
     if (!this.lastEach) this.lastEach = 0
     if (!this.indexes) this.indexes = {}
@@ -168,6 +173,11 @@ class Container extends Node {
     this.markDirty()
 
     return this
+  }
+
+  get last() {
+    if (!this.proxyOf.nodes) return undefined
+    return this.proxyOf.nodes[this.proxyOf.nodes.length - 1]
   }
 
   normalize(nodes, sample) {
@@ -382,16 +392,6 @@ class Container extends Node {
         return callback(child, i)
       }
     })
-  }
-
-  get first() {
-    if (!this.proxyOf.nodes) return undefined
-    return this.proxyOf.nodes[0]
-  }
-
-  get last() {
-    if (!this.proxyOf.nodes) return undefined
-    return this.proxyOf.nodes[this.proxyOf.nodes.length - 1]
   }
 }
 

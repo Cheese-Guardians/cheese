@@ -17,10 +17,6 @@ class MapGenerator {
     this.opts = opts
     this.css = cssString
     this.usesFileUrls = !this.mapOpts.from && this.mapOpts.absolute
-
-    this.memoizedFileURLs = new Map()
-    this.memoizedPaths = new Map()
-    this.memoizedURLs = new Map()
   }
 
   addAnnotation() {
@@ -245,11 +241,9 @@ class MapGenerator {
   }
 
   path(file) {
-    if (this.mapOpts.absolute) return file
-    if (file.charCodeAt(0) === 60 /* `<` */) return file
+    if (file.indexOf('<') === 0) return file
     if (/^\w+:\/\//.test(file)) return file
-    let cached = this.memoizedPaths.get(file)
-    if (cached) return cached
+    if (this.mapOpts.absolute) return file
 
     let from = this.opts.to ? dirname(this.opts.to) : '.'
 
@@ -257,10 +251,8 @@ class MapGenerator {
       from = dirname(resolve(from, this.mapOpts.annotation))
     }
 
-    let path = relative(from, file)
-    this.memoizedPaths.set(file, path)
-
-    return path
+    file = relative(from, file)
+    return file
   }
 
   previous() {
@@ -326,14 +318,8 @@ class MapGenerator {
   }
 
   toFileUrl(path) {
-    let cached = this.memoizedFileURLs.get(path)
-    if (cached) return cached
-
     if (pathToFileURL) {
-      let fileURL = pathToFileURL(path).toString()
-      this.memoizedFileURLs.set(path, fileURL)
-
-      return fileURL
+      return pathToFileURL(path).toString()
     } else {
       throw new Error(
         '`map.absolute` option is not available in this PostCSS build'
@@ -342,17 +328,10 @@ class MapGenerator {
   }
 
   toUrl(path) {
-    let cached = this.memoizedURLs.get(path)
-    if (cached) return cached
-
     if (sep === '\\') {
       path = path.replace(/\\/g, '/')
     }
-
-    let url = encodeURI(path).replace(/[#?]/g, encodeURIComponent)
-    this.memoizedURLs.set(path, url)
-
-    return url
+    return encodeURI(path).replace(/[#?]/g, encodeURIComponent)
   }
 }
 

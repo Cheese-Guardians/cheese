@@ -2,14 +2,11 @@
 /*--------------------------------------------------------------
 # Header
 --------------------------------------------------------------*/
-#header {
-    background: #FBFFED;
-      /* background: white; */
+#header {background: #FBFFED;
     transition: all 0.5s;
     z-index: 997;
     padding: 20px 0;
     height: 80px;
-    border-bottom: solid 1px #d9dce2;
   }
   
   #header.header-scrolled {
@@ -299,7 +296,7 @@
   # Sections General
   --------------------------------------------------------------*/
   section {
-    /* padding: 60px 0; */
+    padding: 60px 0;
     overflow: hidden;
   }
   

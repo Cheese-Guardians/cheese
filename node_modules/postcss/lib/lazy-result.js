@@ -166,6 +166,14 @@ class LazyResult {
     return this.async().catch(onRejected)
   }
 
+  get content() {
+    return this.stringify().content
+  }
+
+  get css() {
+    return this.stringify().css
+  }
+
   finally(onFinally) {
     return this.async().then(onFinally, onFinally)
   }
@@ -213,6 +221,18 @@ class LazyResult {
     return error
   }
 
+  get map() {
+    return this.stringify().map
+  }
+
+  get messages() {
+    return this.sync().messages
+  }
+
+  get opts() {
+    return this.result.opts
+  }
+
   prepareVisitors() {
     this.listeners = {}
     let add = (plugin, type, cb) => {
@@ -249,6 +269,14 @@ class LazyResult {
       }
     }
     this.hasListener = Object.keys(this.listeners).length > 0
+  }
+
+  get processor() {
+    return this.result.processor
+  }
+
+  get root() {
+    return this.sync().root
   }
 
   async runAsync() {
@@ -352,6 +380,10 @@ class LazyResult {
     this.result.map = data[1]
 
     return this.result
+  }
+
+  get [Symbol.toStringTag]() {
+    return 'LazyResult'
   }
 
   sync() {
@@ -504,38 +536,6 @@ class LazyResult {
 
   warnings() {
     return this.sync().warnings()
-  }
-
-  get content() {
-    return this.stringify().content
-  }
-
-  get css() {
-    return this.stringify().css
-  }
-
-  get map() {
-    return this.stringify().map
-  }
-
-  get messages() {
-    return this.sync().messages
-  }
-
-  get opts() {
-    return this.result.opts
-  }
-
-  get processor() {
-    return this.result.processor
-  }
-
-  get root() {
-    return this.sync().root
-  }
-
-  get [Symbol.toStringTag]() {
-    return 'LazyResult'
   }
 }
 

@@ -29,82 +29,71 @@ exports.postSummary = async function (req, res) {
       `);
     }
 
-
     const diaryBox = [];
-    for (let i = 0; i <= 3; i++) {
+    for (let i=0; i<=3;i++){
       var dateA = new Date(date1);  // 문자열을 Date 객체로 변환
-      dateA.setDate(dateA.getDate() + i * 7);  // 해당 날짜에 28일을 더함
-    
+      dateA.setDate(dateA.getDate() + i*7);  // 해당 날짜에 28일을 더함
+      
       year = dateA.getFullYear();
       month = String(dateA.getMonth() + 1).padStart(2, "0");  // 월은 0부터 시작하므로 +1을 해줌
       day = String(dateA.getDate()).padStart(2, "0");
       dateAA = `${year}-${month}-${day}`;
-    
+
       var dateB = new Date(date1);  // 문자열을 Date 객체로 변환
-      dateB.setDate(dateB.getDate() + ((i + 1) * 7 - 1));  // 해당 날짜에 28일을 더함
-    
+      dateB.setDate(dateB.getDate() +  ((i+1)*7-1));  // 해당 날짜에 28일을 
+            
       year = dateB.getFullYear();
       month = String(dateB.getMonth() + 1).padStart(2, "0");  // 월은 0부터 시작하므로 +1을 해줌
       day = String(dateB.getDate()).padStart(2, "0");
       dateBB = `${year}-${month}-${day}`;
-      console.log(dateAA, dateBB)
-    
-      // 날짜 범위별로 데이터를 담는 작업
-      const dateRangeText = `${dateAA}~${dateBB}`;
-    
-      // 그래프 함수 호출
+      console.log(dateAA,dateBB)
+      //그래프 함수 호출
       const symptomResponse = await exportService.retrieveSelectedSymptom(user_id, dateAA, dateBB);
       const csvData = symptomResponse[0].map(result => `${result.symptom_name},${result.degree},${result.date}`).join('\n');
-      console.log(csvData);
-      const column = ['symptom_name', 'degree', 'date'];
-      const content = `${column.join(',')}\n${csvData}`; // 헤더와 데이터를 합친 내용
-    
-      fs.writeFileSync(`csv/symptom_${i}.csv`, content, 'utf-8');
-      console.log('Data saved to symptom.csv');
-      const spawn = require('child_process').spawn;
-    
-      const result = spawn('python', ['public/statistic.py']);
-    
-      // Python 프로세스가 종료될 때까지 기다립니다.
-      await new Promise((resolve, reject) => {
-        result.on('exit', (code) => {
-          if (code === 0) {
-            // Python script completed successfully
-            resolve();
-          } else {
-            // Python script encountered an error
-            console.log('Python script exited with code:', code);
-            reject(new Error('Python script encountered an error.'));
-          }
+        console.log(csvData); 
+        const column = ['symptom_name', 'degree', 'date'];
+        const content = `${column.join(',')}\n${csvData}`; // 헤더와 데이터를 합친 내용
+
+        fs.writeFileSync(`csv/symptom_${i}.csv`, content, 'utf-8');
+        console.log('Data saved to symptom.csv');
+        const spawn = require('child_process').spawn;
+
+        const result = spawn('python', ['public/statistic.py']);
+        
+          // Python 프로세스가 종료될 때까지 기다립니다.
+          await new Promise((resolve, reject) => {
+            result.on('exit', (code) => {
+              if (code === 0) {
+                // Python script completed successfully
+                resolve();
+              } else {
+                // Python script encountered an error
+                console.log('Python script exited with code:', code);
+                reject(new Error('Python script encountered an error.'));
+              }
+            });
+          });
+
+        // 3. stdout의 'data'이벤트리스너로 실행결과를 받는다.
+        result.stdout.on('data', function(data) {
+          console.log(data.toString());
         });
-      });
-    
-      // 3. stdout의 'data' 이벤트 리스너로 실행 결과를 받습니다.
-      result.stdout.on('data', function (data) {
-        console.log(data.toString());
-      });
-    
-      // 4. 에러 발생 시, stderr의 'data' 이벤트 리스너로 실행 결과를 받습니다.
-      result.stderr.on('data', function (data) {
-        console.log(data.toString());
-      });
-    
+
+        // 4. 에러 발생 시, stderr의 'data'이벤트리스너로 실행결과를 받는다.
+        result.stderr.on('data', function(data) {
+          console.log(data.toString());
+        });
+
       // gpt 함수 호출
       const diaryResponse = await exportService.retrieveSelectedDiary(user_id, dateAA, dateBB);
       const diaryText = diaryResponse.calendar.diary.filter(entry => entry !== null).join(' ');
       // summary = await summarizeDiary(diaryText);
-      summary = diaryText;
-      if (i != 3) {
+      summary=diaryText;
+      if (i!=3){
         await sleep(1000);
       }
-    
-      // 날짜 범위별로 데이터를 담음
-      diaryBox.push({ dateRange: dateRangeText, summary });
+      diaryBox.push(summary);
     }
-    
-    // diaryBox 배열에는 각 날짜 범위에 해당하는 데이터가 들어 있음
-    console.log(diaryBox);
-    
 
     if (diaryBox.length > 0) {
       ejs.renderFile(path.join("./views/export/pdf.ejs"), { diaryBox }, async (err, data) => {

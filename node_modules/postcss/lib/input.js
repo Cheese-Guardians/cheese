@@ -124,6 +124,10 @@ class Input {
     return result
   }
 
+  get from() {
+    return this.file || this.id
+  }
+
   fromOffset(offset) {
     let lastLine, lineToIndex
     if (!this[fromOffsetCache]) {
@@ -233,10 +237,6 @@ class Input {
       }
     }
     return json
-  }
-
-  get from() {
-    return this.file || this.id
   }
 }
 
