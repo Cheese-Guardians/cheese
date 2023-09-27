@@ -91,9 +91,6 @@ exports.postSummary = async function (req, res) {
             // Python script encountered an error
             console.log('Python script exited with code:', code);
             reject(new Error('Python script encountered an error.'));
-            result.stderr.on('data', function (data) {
-              console.log(data.toString());
-            });
           }
         });
       });
