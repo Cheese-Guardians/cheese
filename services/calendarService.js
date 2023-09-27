@@ -17,6 +17,29 @@ exports.retrieveSelectedCalendar = async function (user_id, date) {
     }
     
 }
+exports.retrieveMindDiary = async function (userId, date) {
+  // const MindDiaryResult = await calendarModel.selectMindDiary(pool, userId, date);
+  // return MindDiaryResult;
+  try {
+    const selectedMindDiaryParams = [user_id, user_id, date];
+    const MindDiaryDataResult = await calendarModel.getSelectedMindDiary(pool, selectedMindDiaryParams);
+
+    return MindDiaryDataResult;
+} catch (err) {
+    return 'retrieveSelectedMindDiaryError..';
+}
+
+}
+exports.retrieveSelectedMindDiary = async function (user_id, date) {
+  try {
+      const selectedMindDiaryParams = [user_id, user_id, date];
+      const MindDiaryDataResult = await calendarModel.getSelectedMindDiary(pool, selectedMindDiaryParams);
+      return MindDiaryDataResult;
+  } catch (err) {
+      return 'retrieveSelectedMindDiaryError';
+  }
+  
+}
 exports.createCalendar = async function (
     user_id,
     date,
@@ -59,8 +82,9 @@ exports.createCalendar = async function (
         hospital_schedule,      
     ];
     */
+
     await calendarModel.insertCalInfo(pool, deleteCalendarParams, insertCalendarParams, getCalendarIdParams, deleteHospital_scheduleParams, user_id, check_content, is_check,  symptom_range); //insertHospital_scheduleParams 제외
-    console.log("aervice");
+    console.log("service");
     
     return '성공';
   } catch (err) {
@@ -79,4 +103,30 @@ exports.createFileMem = async function ( user_id, date, server_name, user_name, 
     } catch (err) {
         return 'createFileMemError';
     }
+}
+
+exports.createMindDiary = async function (
+  user_id,
+  date,
+  keyword,
+  matter,
+  change,
+  solution,
+  compliment) {
+    try {
+      insertMindDiaryParams = [
+        user_id,
+        date,
+        keyword,
+        matter,
+        change,
+        solution,
+        compliment
+      ];
+      // console.log(insertMindDiaryParams)
+      const mindDiaryResult = await calendarModel.insertMindDiaryInfo(pool, insertMindDiaryParams);
+      return "성공"
+    } catch (err) {
+        return err;
+    }  
 }

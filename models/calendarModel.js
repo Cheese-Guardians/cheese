@@ -43,8 +43,9 @@ async function getSelectedCalendar(pool, selectedCalendarParams) {
       SELECT calendar_id
       FROM calendar
       WHERE user_id = ? 
-      AND date = ?
-    );
+        AND date = ?
+    )
+    AND symptom_name IN ('기억장애', '언어장애', '배회', '계산능력 저하', '성격 및 감정의 변화', '이상행동');
   `;
   /*
   //병원 이름
@@ -77,10 +78,14 @@ async function getSelectedCalendar(pool, selectedCalendarParams) {
 
   //증상
   const [symptomRows] = await pool.promise().query(getSymptomQuery, selectedCalendarParams);
+
   const symptom_list = symptomRows.length > 0 ? symptomRows.map(row => ({ symptom_name: row.symptom_name, degree: row.degree})) : [];
-  
   return {check_list, calendar, symptom_list}; //hospital_schedule 제외
 }
+
+
+
+
 
 //캘린더 저장
 async function insertCalInfo(pool, deleteCalendarParams, insertCalendarParams, getCalendarIdParams, user_id, check_content, is_check,  symptom_range){
@@ -108,11 +113,11 @@ async function insertCalInfo(pool, deleteCalendarParams, insertCalendarParams, g
     const insertHospital_scheduleQuery = `
     INSERT INTO hospital_schedule (calendar_id, user_id, hospital_name, booking_time) VALUES (?, ?, ?, ?);
     `;
+    */
     //4. map 이용해 캘린더에서 checkContent 길이만큼 쿼리 생성(delete)
     const deleteCheck_listQueries = check_content.map(() => `
     DELETE FROM check_list WHERE calendar_id = ? AND user_id = ? AND check_content = ?;
     `);
-    */
 
     //5. map 이용해 캘린더에서 checkContent 길이만큼 쿼리 생성(insert)
     const insertCheck_listQueries = check_content.map(() => `
@@ -298,9 +303,60 @@ async function insertFileMem(pool, insertFileMemParams) {
   }
 }
 
+
+//mind diary 조회
+
+async function getSelectedMindDiary(pool, selectedMindDiaryParams) {
+  const getMindDiary_listQuery = `
+    SELECT keyword, matter, \`change\`, solution, compliment
+    FROM mind_diary
+    WHERE user_id = ?
+    AND mind_diary_id = (
+      SELECT mind_diary_id
+      FROM mind_diary
+      WHERE user_id = ?
+      AND \`date\` = ?
+    );
+  `;
+
+  const [mindDiaryRows] = await pool.promise().query(getMindDiary_listQuery, selectedMindDiaryParams);
+  const MindDiary_list = {
+    keyword: "",
+    matter: "",
+    change: "",
+    solution: "",
+    compliment: ""
+  };
+
+  if (mindDiaryRows.length > 0) {
+    MindDiary_list.keyword = mindDiaryRows[0].keyword;
+    MindDiary_list.matter = mindDiaryRows[0].matter;
+    MindDiary_list.change = mindDiaryRows[0].change;
+    MindDiary_list.solution = mindDiaryRows[0].solution;
+    MindDiary_list.compliment = mindDiaryRows[0].compliment;
+  }
+  return {MindDiary_list};
+}
+
+async function insertMindDiaryInfo(pool, insertMindDiaryParams) {
+  console.log(insertMindDiaryParams)
+  const insertMindDiaryQuery  = `
+        insert into mind_diary (\`user_id\`, \`date\`, \`keyword\`, \`matter\`, \`change\`, \`solution\`, \`compliment\`)
+        values (?,?,?,?,?,?,?);
+        `;
+
+  try {
+    await pool.promise().query(insertMindDiaryQuery, insertMindDiaryParams);
+  } catch (err) {
+    throw err;
+  }
+}
+
 module.exports = {
   selectCalendar,
   insertFileMem,
   getSelectedCalendar,
   insertCalInfo,
+  getSelectedMindDiary,
+  insertMindDiaryInfo
 }
