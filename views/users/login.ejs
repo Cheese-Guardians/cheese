@@ -6,7 +6,7 @@
   <!-- ======= Hero Section ======= -->
   <section id="hero" class="d-flex align-items-center">
 
-    <div  class="container">
+    <div  class="container1">
       <div class="row">
        
         <div class="margin 0 auto">
@@ -17,7 +17,7 @@
               <div id="logintext">Login</div>
                     <div class="form-group">
                         <div class="logininfo">
-                            아이디를 입력해주세요
+                            아이디
                         </div>
                         <input type="text" class="form-control form-control-user"
                             id="username" name="user_id" aria-describedby="emailHelp"
@@ -25,19 +25,21 @@
                     </div>
                     <div class="form-group">
                         <div class="logininfo">
-                            비밀번호를 입력해주세요
+                            비밀번호
                         </div>
                         <input type="password" class="form-control form-control-user"
                             id="password" name="password" placeholder="Password">
-                    </div>
-                   
+                    
+                  </br>
                     <div class="submit_btn">
-                      <input type="submit" value="login" id="loginsubmit" class="btn btn-success btn-user btn-block">
+                      <input type="submit" value="로그인" id="loginsubmit" class="btn btn-success btn-user btn-block">
                     </div>
                     <div class="submit_btn">
-                      <a class="btn btn-success btn-user btn-block" href="/users/signup">회원가입</a>
+                      <!-- <a id = "signup" class="btn btn-success btn-user btn-block" href="/users/signup">회원가입</a> -->
+                      <a id = "signup" href="/users/signup">회원가입</a>
                       <!-- <input type="submit" value="login" id="loginsubmit" class="btn btn-success btn-user btn-block"> -->
                     </div>
+                  </div>
            
         </form>
         <% if (typeof(loginState) !== 'undefined' && loginState !== null && loginState == '성공') { %>

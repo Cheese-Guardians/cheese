@@ -7,7 +7,7 @@
 <!-- MAIN SECTION -->
 <section id="hero" class="d-flex align-items-center">
   <main id="about">
-    <div class="col-lg-5 pt-lg-0 order-2 order-lg-1  justify-content-center">
+    <div class="col-lg-5 pt-lg-0 order-2 order-lg-1 justify-content-center">
       <div class="wrapper">
         <div id="slider">
           <div class="material-icons arrow--left">
@@ -76,21 +76,112 @@
           </div>
         </div>
       </div>
-    </div>
-
-    <div class="col-lg-6 pt-lg-0 order-2 order-lg-1">
-      <div class="ininin">
-        </form>
+      
+      <div class="wrapper ininin">
         <form action="/calendar/upload" method="POST" enctype="multipart/form-data" id="fileForm">
           <input id="inputbox" style="padding: 23px 25px; display: flex; justify-content: center;" type="file" name="file">
           <input id="fileDate" type="hidden" name="fileDate" value="">
           <button id="inputbutton" type="submit" style="margin:auto; width: 70pt; height: 30pt; font-size: 12px; background-color: #b3cc62; margin-bottom: 10px;">업로드</button>
-        </form>
-        
+        </form>        
       </div>
-      
     </div>
+
+      <div class="mindInputArea col-lg-6 pt-lg-0 order-2 order-lg-1" >
+      <div id = "userDiaryBox">
+        
+        <form id="diaryForm" action="/calendar/minddiary" method="POST">
+          <script>
+            // 현재 URL에서 쿼리 문자열 가져오기
+            const diaryQueryString = window.location.search;
+            console.log(diaryQueryString);
+            // form의 action URL에 쿼리 문자열 추가
+            const diaryForm = document.getElementById('diaryForm');
+            diaryForm.action += diaryQueryString;
+          </script>
+          <table id = "userDiaryForm">
+            <% if (typeof MindDiaryDataResult !== 'undefined' && MindDiaryDataResult && typeof MindDiaryDataResult.MindDiary_list !== 'undefined' && MindDiaryDataResult.MindDiary_list ) { %>
+            <tr>
+              <td> 오늘의 핵심 키워드는 무엇인가요? </td>
+            </tr>
+            <td><textarea  name="keyword" rows="4" cols="50"><%= MindDiaryDataResult.MindDiary_list.keyword %></textarea></td>
+            <tr>
+              <td> 오늘은 무슨 일이 일어났나요? </td>
+            </tr>
+            <td><textarea  name="matter" rows="4" cols="50"><%= MindDiaryDataResult.MindDiary_list.matter %></textarea></td>
+            <tr>
+              <td> 그 일로 몸과 마음에 어떤 변화가 있었나요? </td>
+
+            </tr>
+            <td><textarea name="change" rows="4" cols="50"><%= MindDiaryDataResult.MindDiary_list.change %></textarea></td>
+            <tr>
+
+              <td> 어려운 일이 있었다면, 어떻게 해결했나요? </td>
+              
+            </tr>
+            <td><textarea name="solution" rows="4" cols="50"><%= MindDiaryDataResult.MindDiary_list.solution %></textarea></td>
+            <tr>
+              <td> 오늘도 수고한 나 자신을 위해 칭찬 한 마디! </td>
+            </tr>
+            <td><textarea name="compliment" rows="4" cols="50"><%= MindDiaryDataResult.MindDiary_list.compliment %></textarea></td>
+          </table>
+          <div class="submitt_btn">
+            <!-- <input type="submit" value="저장" id="mind_diary_submit"> -->
+            <button class="mindBtn" type="submit">저장</button>
+          </div>
+        </form>
+    </div>
+    </div>
+ 
+
+      <% } else { %>
+        <table id = "userDiaryForm">
+          <tr>
+            <td> 오늘의 핵심 키워드는 무엇인가요? </td>
+          </tr>
+          <td><textarea  name="keyword"></textarea></td>
+          <tr>
+            <td> 오늘은 무슨 일이 일어났나요? </td>
+          </tr>
+          <td><textarea  name="matter"></textarea></td>
+          <tr>
+            <td> 그 일로 몸과 마음에 어떤 변화가 있었나요? </td>
+          </tr>
+          <td><textarea  name="change"></textarea></td>
+          <tr>
+  
+            <td> 어려운 일이 있었다면, 어떻게 해결했나요? </td>
+            
+          </tr>
+          <td><textarea  name="solution"></textarea></td>
+          <tr>
+            <td> 오늘도 수고한 나 자신을 위해 칭찬 한 마디! </td>
+          </tr>
+          <td><textarea  name="compliment"></textarea></td>
+        </table>
+        <div class="submitt_btn">
+          <!-- <input type="submit" value="저장" id="mind_diary_submit"> -->
+          <button class="mindBtn" type="submit">저장</button>
+        </div>
+      <% } %>
+      </div>
+
+  </div>
     
     
   </main>
+  <script>
+      // DOM 요소 가져오기
+  const otherMLinks = document.getElementsByClassName("nav-linkM");
+  const calendarMLinks = document.getElementsByClassName("calendaractiveM");
+
+  // 커뮤니티 링크에 active 클래스 추가, 다른 링크에서 active 클래스 제거
+  for (const link of otherMLinks) {
+    link.classList.remove("activeM");
+  }
+
+  for (const link of calendarMLinks) {
+    link.classList.add("activeM");
+  }
+          
+  </script>
 </section>

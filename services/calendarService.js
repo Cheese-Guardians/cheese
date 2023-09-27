@@ -17,15 +17,36 @@ exports.retrieveSelectedCalendar = async function (user_id, date) {
     }
     
 }
+exports.retrieveMindDiary = async function (userId, date) {
+  // const MindDiaryResult = await calendarModel.selectMindDiary(pool, userId, date);
+  // return MindDiaryResult;
+  try {
+    const selectedMindDiaryParams = [user_id, user_id, date];
+    const MindDiaryDataResult = await calendarModel.getSelectedMindDiary(pool, selectedMindDiaryParams);
+
+    return MindDiaryDataResult;
+} catch (err) {
+    return 'retrieveSelectedMindDiaryError..';
+}
+
+}
+exports.retrieveSelectedMindDiary = async function (user_id, date) {
+  try {
+      const selectedMindDiaryParams = [user_id, user_id, date];
+      const MindDiaryDataResult = await calendarModel.getSelectedMindDiary(pool, selectedMindDiaryParams);
+      return MindDiaryDataResult;
+  } catch (err) {
+      return 'retrieveSelectedMindDiaryError';
+  }
+  
+}
 exports.createCalendar = async function (
     user_id,
     date,
-    hospital_name,
-    hospital_schedule,
+    //hospital_name,
+    //hospital_schedule,
     check_content,
     sleep_time,
-    symptom_text,
-    symptom_time,
     symptom_range,
     diary_text,
     is_check
@@ -54,15 +75,14 @@ exports.createCalendar = async function (
     const deleteHospital_scheduleParams = [
         user_id
       ];
+    /*
     const insertHospital_scheduleParams = [
         user_id,
         hospital_name,
-        hospital_schedule,
-      
+        hospital_schedule,      
     ];
-    console.log(Array.isArray(check_content));
-    console.log(Array.isArray(is_check));
-    await calendarModel.insertCalInfo(pool, deleteCalendarParams, insertCalendarParams, getCalendarIdParams, deleteHospital_scheduleParams, insertHospital_scheduleParams, user_id, check_content, is_check, symptom_text, symptom_time, symptom_range);
+    */
+    await calendarModel.insertCalInfo(pool, deleteCalendarParams, insertCalendarParams, getCalendarIdParams, user_id, check_content, is_check,  symptom_range); //insertHospital_scheduleParams 제외
     console.log("aervice");
     
     return '성공';
@@ -82,4 +102,30 @@ exports.createFileMem = async function ( user_id, date, server_name, user_name, 
     } catch (err) {
         return 'createFileMemError';
     }
+}
+
+exports.createMindDiary = async function (
+  user_id,
+  date,
+  keyword,
+  matter,
+  change,
+  solution,
+  compliment) {
+    try {
+      insertMindDiaryParams = [
+        user_id,
+        date,
+        keyword,
+        matter,
+        change,
+        solution,
+        compliment
+      ];
+      // console.log(insertMindDiaryParams)
+      const mindDiaryResult = await calendarModel.insertMindDiaryInfo(pool, insertMindDiaryParams);
+      return "성공"
+    } catch (err) {
+        return err;
+    }  
 }

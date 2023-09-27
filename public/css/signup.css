@@ -1,0 +1,272 @@
+  /*--------------------------------------------------------------
+  # Hero Section
+  --------------------------------------------------------------*/
+  #hero {
+    width: 100%;
+    background: #fff;
+    padding-top: 82px;
+  }
+  
+  #logincontainer {
+   margin: 50%;
+  }
+  #logintext{
+    color:#B3CC62;
+    font-size: 40px; font-family: 'Noto Sans';
+    font-style: normal;
+    font-weight: 600;
+    line-height: 27px;
+    margin: 0 auto;
+    margin-bottom:40px;
+  }
+  #loginsubmit{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  margin-top:-10px;
+  }
+  #hero h1 {
+    margin: 0;
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 56px;
+    color: #3e4450;
+  }
+  
+  #hero h2 {
+    color: #858ea1;
+    margin: 10px 0 30px 0;
+    font-size: 24px;
+  }
+  #logologin{
+    width: 450px;
+    height:550px;
+  }
+  #hero .btn-get-started {
+    font-family: "Raleway", sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    letter-spacing: 1px;
+    display: inline-block;
+    padding: 8px 30px 10px 30px;
+    border-radius: 4px;
+    transition: 0.5s;
+    color: #fff;
+    background: #16df7e;
+    box-shadow: 0 8px 28px rgba(22, 223, 126, 0.45);
+  }
+  
+  #hero .btn-get-started:hover {
+    background: #206bfb;
+    box-shadow: 0 8px 28px rgba(32, 107, 251, 0.45);
+  }
+  
+  #hero .btn-watch-video {
+    font-size: 16px;
+    display: inline-block;
+    transition: 0.5s;
+    margin-left: 25px;
+    color: #5f687b;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  #hero .btn-watch-video i {
+    color: #949cac;
+    font-size: 32px;
+    line-height: 0;
+    margin-right: 8px;
+  }
+  
+  #hero .btn-watch-video:hover i {
+    color: #16df7e;
+  }
+  
+  #hero .animated {
+    animation: up-down 2s ease-in-out infinite alternate-reverse both;
+  }
+  
+  @media (max-width: 991px) {
+    #hero {
+      height: 100vh;
+    }
+  
+    #hero .animated {
+      animation: none;
+    }
+  
+    #hero .hero-img {
+      text-align: center;
+    }
+  
+    #hero .hero-img img {
+      width: 50%;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    #hero {
+      height: auto;
+    }
+  
+    #hero h1 {
+      font-size: 28px;
+      line-height: 36px;
+    }
+  
+    #hero h2 {
+      font-size: 18px;
+      line-height: 24px;
+      margin-bottom: 30px;
+    }
+  
+    #hero .hero-img img {
+      width: 70%;
+    }
+  }
+  
+  @media (max-width: 575px) {
+    #hero .hero-img img {
+      width: 80%;
+    }
+  }
+  
+  @keyframes up-down {
+    0% {
+      transform: translateY(10px);
+    }
+  
+    100% {
+      transform: translateY(-10px);
+    }
+  }
+  .user{
+    margin: 15%;
+    padding-top: 5%;
+    
+  }
+.user1 {
+  margin: 30%;
+}
+  .submit_btn{
+    /* float:right; */
+    margin-top: 200px;
+    position: relative;
+    /* left: 85%; */
+   margin: 0 auto;
+   width: 50%;
+  }
+  
+ .navbar{
+    visibility: hidden;
+  }
+  .info_service {
+    width: 800px;
+    height:200px;
+    margin-left: 5%;
+    margin-top:5px;
+    font-size: 16px;
+  }
+  .join-agreement {
+    margin-left: 5%;
+    font-size: 16px;
+  }
+
+  /* 작은 화면 (모바일) */
+@media (max-width: 767px) {
+  #hero {
+    height: 100%;
+  }
+  .info_service {
+    width: 110%;
+    height:200px;
+    margin-left: -5%;
+    margin-top:5px;
+    font-size: 16px;
+  }
+  .join-agreement {
+    margin-left: 5%;
+    font-size: 16px;
+  }
+  #logintext{
+    margin-top: 10px;
+  }
+
+  #loginsubmit {
+    margin-top: 20%;
+    position: relative;
+    right: 0;
+    font-size: 13px;
+  }
+
+  #signup {
+    margin-top: 10%;
+    font-size: 13px;
+  }
+
+  #side__menu {
+    display: none;
+  }
+  .material-symbols-outlined{
+    display: none;
+  }
+}
+
+/* 중간 화면 (타블렛) */
+@media (min-width: 768px) and (max-width: 991px) {
+  #hero {
+    height: 100%;
+    padding-top: 0;
+  }
+  .info_service {
+    width: 110%;
+    height:200px;
+    margin-left: -5%;
+    margin-top:5px;
+    font-size: 16px;
+  }
+  .join-agreement {
+    margin-left: 5%;
+    font-size: 16px;
+  }
+  #logintext{
+    margin-top: 50px;
+  }
+
+  #loginsubmit {
+    margin-top: 20%;
+    position: relative;
+    font-size: 14px;
+  }
+
+  #signup {
+    margin-top: 10%;
+    font-size: 14px;
+  }
+
+  #side__menu {
+    display: none;
+  }
+  .material-symbols-outlined{
+    display: none;
+  }
+}
+  
+/* 큰 화면 (데스크톱) */
+@media (min-width: 992px) {
+  #hero {
+    height: 100%;
+  }
+
+  #logintext{
+    margin-top: -150px;
+  }
+
+  #side__menu {
+    display: none;
+  }
+  .material-symbols-outlined{
+    display: none;
+  }
+}

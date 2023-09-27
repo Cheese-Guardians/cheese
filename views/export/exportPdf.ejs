@@ -2,22 +2,22 @@
   <link href="/css/diagnosis.css" rel="stylesheet">
   <!-- <link href="/css/calendar/calendar_memory.css" rel="stylesheet"> -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> 
 </head>
 
 <div class="diagnosis_wrapper">
   <div class="diagnosis_container">
     <div class="title">
       <p>이용자 간호 다이어리 정보 내보내기</p>
+      <p style="color: red; font-size: 14px;">다운로드에 2분 정도가 소요될 수 있습니다. 다운로드가 완료될 때까지 기다려주세요.</p>
     </div>
 
     <div class="content-container">
       <div class="left">
         <div class="reminder_container">
-          <div class="titleDiagnosis doctorChoose">
+          <div class="titleDiagnosis dateChoose">
             기준 선택
-            <div class="subtitleDiagnosis doctorChoose">날짜로부터 28일 간의 기록이 요약됩니다</div>
+            <div class="subtitleDiagnosis dateChoose">날짜로부터 28일 간의 기록이 요약됩니다</div>
           </div>
           <div class="choose">
             <form id="pdf-date-form" action="/export" method="POST">
@@ -38,7 +38,7 @@
         </div>
       </div>
 
-      <div class="center">
+      <!-- <div class="center">
         <div class="boxtitle">일기 요약</div>
         <div class="box">
           <div class="boxText"> PDF로 추출하기 후에 조회 가능합니다 </div>
@@ -49,9 +49,36 @@
         <div class="boxtitle">통계 자료</div>
         <div class="box">
           <div class="boxText"> PDF로 추출하기 후에 조회 가능합니다 </div>
-        </div>
+        </div> -->
         <!-- <div class="button-container"><button class="PDFpageBtn">PDF로 추출하기</button></div> -->
       </div>
     </div>
   </div>
 </div>
+
+<script>
+  // DOM 요소 가져오기
+  const otherLinks = document.getElementsByClassName("nav-link");
+  const communityLinks = document.getElementsByClassName("exportactive");
+
+  // 커뮤니티 링크에 active 클래스 추가, 다른 링크에서 active 클래스 제거
+  for (const link of otherLinks) {
+    link.classList.remove("active");
+  }
+
+  for (const link of communityLinks) {
+    link.classList.add("active");
+  }
+  // DOM 요소 가져오기
+  const otherMLinks = document.getElementsByClassName("nav-linkM");
+  const exportactiveMLinks = document.getElementsByClassName("exportactiveM");
+
+  // 커뮤니티 링크에 active 클래스 추가, 다른 링크에서 active 클래스 제거
+  for (const link of otherMLinks) {
+    link.classList.remove("activeM");
+  }
+
+  for (const link of exportactiveMLinks) {
+    link.classList.add("activeM");
+  }
+</script>

@@ -1,45 +1,29 @@
-.reminder_wrapper {
-    
-    height: 90vh;
-   
-}
-
 .reminder_container {
-    width: 700px;
-    height: 550px;
     background-color: white;
     border-color: #E0E0E0;
     border-style: solid;
     border-width: 2px;
     border-radius: 3%;
-    font-size: 15px;
     margin: 0 auto;
     top: 20%;
     position: relative;
     padding-top: 20px;
     text-align: center;
 }
+
 #medicationInputs {
     position: relative;
     margin: 0 auto;
 }
+
 .medicine_reminder {
-    font-size: 20px;
-  width: 80%;
-  margin: 0 auto;
-  position: relative;
-  top: 20%;
-  width: 50%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
 }
 
-input {
-    margin-left: 10%;
-}
 button {
     box-sizing: border-box;
     width: 50px;
@@ -60,7 +44,7 @@ input {
     right:30px;
     margin-right:0px;
 } 
- .medi_submitBtn {
+.medi_submitBtn {
     left: 90%;
     position: absolute;
     top: 95%;
@@ -77,3 +61,104 @@ input {
     background-color: rgba(255, 255, 255, 0.5);
     margin-top: 80%;
 }
+
+/* 작은 화면 (모바일) */
+@media (max-width: 767px) {
+    .reminder_wrapper {
+        height: 95vh;
+    }
+
+    .reminder_container {
+        width: 90%;
+        height: 550px;
+        padding-top: 0px;
+        text-align: center;
+    }
+
+    .medicine_reminder {
+        font-size: 20px;
+        width: 60%;
+        margin: 0 auto;
+        top: 10%;
+    }
+
+    input {
+        margin-left: -5%;
+    }
+
+    #medi_submitBtn {
+        font-size: 15px;
+    }
+
+    #clear_submitBtn {
+        font-size: 15px;
+    }
+
+    #medicationInputs {
+        font-size: 18px;
+    }
+}
+
+/* 중간 화면 (타블렛) */
+@media (min-width: 768px) and (max-width: 991px) {
+    .reminder_wrapper {
+        height: 90vh;
+    }
+
+    .reminder_container {
+        width: 700px;
+        height: 550px;
+        font-size: 15px;
+        margin: 0 auto;
+        top: 20%;
+        position: relative;
+        padding-top: 20px;
+        text-align: center;
+    }
+
+    .medicine_reminder {
+        font-size: 20px;
+        width: 50%;
+        margin: 0 auto;
+        top: 20%;   
+    }
+
+    input {
+        margin-left: 10%;
+    }
+}
+  
+/* 큰 화면 (데스크톱) */
+@media (min-width: 992px) {
+    .reminder_wrapper {
+        height: 90vh;
+    }
+
+    .reminder_container {
+        width: 700px;
+        height: 550px;
+        font-size: 15px;
+        margin: 0 auto;
+        top: 20%;
+        position: relative;
+        padding-top: 20px;
+        text-align: center;
+    }
+
+    .medicine_reminder {
+        font-size: 20px;
+        width: 50%;
+        margin: 0 auto;
+        top: 20%;   
+    }
+
+    input {
+        margin-left: 10%;
+    }
+    
+}
+
+#side__menu ul.menu li .logoutM {
+    width:100px;
+    margin-left:0px;
+  }

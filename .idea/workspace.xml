@@ -4,12 +4,7 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="472d2bc9-327e-44f9-8702-6725505952a3" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/calendarController.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/calendarController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/calendar.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/calendar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/calendar.js" beforeDir="false" afterPath="$PROJECT_DIR$/services/calendar.js" afterDir="false" />
-    </list>
+    <list default="true" id="472d2bc9-327e-44f9-8702-6725505952a3" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

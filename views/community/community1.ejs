@@ -1,0 +1,353 @@
+<head>
+  <link href="/css/community/community1.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<script>
+  // DOM 요소 가져오기
+  const otherLinks = document.getElementsByClassName("nav-link");
+  const communityLinks = document.getElementsByClassName("communityactive");
+
+  // 커뮤니티 링크에 active 클래스 추가, 다른 링크에서 active 클래스 제거
+  for (const link of otherLinks) {
+    link.classList.remove("active");
+  }
+
+  for (const link of communityLinks) {
+    link.classList.add("active");
+  }
+    // DOM 요소 가져오기
+    const otherMLinks = document.getElementsByClassName("nav-linkM");
+  const communityMLinks = document.getElementsByClassName("communityactiveM");
+
+  // 커뮤니티 링크에 active 클래스 추가, 다른 링크에서 active 클래스 제거
+  for (const link of otherMLinks) {
+    link.classList.remove("activeM");
+  }
+
+  for (const link of communityMLinks) {
+    link.classList.add("activeM");
+  }
+</script>
+
+<!-- MAIN SECTION -->
+<div class="community_wrapper">  
+
+  <a class="select1" href="/community/worryList">
+    <button class="button1" type="button" value="1">
+      <label>
+        <span>고민상담소</span>
+      </label>
+    </button>
+  </a>
+  
+  <a class="select2" href="/community/infoList">
+    <button class="button2" type="button" value="2">
+      <label>
+        <span>정보 공유</span>
+      </label>
+    </button>
+  </a>
+  
+  <div class="community_container">
+    <div class="top">
+      <a href="/community/write">
+        <button class="write" type="button" value="1">   
+          <label>
+            <span>글 작성</span>
+          </label> 
+        </button>
+      </a>
+      <div class="categoryTitle"> 게시글 </div>
+      <div class="board_wrap">
+        <div class="board_list_wrap">
+          <div class="board_list">
+            <!-- <div class="top">
+              <div class="num">번호</div>
+              <div class="title">제목</div>
+              <div class="date">작성일</div>
+              <div class="time">작성시간</div>
+              <div class="count">조회</div>
+            </div> -->
+            <% if (typeof communityDataResult !== 'undefined' && communityDataResult) { %>
+              <% for (let i = 0; i < communityDataResult.length; i++) { %>
+                <div>
+                  <div class="title"><a href="/community/write/<%= communityDataResult[i].board_id %>"><%= communityDataResult[i].title %> </a></div>
+                  <div class="date"><%= communityDataResult[i].updated_date  %></div>
+                  <div class="time"><%= communityDataResult[i].updated_time  %></div>
+                  <div class="count"> <%= communityDataResult[i].views %> </div>
+                </div>
+              <% } %>
+            <% } %>
+            
+          </div>
+          
+          <div class="board_page">
+            <a href="#" class="bt first"><<</a>
+            <a href="#" class="bt prev"><</a>
+            <!-- 페이지 버튼 -->
+            <a href="#" class="num" data-page="1">1</a>
+            <a href="#" class="num" data-page="2">2</a>
+            <a href="#" class="num" data-page="3">3</a>
+            <a href="#" class="num" data-page="4">4</a>
+            <a href="#" class="num" data-page="5">5</a>
+
+            <a href="#" class="bt next">></a>
+            <a href="#" class="bt last">>></a>
+          </div>
+          <script>
+            $(document).ready(function() {
+              $('.num').on('click', function(event) {
+                event.preventDefault(); // 기본 동작 방지 (페이지 이동 X)
+            
+                const pageNumber = $(this).data('page'); // data-page 속성 값 가져오기
+            
+                // 현재 경로와 쿼리스트링을 가져옵니다.
+                const currentPath = window.location.pathname;
+                const currentQueryString = window.location.search;
+                const params = new URLSearchParams(currentQueryString);
+                let currentPage1 = params.get('page1');
+                
+
+            
+                // 페이지 번호를 쿼리스트링으로 추가하여 새로운 URL을 만듭니다.
+                const newURL = `${currentPath}?page=${pageNumber}&page1=${currentPage1}`;
+            
+                // 새로운 URL로 페이지를 리다이렉트합니다.
+                window.location.href = newURL;
+              });
+            
+              // 페이지 로드 시 실행하여 현재 페이지 번호와 일치하는 버튼에 'on' 클래스 추가
+              const currentQueryString = window.location.search;
+              const params = new URLSearchParams(currentQueryString);
+              const currentPage = params.get('page');
+              $('.num').each(function() {
+                const buttonPage = $(this).data('page');
+                if (buttonPage == currentPage) {
+                  $(this).addClass('on');
+                }
+              });
+            });
+            $(document).ready(function() {
+              $('.num').on('click', function(event) {
+                event.preventDefault(); // 기본 동작 방지 (페이지 이동 X)
+            
+                const pageNumber = $(this).data('page'); // data-page 속성 값 가져오기
+            
+                // 기존 URL을 가져옵니다.
+                const currentPath = window.location.pathname;
+                const currentQueryString = window.location.search;
+                const currentparams = new URLSearchParams(currentQueryString);
+                let currentPage1 = params.get('page1');
+                const existingUrl = window.location.href;
+            
+                // 기존 쿼리스트링을 제거한 URL을 만듭니다.
+                const urlWithoutQueryString = existingUrl.split('?')[0];
+            
+                // URLSearchParams를 사용하여 새로운 쿼리스트링을 만듭니다.
+                const params = new URLSearchParams({ page: pageNumber });
+            
+                // 새로운 URL을 만듭니다.
+                const newURL = `${urlWithoutQueryString}?${params}&page1=${currentPage1}`;
+            
+                // 새로운 URL로 페이지를 리다이렉트합니다.
+                window.location.href = newURL;
+              });
+            });
+            
+            
+      $(document).ready(function() {
+        // 페이지 로드 시 실행하여 현재 페이지 번호와 일치하는 버튼에 'on' 클래스 추가
+        const currentQueryString = window.location.search;
+        const params = new URLSearchParams(currentQueryString);
+        let currentPage = params.get('page');
+        if (!currentPage) {
+          currentPage = 1;
+        }
+
+        // 페이지 이동 함수
+        function goToPage(page) {
+          // 현재 경로와 쿼리스트링을 가져옵니다.
+          const currentPath = window.location.pathname;
+          const currentQueryString = window.location.search;
+          const params = new URLSearchParams(currentQueryString);
+          let currentPage1 = params.get('page1');
+                
+          
+
+          // 페이지 번호를 쿼리스트링으로 추가하여 새로운 URL을 만듭니다.
+          const newURL = `${currentPath}?page=${page}&page1=${currentPage1}`;
+
+          // 새로운 URL로 페이지를 리다이렉트합니다.
+          window.location.href = newURL;
+        }
+
+        // 이전 페이지(전페이지)로 이동 버튼 클릭 이벤트
+        $('.prev').on('click', function(event) {
+          event.preventDefault(); // 기본 동작 방지 (페이지 이동 X)
+          if (currentPage > 1) {
+            goToPage(Number(currentPage) - 1);
+          }
+        });
+
+        // 다음 페이지(다음페이지)로 이동 버튼 클릭 이벤트
+        $('.next').on('click', function(event) {
+          event.preventDefault(); // 기본 동작 방지 (페이지 이동 X)
+          goToPage(Number(currentPage) + 1);
+        });
+      });
+      </script>
+
+        
+        </div>
+      </div>
+    </div>
+    <div class="bottom">
+      <div class="categoryTitle"> <p> 나의 작성글 보기 </p> </div>
+      <div class="board_wrap">
+        <div class="board_list_wrap">
+          <div class="board_list">
+            <% if (typeof communityMyDataResult !== 'undefined' && communityMyDataResult) { %>
+              <% for (let i = 0; i < communityMyDataResult.length; i++) { %>
+                <div>
+                  <div class="title"><a href="/community/write/<%= communityMyDataResult[i].board_id %>"><%= communityMyDataResult[i].title %> </a></div>
+                  <div class="date"><%= communityMyDataResult[i].updated_date  %></div>
+                  <div class="time"><%= communityMyDataResult[i].updated_time  %></div>
+                  <div class="count"> <%= communityMyDataResult[i].views %> </div>
+                </div>
+              <% } %>
+            <% } %>
+           
+            <!-- <div>
+              <div class="title"><a href="#">글 제목이 들어갑니다. </a></div>
+              <div class="date">2022.12.16</div>
+              <div class="time">12:00:45</div>
+              <div class="count">33</div>
+            </div> -->
+          </div>
+          <div class="board_page">
+            <a href="#" class="bt first1"><<</a>
+            <a href="#" class="bt prev1"><</a>
+            <!-- 페이지 버튼 -->
+            <a href="#" class="num1" data-page="1">1</a>
+            <a href="#" class="num1" data-page="2">2</a>
+            <a href="#" class="num1" data-page="3">3</a>
+            <a href="#" class="num1" data-page="4">4</a>
+            <a href="#" class="num1" data-page="5">5</a>
+
+            <a href="#" class="bt next1">></a>
+            <a href="#" class="bt last1">>></a>
+          </div>
+          <script>
+            $(document).ready(function() {
+              $('.num1').on('click', function(event) {
+                event.preventDefault(); // 기본 동작 방지 (페이지 이동 X)
+            
+                const pageNumber = $(this).data('page'); // data-page 속성 값 가져오기
+            
+                // 현재 경로와 쿼리스트링을 가져옵니다.
+                const currentPath = window.location.pathname;
+                const currentQueryString = window.location.search;
+                const params = new URLSearchParams(currentQueryString);
+                let currentPage = params.get('page');
+                
+
+            
+                // 페이지 번호를 쿼리스트링으로 추가하여 새로운 URL을 만듭니다.
+                const newURL = `${currentPath}?page=${currentPage}&page1=${pageNumber}`;
+            
+                // 새로운 URL로 페이지를 리다이렉트합니다.
+                window.location.href = newURL;
+              });
+            
+              // 페이지 로드 시 실행하여 현재 페이지 번호와 일치하는 버튼에 'on' 클래스 추가
+              const currentQueryString = window.location.search;
+              const params = new URLSearchParams(currentQueryString);
+              const currentPage = params.get('page1');
+              $('.num1').each(function() {
+                const buttonPage = $(this).data('page');
+                if (buttonPage == currentPage) {
+                  $(this).addClass('on');
+                }
+              });
+            });
+            $(document).ready(function() {
+              $('.num1').on('click', function(event) {
+                event.preventDefault(); // 기본 동작 방지 (페이지 이동 X)
+            
+                const pageNumber = $(this).data('page'); // data-page 속성 값 가져오기
+            
+                // 기존 URL을 가져옵니다.
+                const currentPath = window.location.pathname;
+                const currentQueryString = window.location.search;
+                const currentparams = new URLSearchParams(currentQueryString);
+                let currentPage = params.get('page');
+                const existingUrl = window.location.href;
+            
+                // 기존 쿼리스트링을 제거한 URL을 만듭니다.
+                const urlWithoutQueryString = existingUrl.split('?')[0];
+            
+                // URLSearchParams를 사용하여 새로운 쿼리스트링을 만듭니다.
+                const params = new URLSearchParams({ page1: pageNumber });
+            
+                // 새로운 URL을 만듭니다.
+                const newURL = `${urlWithoutQueryString}?page=${currentPage}&${params}`;
+            
+                // 새로운 URL로 페이지를 리다이렉트합니다.
+                window.location.href = newURL;
+              });
+            });
+            
+            
+      $(document).ready(function() {
+        // 페이지 로드 시 실행하여 현재 페이지 번호와 일치하는 버튼에 'on' 클래스 추가
+        const currentQueryString = window.location.search;
+        const params = new URLSearchParams(currentQueryString);
+        let currentPage1 = params.get('page1');
+        if (!currentPage1) {
+          currentPage1 = 1;
+        }
+
+        // 페이지 이동 함수
+        function goToPage1(page) {
+          // 현재 경로와 쿼리스트링을 가져옵니다.
+          const currentPath = window.location.pathname;
+          const currentQueryString = window.location.search;
+          const params = new URLSearchParams(currentQueryString);
+          let currentPage = params.get('page');
+                
+          
+
+          // 페이지 번호를 쿼리스트링으로 추가하여 새로운 URL을 만듭니다.
+          const newURL = `${currentPath}?page=${currentPage}&page1=${page}`;
+
+          // 새로운 URL로 페이지를 리다이렉트합니다.
+          window.location.href = newURL;
+        }
+
+        // 이전 페이지(전페이지)로 이동 버튼 클릭 이벤트
+        $('.prev1').on('click', function(event) {
+          event.preventDefault(); // 기본 동작 방지 (페이지 이동 X)
+          if (currentPage1 > 1) {
+            goToPage1(Number(currentPage1) - 1);
+          }
+        });
+
+        // 다음 페이지(다음페이지)로 이동 버튼 클릭 이벤트
+        $('.next1').on('click', function(event) {
+          event.preventDefault(); // 기본 동작 방지 (페이지 이동 X)
+          goToPage1(Number(currentPage1) + 1);
+        });
+      });
+      </script>
+        
+        </div>
+      </div>
+      
+    </div>
+    
+      
+  </div>
+
+      
+</div>

@@ -9,9 +9,13 @@
 /*--------------------------------------------------------------
 # General
 --------------------------------------------------------------*/
+* {
+  font-family: "NotoSansKR";
+}
 body {
   font-family: "Open Sans", sans-serif;
   color: #444444;
+  /* height: 100vh; */
 }
 
 a {
@@ -72,11 +76,16 @@ h6 {
   --------------------------------------------------------------*/
   #hero {
     width: 100%;
-    height: 80vh;
+    height: auto;
     background: #fff;
     padding-top: 82px;
+
   }
-  
+  @media (min-width: 1024px) and (max-width: 1440px) {
+    #hero {
+      margin-top:100px; 
+    }
+  }
   #logincontainer {
    margin: 50%;
   }

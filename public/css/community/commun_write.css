@@ -1,0 +1,174 @@
+h1 {
+    right: 30px;
+}
+.community_wrapper {    
+    /* height: 550px; */
+    /* margin-top: 120px; */
+    margin-top: 180px;
+    height: 120vh;   
+}
+section{
+    position: absolute;
+    left: 50%;
+    margin-left: 30%;
+}
+
+.select1{
+    margin-left: 15%;
+}
+
+button{
+    background-color: #d9ee97;
+    color: #000000;
+    border: none;
+    width: 150px;
+    height: 50px;
+    border-radius: 15px;
+  
+    font-family: 'Noto Sans';
+    font-style: normal;
+    font-weight: 800;
+    font-size: 15px;
+    line-height: 41px;
+    margin-top : 100px;
+    margin-left: 10px;
+}
+.select{
+    background-color: #DFE1D7;
+    color: #000000;
+}
+.buttons{
+    margin-bottom: 2%;
+    margin-left: 68%;
+    margin-top: 50px;
+}
+
+.cancel{
+    width: 100px;
+    height: 40px;
+    margin-left: 25%;
+}
+.submit{
+    width: 100px;
+    height: 40px;
+}
+
+.write_active{
+    background-color: #d9ee97;
+}
+
+.categoryTitle{
+    background-color: #DEF1A1;
+    color: black;
+    
+    border: none;
+    border-radius: 7px;  
+    font-family: 'Noto Sans';
+    font-style: normal;
+    font-weight: 800;
+    font-size: 15px;
+    text-align:center;
+
+    width: 140px;
+    height: 40px;
+    position: static;
+    padding: 1%;  
+    margin-top: 2%;
+    margin-left: 10%;  
+  }
+
+.community_container {
+    display:inline-block;
+    background-color: white;
+    border-color: #E0E0E0;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 3%;
+    font-size: 15px;
+    margin: 0 auto;
+    position: relative;
+    margin-top: 15px;
+}
+
+/* 작은 화면 (모바일) */
+@media (max-width: 767px) {
+    .community_container {
+      width: 90%;
+    }
+    .community_wrapper {
+        margin-top: 15%;
+    }
+    button{
+        font-size: 13px;
+    }
+
+  }
+  
+  /* 중간 화면 (타블렛) */
+  @media (min-width: 768px) and (max-width: 991px) {
+    .community_container {
+      width: 70%;
+      height: 50vh;
+    }
+    .community_wrapper {
+        margin-top: 10%;
+    }
+  }
+  
+  /* 큰 화면 (데스크톱) */
+  @media (min-width: 992px) {
+    .community_container {
+        width: 55%;
+        height: 80vh;
+    }
+    .community_wrapper {
+        margin-top: 15%;
+    }
+  }
+
+  .write_wrapper {
+    margin-left: 5%; 
+    width: 90%;
+    height: 80vh;
+
+    margin-top: 2%;
+    /* width: 80%;
+    height: 90%; */
+    }
+    
+    .note-toolbar {
+        height: 40px;
+        white-space: nowrap;
+      }
+      
+      .note-toolbar .btn-group,
+      .note-toolbar .btn,
+      .note-toolbar .dropdown-toggle {
+        height: 30px;
+        line-height: 25px;
+        padding: 0 5px;
+        font-size: 10px;
+        display: inline-block;
+        white-space: nowrap;
+        margin-right: 2px;
+        width: auto;
+      }
+      
+      .note-toolbar .note-btn-group:last-child {
+        margin-right: 0;
+      }
+
+      .write_wrapper .title input {
+        width: 100%;
+        height: 32px;
+        font-size: 15px;
+        border: 0;
+        border-radius: 15px;
+        outline: none;
+        padding-left: 10px;
+        margin-bottom: 20px;
+        background-color: rgb(233, 233, 233);;
+      }
+
+
+

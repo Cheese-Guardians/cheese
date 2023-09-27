@@ -4,14 +4,12 @@
   }
 
   .diagnosis_container {
-    width: 50%;
-    height: 70%;
     background-color: white;
     border-color: #E0E0E0;
     border-style: solid;
     border-width: 2px;
     border-radius: 3%;
-    font-size: 15px;
+
     margin: 0 auto;
     top: 20%;
     position: relative;
@@ -20,12 +18,6 @@
   }
   #date-input{
     margin-top:100px;
-  }
-  .title {
-    font-size: 20px;
-    font-weight: 1000;
-    margin: 70px;
-    
   }
 
   .content-container {
@@ -40,6 +32,10 @@
     display: flex; /* 열 내부 컨텐츠 정렬에 Flexbox 사용 */
     align-items: center; /* 세로 방향으로 가운데 정렬 */
     justify-content: center; /* 가로 방향으로 가운데 정렬 */
+  }
+  .center, .right {
+    margin-left: -2%;
+    margin-top: 5%;
   }
 
   .box {
@@ -86,7 +82,6 @@
     width: 25%;
     height: 100%;
     padding-top:5%;
-
 }
 .center{
     width: 30%;
@@ -114,16 +109,6 @@
   .boxtitle{
     font-weight: 1000;
   }
-  .boxText {
-    text-align: center;
-  }
-
-  .button-container {
-    display: flex;
-    justify-content: flex-end; /* 오른쪽 정렬 */
-     margin-top:50px;
-
-  }
 
   .PDFpageBtn {
     margin-top: 20px;
@@ -137,57 +122,7 @@
     margin-right:5%;
     background-color: white;
   }
-.titleDiagnosis{
-    font-size:20px;
-    font-weight: 1000;
-}
-.subtitleDiagnosis{
-    font-size:10px;
-    margin-top: 10px;
-}
-.doctor{
-    width:40%;
-    padding:5%;
-}
-.doctorPic{
-    width:40%;
-  
-    
-}
-.doctorPicImg{
-    margin-right:30%;
-    margin-left:30%;
-}
-.doctorName{
-    text-align:center;
-    font-size:18px;
-    font-style: bold;
-}
-.doctorInfo{
-    text-align: center;
-    font-size: 16px;
-    font-style: bold;
-}
-.doctorBtnContainer{
-    /* display:flex; */
-    flex-direction: row;
-}
 
-.doctorBtn{
-    display: inline-block;
-    width:50%;
-
-}
-
-.doctorBtn{
-    text-align: center;
-    width:100%;
-}
-.doctorChoose{
-    font-style:bold;
-    width: 100%;
-    text-align: center;
-}
 .choose {
     border-radius: 10px;
     padding: 5px;
@@ -202,8 +137,6 @@
     font-weight: bold;
     padding: 5px;
     text-align: center;
-
-   
   }
 
 .send{
@@ -214,9 +147,121 @@
     margin: 2%;
 }
 
-
-
 #monthInput{
     width: 50%;
 }
 
+
+/* 작은 화면 (모바일) */
+@media (max-width: 767px) {
+  .diagnosis_container {
+    width: 95%;
+    height: 70%;
+
+    font-size: 13px;
+  }
+  .title {
+    font-size: 18px;
+    font-weight: 1000;
+    margin: 5%;
+  }
+  .dateChoose{
+    font-size: 17px;
+    font-style:bold;
+    width: 100%;
+    text-align: center;
+  }
+  .left{
+    font-size: 10px;
+  }
+  .titleDiagnosis{
+    font-size: 18px;
+    font-weight: 1000;
+}
+  .subtitleDiagnosis{
+      font-size:10px;
+      margin-top: 10px;
+  }
+  .button-container {
+    display: flex;
+    justify-content: flex-end; /* 오른쪽 정렬 */
+    margin-top:30%;
+  }
+  .boxText {
+    font-size: 10px;
+    text-align: center;
+  }
+}
+
+/* 중간 화면 (타블렛) */
+@media (min-width: 768px) and (max-width: 991px) {
+  .diagnosis_container {
+    width: 80%;
+    height: 70%;
+
+    font-size: 15px;
+  }
+  .title {
+    font-size: 25px;
+    font-weight: 1000;
+    margin: 70px;
+  }
+  .dateChoose{
+    font-style:bold;
+    width: 100%;
+    text-align: center;
+  }
+  .titleDiagnosis{
+    font-size:20px;
+    font-weight: 1000;
+  }
+  .subtitleDiagnosis{
+    font-size:10px;
+    margin-top: 10px;
+  }
+  .button-container {
+    display: flex;
+    justify-content: flex-end; /* 오른쪽 정렬 */
+    margin-top:50px;
+  }
+  .boxText {
+    text-align: center;
+  }
+}
+
+/* 큰 화면 (데스크톱) */
+@media (min-width: 992px) {
+  .diagnosis_container {
+    width: 50%;
+    height: 70%;
+
+    font-size: 15px;
+  }
+  .title {
+    font-size: 25px;
+    font-weight: 1000;
+    margin: 70px;
+  }
+  .dateChoose{
+    font-style:bold;
+    width: 100%;
+    text-align: center;
+  }
+  .titleDiagnosis{
+    font-size:20px;
+    font-weight: 1000;
+  }
+  .subtitleDiagnosis{
+    font-size:10px;
+    margin-top: 10px;
+  }
+  .button-container {
+    display: flex;
+    justify-content: flex-end; /* 오른쪽 정렬 */
+    margin-top:50px;
+  }
+  .boxText {
+    text-align: center;
+  }
+
+}

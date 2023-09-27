@@ -1,0 +1,371 @@
+.community_wrapper {    
+    /* height: 550px; */
+    height: 190vh;   
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 10px;
+}
+
+ul, li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  /* ㄴ🟡 컬러 상속받아라 */
+}
+
+section{
+    position: absolute;
+    left: 50%;
+    margin-left: 30%;
+}
+
+.button1{
+  background-color: #DFE1D7;
+}
+
+button{
+    background-color: #d9ee97;
+    color: #000000;
+    border: none;
+    border-radius: 15px;
+  
+    font-family: 'Noto Sans';
+    font-style: normal;
+  }
+
+.community_container {
+    height:85%;
+   
+    background-color: white;
+    border-color: #E0E0E0;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 3%;
+
+    margin: 0 auto;
+    position: relative;
+    margin-top: 10px;
+}
+
+.top{
+  height: 55%;
+}
+.bottom{
+  height: 45%;
+}
+
+/*top*/
+.categoryTitle{
+  background-color: #DEF1A1;
+  color: black;
+  
+  border: none;
+  border-radius: 7px;  
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 800;
+  font-size: 15px;
+  text-align:center;
+
+  position: static;
+  width: 140px;
+  height: 40px;
+  margin-top: 8%;
+  margin-left: 10%;  
+}
+
+
+  .board_wrap {
+    width: 80%;
+    margin: 2% auto;
+  }
+  
+  .bt_wrap {
+    margin-top: 30px;
+    text-align: center;
+    font-size: 0;
+    text-align: center;
+    margin-bottom: -20%;
+  }
+  
+  .bt_wrap a {
+    display: inline-block;
+    min-width: 80px;
+    margin-left: 10px;
+    padding: 10px;
+    border: 1px solid #000;
+    border-radius: 2px;
+    font-size: 1.4rem;
+  }
+  .bt_wrap a:first-child {
+    margin-left: 0;
+  }
+  
+  .bt_wrap a.on {
+    background: #000;
+    color: #fff;
+  }
+  
+  .board_list > div.top > div {
+    font-weight: 600;
+  }
+  
+  .board_list .top .title {
+    text-align: center;
+  }
+  .board_list .time {
+    width: 10%;
+    margin-right: 17px;
+  }
+  .board list .count {
+    width: 10%;
+    margin-right: 17px;
+  }
+  .board_page {
+    margin-top: 30px;
+    /* ㄴ🟡 위로 여백 */
+    text-align: center;
+    /* ㄴ🟡 가운데정렬로 */
+    font-size: 0;
+    /* ㄴ🟡 페이지 순서 박스 사이의 여백 없애기 */
+  }
+  
+  .board_page a {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    box-sizing: border-box;
+    /* ㄴ🟡 board_page a.bt과 num 에 패딩값을 넣게 되면서 상자가 길어지게 되는데, 이를 방지 하기 위해서 이 패딩값을 넘지 말아라~ 하는 코딩부분(전체높이 32px를 넘지 않게)*/
+    vertical-align: middle;
+    /* ㄴ🟡박스 높낮이 같게 */
+    border: 1px solid #ddd;
+    border-left: 0;
+    line-height: 100%;
+  }
+  
+  .board_page a.bt {
+    padding-top: 10px;
+    font-size: 1.2rem;
+    letter-spacing: -1px;
+  }
+  
+  .board_page a.num,.board_page a.num1 {
+    padding-top: 9px;
+    font-size: 1.4rem;
+  }
+  
+  .board_page a.num.on,.board_page a.num1.on{
+    border-color: #D9EE97;
+    background: #D9EE97;
+    color: #000;
+  }
+  
+  .board_page a:first-child {
+    border-left: 1px solid #ddd;
+  }
+  
+  .red {
+    color: red;
+  }
+
+  .write{
+    background-color: #d9ee97;
+    color: #000000;
+    border: none;
+    border-radius: 15px;
+     
+    font-family: 'Noto Sans';
+    font-style: normal;
+  }
+
+  
+/* 작은 화면 (모바일) */
+@media (max-width: 767px) {
+  .community_container {
+    width: 90%;
+    font-size: 12px;
+  }
+  .bottom {
+    display: none; /* 해당 요소 숨김 */
+  }
+  button {
+    width: 28%;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 41px;
+    margin-top : 100px;
+    margin-right: 10px;
+  }
+  .select1{
+    margin-left: 20%;
+  }
+  .categoryTitle{
+    padding: 2.5%;
+    font-size: 13px;
+  }
+  .board_list > div {
+    font-size: 0;
+  }
+
+  .board_list > div > div {
+    display: inline-block;     /* 가로배치 */
+    padding: 15px 0;   /*모든 픽셀 여백 15px 0 */
+    text-align: center;
+    font-size: 13px;  /* 부모에다가는 font-size : 0을 줌. */
+  }
+  .board_list .title {
+    width: 50%;
+    text-align: left;
+  }
+  .title{
+    margin-right: 3%;
+  }
+  .board_list .date {
+    display: inline; /* 요소를 한 줄에 나란히 표시 */
+    width: 8%;
+    margin-right: 4px;
+  }
+  .board_list .time {
+    display: inline; /* 요소를 한 줄에 나란히 표시 */
+    margin-right: 2%;
+  }
+  .write{
+    width: 100px;
+    height: 40px;
+    border-radius: 15px;
+     
+    font-weight: 800;
+    font-size: 13px;
+    line-height: 41px;
+    margin-top : 35px;
+    margin-left: 60%;
+  }
+  .board_page{
+    margin-left: -7.7%;    
+  }
+}
+
+/* 중간 화면 (타블렛) */
+@media (min-width: 768px) and (max-width: 991px) {
+  .community_container {
+    width: 80%;
+    font-size: 15px;
+  }
+  button {
+    width: 20%;
+    height: 2.2%;
+
+    font-weight: 800;
+    font-size: 10px;
+    line-height: 41px;
+    margin-top : 100px;   
+    margin-right: 10px; 
+  }
+  .select1{
+    margin-left: 13%;
+  }
+  .categoryTitle{
+    padding: 1%;
+  }
+  .board_list {
+    width: 100%;
+  }
+  .board_list > div {
+    font-size: 0;
+  }
+
+  .board_list > div > div {
+    display: inline-block;     /* 가로배치 */
+    padding: 15px 0;   /*모든 픽셀 여백 15px 0 */
+    text-align: center;
+    font-size: 1.4rem;
+  }
+  .board_list .title {
+    width: 60%;
+    text-align: left;
+    margin-right: 2%;
+  }
+  .board_list .date {
+    margin-right: 17px;
+    display: inline; /* 요소를 한 줄에 나란히 표시 */
+    width: 8%;
+  }
+  .write{
+    width: 100px;
+    height: 40px;
+    border-radius: 15px;
+     
+    font-weight: 800;
+    font-size: 13px;
+    line-height: 41px;
+    margin-top : 35px;
+    margin-left: 70%;
+  }
+}
+
+/* 큰 화면 (데스크톱) */
+@media (min-width: 992px) {
+  .community_container {
+    width: 55%;
+    font-size: 15px;
+  }
+  button {
+    width: 7%;
+    height: 2.5%;
+
+    font-weight: 800;
+    font-size: 15px;
+    line-height: 41px;
+    margin-top : 100px;
+    margin-left: 10px;
+  }
+  .select1{
+    margin-left: 22%;
+  }
+  .categoryTitle{
+    padding: 1%;  
+  }
+  .board_list {
+    width: 100%;
+  }
+  .board_list > div {
+    font-size: 0;
+  }
+
+  .board_list > div > div {
+    display: inline-block;     /* 가로배치 */
+    padding: 15px 0;   /*모든 픽셀 여백 15px 0 */
+    text-align: center;
+    font-size: 1.4rem;
+  }
+  .board_list .title {
+    width: 70%;
+    text-align: left;
+  }
+  .board_list .date {
+    width: 10%;
+    margin-right: 17px;
+  }
+  .write{
+    width: 100px;
+    height: 40px;
+    border-radius: 15px;
+     
+    font-weight: 800;
+    font-size: 13px;
+    line-height: 41px;
+
+    margin-left: 75%;
+    margin-top : 35px;
+    margin-bottom: -15%;
+  }
+}

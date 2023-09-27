@@ -15,10 +15,10 @@
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
-  
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
   <!-- Vendor CSS Files -->
   <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="/vendor/bootstrap-icons/botstrap-icons.css" rel="stylesheet">
   <link href="/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
   <link href="/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
   <link href="/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
@@ -41,21 +41,73 @@
 
   <!-- ======= Header ======= -->
   <header id="header" class="fixed-top">
-    <div class="container d-flex align-items-center justify-content-between">
-
+    <div class="container1 d-flex justify-content-between">
      
       <!-- Uncomment below if you prefer to use an image logo -->
       <a href="/calendar" class="logo"><img src="/img/mainlogo.png" alt="" class="img-fluid"></a>
       <!-- <h1 class="logo"><a href="index.html">치즈 : 치매 가디언즈</a></h1> -->
+          <!-- 햄버거 메뉴 -->
+          <div id="hamburger__icon">
+            <span id="hb"class="material-symbols-outlined">
+              menu
+            </span>
+          </div>
+          
 
+          <nav id="side__menu">
+            <div class="inner">
+              <!-- 메뉴 -->
+              <ul class="menu">
+              
+                <li><a class="nav-linkM scrollto calendaractiveM activeM" href="/calendar">캘린더</a></li>
+                <li><a class="nav-linkM scrollto alarmactiveM" href="/reminder">알림설정</a></li>
+                <li><a class="nav-linkM scrollto communityactiveM" href="/community/infoList">커뮤니티</a></li>
+                <li><a class="nav-linkM scrollto exportactiveM" href="/export">내보내기</a></li>
+                <form  action="/users/logout" method="POST">
+                  <li> <input type="submit" value="로그아웃" class="logoutM"></li>
+                </form>
+                <% if (typeof(logoutState) !== 'undefined' && logoutState !== null && logoutState == '성공') { %>
+                  <script>
+                    if (confirm('로그아웃에 성공했습니다.')) {
+                      window.location.href = "/";
+                    }
+                  </script>
+                <% } %>
+              </ul>
+  
+            </div>
+          </nav>
+
+        <script>
+
+          const hamburgerEl = document.getElementById("hamburger__icon");
+          const navEl = document.getElementById("side__menu");
+          const menuEl = document.querySelector("#side__menu ul.menu");
+          const login = document.querySelector("#side__menu ul.menu li .logout");
+    
+          hamburgerEl.addEventListener("click", function () {
+            
+            navEl.style.transform =
+            console.log("클릭 이벤트 발생"); // 디버깅 메시지
+            navEl.style.transform =
+              navEl.style.transform === "translateX(100%)"
+                ? "translateX(0%)"
+                : "translateX(100%)";
+                
+            
+            console.log("transform 값 변경:", navEl.style.transform); // 디버깅 메시지
+          });
+    
+        </script>
+        
       <nav id="navbar" class="navbar">
         <ul>
           <li><a class="nav-link scrollto calendaractive active" href="/calendar">캘린더</a></li>
           <li><a class="nav-link scrollto alarmactive" href="/reminder">알림설정</a></li>
+          <li><a class="nav-link scrollto communityactive" href="/community/infoList">커뮤니티</a></li>
           <li><a class="nav-link scrollto exportactive" href="/export">내보내기</a></li>
           <!-- <li><a class="nav-link scrollto checkactive" href="/diagnosis/check/password">비대면진료</a></li>
           <li><a class="nav-link scrollto mypageactive" href="#portfolio">마이페이지</a></li> -->
-
           
             <form class = "logout_container" action="/users/logout" method="POST">
               <button type="submit" class="logout">로그아웃</button>
@@ -78,7 +130,7 @@
     <!-- ======= Footer ======= -->
     <footer id="footer">
 
-        <div class="container footer-bottom clearfix">
+        <div class="container1 footer-bottom clearfix">
 
           <div class="footer-left">
             <img src="/img/big_logo.png" class="img-fluid" alt="" >
@@ -114,7 +166,8 @@
       <script src="/js/calendar.js"></script>
 
       
-    
+    <script>
+      
+    </script>
     </body>
-    
     </html>
