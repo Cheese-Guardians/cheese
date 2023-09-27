@@ -1,3 +1,8 @@
+.write_wrapper {
+  padding: 20px;
+  position: relative;
+  height: auto;
+}
 h1 {
     right: 30px;
 }
@@ -5,7 +10,7 @@ h1 {
     /* height: 550px; */
     /* margin-top: 120px; */
     margin-top: 180px;
-    height: 120vh;   
+    height: auto;   
 }
 section{
     position: absolute;
@@ -38,19 +43,25 @@ button{
     color: #000000;
 }
 .buttons{
-    margin-bottom: 2%;
+    /* margin-bottom: 2%;
     margin-left: 68%;
-    margin-top: 50px;
+    margin-top: 50px; */
+  
+    position: relative;
+    
+    padding-left: 70%;
 }
 
 .cancel{
     width: 100px;
     height: 40px;
-    margin-left: 25%;
+    /* margin-left: 25%; */
+    margin-left: 7%;
 }
 .submit{
     width: 100px;
     height: 40px;
+    margin-left: 7%;
 }
 
 .write_active{
@@ -92,16 +103,27 @@ button{
 
 /* 작은 화면 (모바일) */
 @media (max-width: 767px) {
+  .selection {
+    margin-right: 7%;
+    display: inline;
+  }
+  .select {
+    margin-left: 7%
+  }
     .community_container {
       width: 90%;
+      margin-left: 5%;
     }
     .community_wrapper {
-        margin-top: 15%;
+        margin-top: 25%;
     }
-    button{
+    .buttons{
         font-size: 13px;
+        padding: 0;
     }
-
+    .submit {
+      position: relative;
+    }
   }
   
   /* 중간 화면 (타블렛) */
@@ -129,13 +151,15 @@ button{
   .write_wrapper {
     margin-left: 5%; 
     width: 90%;
-    height: 80vh;
+    /* height: 80vh; */
 
     margin-top: 2%;
     /* width: 80%;
     height: 90%; */
     }
-    
+    .panel-heading  {
+      overflow: auto;
+    }
     .note-toolbar {
         height: 40px;
         white-space: nowrap;
