@@ -22,7 +22,12 @@
             <p>간호 다이어리 통계</p>
         </div>
         <div class="title2" style="margin-left: auto;">
-            <p>7월 12일~ 8월 8일</p>
+            <% if (startDate && endDate) { %>
+                <p> <%= startDate%> ~ <%=endDate%> </p>
+            <% } else { %>
+                <h1>No diaryBox Available</h1>
+            <% } %>
+            <p>?월 ??일 ~ ?월 ??일</p>
         </div>
         <div class="content-container">
             <img src="/output/graph.png" width="700" height="300">

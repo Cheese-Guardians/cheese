@@ -75,6 +75,9 @@ exports.postSummary = async function (req, res) {
             // Python script encountered an error
             console.log('Python script exited with code:', code);
             reject(new Error('Python script encountered an error.'));
+            result.stderr.on('data', function (data) {
+              console.log(data.toString());
+            });
           }
         });
       });
@@ -104,10 +107,16 @@ exports.postSummary = async function (req, res) {
     
     // diaryBox 배열에는 각 날짜 범위에 해당하는 데이터가 들어 있음
     console.log(diaryBox);
-    
+
+
+    var startDate = new Date(date1);
+
+    var endDate = new Date(startDate);
+    endDate.setDate(startDate.getDate() + 28);
+
 
     if (diaryBox.length > 0) {
-      ejs.renderFile(path.join("./views/export/pdf.ejs"), { diaryBox }, async (err, data) => {
+      ejs.renderFile(path.join("./views/export/pdf.ejs"), { startDate, endDate, diaryBox }, async (err, data) => {
         if (err) {
           res.send(err);
           console.log(err);

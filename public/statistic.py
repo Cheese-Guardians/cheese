@@ -2,6 +2,8 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import mpld3
 import json
+import sys
+
 
 # 한글 폰트 설정
 plt.rcParams['font.family'] = 'Malgun Gothic'
