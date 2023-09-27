@@ -52,14 +52,30 @@ exports.postSummary = async function (req, res) {
       // 날짜 범위별로 데이터를 담는 작업
       const dateRangeText = `${dateAA}~${dateBB}`;
     
-      // 그래프 함수 호출
-      const symptomResponse = await exportService.retrieveSelectedSymptom(user_id, dateAA, dateBB);
-      const csvData = symptomResponse[0].map(result => `${result.symptom_name},${result.degree},${result.date}`).join('\n');
+      // gpt 함수 호출
+      const diaryResponse = await exportService.retrieveSelectedDiary(user_id, dateAA, dateBB);
+      const diaryText = diaryResponse.calendar.diary.filter(entry => entry !== null).join(' ');
+      // summary = await summarizeDiary(diaryText);
+      summary = diaryText;
+      if (i != 3) {
+        await sleep(1000);
+      }
+    
+      // 날짜 범위별로 데이터를 담음
+      diaryBox.push({ dateRange: dateRangeText, summary });
+    }
+
+    // 그래프 함수 호출
+
+      const entireSymptomResponse = await exportService.retrieveEntireSymptom(date1, new Date(date1+7), user_id)
+      console.log(entireSymptomResponse)
+      const csvData = entireSymptomResponse[0].map(result => `${result.symptom_name},${result.total_degree},${result.start_date}`).join('\n');
+      
       console.log(csvData);
-      const column = ['symptom_name', 'degree', 'date'];
+      const column = ['symptom_name', 'total_degree', 'start_date'];
       const content = `${column.join(',')}\n${csvData}`; // 헤더와 데이터를 합친 내용
     
-      fs.writeFileSync(`csv/symptom_${i}.csv`, content, 'utf-8');
+      fs.writeFileSync(`csv/entireSymptom.csv`, content, 'utf-8');
       console.log('Data saved to symptom.csv');
       const spawn = require('child_process').spawn;
     
@@ -91,20 +107,6 @@ exports.postSummary = async function (req, res) {
       result.stderr.on('data', function (data) {
         console.log(data.toString());
       });
-    
-      // gpt 함수 호출
-      const diaryResponse = await exportService.retrieveSelectedDiary(user_id, dateAA, dateBB);
-      const diaryText = diaryResponse.calendar.diary.filter(entry => entry !== null).join(' ');
-      // summary = await summarizeDiary(diaryText);
-      summary = diaryText;
-      if (i != 3) {
-        await sleep(1000);
-      }
-    
-      // 날짜 범위별로 데이터를 담음
-      diaryBox.push({ dateRange: dateRangeText, summary });
-    }
-    
     // diaryBox 배열에는 각 날짜 범위에 해당하는 데이터가 들어 있음
     console.log(diaryBox);
 
@@ -113,6 +115,16 @@ exports.postSummary = async function (req, res) {
 
     var endDate = new Date(startDate);
     endDate.setDate(startDate.getDate() + 28);
+
+    function formatDate(date) {
+      var year = date.getFullYear();
+      var month = String(date.getMonth() + 1).padStart(2, '0'); // 월은 0부터 시작하므로 1을 더하고 두 자리로 만듭니다.
+      var day = String(date.getDate()).padStart(2, '0'); // 날짜를 두 자리로 만듭니다.
+      return year + '-' + month + '-' + day;
+    }
+
+    startDate = formatDate(startDate);
+    endDate = formatDate(endDate);
 
 
     if (diaryBox.length > 0) {

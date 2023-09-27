@@ -61,27 +61,65 @@ async function getSelectedDiary(pool, selectedDiaryParams) {
     return { calendar };
   }
   
-  // 증상데이터를 csv로 export
+  // 전체 증상 데이터를 csv로 export
 async function getSymptomCsv(pool, symptomCsvParams) {
   const getSymptomCsvQuery = `
-  SELECT s.symptom_name, s.degree, DATE_FORMAT(c.date, '%Y-%m-%d') AS date
-FROM symptom s
-INNER JOIN calendar c ON s.calendar_id = c.calendar_id
-WHERE s.calendar_id = ANY (
-    SELECT calendar_id
-    FROM calendar
-    WHERE user_id = ?
-    AND date BETWEEN ? AND ?
-)
-ORDER BY c.date ASC;
-
-  `;
+    SELECT s.symptom_name, s.degree, DATE_FORMAT(c.date, '%Y-%m-%d') AS date
+    FROM symptom s
+    INNER JOIN calendar c ON s.calendar_id = c.calendar_id
+    WHERE s.calendar_id = ANY (
+        SELECT calendar_id
+        FROM calendar
+        WHERE user_id = ?
+        AND date BETWEEN ? AND ?
+    )
+    ORDER BY c.date ASC;
+    `;
 
   const getSymptomCsvResponse = await pool.promise().query(getSymptomCsvQuery, symptomCsvParams);
   return getSymptomCsvResponse;
 }
 
+//전체 통계 csv 
+async function getEntireSymptomCsv(pool, entireSymptomCsvParams) {
+  const getEntireSymptomCsvQuery = `
+    WITH date_ranges AS (
+      SELECT
+          DATE_ADD(?, INTERVAL (n - 1) * 7 DAY) AS start_date,
+          DATE_ADD(?, INTERVAL (n - 1) * 7 DAY) AS end_date
+      FROM (
+          SELECT 1 AS n UNION ALL
+          SELECT 2 UNION ALL
+          SELECT 3 UNION ALL
+          SELECT 4
+      ) numbers
+    )
+    SELECT
+        symptom_name,
+        SUM(degree) AS total_degree,
+        date_ranges.start_date
+    FROM
+        symptom s
+    INNER JOIN
+        calendar c ON s.calendar_id = c.calendar_id
+    CROSS JOIN
+        date_ranges
+    WHERE
+        c.date >= date_ranges.start_date AND c.date < date_ranges.end_date
+        AND s.user_id = ?
+    GROUP BY
+        symptom_name, date_ranges.start_date, date_ranges.end_date
+    ORDER BY
+        symptom_name, date_ranges.start_date;
+
+    `;
+
+  const getEntireSymptomCsvResponse = await pool.promise().query(getEntireSymptomCsvQuery, entireSymptomCsvParams);
+  return getEntireSymptomCsvResponse;
+}
+
   module.exports = {
     getSelectedDiary,
-    getSymptomCsv
+    getSymptomCsv,
+    getEntireSymptomCsv
   }
