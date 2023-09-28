@@ -5,7 +5,8 @@
 </head>
 
 <!-- MAIN SECTION -->
-<section id="hero" class="d-flex align-items-center">
+<div class="jb-division-line"></div>
+<section id="hero2" class="d-flex align-items-center">
   <main id="about">
     <div class="col-lg-5 pt-lg-0 order-2 order-lg-1 justify-content-center">
       <div class="wrapper">
@@ -88,7 +89,7 @@
 
       <div class="mindInputArea col-lg-6 pt-lg-0 order-2 order-lg-1" >
       <div id = "userDiaryBox">
-        
+        <p class="diary_title">마음 일기</p>
         <form id="diaryForm" action="/calendar/minddiary" method="POST">
           <script>
             // 현재 URL에서 쿼리 문자열 가져오기
@@ -135,6 +136,7 @@
 
       <% } else { %>
         <table id = "userDiaryForm">
+          <p class="diary_title">마음 일기</p>
           <tr>
             <td> 오늘의 핵심 키워드는 무엇인가요? </td>
           </tr>
