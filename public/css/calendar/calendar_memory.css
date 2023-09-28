@@ -91,6 +91,7 @@
     margin-top: -10%;
     font-size: 80px;
     color: #F6F5F0;
+    display: none;
   }
   
   main .wrapper #slider .arrow {
@@ -109,6 +110,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    display: none;
   }
   
   main .wrapper #slider .dots .dot {
@@ -243,10 +245,12 @@
   main .wrapper #slider .arrow--left {
     left: 5%;
     margin-bottom: 10%;
+    display: none;
   }    
   main .wrapper #slider .arrow--right {
     right: 5%;
     margin-bottom: 10%;
+    display: none;
   }
 
 
