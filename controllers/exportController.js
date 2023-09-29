@@ -121,6 +121,10 @@ exports.postSummary = async function (req, res) {
             // Python script encountered an error
             console.log('Python script exited with code:', code);
             reject(new Error('Python script encountered an error.'));
+            // 4. 에러 발생 시, stderr의 'data' 이벤트 리스너로 실행 결과를 받습니다.
+            result.stderr.on('data', function (data) {
+              console.log(data.toString());
+            });
           }
         });
       });
@@ -130,10 +134,6 @@ exports.postSummary = async function (req, res) {
         console.log(data.toString());
       });
     
-      // 4. 에러 발생 시, stderr의 'data' 이벤트 리스너로 실행 결과를 받습니다.
-      result.stderr.on('data', function (data) {
-        console.log(data.toString());
-      });
     // diaryBox 배열에는 각 날짜 범위에 해당하는 데이터가 들어 있음
   //  console.log(diaryBox);
 

@@ -3,7 +3,8 @@ import matplotlib.pyplot as plt
 
 # 한글 폰트 설정
 plt.rcParams['font.family'] = 'Malgun Gothic'
-plt.rcParams['axes.unicoㅁde_minus'] = False
+plt.rcParams['axes.unicode_minus'] = False
+
 
 #증상별 통계(x축:날짜, y축:척도)
 # CSV 파일 경로 설정
