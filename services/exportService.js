@@ -17,11 +17,11 @@ exports.retrieveSelectedSymptom = async function (user_id, date1, date2) {
     try {
         const symptomCsvParams = [user_id, date1, date2];
         const results = await exportModel.getSymptomCsv(pool, symptomCsvParams);
-        console.log("yes",results);
+   //     console.log("yes",results);
         return results;
       
     } catch (err) {
-        console.log(err);
+     //   console.log(err);
         return 'retrieveSelectedSymptomError';
     }
 }
@@ -31,7 +31,7 @@ exports.retrieveEntireSymptom = async function (user_id, date1, date2) {
     try {
         const entireSymptomCsvParams = [user_id, date1, date2];
         const results = await exportModel.getEntireSymptomCsv(pool, entireSymptomCsvParams);
-        console.log("hello",results);
+      //  console.log("hello",results);
         return results;
       
     } catch (err) {

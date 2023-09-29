@@ -77,7 +77,6 @@ async function getSymptomCsv(pool, symptomCsvParams) {
     `;
 
   const getSymptomCsvResponse = await pool.promise().query(getSymptomCsvQuery, symptomCsvParams);
-   console.log("qqqqqqqqqqqqqqqqqqq",getSymptomCsvResponse  )
   return getSymptomCsvResponse;
 }
 
@@ -116,7 +115,6 @@ async function getEntireSymptomCsv(pool, entireSymptomCsvParams) {
     `;
 
   const getEntireSymptomCsvResponse = await pool.promise().query(getEntireSymptomCsvQuery, entireSymptomCsvParams);
-  console.log("iiiiiiiiiiiiiiiiiiii",getEntireSymptomCsvResponse)
   return getEntireSymptomCsvResponse;
 }
 
