@@ -1,40 +1,61 @@
 import pandas as pd
 import matplotlib.pyplot as plt
-import mpld3
-import json
-import sys
-
 
 # 한글 폰트 설정
 plt.rcParams['font.family'] = 'Malgun Gothic'
-plt.rcParams['axes.unicode_minus'] = False  # 마이너스 기호 표시 설정 (한글 폰트 설정 시 필요)
+plt.rcParams['axes.unicode_minus'] = False
 
-# CSV 파일을 상대 경로로 지정 (만약 같은 디렉토리에 있다면 './csv/symptomcl.csv'로 지정)
-file_path = 'csv/symptom_3.csv'
+# 데이터 파일 로드
+entire_symptom_df = pd.read_csv('csv/entireSymptom.csv')
+last_entire_symptom_df = pd.read_csv('csv/lastEntireSymptom.csv')
 
-# CSV 파일을 읽어서 dataset에 저장
-dataset = pd.read_csv(file_path, delimiter=',')
+# 'start_date' 열을 날짜로 변환
+entire_symptom_df['start_date'] = pd.to_datetime(entire_symptom_df['start_date'])
+last_entire_symptom_df['start_date'] = pd.to_datetime(last_entire_symptom_df['start_date'])
 
-# CSV 파일에 symptom_name과 degree의 이름 추가하여 다시 저장
-dataset.columns = ['symptom_name', 'degree', 'date']
-dataset.to_csv(file_path, sep=',', index=False)
+# 날짜를 월로 추출
+entire_symptom_df['month'] = entire_symptom_df['start_date'].dt.month
+last_entire_symptom_df['month'] = last_entire_symptom_df['start_date'].dt.month
 
-# 'date' 컬럼을 날짜 순서대로 정렬
-dataset['date'] = pd.to_datetime(dataset['date'])  # 날짜 데이터를 datetime 형식으로 변환
-dataset = dataset.sort_values(by='date')  # 'date' 컬럼을 기준으로 정렬
+# 날짜를 주차로 추출
+entire_symptom_df['week'] = entire_symptom_df['start_date'].dt.strftime('%Y-%m-%d')
+last_entire_symptom_df['week'] = last_entire_symptom_df['start_date'].dt.strftime('%Y-%m-%d')
 
-# symptom_names를 그룹화하여 같은 증상 이름을 가진 항목들을 각각의 plot으로 나타내기
-plt.figure(figsize=(10, 6))  # 그래프 크기 조절
-for name, group in dataset.groupby('symptom_name'):
-    plt.plot(group['date'], group['degree'], label=name)  # 그룹별로 plot 생성
+# 두 데이터프레임을 합침
+combined_df = pd.concat([entire_symptom_df, last_entire_symptom_df])
 
-plt.xlabel('date')
-plt.ylabel('degree')
-plt.title('요일별 증상 척도')
-plt.legend(loc='lower right')
-plt.xticks(rotation=45)  # x축의 날짜 라벨을 45도 회전하여 표시 (길어지는 경우)
-plt.tight_layout()  # 그래프 간격 조절
-# 그래프를 이미지로 저장
-plt.savefig('output/graph.png')
+# 데이터를 월과 주차로 그룹화하여 합계 계산
+monthly_data = combined_df.groupby(['month', 'symptom_name', 'week'])['total_degree'].sum().unstack(fill_value=0)
 
-plt.close()  # 그래프 출력을 종료
+# 현재 달과 전달 데이터 분리
+this_month = monthly_data[monthly_data.index.get_level_values('month') == 9]
+last_month = monthly_data[monthly_data.index.get_level_values('month') == 8]
+
+# 그래프 생성
+fig, ax = plt.subplots(figsize=(12, 8))
+
+this_month.plot(kind='bar', stacked=True, ax=ax, position=0, width=0.3, label='당월')
+last_month.plot(kind='bar', stacked=True, ax=ax, position=1, width=0.3, label='전월')
+
+# 레전드 레이블 설정
+legend_labels = [
+    '전월 1주차', '전월 2주차', '전월 3주차', '전월 4주차',
+    '당월 1주차', '당월 2주차', '당월 3주차', '당월 4주차'
+]
+ax.legend(legend_labels, title='기간', loc='upper left')
+
+# 오른쪽 여백 추가
+fig.subplots_adjust(right=0.85)
+
+plt.title('증상별 월별 빈도')
+plt.xlabel('증상')
+plt.ylabel('빈도')
+plt.xticks(rotation=0)  # x축 레이블 회전 방지
+
+# x축 레이블을 증상 이름으로 설정
+ax.set_xticklabels(this_month.index.get_level_values('symptom_name'))
+
+
+#plt.show()
+plt.savefig(f'public/output/all.png')
+plt.close()
