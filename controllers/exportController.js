@@ -47,7 +47,7 @@ exports.postSummary = async function (req, res) {
       month = String(dateB.getMonth() + 1).padStart(2, "0");  // 월은 0부터 시작하므로 +1을 해줌
       day = String(dateB.getDate()).padStart(2, "0");
       dateBB = `${year}-${month}-${day}`;
-      console.log(dateAA, dateBB)
+     // console.log(dateAA, dateBB)
     
       // 날짜 범위별로 데이터를 담는 작업
       const dateRangeText = `${dateAA}~${dateBB}`;
@@ -89,17 +89,17 @@ exports.postSummary = async function (req, res) {
    
       fs.writeFileSync(`csv/entireSymptom.csv`, entireContent, 'utf-8');
       fs.writeFileSync(`csv/eachSymptom.csv`, contentEach, 'utf-8');
-      console.log("date",date28DaysBefore, date21DaysBefore)
+   //   console.log("date",date28DaysBefore, date21DaysBefore)
       const lastEntireSymptomResponse = await exportService.retrieveEntireSymptom(date28DaysBefore, date21DaysBefore, user_id)
       const lastEntireCsvData = lastEntireSymptomResponse[0].map(result => `${result.symptom_name},${result.total_degree},${result.start_date}`).join('\n');
 
       const lastEntireColumn = ['symptom_name', 'total_degree', 'start_date'];
       const lastEntireContent = `${lastEntireColumn.join(',')}\n${lastEntireCsvData}`; // 헤더와 데이터를 합친 내용
-      console.log('lastEntireSymptomResponse:', lastEntireSymptomResponse);
+ //     console.log('lastEntireSymptomResponse:', lastEntireSymptomResponse);
 
       fs.writeFileSync(`csv/lastEntireSymptom.csv`, lastEntireContent, 'utf-8');
 
-      console.log('Data saved to symptom.csv');
+    //  console.log('Data saved to symptom.csv');
 
       const spawn = require('child_process').spawn;
     
@@ -135,7 +135,7 @@ exports.postSummary = async function (req, res) {
         console.log(data.toString());
       });
     // diaryBox 배열에는 각 날짜 범위에 해당하는 데이터가 들어 있음
-    console.log(diaryBox);
+  //  console.log(diaryBox);
 
 
     var startDate = new Date(date1);
@@ -169,7 +169,7 @@ exports.postSummary = async function (req, res) {
             const page = await browser.newPage();
 
             // 페이지에 접속 (예를 들어, 구글 홈페이지로 접속)
-            await page.goto('http://localhost:3000/');
+            await page.goto('http://localhost:3001/');
 
             // 스크린샷 캡처
             await page.screenshot({ path: 'example.png' });
@@ -238,7 +238,7 @@ async function summarizeDiary(diaryResponse) {
 
     // 요약된 내용은 response.data.choices[0].message.content에서 확인할 수 있습니다.
     const summary = response.data.choices[0].message.content;
-    console.log("\n\n결과: ",summary);
+   // console.log("\n\n결과: ",summary);
     return summary;
   } catch (error) {
     console.error('Error:', error);
