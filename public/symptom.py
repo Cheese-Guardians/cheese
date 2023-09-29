@@ -30,6 +30,6 @@ for symptom in symptoms:
     plt.legend()
     plt.tight_layout()
 
-    plt.show()
-    plt.savefig(f'output/{symptom}.png')
+    #plt.show()
+    plt.savefig(f'public/output/{symptom}.png')
     plt.close()
