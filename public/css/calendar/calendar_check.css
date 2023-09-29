@@ -447,7 +447,9 @@ padding-left:8px;
     border-radius: 30px;
     /* margin-bottom: -15%; */
   }
-
+  #inputBx {
+    height: 100px;
+  }
   /*좌측*/
   .symptom_check_left{
     width: 100%;
