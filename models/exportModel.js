@@ -86,8 +86,8 @@ async function getEntireSymptomCsv(pool, entireSymptomCsvParams) {
   const getEntireSymptomCsvQuery = `
     WITH date_ranges AS (
       SELECT
-          DATE_ADD(?, INTERVAL (n - 1) * 7 DAY) AS start_date,
-          DATE_ADD(?, INTERVAL (n - 1) * 7 DAY) AS end_date
+          DATE(DATE_ADD(?, INTERVAL (n - 1) * 7 DAY)) AS start_date,
+          DATE(DATE_ADD(?, INTERVAL (n - 1) * 7 DAY)) AS end_date
       FROM (
           SELECT 1 AS n UNION ALL
           SELECT 2 UNION ALL
@@ -98,7 +98,7 @@ async function getEntireSymptomCsv(pool, entireSymptomCsvParams) {
     SELECT
         symptom_name,
         SUM(degree) AS total_degree,
-        date_ranges.start_date
+        DATE_FORMAT(date_ranges.start_date, '%Y-%m-%d') AS start_date
     FROM
         symptom s
     INNER JOIN

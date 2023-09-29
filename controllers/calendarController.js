@@ -6,6 +6,7 @@ const secret = require('../config/secret');
 const querystring = require('querystring');
 const baseResponse = require("../config/baseResponseStatus");
 
+//캘린더 조회
 exports.getCalendar = async function (req, res) {
   const token = req.cookies.x_auth;
   if (token) {
@@ -36,29 +37,20 @@ exports.getCalendar = async function (req, res) {
     }
     const calendarResult = await calendarService.retrieveCalendar(user_id, date);
     const calendarDataResult = await calendarService.retrieveSelectedCalendar(user_id, date);
-    const MindDiaryResult = await calendarService.retrieveMindDiary(user_id, date);
-    const MindDiaryDataResult = await calendarService.retrieveSelectedMindDiary(user_id, date);
     
-    if (calendarResult.length > 0 && MindDiaryResult.length>0) {
+    if (calendarResult.length > 0) {
       
-      return res.render('calendar/calendar.ejs', { calendarResult: calendarResult, calendarDataResult: calendarDataResult, MindDiaryResult:MindDiaryResult, MindDiaryDataResult:MindDiaryDataResult });
-    } 
-    else if (calendarResult.length > 0){
       return res.render('calendar/calendar.ejs', { calendarResult: calendarResult, calendarDataResult: calendarDataResult });
-    } 
-    else if (MindDiaryResult.length > 0){
-      return res.render('calendar/calendar.ejs', { MindDiaryResult:MindDiaryResult, MindDiaryDataResult:MindDiaryDataResult});
-    } 
-    else {
+    } else {
       console.log(calendarDataResult);
       return res.render('calendar/calendar.ejs', { calendarResult: null, calendarDataResult: calendarDataResult });
     }
     
-
   } else {
     return res.redirect('/');
   }
 }
+
 
 exports.postCalendar = async function (req, res) {
   const token = req.cookies.x_auth;
