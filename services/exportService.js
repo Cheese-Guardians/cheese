@@ -13,12 +13,25 @@ exports.retrieveSelectedDiary = async function (user_id, date1, date2) {
     }
 }
 
-// 간호 다이어리 통계 날짜 선택 post
 exports.retrieveSelectedSymptom = async function (user_id, date1, date2) {
     try {
         const symptomCsvParams = [user_id, date1, date2];
         const results = await exportModel.getSymptomCsv(pool, symptomCsvParams);
-        console.log(results);
+   //     console.log("yes",results);
+        return results;
+      
+    } catch (err) {
+     //   console.log(err);
+        return 'retrieveSelectedSymptomError';
+    }
+}
+ 
+// 간호 전체 다이어리 통계 날짜 선택 post
+exports.retrieveEntireSymptom = async function (user_id, date1, date2) {
+    try {
+        const entireSymptomCsvParams = [user_id, date1, date2];
+        const results = await exportModel.getEntireSymptomCsv(pool, entireSymptomCsvParams);
+      //  console.log("hello",results);
         return results;
       
     } catch (err) {
@@ -26,4 +39,3 @@ exports.retrieveSelectedSymptom = async function (user_id, date1, date2) {
         return 'retrieveSelectedSymptomError';
     }
 }
- 
