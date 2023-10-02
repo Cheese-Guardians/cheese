@@ -90,17 +90,6 @@ try {
 } catch (err) {
     return err;
 }
-
-    */
-
-    await calendarModel.insertCalInfo(pool, deleteCalendarParams, insertCalendarParams, getCalendarIdParams, deleteHospital_scheduleParams, user_id, check_content, is_check,  symptom_range); //insertHospital_scheduleParams 제외
-    console.log("service");
-    
-    return '성공';
-  } catch (err) {
-      return err;
-  }
-
 };
 
 
