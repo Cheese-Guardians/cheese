@@ -27,7 +27,7 @@
     "node-schedule": "^2.1.1",
     "openai": "^3.3.0",
     "pandas": "^0.0.3",
-    "puppeteer": "^21.0.0",
+    "puppeteer": "^21.3.5",
     "sanitize-html": "^2.11.0"
   }
 }

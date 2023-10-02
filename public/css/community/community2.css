@@ -190,9 +190,14 @@ button{
   
 /* 작은 화면 (모바일) */
 @media (max-width: 767px) {
+  .community_wrapper {
+    height: 150vh;
+  }
   .community_container {
     width: 90%;
     font-size: 12px;
+    border-radius: 30px;
+    /* height: 90vh */
   }
   .bottom {
     display: none; /* 해당 요소 숨김 */

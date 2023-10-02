@@ -115,6 +115,11 @@ input:focus {outline:none;}
 }
 /* 모바일 버전 */
 @media (max-width: 767px) {
+  #hb {
+    display: block;
+    margin-left: 70%;
+    margin-top: 10px;
+  }
   .memory_disable{
     width: 65%;
   }

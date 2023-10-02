@@ -16,49 +16,66 @@
     <link href="/css/pdf.css" rel="stylesheet">
 </head>
 <body>
+    
     <div class="pdfContent_container" style="width: 700px;">
         
         <div class="title" style="font-weight: bold; font-size: 18px;">
             <p>간호 다이어리 통계</p>
         </div>
         <div class="title2" style="margin-left: auto;">
-            <p>7월 12일~ 8월 8일</p>
-        </div>
+            <% if (startDate && endDate) { %>
+                <p> <%= startDate%> ~ <%=endDate%> </p>
+            <% } else { %>
+                <p>?월 ??일 ~ ?월 ??일</p>
+            <% } %>
+        </div>       
         <div class="content-container">
-            <img src="/output/graph.png" width="700" height="300">
             <div class="grid-container" style="display: grid; grid-template-columns: 1fr ; gap: 10px; padding: 20px;">
                 <div class="row" style="display: grid; grid-template-columns: 1fr; gap: 10px;">
                     <div class="cell" style="width: 100%; height: 30vh;">
                         <div class="row-name" style="width: 100%; height: 30px; font-weight: bold; margin-left: 10px; margin-top: 5px; margin-bottom: -5px;">전체 통계</div>
+                        <img src="/output/all.png" alt="전체 통계" style="width: 100%; height: 100%;" />
                         <div class="cell_container" style="border: 1px solid gray; margin: 10px; border-radius: 10px; height: 80%;"></div>
                     </div>
                 </div>
                 <div class="row" style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px;">
                     <div class="cell" style="width: 100%; height: 30vh;">
                         <div class="row-name" style="width: 100%; height: 30px; font-weight: bold; margin-left: 10px; margin-top: 5px; margin-bottom: -5px;">증상별 통계</div>
-                        <div class="cell_container" style="border: 1px solid gray; margin: 5px; border-radius: 10px; height: 80%;"></div>
+                        <div class="cell_container" style="border: 1px solid gray; margin: 5px; border-radius: 10px; height: 80%;">
+                            <img src="/output/계산능력 저하.png" alt="계산능력 저하" style="width: 100%; height: 100%;" />
+                        </div>
                     </div>
                     <div class="cell" style="width: 100%; height: 30vh;">
                         <div class="row-name" style="width: 100%; height: 30px; font-weight: bold; margin-left: 10px; margin-top: 5px; margin-bottom: -5px;"></div>
-                        <div class="cell_container" style="border: 1px solid gray; margin: 5px; border-radius: 10px; height: 80%;"></div>
+                        <div class="cell_container" style="border: 1px solid gray; margin: 5px; border-radius: 10px; height: 80%;">
+                            <img src="/output/기억장애.png" alt="기억장애" style="width: 100%; height: 100%;" />
+                        </div>
                     </div>
                     <div class="cell" style="width: 100%; height: 30vh;">
                         <div class="row-name" style="width: 100%; height: 30px; font-weight: bold; margin-left: 10px; margin-top: 5px; margin-bottom: -5px;"></div>
-                        <div class="cell_container" style="border: 1px solid gray; margin: 5px; border-radius: 10px; height: 80%;"></div>
+                        <div class="cell_container" style="border: 1px solid gray; margin: 5px; border-radius: 10px; height: 80%;">
+                            <img src="/output/배회.png" alt="배회" style="width: 100%; height: 100%;" />
+                        </div>
                     </div>
                 </div>
-                <div class="row" style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px;">
+                <div class="row" style="display: grid; margin-top:300px; grid-template-columns: 1fr 1fr 1fr; gap: 10px;">
                     <div class="cell" style="width: 100%; height: 30vh;">
                         <div class="row-name" style="width: 100%; height: 30px; font-weight: bold; margin-left: 10px; margin-top: 5px; margin-bottom: -5px;"></div>
-                        <div class="cell_container" style="border: 1px solid gray; margin: 5px; border-radius: 10px; height: 80%;"></div>
+                        <div class="cell_container" style="border: 1px solid gray; margin: 5px; border-radius: 10px; height: 80%;">
+                            <img src="/output/성격 및 감정의 변화.png" alt="성격 및 감정의 변화" style="width: 100%; height: 100%;" />
+                        </div>
                     </div>
                     <div class="cell" style="width: 100%; height: 30vh;">
                         <div class="row-name" style="width: 100%; height: 30px; font-weight: bold; margin-left: 10px; margin-top: 5px; margin-bottom: -5px;"></div>
-                        <div class="cell_container" style="border: 1px solid gray; margin: 5px; border-radius: 10px; height: 80%;"></div>
+                        <div class="cell_container" style="border: 1px solid gray; margin: 5px; border-radius: 10px; height: 80%;">
+                            <img src="/output/언어장애.png" alt="언어장애" style="width: 100%; height: 100%;" />
+                        </div>
                     </div>
                     <div class="cell" style="width: 100%; height: 30vh;">
                         <div class="row-name" style="width: 100%; height: 30px; font-weight: bold; margin-left: 10px; margin-top: 5px; margin-bottom: -5px;"></div>
-                        <div class="cell_container" style="border: 1px solid gray; margin: 5px; border-radius: 10px; height: 80%;"></div>
+                        <div class="cell_container" style="border: 1px solid gray; margin: 5px; border-radius: 10px; height: 80%;">
+                            <img src="/output/이상행동.png" alt="이상행동" style="width: 100%; height: 100%;" />
+                        </div>
                     </div>
                 </div>   
             

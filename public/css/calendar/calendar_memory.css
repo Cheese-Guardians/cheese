@@ -1,6 +1,16 @@
 /* 추가 */
 /* HERO SECTION */
 
+#hero2 {
+  padding:0;
+}
+.jb-division-line {
+  /* position: relative;
+  content: "◆"; */
+  border-top: 4px solid #B3CC62;
+  margin: 30px auto;
+  width: 75%;
+}
   input{
     border: 2px solid #B3CC62;
     border-radius: 15px;
@@ -26,7 +36,7 @@
   /* MAIN SLIDER */
   main .wrapper #slider {
     width: 100%;
-    height: 60vh;
+    height: 50vh;
     overflow: hidden;
     border-radius: 20px;
   }
@@ -63,7 +73,7 @@
   
   main .wrapper #slider .slide__content {
     width: 100%;
-    height: 60vh;
+    height: 50vh;
     margin-right: 10%;
     display: inline-block;
   }
@@ -77,16 +87,17 @@
   main .wrapper #slider .material-icons {
     justify-content: center;
     position: absolute;
-    top: 50%;
+    top: 35%;
     margin-top: -10%;
     font-size: 80px;
     color: #F6F5F0;
+    display: none;
   }
   
   main .wrapper #slider .arrow {
     cursor: pointer;
     position: absolute;
-    top: 50%;
+    top: 35%;
     width: 0;
     height: 0;
   }
@@ -99,6 +110,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    display: none;
   }
   
   main .wrapper #slider .dots .dot {
@@ -111,7 +123,7 @@
   }
   
   main .wrapper #slider .dots .dot1 {
-    background: #1107ff;
+    background: #b3cc62;
   }
   
   #memTextBtn{
@@ -136,15 +148,13 @@
     display: inline-block;  
     width: 100%;
   }
-  /* form{
-    margin: 0 auto;
-  } */
 
   /* MAIN SLIDER */
   #about{
     width: 100%;
-    margin: 10%;
-    padding: 3%;
+    margin: 0 auto;
+    padding: 5%;
+    height: auto;
   }
 
   .ininin{
@@ -178,8 +188,22 @@
   /*슬라이더 dot*/ /* SLIDER DOTS */
   main .wrapper #slider .dots {
     bottom: 57%;
+    /* top: 40%; */
     right: 32%;
   }
+  main .wrapper #slider {
+    width: 40vh;
+    height: 40vh;
+    overflow: hidden;
+    border-radius: 20px;
+  }
+  main .wrapper #slider .slide__content {
+    width: 100%;
+    height: 40vh;
+    margin-right: 10%;
+    display: inline-block;
+  }
+  
 }
 
 /* 중간 화면 (타블렛) */
@@ -221,10 +245,12 @@
   main .wrapper #slider .arrow--left {
     left: 5%;
     margin-bottom: 10%;
+    display: none;
   }    
   main .wrapper #slider .arrow--right {
     right: 5%;
     margin-bottom: 10%;
+    display: none;
   }
 
 
@@ -250,7 +276,7 @@
     justify-content: center;
     display: inline-block;  
     width: 100%; 
-    margin-left: 15%;    
+    margin-left: 20%;    
   }
   
   /* form{
@@ -264,13 +290,14 @@
   #about{
     width: 100%;
     margin-top: 3%;
-    margin-left: 8%;
+    /* margin-left: 8%; */
     padding: 3%;
     display:flex;
   }
   /* SLIDER DOTS */
   main .wrapper #slider .dots {
-    bottom: 40%;
+    /* bottom: 40%; */
+    top: 40%;
     left: 0;
     right: 42%;
   }
@@ -318,6 +345,7 @@
  }
  #userDiaryForm th, td {
     padding: 10px;
+    font-size: large;
    /* text-align: left; */
    /* border-bottom: 1px solid #ddd; */
    
@@ -357,6 +385,7 @@
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
+    height: 85px;
    }
 
 .submitt_btn {
@@ -380,4 +409,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+.diary_title{
+  text-align: center;
+  font-size: x-large;
+  line-height: 50px; 
 }
