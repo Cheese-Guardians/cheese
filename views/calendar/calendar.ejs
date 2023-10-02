@@ -420,7 +420,7 @@
                   <% if (typeof calendarDataResult !== 'undefined' && calendarDataResult && typeof calendarDataResult.calendar !== 'undefined' && calendarDataResult.calendar && typeof calendarDataResult.calendar.diary !== 'undefined') { %>
                   <textarea id="inputBx" name="diary_text" rows="4" cols="50"><%= calendarDataResult.calendar.diary %></textarea>
                   <% } else { %>
-                  <textarea id="inputBx" name="diary_text" rows="4" cols="50"></textarea>
+                  <textarea id="inputBx" name="diary_text"  maxlength='200' rows="4" cols="50" placeholder="최대 200자까지 입력 가능합니다."></textarea>
                   <% } %>
                 </div>
               </div>
