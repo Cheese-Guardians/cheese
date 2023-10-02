@@ -172,18 +172,30 @@
     
   </main>
   <script>
-      // DOM 요소 가져오기
-  const otherMLinks = document.getElementsByClassName("nav-linkM");
-  const calendarMLinks = document.getElementsByClassName("calendaractiveM");
+    if (window.matchMedia("(max-width: 991px)").matches) {
 
-  // 커뮤니티 링크에 active 클래스 추가, 다른 링크에서 active 클래스 제거
-  for (const link of otherMLinks) {
-    link.classList.remove("activeM");
-  }
+      const otherMLinks = document.getElementsByClassName("nav-linkM");
+      const mindMLinks = document.getElementsByClassName("mindactiveM");
 
-  for (const link of calendarMLinks) {
-    link.classList.add("activeM");
-  }
+      for (const link of otherMLinks) {
+        link.classList.remove("activeM");
+      }
+
+      for (const link of calendarMLinks) {
+        link.classList.add("mindMLinks");
+      }
+    } else {
+      const otherMLinks = document.getElementsByClassName("nav-linkM");
+      const calendarMLinks = document.getElementsByClassName("calendaractiveM");
+
+      for (const link of otherMLinks) {
+        link.classList.remove("activeM");
+      }
+
+      for (const link of calendarMLinks) {
+        link.classList.add("activeM");
+      }
+    }
           
   </script>
 </section>
