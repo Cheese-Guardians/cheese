@@ -192,6 +192,7 @@ button{
 @media (max-width: 767px) {
   .community_wrapper {
     height: 150vh;
+    margin-top: 15%;
   }
   .community_container {
     width: 90%;

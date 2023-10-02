@@ -196,6 +196,9 @@ button{
   
 /* 작은 화면 (모바일) */
 @media (max-width: 767px) {
+  .community_wrapper {
+    margin-top: 15%;
+}
   .community_container {
     width: 90%;
     font-size: 12px;
