@@ -23,7 +23,7 @@ require('dotenv').config({path: "./config/gpt.env"}); // gpt.env 불러오기
 // 기본 설정
 const port = 3000,
     express = require("express"),
-    cors = require("cors")
+    cors = require("cors"),
     app = express(),
     fs = require("fs"),
     layouts = require("express-ejs-layouts"),
@@ -31,6 +31,7 @@ const port = 3000,
     usersRouter = require('./routes/usersRoute'),
     reminderRouter = require('./routes/reminderRoute'),
     communityRouter = require('./routes/communityRoute'),
+    mindRouter = require('./routes/mindRoute'),
     sanitizeHtml = require('sanitize-html'),
     exportRouter = require('./routes/exportRoute'),
     puppeteer = require('puppeteer');
@@ -52,6 +53,7 @@ app.use('/users', usersRouter);
 app.use('/reminder', reminderRouter);
 app.use('/community', communityRouter)
 app.use('/export', exportRouter);
+app.use('/mind', mindRouter);
 
 reminderController = require('./controllers/reminderController');
 
