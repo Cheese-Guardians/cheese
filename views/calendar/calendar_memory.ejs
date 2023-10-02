@@ -175,19 +175,7 @@
     
   </main>
   <script>
-    if (window.matchMedia("(max-width: 991px)").matches) {
-
-      const otherMLinks = document.getElementsByClassName("nav-linkM");
-      const mindMLinks = document.getElementsByClassName("mindactiveM");
-
-      for (const link of otherMLinks) {
-        link.classList.remove("activeM");
-      }
-
-      for (const link of calendarMLinks) {
-        link.classList.add("mindMLinks");
-      }
-    } else {
+    
       const otherMLinks = document.getElementsByClassName("nav-linkM");
       const calendarMLinks = document.getElementsByClassName("calendaractiveM");
 
@@ -198,7 +186,7 @@
       for (const link of calendarMLinks) {
         link.classList.add("activeM");
       }
-    }
+   
           
   </script>
 </section>
