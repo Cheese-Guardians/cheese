@@ -3,12 +3,13 @@
 # Header
 --------------------------------------------------------------*/
 #header {
-    background: #FBFFED;
+    background: #f2f2f2;
       /* background: white; */
     transition: all 0.5s;
     z-index: 997;
     padding: 20px 0;
-    height: 80px;
+    padding-top: 3%;
+    height: 120px;
     border-bottom: solid 1px #d9dce2;
   }
   
@@ -1158,6 +1159,9 @@ nav ul.menu li {
 }
 /* 작은 화면 (모바일) */
 @media (max-width: 767px) {
+  #header{
+    padding-top: 13%;
+  }
   #side__menu {
     display: block;
   }
@@ -1172,6 +1176,9 @@ nav ul.menu li {
 }
 /* 중간 화면 (타블렛) */
 @media (min-width: 768px) and (max-width: 991px) {
+  #header{
+    padding-top: 6%;
+  }
   #side__menu {
     display: block;
   }
