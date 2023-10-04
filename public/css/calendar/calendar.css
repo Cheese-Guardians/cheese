@@ -108,11 +108,13 @@ input:focus {outline:none;}
   content: attr(data-tooltip); /* 말풍선 내용 설정 */
   white-space: pre;
   opacity: 1;
-  padding: 50%;
+  padding: 3px 6px; /* Adjust padding for smaller screens */
+  font-size: 12px; /* Adjust font size for smaller screens */
 }
 .data-tooltip {
   background-color: orange;
 }
+
 /* 모바일 버전 */
 @media (max-width: 767px) {
   #hb {
@@ -124,20 +126,11 @@ input:focus {outline:none;}
     width: 65%;
   }
 }
-.material-symbols-outlined:hover::before,
-.material-symbols-outlined:focus::before {
-    padding: 3px 6px; /* Adjust padding for smaller screens */
-    font-size: 12px; /* Adjust font size for smaller screens */
-  }
+
+
 /* 테블릿 */
 @media (min-width: 768px) and (max-width: 991px) {
   #cal_main {
     margin-top: 300px;
   }
-
-
-  
-}
-.data-tooltip {
-  background-color: orange;
 }
