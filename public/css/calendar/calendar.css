@@ -127,7 +127,6 @@ input:focus {outline:none;}
   }
 }
 
-
 /* 테블릿 */
 @media (min-width: 768px) and (max-width: 991px) {
   #cal_main {
