@@ -241,11 +241,16 @@ exports.postBoard = async function (req, res) {
         `);
         }
         else{
-            console.log("성공  but 정보 게시판 아님")
+          return res.status(200).send(`
+          <script>
+            if (confirm('게시글 등록에 성공했습니다.')) {
+              window.location.href = "/community/worryList";
+            }
+          </script>
+        `);
         }
         
       } else {
-        if (category_name == "정보게시판"){
             return res.send(`
           <script>
             if (confirm('게시글 등록에 실패했습니다.')) {
@@ -253,10 +258,7 @@ exports.postBoard = async function (req, res) {
             }
           </script>
         `);
-        }else{
-            
-            console.log("실패  but 정보 게시판 아님")
-        }
+        
       }
     }
     else {
