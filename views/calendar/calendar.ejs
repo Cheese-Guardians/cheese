@@ -418,11 +418,37 @@
                 </div>
                 <div class="diaryTextBox">
                   <% if (typeof calendarDataResult !== 'undefined' && calendarDataResult && typeof calendarDataResult.calendar !== 'undefined' && calendarDataResult.calendar && typeof calendarDataResult.calendar.diary !== 'undefined') { %>
-                  <textarea id="inputBx" name="diary_text" rows="4" cols="50"><%= calendarDataResult.calendar.diary %></textarea>
+                  <textarea id="inputBx" name="diary_text" maxlength='200' rows="4" cols="50" placeholder="최대 200자까지 입력 가능합니다."> <%= calendarDataResult.calendar.diary %></textarea>
                   <% } else { %>
-                  <textarea id="inputBx" name="diary_text"  maxlength='200' rows="4" cols="50" placeholder="최대 200자까지 입력 가능합니다."></textarea>
+                    <textarea id="inputBx" name="diary_text" maxlength="200" rows="4" cols="50" placeholder="최대 200자까지 입력 가능합니다."></textarea>
                   <% } %>
                 </div>
+                <script>
+                  // JavaScript로 초기화 및 스타일 적용
+                  document.addEventListener("DOMContentLoaded", function () {
+                      var textarea = document.getElementById("inputBx");
+                      var placeholderText = "최대 200자까지 입력 가능합니다.";
+                      
+                      textarea.value = placeholderText;
+                      textarea.style.color = "gray"; // 플레이스홀더 텍스트의 색상
+                      
+                      // 사용자가 포커스를 받으면 내용을 지우고 텍스트 색상 변경
+                      textarea.addEventListener("focus", function () {
+                          if (textarea.value === placeholderText) {
+                              textarea.value = "";
+                              textarea.style.color = "black"; // 입력한 내용의 색상
+                          }
+                      });
+              
+                      // 포커스를 잃으면 플레이스홀더 텍스트를 다시 표시
+                      textarea.addEventListener("blur", function () {
+                          if (textarea.value === "") {
+                              textarea.value = placeholderText;
+                              textarea.style.color = "gray"; // 플레이스홀더 텍스트의 색상
+                          }
+                      });
+                  });
+              </script>
               </div>
             </div>
 
