@@ -53,7 +53,7 @@ button{
   border-color: #E0E0E0;
   border-style: solid;
   border-width: 2px;
-  border-radius: 3%;
+  border-radius: 30px;
 
   margin: 0 auto;
   position: relative;
@@ -196,9 +196,13 @@ button{
   
 /* 작은 화면 (모바일) */
 @media (max-width: 767px) {
+  .board_wrap {
+    width: 80%;
+    margin: 2% auto;
+  }
   .community_wrapper {
     margin-top: 15%;
-    height: 150vh;
+    height: 120vh;
   }
 }
   .community_container {
