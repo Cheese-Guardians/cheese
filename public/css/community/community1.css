@@ -271,6 +271,9 @@ button{
     width: 80%;
     font-size: 15px;
   }
+  .community_wrapper {
+    margin-top: 10%;
+}
   button {
     width: 20%;
     height: 2.2%;
@@ -329,6 +332,9 @@ button{
     width: 55%;
     font-size: 15px;
   }
+  .community_wrapper {
+    margin-top: 5%;
+}
   button {
     width: 7%;
     height: 2.5%;
