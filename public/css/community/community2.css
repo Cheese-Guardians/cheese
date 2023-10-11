@@ -191,7 +191,7 @@ button{
 /* 작은 화면 (모바일) */
 @media (max-width: 767px) {
   .community_wrapper {
-    height: 120vh;
+    height: 150vh;
     margin-top: 15%;
   }
   .community_container {
