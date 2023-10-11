@@ -37,13 +37,16 @@ exports.getCalendar = async function (req, res) {
     }
     const calendarResult = await calendarService.retrieveCalendar(user_id, date);
     const calendarDataResult = await calendarService.retrieveSelectedCalendar(user_id, date);
-    
-    if (calendarResult.length > 0) {
-      
-      return res.render('calendar/calendar.ejs', { calendarResult: calendarResult, calendarDataResult: calendarDataResult });
-    } else {
-      console.log(calendarDataResult);
-      return res.render('calendar/calendar.ejs', { calendarResult: null, calendarDataResult: calendarDataResult });
+    const MindDiaryResult = await calendarService.retrieveCalendar(user_id, date);
+    const MindDiaryDataResult = await calendarService.retrieveSelectedMindDiary(user_id, date);
+    console.log(MindDiaryDataResult)
+    if (calendarResult.length>0){
+      console.log("경우2")
+        return res.render('calendar/calendar.ejs', { calendarResult: calendarResult, calendarDataResult: calendarDataResult, MindDiaryResult:MindDiaryResult, MindDiaryDataResult:MindDiaryDataResult  });
+      }
+    else {
+      console.log("경우4")
+      return res.render('calendar/calendar.ejs', { calendarResult: null, calendarDataResult: calendarDataResult, MindDiaryResult:MindDiaryResult, MindDiaryDataResult:MindDiaryDataResult  });
     }
     
   } else {

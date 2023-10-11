@@ -8,8 +8,8 @@
     transition: all 0.5s;
     z-index: 997;
     padding: 20px 0;
-    padding-top: 3%;
-    height: 120px;
+    /* padding-top: 3%; */
+    height: 80px;
     border-bottom: solid 1px #d9dce2;
   }
   
@@ -38,6 +38,8 @@
   @media (max-width: 991px) {
     #header {
       padding: 12px 0;
+      padding-top: 3%;
+      height: 120px;
     }
   }
   

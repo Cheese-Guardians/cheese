@@ -93,7 +93,7 @@ async function insertCalInfo(pool, deleteCalendarParams, insertCalendarParams, g
   const symptom_text = ["기억장애", "언어장애", "배회", "계산능력 저하", "성격 및 감정의 변화", "이상행동"];
   let calendar_id;
   // try{
-    console.log(symptom_range);
+    // console.log(symptom_range);
     //1. 캘린더 insert 
     const deleteCalendarQuery = `
     DELETE FROM calendar WHERE user_id = ? AND \`date\` = ?;
@@ -105,7 +105,7 @@ async function insertCalInfo(pool, deleteCalendarParams, insertCalendarParams, g
     const getCalendarIdQuery = `
     SELECT calendar_id FROM calendar WHERE  user_id = ? AND \`date\` = ?;
     `;
-    console.log("model2");
+    // console.log("model2");
     /*
     //3. 병원일정 insert
     const deleteHospital_scheduleQuery = `
@@ -146,14 +146,14 @@ async function insertCalInfo(pool, deleteCalendarParams, insertCalendarParams, g
     // }
   const connection = await pool.promise().getConnection();
   
-  console.log("why");
+  // console.log("why");
   try {
       await connection.query('START TRANSACTION');
       await connection.query(deleteCalendarQuery, deleteCalendarParams);
       await connection.query(insertCalendarQuery, insertCalendarParams);
       const [calendarIDRow] =  await connection.query(getCalendarIdQuery, getCalendarIdParams);
       calendar_id = calendarIDRow[0].calendar_id;
-      console.log("calId: "+calendar_id);
+      // console.log("calId: "+calendar_id);
       //가져온 calendar id로 params 수정
       /*
       deleteHospital_scheduleParams.unshift(calendar_id);
@@ -176,7 +176,7 @@ async function insertCalInfo(pool, deleteCalendarParams, insertCalendarParams, g
       checkContent,
       is_check[index]
       ]);
-      console.log(insertCheck_listParams);
+      // console.log(insertCheck_listParams);
     
 
       for (let i = 0; i < deleteCheck_listQueries.length; i++) {
@@ -204,8 +204,8 @@ async function insertCalInfo(pool, deleteCalendarParams, insertCalendarParams, g
         symptom_range[index]
       ];
     });
-    console.log(deleteSymptomParams);
-    console.log("test",insertSymptomParams);
+    // console.log(deleteSymptomParams);
+    // console.log("test",insertSymptomParams);
     for (let i = 0; i < deleteSymptomQueries.length; i++) {
       const query = deleteSymptomQueries[i];
       if (query !== null) {
@@ -218,7 +218,7 @@ async function insertCalInfo(pool, deleteCalendarParams, insertCalendarParams, g
     //     return;
     //   else return connection.query(query, deleteSymptomParams.slice(index * 3, (index + 1) * 3));
     //   }));
-    console.log("delete완료");
+    // console.log("delete완료");
 
     for (let i = 0; i < insertSymptomQueries.length; i++) {
       const query = insertSymptomQueries[i];
@@ -232,7 +232,7 @@ async function insertCalInfo(pool, deleteCalendarParams, insertCalendarParams, g
     //       return;
     //     else return connection.query(query, insertSymptomParams.slice(index * 5, (index + 1) * 5));
     //     }));
-      console.log("model");
+      // console.log("model");
 
     await connection.query('COMMIT');
   } catch (error) {
@@ -321,6 +321,7 @@ async function getSelectedMindDiary(pool, selectedMindDiaryParams) {
   `;
 
   const [mindDiaryRows] = await pool.promise().query(getMindDiary_listQuery, selectedMindDiaryParams);
+  
   const MindDiary_list = {
     keyword: "",
     matter: "",
@@ -336,11 +337,12 @@ async function getSelectedMindDiary(pool, selectedMindDiaryParams) {
     MindDiary_list.solution = mindDiaryRows[0].solution;
     MindDiary_list.compliment = mindDiaryRows[0].compliment;
   }
+
   return {MindDiary_list};
 }
 
 async function insertMindDiaryInfo(pool, insertMindDiaryParams) {
-  console.log(insertMindDiaryParams)
+  // console.log(insertMindDiaryParams)
   const insertMindDiaryQuery  = `
         insert into mind_diary (\`user_id\`, \`date\`, \`keyword\`, \`matter\`, \`change\`, \`solution\`, \`compliment\`)
         values (?,?,?,?,?,?,?);
@@ -358,6 +360,7 @@ module.exports = {
   insertFileMem,
   getSelectedCalendar,
   insertCalInfo,
+  // selectMindDiary,
   getSelectedMindDiary,
   insertMindDiaryInfo
 }
