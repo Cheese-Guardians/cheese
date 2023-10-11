@@ -6,7 +6,6 @@ const ejs = require('ejs');
 const pdf = require("html-pdf");
 const fs = require('fs');
 const path = require('path');
-const { exec } = require('child_process');
 
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
@@ -107,34 +106,28 @@ exports.postSummary = async function (req, res) {
     //  console.log("hhhhhhhhhhhhhhhhhhhhhhhhh",groupedData)
 
   
-    const pythonProcess = exec('public/statistic.py', (error, stdout, stderr) => {
-      if (error) {
-          console.error('Python 스크립트 실행 중 오류 발생:', error);
-          res.redirect('/'); // 리디렉션 수행
-          // alert('증상 데이터가 충분하지 않아 pdf 추출이 불가능합니다');
-                
-      } else {
-          // console.log('Python 스크립트 실행 결과:', stdout);
-  
-          // 여기서 result를 사용할 필요가 없으므로 제거
-      }
-  });
-  
 
 
+
+      const result = spawn('python', ['public/statistic.py']);
     
-  await new Promise((resolve, reject) => {
-    pythonProcess.on('exit', (code) => {
-        if (code === 0) {
+      // Python 프로세스가 종료될 때까지 기다립니다.
+      await new Promise((resolve, reject) => {
+        result.on('exit', (code) => {
+          if (code === 0) {
             // Python script completed successfully
             resolve();
-        } else {
+          } else {
             // Python script encountered an error
             console.log('Python script exited with code:', code);
             reject(new Error('Python script encountered an error.'));
-        }
-    });
-});
+            // 4. 에러 발생 시, stderr의 'data' 이벤트 리스너로 실행 결과를 받습니다.
+            result.stderr.on('data', function (data) {
+              console.log(data.toString());
+            });
+          }
+        });
+      });
     
       // 3. stdout의 'data' 이벤트 리스너로 실행 결과를 받습니다.
       result.stdout.on('data', function (data) {
@@ -217,7 +210,7 @@ exports.postSummary = async function (req, res) {
       return res.send(`
         <script>
           if (confirm('일기 요약에 실패했습니다.')) {
-            await page.goto('http://localhost:3000/');
+            window.location.href = "/export";
           }
         </script>
       `);
