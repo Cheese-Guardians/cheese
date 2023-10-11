@@ -285,8 +285,7 @@
 
               <div class="sleeping-time">
                 <div class="title"> <p> 수면시간 </p> </div>
-                <div class="time">
-                
+                <div class="time">                
                   <button class="btn three" type="button" value="3">
                     <label>
                       <!-- <input type="checkbox"> -->
@@ -394,6 +393,7 @@
                       buttons[i].addEventListener('click', handleButtonClick);
                     }
                   </script>
+
                   <input type="hidden" id="sleeping_time" name="sleep_time" value="">
                     <% if (typeof calendarDataResult !== 'undefined' && calendarDataResult && typeof calendarDataResult.calendar !== 'undefined' && calendarDataResult.calendar && typeof calendarDataResult.calendar.sleep_time !== 'undefined') { %>
                       <script>
@@ -407,18 +407,19 @@
                     <% } %>
                         
                     
-                </div>
-                
+                </div>              
 
                 
               </div>
+
               <div class="diary">
                 <div class="title">
                   <p>관찰일기</p>
                 </div>
                 <div class="diaryTextBox">
                   <% if (typeof calendarDataResult !== 'undefined' && calendarDataResult && typeof calendarDataResult.calendar !== 'undefined' && calendarDataResult.calendar && typeof calendarDataResult.calendar.diary !== 'undefined') { %>
-                  <textarea id="inputBx" name="diary_text" maxlength='200' rows="4" cols="50" placeholder="최대 200자까지 입력 가능합니다."> <%= calendarDataResult.calendar.diary %></textarea>
+                  <textarea id="inputBx" name="diary_text" maxlength='200' rows="4" cols="50" placeholder="최대 200자까지 입력 가능합니다." value="<%= calendarDataResult.calendar.diary %>">  </textarea>
+
                   <% } else { %>
                     <textarea id="inputBx" name="diary_text" maxlength="200" rows="4" cols="50" placeholder="최대 200자까지 입력 가능합니다."></textarea>
                   <% } %>
@@ -429,9 +430,17 @@
                       var textarea = document.getElementById("inputBx");
                       var placeholderText = "최대 200자까지 입력 가능합니다.";
                       
-                      textarea.value = placeholderText;
-                      textarea.style.color = "gray"; // 플레이스홀더 텍스트의 색상
-                      
+                      // calendarDataResult.calendar.diary의 값 가져오기
+                      var diaryText = "<%= calendarDataResult.calendar.diary %>";
+                
+                      if (diaryText) {
+                          textarea.value = diaryText; // calendarDataResult.calendar.diary 값을 설정
+                          textarea.style.color = "black"; // 입력한 내용의 색상
+                      } else {
+                          textarea.value = placeholderText; // 기본 플레이스홀더 텍스트
+                          textarea.style.color = "gray"; // 플레이스홀더 텍스트의 색상
+                      }
+                
                       // 사용자가 포커스를 받으면 내용을 지우고 텍스트 색상 변경
                       textarea.addEventListener("focus", function () {
                           if (textarea.value === placeholderText) {
@@ -439,7 +448,7 @@
                               textarea.style.color = "black"; // 입력한 내용의 색상
                           }
                       });
-              
+                
                       // 포커스를 잃으면 플레이스홀더 텍스트를 다시 표시
                       textarea.addEventListener("blur", function () {
                           if (textarea.value === "") {
@@ -448,7 +457,8 @@
                           }
                       });
                   });
-              </script>
+                </script>
+                
               </div>
             </div>
 

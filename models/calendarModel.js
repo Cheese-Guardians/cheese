@@ -1,7 +1,6 @@
 //캘린더 조회
-//캘린더 조회
 async function getSelectedCalendar(pool, selectedCalendarParams) {
-  /*
+  /* 병원일정
   const getHospital_scheduleQuery = `
     SELECT hospital_name, TIME(booking_time) AS booking_hour
     FROM hospital_schedule
@@ -14,6 +13,7 @@ async function getSelectedCalendar(pool, selectedCalendarParams) {
     );
   `;
   */
+  /*체크사항*/
   const getCheck_listQuery = `
     SELECT check_content, is_check
     FROM check_list
@@ -25,6 +25,7 @@ async function getSelectedCalendar(pool, selectedCalendarParams) {
       AND date = ?
     );
   `;
+  /*수면 시간*/
   const getCalendarQuery = `
     SELECT sleep_time , diary
     FROM calendar
@@ -36,6 +37,7 @@ async function getSelectedCalendar(pool, selectedCalendarParams) {
       AND date = ?
     );
   `;
+  /*증상*/
   const getSymptomQuery = `
     SELECT symptom_name, degree
     FROM symptom
@@ -88,7 +90,7 @@ async function getSelectedCalendar(pool, selectedCalendarParams) {
 
 
 
-//캘린더 저장
+//캘린더 저장(post)
 async function insertCalInfo(pool, deleteCalendarParams, insertCalendarParams, getCalendarIdParams, user_id, check_content, is_check,  symptom_range){
   const symptom_text = ["기억장애", "언어장애", "배회", "계산능력 저하", "성격 및 감정의 변화", "이상행동"];
   let calendar_id;

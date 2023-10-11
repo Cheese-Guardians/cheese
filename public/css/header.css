@@ -1079,7 +1079,7 @@
  #side__menu {
   height: 100vh; /* 화면 높이를 100%로 설정하여 헤더 영역을 벗어납니다. */
   width: 150px; /* 원하는 너비 설정 */
-  background: #FBFFED;;
+  background: #f2f2f2;
   opacity: 100%;
   position: absolute; /* 고정 위치로 설정 */
   top: 0;
