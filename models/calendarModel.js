@@ -345,12 +345,17 @@ async function getSelectedMindDiary(pool, selectedMindDiaryParams) {
 
 async function insertMindDiaryInfo(pool, insertMindDiaryParams) {
   // console.log(insertMindDiaryParams)
+  const deleteMindDiaryQuery = `
+      DELETE FROM mind_diary
+      WHERE user_id = '${insertMindDiaryParams[0]}' AND date = '${insertMindDiaryParams[1]}';
+        `
   const insertMindDiaryQuery  = `
         insert into mind_diary (\`user_id\`, \`date\`, \`keyword\`, \`matter\`, \`change\`, \`solution\`, \`compliment\`)
         values (?,?,?,?,?,?,?);
         `;
 
   try {
+    await pool.promise().query(deleteMindDiaryQuery);
     await pool.promise().query(insertMindDiaryQuery, insertMindDiaryParams);
   } catch (err) {
     throw err;
