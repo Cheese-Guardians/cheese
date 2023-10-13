@@ -104,30 +104,37 @@ exports.postSummary = async function (req, res) {
       const spawn = require('child_process').spawn;
     
     //  console.log("hhhhhhhhhhhhhhhhhhhhhhhhh",groupedData)
+    const result = spawn('python', ['public/statistic.py']);
 
-  
-
-
-
-      const result = spawn('python', ['public/statistic.py']);
+    // Python 프로세스가 종료될 때까지 기다립니다.
+    await new Promise((resolve, reject) => {
+      result.on('exit', (code) => {
+        if (code === 0) {
+          // Python script completed successfully
+          resolve();
+        } else {
+          // Python script encountered an error
+          console.log('Python script exited with code:', code);
     
-      // Python 프로세스가 종료될 때까지 기다립니다.
-      await new Promise((resolve, reject) => {
-        result.on('exit', (code) => {
-          if (code === 0) {
-            // Python script completed successfully
-            resolve();
-          } else {
-            // Python script encountered an error
-            console.log('Python script exited with code:', code);
-            reject(new Error('Python script encountered an error.'));
-            // 4. 에러 발생 시, stderr의 'data' 이벤트 리스너로 실행 결과를 받습니다.
-            result.stderr.on('data', function (data) {
-              console.log(data.toString());
-            });
-          }
-        });
+          // 여기서 Python 스크립트의 stderr에서 오류 메시지를 얻을 수 있습니다.
+          let errorMessages = [];
+          result.stderr.on('data', function (data) {
+            errorMessages.push(data.toString());
+            console.error(data.toString());
+          });
+    
+          // 사용자에게 오류 메시지와 함께 알림을 보냅니다.
+          return res.send(`
+          <script>
+            alert('PDF를 생성하는 과정에서 오류가 발생했습니다. 충분한 데이터가 들어가 있는지 확인해주세요.');
+            window.location.href = "/export";
+          </script>
+        `);
+    
+          reject(new Error('Python script encountered an error.'));
+        }
       });
+    });
     
       // 3. stdout의 'data' 이벤트 리스너로 실행 결과를 받습니다.
       result.stdout.on('data', function (data) {
@@ -203,6 +210,13 @@ exports.postSummary = async function (req, res) {
           } catch (error) {
             console.error('Puppeteer Error:', error);
             res.send('Failed to generate PDF.');
+            return res.send(`
+                <script>
+                  if (confirm('일기 요약에 실패했습니다.')) {
+                    window.location.href = "/export";
+                  }
+                </script>
+              `);
           }
         }
       });
