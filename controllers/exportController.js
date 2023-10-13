@@ -208,8 +208,8 @@ exports.postSummary = async function (req, res) {
             });
           } catch (error) {
             console.error('Puppeteer Error:', error);
-            res.send('Failed to generate PDF.');
             return res.send(`
+            'Failed to generate PDF.
                 <script>
                   if (confirm('일기 요약에 실패했습니다.')) {
                     window.location.href = "/export";
