@@ -3,7 +3,6 @@ const jwt = require('jsonwebtoken');
 const secret = require('../config/secret');
 const axios = require('axios');
 const ejs = require('ejs');
-const pdf = require("html-pdf");
 const fs = require('fs');
 const path = require('path');
 
@@ -104,7 +103,7 @@ exports.postSummary = async function (req, res) {
       const spawn = require('child_process').spawn;
     
     //  console.log("hhhhhhhhhhhhhhhhhhhhhhhhh",groupedData)
-    const result = spawn('python', ['public/statistic.py']);
+    const result = spawn('python3', ['public/statistic.py']);
 
     // Python 프로세스가 종료될 때까지 기다립니다.
     await new Promise((resolve, reject) => {
@@ -176,7 +175,7 @@ exports.postSummary = async function (req, res) {
             const page = await browser.newPage();
 
             // 페이지에 접속 (예를 들어, 구글 홈페이지로 접속)
-            await page.goto('http://localhost:3000/');
+            await page.goto('http://www.dementiaguardians.site/');
 
             // 스크린샷 캡처
             await page.screenshot({ path: 'example.png' });
