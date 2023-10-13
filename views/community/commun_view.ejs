@@ -25,8 +25,15 @@
       <% if (communityResult.category_name == "정보게시판" ) { %>
         <script>
           // getElementsByClassName로 가져온 것은 요소들의 컬렉션이므로, 첫 번째 요소에 write_active 클래스를 추가해야 합니다.
-          const button = document.getElementsByClassName('select1')[0];
-          button.classList.add('write_active');
+          let button1 = document.getElementsByClassName('select1')[0];
+          button1.classList.add('write_active');
+        </script>
+      <% } %>
+      <% if (communityResult.category_name == "자유게시판" ) { %>
+        <script>
+          // getElementsByClassName로 가져온 것은 요소들의 컬렉션이므로, 첫 번째 요소에 write_active 클래스를 추가해야 합니다.
+          let button2 = document.getElementsByClassName('select2')[0];
+          button2.classList.add('write_active');
         </script>
       <% } %>
     <% } %>
