@@ -278,8 +278,11 @@ function formatTime(dateTimeString) {
   const hours = new Date(originalDate).getHours(); // Local time in Seoul (hours)
   const minutes = new Date(originalDate).getMinutes(); // Local time in Seoul (minutes)
   
+  // 두 자리 수로 포맷팅
+  const formattedHours = String(hours).padStart(2, '0');
+  const formattedMinutes = String(minutes).padStart(2, '0');
   
-    return `${hours}:${minutes}`;
+  return `${formattedHours}:${formattedMinutes}`;
 }
   
 async function insertBoardInfo(pool, insertBoardParams){
