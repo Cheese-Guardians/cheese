@@ -86,7 +86,7 @@ input:focus {outline:none;}
   top: -30px;
   left: 50%; /* 가운데 정렬을 위해 left 값을 50%로 설정 */
   transform: translateX(-50%); /* left 값의 절반을 왼쪽으로 이동하여 가운데 정렬 */
-  background-color: #333;
+  background-color: transparent;
   color: #fff;
   /* padding: 5px 10px; */
   padding-left: 50%;

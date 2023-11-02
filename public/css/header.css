@@ -190,7 +190,7 @@
   /**
   * Mobile Navigation 
   */
-  .mobile-nav-toggle {
+  .a {
     color: #5f687b;
     font-size: 28px;
     cursor: pointer;
@@ -1138,7 +1138,7 @@ nav ul.menu li {
 .logoutM {
   background: none;
   border: none;
-  color: black(1, 248, 42); /* 클릭할 때 링크처럼 파란색으로 변경할 수 있습니다. */
+  color: #6a7489; /* 클릭할 때 링크처럼 파란색으로 변경할 수 있습니다. */
   font-weight: bold;
   cursor: pointer; /* 마우스 포인터 모양을 손가락 포인터로 변경 */
   padding: 0; /* 내부 여백 제거 */

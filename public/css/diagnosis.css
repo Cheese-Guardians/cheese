@@ -18,6 +18,8 @@
   }
   #date-input{
     margin-top:100px;
+    width: 150px;
+    height:40px;
   }
 
   .content-container {
@@ -61,7 +63,8 @@
     padding: 5px;
     padding-left: 10px;
     padding-right: 10px;
-    margin-right: 10px;
+    width:150px;
+    height:40px;
     background-color: white;
   }
 
@@ -119,7 +122,6 @@
     padding: 5px;
     padding-left: 10px;
     padding-right: 10px;
-    margin-right:5%;
     background-color: white;
   }
 
@@ -160,6 +162,7 @@
 
     font-size: 13px;
   }
+
   .title {
     font-size: 18px;
     font-weight: 1000;
@@ -191,6 +194,7 @@
     font-size: 10px;
     text-align: center;
   }
+
 }
 
 /* 중간 화면 (타블렛) */
