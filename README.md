@@ -1,5 +1,5 @@
 # 🧀치즈 (치매 가디언즈)🧀 (Cheese-Guardians)
-2023-1 성신여대 서버시스템구축실습 1팀  <b>가디언즈</b>
+2023-1 성신여대 오픈소스 프로그래밍 <b>가디언즈</b>
 <p align="center">
   <img src="https://user-images.githubusercontent.com/80445246/245830427-cdd7d976-233b-4f13-bf4c-a9599c9999d8.png" style="width:200px; height:200px">
  </p>
@@ -31,20 +31,15 @@
 
 ## 👨‍👩‍👧‍👦팀원 소개
 - <b>😎최승희</b>(컴퓨터공학과 20211150) <br>
-  로그인, 회원가입, 로그아웃, SMS 전송, 복용약 알림, 추억 사진 업로드<br>
--  <b>🫡박민주</b>(컴퓨터공학과 20211126) <br>
-  로그인, 회원가입, 로그아웃, SMS 전송,복용약 알림<br>
+- <b>🫡박민주</b>(컴퓨터공학과 20211126) <br>
 - <b>🫡박수빈</b>(컴퓨터공학과 20211128)  <br>
-  캘린더, 추억 사진 업로드<br>
--  <b>🫡이하은</b>(컴퓨터공학과 20211145) <br>
-  캘린더, 추억 사진 업로드<br>
--  <b>🫡한다경</b>(컴퓨터공학과 20211153)  <br>
- 캘린더, SMS 전송<br>
+- <b>🫡이하은</b>(컴퓨터공학과 20211145) <br>
+- <b>🫡한다경</b>(컴퓨터공학과 20211153)  <br>
   
 ⚡그외 부분은 전체 팀원이 참여하였습니다.<br>
 
 ## 🔎배포 주소
-➡️http://34.64.96.174/
+➡️http://www.dementiaguardians.site/
   
 ## 🔗데모 영상
 ➡️https://drive.google.com/file/d/1ZMHqfsx6vgq1vBbidwAj9ZRgh3pym6Qa/view?usp=sharing
