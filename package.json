@@ -4,7 +4,7 @@
   "description": "치매 가디언즈 '치매' 프로젝트",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node main.js" && exit 1"
   },
   "author": "",
   "license": "ISC",
