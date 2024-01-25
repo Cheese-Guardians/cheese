@@ -1,5 +1,5 @@
 # 🧀치즈 (치매 가디언즈)🧀 (Cheese-Guardians)
-2023-1 성신여대 오픈소스 프로그래밍 <b>가디언즈</b>
+<b> 팀명 : 가디언즈</b>
 <p align="center">
   <img src="https://user-images.githubusercontent.com/80445246/245830427-cdd7d976-233b-4f13-bf4c-a9599c9999d8.png" style="width:200px; height:200px">
  </p>
